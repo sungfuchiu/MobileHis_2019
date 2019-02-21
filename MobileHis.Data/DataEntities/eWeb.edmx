@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EZServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EZ_Image">
+          <Key>
+            <PropertyRef Name="IM_UIKey" />
+          </Key>
+          <Property Name="IM_UIKey" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="SE_UIKey" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="SOPClassUID" Type="char" MaxLength="128" />
+          <Property Name="ImageNumber" Type="int" Nullable="false" />
+          <Property Name="ImageDate" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ImageTime" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="ObjectFile" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ObjectFileJPG" Type="varchar" MaxLength="255" />
+          <Property Name="IM_ImageDeviceID" Type="char" MaxLength="24" Nullable="false" />
+          <Property Name="ImageStatus" Type="varchar" MaxLength="32" />
+          <Property Name="ImageWindow" Type="int" />
+          <Property Name="ImageLevel" Type="int" />
+          <Property Name="KeyImage" Type="char" MaxLength="1" />
+          <Property Name="DentalImageNum" Type="int" />
+          <Property Name="ProcessFlag" Type="varchar" MaxLength="1024" />
+          <Property Name="BriefnessFlag" Type="varchar" MaxLength="1024" />
+          <Property Name="IM_CDT" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="IM_CU" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="IM_MDT" Type="varchar" MaxLength="16" />
+          <Property Name="IM_MU" Type="varchar" MaxLength="32" />
+          <Property Name="HaveSendToRemote" Type="char" MaxLength="10" />
+          <Property Name="HaveMove" Type="char" MaxLength="10" />
+          <Property Name="HaveMoveDate" Type="char" MaxLength="10" />
+          <Property Name="FileSize" Type="int" />
+          <Property Name="FileReady" Type="varchar" MaxLength="2" />
+          <Property Name="CalcuteMaxMinFinally" Type="varchar" MaxLength="2" />
+          <Property Name="HasCompress" Type="varchar" MaxLength="2" />
+          <Property Name="ReferenceImageNumber" Type="int" />
+          <Property Name="FilmStatus" Type="varchar" MaxLength="4" />
+          <Property Name="CodeValue" Type="varchar" MaxLength="50" />
+          <Property Name="OperationWL" Type="char" MaxLength="1" />
+          <Property Name="SendStatus" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'EZServer.dbo.EZ_ImageDevice' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="EZ_ImageDevice">
+          <Key>
+            <PropertyRef Name="IM_ImageDeviceID" />
+            <PropertyRef Name="ImagePath" />
+            <PropertyRef Name="DeviceIPAddress" />
+            <PropertyRef Name="ID_CDT" />
+            <PropertyRef Name="ID_CU" />
+          </Key>
+          <Property Name="IM_ImageDeviceID" Type="char" MaxLength="24" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ImagePathDescription" Type="varchar" MaxLength="128" />
+          <Property Name="DeviceIPAddress" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="DeviceUserID" Type="varchar" MaxLength="16" />
+          <Property Name="DevicePwd" Type="varchar" MaxLength="16" />
+          <Property Name="DeviceLevel" Type="varchar" MaxLength="2" />
+          <Property Name="DeviceTotalSize" Type="int" />
+          <Property Name="DeviceUsedSize" Type="int" />
+          <Property Name="DeviceMailService" Type="varchar" MaxLength="2" />
+          <Property Name="ID_CDT" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="ID_CU" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="ID_MDT" Type="varchar" MaxLength="16" />
+          <Property Name="ID_MU" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="HISWORKLIST">
+          <Key>
+            <PropertyRef Name="HW_ACCESSIONNUMBER" />
+            <PropertyRef Name="HW_MODALITY" />
+          </Key>
+          <Property Name="HW_ACCESSIONNUMBER" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="HW_MODALITY" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="HW_SPSS_EXEDT" Type="varchar" MaxLength="10" />
+          <Property Name="HW_SPSS_EXETM" Type="varchar" MaxLength="16" />
+          <Property Name="HW_REFER_PHSICIAN" Type="varchar" MaxLength="64" />
+          <Property Name="HW_PERFORMING_PHSICIAN" Type="varchar" MaxLength="64" />
+          <Property Name="HW_REPORT_PHSICIAN" Type="varchar" MaxLength="64" />
+          <Property Name="HW_PATIENTID" Type="varchar" MaxLength="64" />
+          <Property Name="HW_PATIENTNAME" Type="varchar" MaxLength="64" />
+          <Property Name="HW_PATIENTOTHERID" Type="varchar" MaxLength="64" />
+          <Property Name="HW_PATIENTOTHERNAME" Type="varchar" MaxLength="64" />
+          <Property Name="HW_BIRTHDATE" Type="varchar" MaxLength="10" />
+          <Property Name="HW_BIRTHTIME" Type="varchar" MaxLength="16" />
+          <Property Name="HW_SEX" Type="varchar" MaxLength="16" />
+          <Property Name="HW_AGE" Type="varchar" MaxLength="32" />
+          <Property Name="HW_SIZE" Type="varchar" MaxLength="32" />
+          <Property Name="HW_WEIGHT" Type="varchar" MaxLength="32" />
+          <Property Name="HW_ETHNIC_GROUP" Type="varchar" MaxLength="32" />
+          <Property Name="HW_OCCUPATION" Type="varchar" MaxLength="32" />
+          <Property Name="HW_ADD_HISTORY" Type="varchar" MaxLength="64" />
+          <Property Name="HW_PATIENTCOMMENTS" Type="varchar" MaxLength="64" />
+          <Property Name="HW_STUDY_INSTANCE_UID" Type="varchar" MaxLength="128" />
+          <Property Name="HW_REFERSOPCLASSUID" Type="varchar" MaxLength="128" />
+          <Property Name="HW_REQ_SERVICE" Type="varchar" MaxLength="64" />
+          <Property Name="HW_REQ_P_DESC" Type="varchar" MaxLength="64" />
+          <Property Name="HW_REQ_P_CODESEQ" Type="varchar" MaxLength="64" />
+          <Property Name="HW_REQ_CONTRAST_AGENT" Type="varchar" MaxLength="64" />
+          <Property Name="HW_VISIT_STATUS_ID" Type="varchar" MaxLength="64" />
+          <Property Name="HW_P_I_R" Type="varchar" MaxLength="64" />
+          <Property Name="HW_S_STATION_AE" Type="varchar" MaxLength="32" />
+          <Property Name="HW_S_STATION_NAME" Type="varchar" MaxLength="32" />
+          <Property Name="HW_REQ_P_PRIORITY" Type="varchar" MaxLength="32" />
+          <Property Name="HW_REQ_P_LOCATION" Type="varchar" MaxLength="32" />
+          <Property Name="HW_SPS_DESC" Type="varchar" MaxLength="64" />
+          <Property Name="HW_REQ_P_ID" Type="varchar" MaxLength="64" />
+          <Property Name="HW_SOURCE" Type="varchar" MaxLength="32" />
+          <Property Name="HW_STATION" Type="varchar" MaxLength="32" />
+          <Property Name="HW_STNO" Type="varchar" MaxLength="32" />
+          <Property Name="HW_STATUS" Type="varchar" MaxLength="32" />
+          <Property Name="HW_EXEITEMNAME" Type="varchar" MaxLength="64" />
+          <Property Name="HW_EXEITEM" Type="varchar" MaxLength="20" />
+          <Property Name="HW_EXESUBITEM" Type="varchar" MaxLength="20" />
+          <Property Name="HW_EXEPART" Type="varchar" MaxLength="10" />
+          <Property Name="HW_CHGDT" Type="varchar" MaxLength="10" />
+          <Property Name="HW_CHGTM" Type="varchar" MaxLength="8" />
+          <Property Name="HW_ItemHasUse" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="WL_CDT" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="WL_CU" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="WL_MDT" Type="varchar" MaxLength="16" />
+          <Property Name="WL_MU" Type="varchar" MaxLength="32" />
+          <Property Name="MPPS_ProcedureState" Type="varchar" MaxLength="16" />
+          <Property Name="MPPS_ProcedureCode" Type="int" />
+          <Property Name="HW_CARDNO" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityContainer Name="EZServerModelStoreContainer">
+          <EntitySet Name="EZ_Image" EntityType="Self.EZ_Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISWORKLIST" EntityType="Self.HISWORKLIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EZ_ImageDevice" EntityType="Self.EZ_ImageDevice" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EZ_ImageDevice].[IM_ImageDeviceID] AS [IM_ImageDeviceID], 
+    [EZ_ImageDevice].[ImagePath] AS [ImagePath], 
+    [EZ_ImageDevice].[ImagePathDescription] AS [ImagePathDescription], 
+    [EZ_ImageDevice].[DeviceIPAddress] AS [DeviceIPAddress], 
+    [EZ_ImageDevice].[DeviceUserID] AS [DeviceUserID], 
+    [EZ_ImageDevice].[DevicePwd] AS [DevicePwd], 
+    [EZ_ImageDevice].[DeviceLevel] AS [DeviceLevel], 
+    [EZ_ImageDevice].[DeviceTotalSize] AS [DeviceTotalSize], 
+    [EZ_ImageDevice].[DeviceUsedSize] AS [DeviceUsedSize], 
+    [EZ_ImageDevice].[DeviceMailService] AS [DeviceMailService], 
+    [EZ_ImageDevice].[ID_CDT] AS [ID_CDT], 
+    [EZ_ImageDevice].[ID_CU] AS [ID_CU], 
+    [EZ_ImageDevice].[ID_MDT] AS [ID_MDT], 
+    [EZ_ImageDevice].[ID_MU] AS [ID_MU]
+    FROM [dbo].[EZ_ImageDevice] AS [EZ_ImageDevice]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EZServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HISWORKLIST">
+          <Key>
+            <PropertyRef Name="HW_ACCESSIONNUMBER" />
+            <PropertyRef Name="HW_MODALITY" />
+          </Key>
+          <Property Name="HW_ACCESSIONNUMBER" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HW_MODALITY" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HW_SPSS_EXEDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HW_SPSS_EXETM" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REFER_PHSICIAN" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_PERFORMING_PHSICIAN" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REPORT_PHSICIAN" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_PATIENTID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_PATIENTNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_PATIENTOTHERID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_PATIENTOTHERNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_BIRTHDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HW_BIRTHTIME" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="HW_SEX" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="HW_AGE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_SIZE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_WEIGHT" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_ETHNIC_GROUP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_OCCUPATION" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_ADD_HISTORY" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_PATIENTCOMMENTS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_STUDY_INSTANCE_UID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REFERSOPCLASSUID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_SERVICE" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_P_DESC" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_P_CODESEQ" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_CONTRAST_AGENT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_VISIT_STATUS_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_P_I_R" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_S_STATION_AE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_S_STATION_NAME" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_P_PRIORITY" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_P_LOCATION" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_SPS_DESC" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_REQ_P_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_SOURCE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_STATION" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_STNO" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_STATUS" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HW_EXEITEMNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="HW_EXEITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HW_EXESUBITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HW_EXEPART" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HW_CHGDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HW_CHGTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="HW_ItemHasUse" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="WL_CDT" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="WL_CU" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="WL_MDT" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="WL_MU" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MPPS_ProcedureState" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="MPPS_ProcedureCode" Type="Int32" />
+          <Property Name="HW_CARDNO" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="EZServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HISWORKLIST" EntityType="Self.HISWORKLIST" />
+          <EntitySet Name="EZ_Image" EntityType="EZServerModel.EZ_Image" />
+          <EntitySet Name="EZ_ImageDevice" EntityType="EZServerModel.EZ_ImageDevice" />
+        </EntityContainer>
+        <EntityType Name="EZ_Image">
+          <Key>
+            <PropertyRef Name="IM_UIKey" />
+          </Key>
+          <Property Name="IM_UIKey" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="SE_UIKey" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="SOPClassUID" Type="String" MaxLength="128" FixedLength="true" Unicode="false" />
+          <Property Name="ImageNumber" Type="Int32" Nullable="false" />
+          <Property Name="ImageDate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ImageTime" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="ObjectFile" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectFileJPG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IM_ImageDeviceID" Type="String" Nullable="false" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="ImageStatus" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ImageWindow" Type="Int32" />
+          <Property Name="ImageLevel" Type="Int32" />
+          <Property Name="KeyImage" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DentalImageNum" Type="Int32" />
+          <Property Name="ProcessFlag" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="BriefnessFlag" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="IM_CDT" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="IM_CU" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="IM_MDT" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="IM_MU" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HaveSendToRemote" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="HaveMove" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="HaveMoveDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="FileSize" Type="Int32" />
+          <Property Name="FileReady" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CalcuteMaxMinFinally" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="HasCompress" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceImageNumber" Type="Int32" />
+          <Property Name="FilmStatus" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CodeValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperationWL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SendStatus" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EZ_ImageDevice">
+          <Key>
+            <PropertyRef Name="IM_ImageDeviceID" />
+            <PropertyRef Name="ImagePath" />
+            <PropertyRef Name="DeviceIPAddress" />
+            <PropertyRef Name="ID_CDT" />
+            <PropertyRef Name="ID_CU" />
+          </Key>
+          <Property Name="IM_ImageDeviceID" Type="String" Nullable="false" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePathDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceIPAddress" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceUserID" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="DevicePwd" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceLevel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceTotalSize" Type="Int32" />
+          <Property Name="DeviceUsedSize" Type="Int32" />
+          <Property Name="DeviceMailService" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ID_CDT" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="ID_CU" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="ID_MDT" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="ID_MU" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EZServerModelStoreContainer" CdmEntityContainer="EZServerEntities">
+          <EntitySetMapping Name="HISWORKLIST">
+            <EntityTypeMapping TypeName="EZServerModel.HISWORKLIST">
+              <MappingFragment StoreEntitySet="HISWORKLIST">
+                <ScalarProperty Name="HW_ACCESSIONNUMBER" ColumnName="HW_ACCESSIONNUMBER" />
+                <ScalarProperty Name="HW_MODALITY" ColumnName="HW_MODALITY" />
+                <ScalarProperty Name="HW_SPSS_EXEDT" ColumnName="HW_SPSS_EXEDT" />
+                <ScalarProperty Name="HW_SPSS_EXETM" ColumnName="HW_SPSS_EXETM" />
+                <ScalarProperty Name="HW_REFER_PHSICIAN" ColumnName="HW_REFER_PHSICIAN" />
+                <ScalarProperty Name="HW_PERFORMING_PHSICIAN" ColumnName="HW_PERFORMING_PHSICIAN" />
+                <ScalarProperty Name="HW_REPORT_PHSICIAN" ColumnName="HW_REPORT_PHSICIAN" />
+                <ScalarProperty Name="HW_PATIENTID" ColumnName="HW_PATIENTID" />
+                <ScalarProperty Name="HW_PATIENTNAME" ColumnName="HW_PATIENTNAME" />
+                <ScalarProperty Name="HW_PATIENTOTHERID" ColumnName="HW_PATIENTOTHERID" />
+                <ScalarProperty Name="HW_PATIENTOTHERNAME" ColumnName="HW_PATIENTOTHERNAME" />
+                <ScalarProperty Name="HW_BIRTHDATE" ColumnName="HW_BIRTHDATE" />
+                <ScalarProperty Name="HW_BIRTHTIME" ColumnName="HW_BIRTHTIME" />
+                <ScalarProperty Name="HW_SEX" ColumnName="HW_SEX" />
+                <ScalarProperty Name="HW_AGE" ColumnName="HW_AGE" />
+                <ScalarProperty Name="HW_SIZE" ColumnName="HW_SIZE" />
+                <ScalarProperty Name="HW_WEIGHT" ColumnName="HW_WEIGHT" />
+                <ScalarProperty Name="HW_ETHNIC_GROUP" ColumnName="HW_ETHNIC_GROUP" />
+                <ScalarProperty Name="HW_OCCUPATION" ColumnName="HW_OCCUPATION" />
+                <ScalarProperty Name="HW_ADD_HISTORY" ColumnName="HW_ADD_HISTORY" />
+                <ScalarProperty Name="HW_PATIENTCOMMENTS" ColumnName="HW_PATIENTCOMMENTS" />
+                <ScalarProperty Name="HW_STUDY_INSTANCE_UID" ColumnName="HW_STUDY_INSTANCE_UID" />
+                <ScalarProperty Name="HW_REFERSOPCLASSUID" ColumnName="HW_REFERSOPCLASSUID" />
+                <ScalarProperty Name="HW_REQ_SERVICE" ColumnName="HW_REQ_SERVICE" />
+                <ScalarProperty Name="HW_REQ_P_DESC" ColumnName="HW_REQ_P_DESC" />
+                <ScalarProperty Name="HW_REQ_P_CODESEQ" ColumnName="HW_REQ_P_CODESEQ" />
+                <ScalarProperty Name="HW_REQ_CONTRAST_AGENT" ColumnName="HW_REQ_CONTRAST_AGENT" />
+                <ScalarProperty Name="HW_VISIT_STATUS_ID" ColumnName="HW_VISIT_STATUS_ID" />
+                <ScalarProperty Name="HW_P_I_R" ColumnName="HW_P_I_R" />
+                <ScalarProperty Name="HW_S_STATION_AE" ColumnName="HW_S_STATION_AE" />
+                <ScalarProperty Name="HW_S_STATION_NAME" ColumnName="HW_S_STATION_NAME" />
+                <ScalarProperty Name="HW_REQ_P_PRIORITY" ColumnName="HW_REQ_P_PRIORITY" />
+                <ScalarProperty Name="HW_REQ_P_LOCATION" ColumnName="HW_REQ_P_LOCATION" />
+                <ScalarProperty Name="HW_SPS_DESC" ColumnName="HW_SPS_DESC" />
+                <ScalarProperty Name="HW_REQ_P_ID" ColumnName="HW_REQ_P_ID" />
+                <ScalarProperty Name="HW_SOURCE" ColumnName="HW_SOURCE" />
+                <ScalarProperty Name="HW_STATION" ColumnName="HW_STATION" />
+                <ScalarProperty Name="HW_STNO" ColumnName="HW_STNO" />
+                <ScalarProperty Name="HW_STATUS" ColumnName="HW_STATUS" />
+                <ScalarProperty Name="HW_EXEITEMNAME" ColumnName="HW_EXEITEMNAME" />
+                <ScalarProperty Name="HW_EXEITEM" ColumnName="HW_EXEITEM" />
+                <ScalarProperty Name="HW_EXESUBITEM" ColumnName="HW_EXESUBITEM" />
+                <ScalarProperty Name="HW_EXEPART" ColumnName="HW_EXEPART" />
+                <ScalarProperty Name="HW_CHGDT" ColumnName="HW_CHGDT" />
+                <ScalarProperty Name="HW_CHGTM" ColumnName="HW_CHGTM" />
+                <ScalarProperty Name="HW_ItemHasUse" ColumnName="HW_ItemHasUse" />
+                <ScalarProperty Name="WL_CDT" ColumnName="WL_CDT" />
+                <ScalarProperty Name="WL_CU" ColumnName="WL_CU" />
+                <ScalarProperty Name="WL_MDT" ColumnName="WL_MDT" />
+                <ScalarProperty Name="WL_MU" ColumnName="WL_MU" />
+                <ScalarProperty Name="MPPS_ProcedureState" ColumnName="MPPS_ProcedureState" />
+                <ScalarProperty Name="MPPS_ProcedureCode" ColumnName="MPPS_ProcedureCode" />
+                <ScalarProperty Name="HW_CARDNO" ColumnName="HW_CARDNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EZ_Image">
+            <EntityTypeMapping TypeName="EZServerModel.EZ_Image">
+              <MappingFragment StoreEntitySet="EZ_Image">
+                <ScalarProperty Name="SendStatus" ColumnName="SendStatus" />
+                <ScalarProperty Name="OperationWL" ColumnName="OperationWL" />
+                <ScalarProperty Name="CodeValue" ColumnName="CodeValue" />
+                <ScalarProperty Name="FilmStatus" ColumnName="FilmStatus" />
+                <ScalarProperty Name="ReferenceImageNumber" ColumnName="ReferenceImageNumber" />
+                <ScalarProperty Name="HasCompress" ColumnName="HasCompress" />
+                <ScalarProperty Name="CalcuteMaxMinFinally" ColumnName="CalcuteMaxMinFinally" />
+                <ScalarProperty Name="FileReady" ColumnName="FileReady" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="HaveMoveDate" ColumnName="HaveMoveDate" />
+                <ScalarProperty Name="HaveMove" ColumnName="HaveMove" />
+                <ScalarProperty Name="HaveSendToRemote" ColumnName="HaveSendToRemote" />
+                <ScalarProperty Name="IM_MU" ColumnName="IM_MU" />
+                <ScalarProperty Name="IM_MDT" ColumnName="IM_MDT" />
+                <ScalarProperty Name="IM_CU" ColumnName="IM_CU" />
+                <ScalarProperty Name="IM_CDT" ColumnName="IM_CDT" />
+                <ScalarProperty Name="BriefnessFlag" ColumnName="BriefnessFlag" />
+                <ScalarProperty Name="ProcessFlag" ColumnName="ProcessFlag" />
+                <ScalarProperty Name="DentalImageNum" ColumnName="DentalImageNum" />
+                <ScalarProperty Name="KeyImage" ColumnName="KeyImage" />
+                <ScalarProperty Name="ImageLevel" ColumnName="ImageLevel" />
+                <ScalarProperty Name="ImageWindow" ColumnName="ImageWindow" />
+                <ScalarProperty Name="ImageStatus" ColumnName="ImageStatus" />
+                <ScalarProperty Name="IM_ImageDeviceID" ColumnName="IM_ImageDeviceID" />
+                <ScalarProperty Name="ObjectFileJPG" ColumnName="ObjectFileJPG" />
+                <ScalarProperty Name="ObjectFile" ColumnName="ObjectFile" />
+                <ScalarProperty Name="ImageTime" ColumnName="ImageTime" />
+                <ScalarProperty Name="ImageDate" ColumnName="ImageDate" />
+                <ScalarProperty Name="ImageNumber" ColumnName="ImageNumber" />
+                <ScalarProperty Name="SOPClassUID" ColumnName="SOPClassUID" />
+                <ScalarProperty Name="SE_UIKey" ColumnName="SE_UIKey" />
+                <ScalarProperty Name="IM_UIKey" ColumnName="IM_UIKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EZ_ImageDevice">
+            <EntityTypeMapping TypeName="EZServerModel.EZ_ImageDevice">
+              <MappingFragment StoreEntitySet="EZ_ImageDevice">
+                <ScalarProperty Name="ID_MU" ColumnName="ID_MU" />
+                <ScalarProperty Name="ID_MDT" ColumnName="ID_MDT" />
+                <ScalarProperty Name="ID_CU" ColumnName="ID_CU" />
+                <ScalarProperty Name="ID_CDT" ColumnName="ID_CDT" />
+                <ScalarProperty Name="DeviceMailService" ColumnName="DeviceMailService" />
+                <ScalarProperty Name="DeviceUsedSize" ColumnName="DeviceUsedSize" />
+                <ScalarProperty Name="DeviceTotalSize" ColumnName="DeviceTotalSize" />
+                <ScalarProperty Name="DeviceLevel" ColumnName="DeviceLevel" />
+                <ScalarProperty Name="DevicePwd" ColumnName="DevicePwd" />
+                <ScalarProperty Name="DeviceUserID" ColumnName="DeviceUserID" />
+                <ScalarProperty Name="DeviceIPAddress" ColumnName="DeviceIPAddress" />
+                <ScalarProperty Name="ImagePathDescription" ColumnName="ImagePathDescription" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="IM_ImageDeviceID" ColumnName="IM_ImageDeviceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
