@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using MobileHis.Data;
 
-namespace DALBase
+namespace DAL
 {
     public class DALBase<T> : IDisposable where T : class
     {
@@ -75,6 +75,10 @@ namespace DALBase
             Entities.Set<T>().Remove(entity);
         }
 
+        public virtual void Save()
+        {
+            Entities.SaveChanges();
+        }
         public virtual void Dispose()
         {
             Dispose(true);

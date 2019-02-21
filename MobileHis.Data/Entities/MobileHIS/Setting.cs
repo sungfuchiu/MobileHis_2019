@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,5 +41,44 @@ namespace MobileHis.Data
         #region iCollection
         public virtual ICollection<Setting> Settings { get; set; }
         #endregion
+
+        public class ShiftTime
+        {
+            public DateTime? BeginTime { get; set; }
+            public DateTime? EndTime { get; set; }
+            public string ErrorMSG { get; set; }
+            public void SetShiftTimeWithString(string timeString)
+            {
+                var timePeriod = timeString.Split('-');
+                BeginTime = ReturnTimeByFourDigit(timePeriod[0]);
+                EndTime = ReturnTimeByFourDigit(timePeriod[1]);
+            }
+            private DateTime? ReturnTimeByFourDigit(string fourDigit)
+            {
+                var parseFormat = "yyyy-MM-dd HH:mm";
+                DateTime dateTime = new DateTime();
+                if (DateTime.TryParseExact(
+                       DateTime.Now.ToString("yyyy-MM-dd") + fourDigit
+                       , parseFormat
+                       , CultureInfo.InvariantCulture
+                       , DateTimeStyles.None
+                       , out dateTime))
+                    return dateTime;
+                else
+                    return null;
+            }
+            public string GetShiftTimeString()
+            {
+                return BeginTime.Value.ToString("HHmm") + '-' + EndTime.Value.ToString("HHmm");
+            }
+            public bool IsShiftTimeNotNull()
+            {
+                return BeginTime.HasValue && EndTime.HasValue;
+            }
+            public bool InThePeriod(DateTime time)
+            {
+                return ((time >= BeginTime && time <= EndTime) || time < BeginTime);
+            }
+        }
     }
 }
