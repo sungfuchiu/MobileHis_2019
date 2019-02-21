@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB01A196-011A-454A-B16D-C5F7AD076E2F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MobileHis.Data</RootNamespace>
+    <AssemblyName>MobileHis.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseEntities\MobileHISEntities.cs" />
+    <Compile Include="Entities\MobileHIS\Account2Dept.cs" />
+    <Compile Include="Entities\MobileHIS\Account.cs" />
+    <Compile Include="Entities\MobileHIS\Account2Role.cs" />
+    <Compile Include="Entities\MobileHIS\Ap2Role.cs" />
+    <Compile Include="Entities\MobileHIS\BillingItemLog.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecordHistory.cs" />
+    <Compile Include="Entities\MobileHIS\PatientAdmissionForm.cs" />
+    <Compile Include="Entities\MobileHIS\PatientFinalDiagnosis.cs" />
+    <Compile Include="Entities\MobileHIS\PatientLog.cs" />
+    <Compile Include="Entities\MobileHIS\PatientOperativeProcedure.cs" />
+    <Compile Include="Entities\MobileHIS\SystemLog.cs" />
+    <Compile Include="Entities\MobileHIS\MedicalRecord.cs" />
+    <Compile Include="Entities\MobileHIS\BillingLog.cs" />
+    <Compile Include="Entities\MobileHIS\CodeFile.cs" />
+    <Compile Include="Entities\MobileHIS\Course.cs" />
+    <Compile Include="Entities\MobileHIS\CourseAttachment.cs" />
+    <Compile Include="Entities\MobileHIS\CourseDateTime.cs" />
+    <Compile Include="Entities\MobileHIS\CourseLog.cs" />
+    <Compile Include="Entities\MobileHIS\CourseMember.cs" />
+    <Compile Include="Entities\MobileHIS\CourseRegistration.cs" />
+    <Compile Include="Entities\MobileHIS\CourseSetting.cs" />
+    <Compile Include="Entities\MobileHIS\CourseSignUp.cs" />
+    <Compile Include="Entities\MobileHIS\CourseTested.cs" />
+    <Compile Include="Entities\MobileHIS\CourseTestPaper.cs" />
+    <Compile Include="Entities\MobileHIS\CourseYoutube.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_Answer.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_AnswerImage.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_Question.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_QuestionImage.cs" />
+    <Compile Include="Entities\MobileHIS\Dept.cs" />
+    <Compile Include="Entities\MobileHIS\Dept2Room.cs" />
+    <Compile Include="Entities\MobileHIS\DialysisBeds.cs" />
+    <Compile Include="Entities\MobileHIS\DorSchedule.cs" />
+    <Compile Include="Entities\MobileHIS\Drug.cs" />
+    <Compile Include="Entities\MobileHIS\DrugAppearance.cs" />
+    <Compile Include="Entities\MobileHIS\DrugCost.cs" />
+    <Compile Include="Entities\MobileHIS\DrugOrderRestriction.cs" />
+    <Compile Include="Entities\MobileHIS\DrugRestriction.cs" />
+    <Compile Include="Entities\MobileHIS\DrugSetting.cs" />
+    <Compile Include="Entities\MobileHIS\DrugVendor.cs" />
+    <Compile Include="Entities\MobileHIS\ExamReport.cs" />
+    <Compile Include="Entities\MobileHIS\Guardian.cs" />
+    <Compile Include="Entities\MobileHIS\Guardian_File.cs" />
+    <Compile Include="Entities\MobileHIS\ICD10.cs" />
+    <Compile Include="Entities\MobileHIS\Kit.cs" />
+    <Compile Include="Entities\MobileHIS\PrintPool.cs" />
+    <Compile Include="Entities\MobileHIS\News.cs" />
+    <Compile Include="Entities\MobileHIS\NotifyMessage.cs" />
+    <Compile Include="Entities\MobileHIS\Billing.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecord.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecord2ICD10.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecordAttachment.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRegister.cs" />
+    <Compile Include="Entities\MobileHIS\OrderDrug.cs" />
+    <Compile Include="Entities\MobileHIS\OrderExam.cs" />
+    <Compile Include="Entities\MobileHIS\OrderKit.cs" />
+    <Compile Include="Entities\MobileHIS\OrderLaboratory.cs" />
+    <Compile Include="Entities\MobileHIS\Partail\DorSchedule.cs" />
+    <Compile Include="Entities\MobileHIS\Partail\ICD10.cs" />
+    <Compile Include="Entities\MobileHIS\Partail\OpdRegister.cs" />
+    <Compile Include="Entities\MobileHIS\Patient.cs" />
+    <Compile Include="Entities\MobileHIS\Phrase.cs" />
+    <Compile Include="Entities\MobileHIS\PosTransactionD.cs" />
+    <Compile Include="Entities\MobileHIS\PosTransactionM.cs" />
+    <Compile Include="Entities\MobileHIS\PurchaseD.cs" />
+    <Compile Include="Entities\MobileHIS\PurchaseM.cs" />
+    <Compile Include="Entities\MobileHIS\Role.cs" />
+    <Compile Include="Entities\MobileHIS\Room.cs" />
+    <Compile Include="Entities\MobileHIS\Setting.cs" />
+    <Compile Include="Entities\MobileHIS\TestAnswer.cs" />
+    <Compile Include="Entities\MobileHIS\TestAnswerImage.cs" />
+    <Compile Include="Entities\MobileHIS\TestPaper.cs" />
+    <Compile Include="Entities\MobileHIS\TestQuestion.cs" />
+    <Compile Include="Entities\MobileHIS\TestQuestionImage.cs" />
+    <Compile Include="Entities\MobileHIS\Vendor.cs" />
+    <Compile Include="Entities\MobileHIS\VitalSign.cs" />
+    <Compile Include="Entities\MobileHIS\Ward.cs" />
+    <Compile Include="Entities\MobileHIS\Ward2Room.cs" />
+    <Compile Include="Migrations\201803161012056_Init.cs" />
+    <Compile Include="Migrations\201803161012056_Init.Designer.cs">
+      <DependentUpon>201803161012056_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200310339_AddBillingItemTable.cs" />
+    <Compile Include="Migrations\201803200310339_AddBillingItemTable.Designer.cs">
+      <DependentUpon>201803200310339_AddBillingItemTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200347511_AddInsuranceColBilling.cs" />
+    <Compile Include="Migrations\201803200347511_AddInsuranceColBilling.Designer.cs">
+      <DependentUpon>201803200347511_AddInsuranceColBilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200536241_AddColMedicalRecord.cs" />
+    <Compile Include="Migrations\201803200536241_AddColMedicalRecord.Designer.cs">
+      <DependentUpon>201803200536241_AddColMedicalRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200647277_ChangeColName.cs" />
+    <Compile Include="Migrations\201803200647277_ChangeColName.Designer.cs">
+      <DependentUpon>201803200647277_ChangeColName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200710101_RemoveCol.cs" />
+    <Compile Include="Migrations\201803200710101_RemoveCol.Designer.cs">
+      <DependentUpon>201803200710101_RemoveCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200717547_UpdateDrugCol.cs" />
+    <Compile Include="Migrations\201803200717547_UpdateDrugCol.Designer.cs">
+      <DependentUpon>201803200717547_UpdateDrugCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200826166_UpdateColNameBilling.cs" />
+    <Compile Include="Migrations\201803200826166_UpdateColNameBilling.Designer.cs">
+      <DependentUpon>201803200826166_UpdateColNameBilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803270202374_20180327.cs" />
+    <Compile Include="Migrations\201803270202374_20180327.Designer.cs">
+      <DependentUpon>201803270202374_20180327.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803270216139_AddDiabetesAlcoholToPatient.cs" />
+    <Compile Include="Migrations\201803270216139_AddDiabetesAlcoholToPatient.Designer.cs">
+      <DependentUpon>201803270216139_AddDiabetesAlcoholToPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803270350231_AddPatientCodeRelation_ReligionMarried.cs" />
+    <Compile Include="Migrations\201803270350231_AddPatientCodeRelation_ReligionMarried.Designer.cs">
+      <DependentUpon>201803270350231_AddPatientCodeRelation_ReligionMarried.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803270627579_AddColPatient.cs" />
+    <Compile Include="Migrations\201803270627579_AddColPatient.Designer.cs">
+      <DependentUpon>201803270627579_AddColPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803290716149_2018032902.cs" />
+    <Compile Include="Migrations\201803290716149_2018032902.Designer.cs">
+      <DependentUpon>201803290716149_2018032902.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803300930498_ReplaceTitleIdToTitleAccount.cs" />
+    <Compile Include="Migrations\201803300930498_ReplaceTitleIdToTitleAccount.Designer.cs">
+      <DependentUpon>201803300930498_ReplaceTitleIdToTitleAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804010441132_AddUnitDept.cs" />
+    <Compile Include="Migrations\201804010441132_AddUnitDept.Designer.cs">
+      <DependentUpon>201804010441132_AddUnitDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804020441011_AddExpertiseAccount.cs" />
+    <Compile Include="Migrations\201804020441011_AddExpertiseAccount.Designer.cs">
+      <DependentUpon>201804020441011_AddExpertiseAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804050352191_Modify Account Expertise length.cs" />
+    <Compile Include="Migrations\201804050352191_Modify Account Expertise length.Designer.cs">
+      <DependentUpon>201804050352191_Modify Account Expertise length.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804062139414_addPatientField.cs" />
+    <Compile Include="Migrations\201804062139414_addPatientField.Designer.cs">
+      <DependentUpon>201804062139414_addPatientField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804100349471_billinglog_add_remark.cs" />
+    <Compile Include="Migrations\201804100349471_billinglog_add_remark.Designer.cs">
+      <DependentUpon>201804100349471_billinglog_add_remark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804100416213_billinglog_add_amt_price.cs" />
+    <Compile Include="Migrations\201804100416213_billinglog_add_amt_price.Designer.cs">
+      <DependentUpon>201804100416213_billinglog_add_amt_price.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804110517216_UpdateMedicalRecord.cs" />
+    <Compile Include="Migrations\201804110517216_UpdateMedicalRecord.Designer.cs">
+      <DependentUpon>201804110517216_UpdateMedicalRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804110937145_medicalrecord_callno_nullable.cs" />
+    <Compile Include="Migrations\201804110937145_medicalrecord_callno_nullable.Designer.cs">
+      <DependentUpon>201804110937145_medicalrecord_callno_nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804230255407_ParientContactPersonRelationship.cs" />
+    <Compile Include="Migrations\201804230255407_ParientContactPersonRelationship.Designer.cs">
+      <DependentUpon>201804230255407_ParientContactPersonRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804301006031_AddPatientCol.cs" />
+    <Compile Include="Migrations\201804301006031_AddPatientCol.Designer.cs">
+      <DependentUpon>201804301006031_AddPatientCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805020716033_AddPatientWeto.cs" />
+    <Compile Include="Migrations\201805020716033_AddPatientWeto.Designer.cs">
+      <DependentUpon>201805020716033_AddPatientWeto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805020716566_AddParentCodeFile.cs" />
+    <Compile Include="Migrations\201805020716566_AddParentCodeFile.Designer.cs">
+      <DependentUpon>201805020716566_AddParentCodeFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805040642468_AddColToMedicalRecord.cs" />
+    <Compile Include="Migrations\201805040642468_AddColToMedicalRecord.Designer.cs">
+      <DependentUpon>201805040642468_AddColToMedicalRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805080547474_UpdateMedicalRecord1.cs" />
+    <Compile Include="Migrations\201805080547474_UpdateMedicalRecord1.Designer.cs">
+      <DependentUpon>201805080547474_UpdateMedicalRecord1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805140928250_AddHouseholdHospitalNo.cs" />
+    <Compile Include="Migrations\201805140928250_AddHouseholdHospitalNo.Designer.cs">
+      <DependentUpon>201805140928250_AddHouseholdHospitalNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805290917372_AddHouseHeadPatientId.cs" />
+    <Compile Include="Migrations\201805290917372_AddHouseHeadPatientId.Designer.cs">
+      <DependentUpon>201805290917372_AddHouseHeadPatientId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806060722586_AddDeleteFlag.cs" />
+    <Compile Include="Migrations\201806060722586_AddDeleteFlag.Designer.cs">
+      <DependentUpon>201806060722586_AddDeleteFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806210512597_AddRelationshipPatient.cs" />
+    <Compile Include="Migrations\201806210512597_AddRelationshipPatient.Designer.cs">
+      <DependentUpon>201806210512597_AddRelationshipPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806220830564_AddAdmissionForm.cs" />
+    <Compile Include="Migrations\201806220830564_AddAdmissionForm.Designer.cs">
+      <DependentUpon>201806220830564_AddAdmissionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807250401527_AddRegisterMR.cs" />
+    <Compile Include="Migrations\201807250401527_AddRegisterMR.Designer.cs">
+      <DependentUpon>201807250401527_AddRegisterMR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807310656024_RemoveSSOpdRegister.cs" />
+    <Compile Include="Migrations\201807310656024_RemoveSSOpdRegister.Designer.cs">
+      <DependentUpon>201807310656024_RemoveSSOpdRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808070624289_Add-PastHistory_FamilyHistory.cs" />
+    <Compile Include="Migrations\201808070624289_Add-PastHistory_FamilyHistory.Designer.cs">
+      <DependentUpon>201808070624289_Add-PastHistory_FamilyHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809190553471_UpdateOrderDrugs.cs" />
+    <Compile Include="Migrations\201809190553471_UpdateOrderDrugs.Designer.cs">
+      <DependentUpon>201809190553471_UpdateOrderDrugs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809270724589_newOPD.cs" />
+    <Compile Include="Migrations\201809270724589_newOPD.Designer.cs">
+      <DependentUpon>201809270724589_newOPD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809280913309_MigrateData.cs" />
+    <Compile Include="Migrations\201809280913309_MigrateData.Designer.cs">
+      <DependentUpon>201809280913309_MigrateData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809280943121_DropMRColumn.cs" />
+    <Compile Include="Migrations\201809280943121_DropMRColumn.Designer.cs">
+      <DependentUpon>201809280943121_DropMRColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809280955333_MapOpdRegRecord.cs" />
+    <Compile Include="Migrations\201809280955333_MapOpdRegRecord.Designer.cs">
+      <DependentUpon>201809280955333_MapOpdRegRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809281004413_RenameColumn.cs" />
+    <Compile Include="Migrations\201809281004413_RenameColumn.Designer.cs">
+      <DependentUpon>201809281004413_RenameColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810010232027_AddPatientLogTabel.cs" />
+    <Compile Include="Migrations\201810010232027_AddPatientLogTabel.Designer.cs">
+      <DependentUpon>201810010232027_AddPatientLogTabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810010948318_RemoveDeptIdMRTable.cs" />
+    <Compile Include="Migrations\201810010948318_RemoveDeptIdMRTable.Designer.cs">
+      <DependentUpon>201810010948318_RemoveDeptIdMRTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810110720063_UpdatePatientAdmissionForm.cs" />
+    <Compile Include="Migrations\201810110720063_UpdatePatientAdmissionForm.Designer.cs">
+      <DependentUpon>201810110720063_UpdatePatientAdmissionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810110942503_AddWardRelevantTable.cs" />
+    <Compile Include="Migrations\201810110942503_AddWardRelevantTable.Designer.cs">
+      <DependentUpon>201810110942503_AddWardRelevantTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810110958230_AddWardColumnInAdmission.cs" />
+    <Compile Include="Migrations\201810110958230_AddWardColumnInAdmission.Designer.cs">
+      <DependentUpon>201810110958230_AddWardColumnInAdmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810150746069_AddFormulationColToDrug.cs" />
+    <Compile Include="Migrations\201810150746069_AddFormulationColToDrug.Designer.cs">
+      <DependentUpon>201810150746069_AddFormulationColToDrug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810160945394_AddDrugPackageRelation.cs" />
+    <Compile Include="Migrations\201810160945394_AddDrugPackageRelation.Designer.cs">
+      <DependentUpon>201810160945394_AddDrugPackageRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811060618507_UpdateAdmissionForm.cs" />
+    <Compile Include="Migrations\201811060618507_UpdateAdmissionForm.Designer.cs">
+      <DependentUpon>201811060618507_UpdateAdmissionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200657455_AddRelationWardAdmission.cs" />
+    <Compile Include="Migrations\201811200657455_AddRelationWardAdmission.Designer.cs">
+      <DependentUpon>201811200657455_AddRelationWardAdmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220313377_AddColumnsInAdmissionForm.cs" />
+    <Compile Include="Migrations\201811220313377_AddColumnsInAdmissionForm.Designer.cs">
+      <DependentUpon>201811220313377_AddColumnsInAdmissionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220331469_AddOpdRecordHistory.cs" />
+    <Compile Include="Migrations\201811220331469_AddOpdRecordHistory.Designer.cs">
+      <DependentUpon>201811220331469_AddOpdRecordHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811270712227_AddUpdatedByOpdRecord.cs" />
+    <Compile Include="Migrations\201811270712227_AddUpdatedByOpdRecord.Designer.cs">
+      <DependentUpon>201811270712227_AddUpdatedByOpdRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemParameter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803161012056_Init.resx">
+      <DependentUpon>201803161012056_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200310339_AddBillingItemTable.resx">
+      <DependentUpon>201803200310339_AddBillingItemTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200347511_AddInsuranceColBilling.resx">
+      <DependentUpon>201803200347511_AddInsuranceColBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200536241_AddColMedicalRecord.resx">
+      <DependentUpon>201803200536241_AddColMedicalRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200647277_ChangeColName.resx">
+      <DependentUpon>201803200647277_ChangeColName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200710101_RemoveCol.resx">
+      <DependentUpon>201803200710101_RemoveCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200717547_UpdateDrugCol.resx">
+      <DependentUpon>201803200717547_UpdateDrugCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200826166_UpdateColNameBilling.resx">
+      <DependentUpon>201803200826166_UpdateColNameBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270202374_20180327.resx">
+      <DependentUpon>201803270202374_20180327.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270216139_AddDiabetesAlcoholToPatient.resx">
+      <DependentUpon>201803270216139_AddDiabetesAlcoholToPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270350231_AddPatientCodeRelation_ReligionMarried.resx">
+      <DependentUpon>201803270350231_AddPatientCodeRelation_ReligionMarried.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270627579_AddColPatient.resx">
+      <DependentUpon>201803270627579_AddColPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803290716149_2018032902.resx">
+      <DependentUpon>201803290716149_2018032902.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803300930498_ReplaceTitleIdToTitleAccount.resx">
+      <DependentUpon>201803300930498_ReplaceTitleIdToTitleAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804010441132_AddUnitDept.resx">
+      <DependentUpon>201804010441132_AddUnitDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804020441011_AddExpertiseAccount.resx">
+      <DependentUpon>201804020441011_AddExpertiseAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804050352191_Modify Account Expertise length.resx">
+      <DependentUpon>201804050352191_Modify Account Expertise length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804062139414_addPatientField.resx">
+      <DependentUpon>201804062139414_addPatientField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804100349471_billinglog_add_remark.resx">
+      <DependentUpon>201804100349471_billinglog_add_remark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804100416213_billinglog_add_amt_price.resx">
+      <DependentUpon>201804100416213_billinglog_add_amt_price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804110517216_UpdateMedicalRecord.resx">
+      <DependentUpon>201804110517216_UpdateMedicalRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804110937145_medicalrecord_callno_nullable.resx">
+      <DependentUpon>201804110937145_medicalrecord_callno_nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804230255407_ParientContactPersonRelationship.resx">
+      <DependentUpon>201804230255407_ParientContactPersonRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301006031_AddPatientCol.resx">
+      <DependentUpon>201804301006031_AddPatientCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020716033_AddPatientWeto.resx">
+      <DependentUpon>201805020716033_AddPatientWeto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020716566_AddParentCodeFile.resx">
+      <DependentUpon>201805020716566_AddParentCodeFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805040642468_AddColToMedicalRecord.resx">
+      <DependentUpon>201805040642468_AddColToMedicalRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805080547474_UpdateMedicalRecord1.resx">
+      <DependentUpon>201805080547474_UpdateMedicalRecord1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140928250_AddHouseholdHospitalNo.resx">
+      <DependentUpon>201805140928250_AddHouseholdHospitalNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805290917372_AddHouseHeadPatientId.resx">
+      <DependentUpon>201805290917372_AddHouseHeadPatientId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806060722586_AddDeleteFlag.resx">
+      <DependentUpon>201806060722586_AddDeleteFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806210512597_AddRelationshipPatient.resx">
+      <DependentUpon>201806210512597_AddRelationshipPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806220830564_AddAdmissionForm.resx">
+      <DependentUpon>201806220830564_AddAdmissionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807250401527_AddRegisterMR.resx">
+      <DependentUpon>201807250401527_AddRegisterMR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807310656024_RemoveSSOpdRegister.resx">
+      <DependentUpon>201807310656024_RemoveSSOpdRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808070624289_Add-PastHistory_FamilyHistory.resx">
+      <DependentUpon>201808070624289_Add-PastHistory_FamilyHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809190553471_UpdateOrderDrugs.resx">
+      <DependentUpon>201809190553471_UpdateOrderDrugs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270724589_newOPD.resx">
+      <DependentUpon>201809270724589_newOPD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809280913309_MigrateData.resx">
+      <DependentUpon>201809280913309_MigrateData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809280943121_DropMRColumn.resx">
+      <DependentUpon>201809280943121_DropMRColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809280955333_MapOpdRegRecord.resx">
+      <DependentUpon>201809280955333_MapOpdRegRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809281004413_RenameColumn.resx">
+      <DependentUpon>201809281004413_RenameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810010232027_AddPatientLogTabel.resx">
+      <DependentUpon>201810010232027_AddPatientLogTabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810010948318_RemoveDeptIdMRTable.resx">
+      <DependentUpon>201810010948318_RemoveDeptIdMRTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810110720063_UpdatePatientAdmissionForm.resx">
+      <DependentUpon>201810110720063_UpdatePatientAdmissionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810110942503_AddWardRelevantTable.resx">
+      <DependentUpon>201810110942503_AddWardRelevantTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810110958230_AddWardColumnInAdmission.resx">
+      <DependentUpon>201810110958230_AddWardColumnInAdmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810150746069_AddFormulationColToDrug.resx">
+      <DependentUpon>201810150746069_AddFormulationColToDrug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810160945394_AddDrugPackageRelation.resx">
+      <DependentUpon>201810160945394_AddDrugPackageRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060618507_UpdateAdmissionForm.resx">
+      <DependentUpon>201811060618507_UpdateAdmissionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200657455_AddRelationWardAdmission.resx">
+      <DependentUpon>201811200657455_AddRelationWardAdmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220313377_AddColumnsInAdmissionForm.resx">
+      <DependentUpon>201811220313377_AddColumnsInAdmissionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220331469_AddOpdRecordHistory.resx">
+      <DependentUpon>201811220331469_AddOpdRecordHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811270712227_AddUpdatedByOpdRecord.resx">
+      <DependentUpon>201811270712227_AddUpdatedByOpdRecord.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sql\MigrateDrug.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sql\MigrateData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\UpdateOpdRegDataByDeptClinic.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
