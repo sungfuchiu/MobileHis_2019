@@ -148,4 +148,13 @@ namespace MobileHis.Data
         public static string category = "category";
         public static string mail = "mail";
     };
+
+    public enum SettingTypes
+    {
+        Default,
+        Info, 
+        Other,
+        Category,
+        Mail
+    }
 }

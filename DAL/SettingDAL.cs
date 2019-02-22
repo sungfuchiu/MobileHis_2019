@@ -7,9 +7,12 @@ using System.Globalization;
 
 namespace DAL
 {
+    public class SettingEntity
+    {
+
+    }
     public class SettingDAL : DALBase<Setting>
     {
-        public 
         public Setting GetSetting(string settingName, SettingType settingType)
         {
             return GetAll()
@@ -63,74 +66,69 @@ namespace DAL
             return new List<string>();
         }
 
-        public List<string> GetValidShift()
-        {
-            var validShift = new List<string>();
-            var shifts = GetAllWithNoTracking().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
+        //public List<string> GetValidShift()
+        //{
+        //    var validShift = new List<string>();
+        //    var shifts = GetAllWithNoTracking().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
 
-            Setting.ShiftTime morningShiftTime = new Setting.ShiftTime();
-            Setting.ShiftTime afternoonShiftTime = new Setting.ShiftTime();
-            Setting.ShiftTime dinnerShiftTime = new Setting.ShiftTime();
-            try
-            {
-                morningShiftTime.SetShiftTimeWithString(
-                    shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Morning").Value);
-                afternoonShiftTime.SetShiftTimeWithString(
-                    shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Afternoon").Value);
-                dinnerShiftTime.SetShiftTimeWithString(
-                    shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Night").Value);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            switch (DateTime.Now)
-            {
-                case DateTime now when morningShiftTime.InThePeriod(now):
-                    validShift.Add(DorScheduleDal.ScheduleShiftMap[ScheduleShift.Morning]);
-                case DateTime now when afternoonShiftTime.InThePeriod(now):
-                    validShift.Add(DorScheduleDal.ScheduleShiftMap[ScheduleShift.Afternoon]);
-                case DateTime now when dinnerShiftTime.InThePeriod(now):
-                    validShift.Add(DorScheduleDal.ScheduleShiftMap[ScheduleShift.Night]);
-            }
-            return validShift;
-        }
-        public ScheduleShift GetCurrentShift()
+        //    Setting.ShiftTime morningShiftTime = new Setting.ShiftTime();
+        //    Setting.ShiftTime afternoonShiftTime = new Setting.ShiftTime();
+        //    Setting.ShiftTime dinnerShiftTime = new Setting.ShiftTime();
+        //    try
+        //    {
+        //        morningShiftTime.SetShiftTimeWithString(
+        //            shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Morning").Value);
+        //        afternoonShiftTime.SetShiftTimeWithString(
+        //            shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Afternoon").Value);
+        //        dinnerShiftTime.SetShiftTimeWithString(
+        //            shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Night").Value);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //    switch (DateTime.Now)
+        //    {
+        //        case DateTime now when morningShiftTime.InThePeriod(now):
+        //            validShift.Add(DorScheduleDal.ScheduleShiftMap[ScheduleShift.Morning]);
+        //        case DateTime now when afternoonShiftTime.InThePeriod(now):
+        //            validShift.Add(DorScheduleDal.ScheduleShiftMap[ScheduleShift.Afternoon]);
+        //        case DateTime now when dinnerShiftTime.InThePeriod(now):
+        //            validShift.Add(DorScheduleDal.ScheduleShiftMap[ScheduleShift.Night]);
+        //    }
+        //    return validShift;
+        //}
+        public List<Setting> GetShiftList()
         {
-            var shifts = GetAllWithNoTracking().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
+            return GetAllWithNoTracking().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
+        }
+        //public ScheduleShift GetCurrentShift()
+        //{
+        //    var shifts = GetAllWithNoTracking().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
 
-            Setting.ShiftTime morningShiftTime= new Setting.ShiftTime();
-            Setting.ShiftTime afternoonShiftTime = new Setting.ShiftTime();
-            Setting.ShiftTime dinnerShiftTime = new Setting.ShiftTime();
-            try
-            {
-                morningShiftTime.SetShiftTimeWithString(
-                    shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Morning").Value);
-                afternoonShiftTime.SetShiftTimeWithString(
-                    shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Afternoon").Value);
-                dinnerShiftTime.SetShiftTimeWithString(
-                    shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Night").Value);
-            }
-            catch(Exception ex)
-            {
-                return null;
-            }
-            switch(DateTime.Now)
-            {
-                case DateTime now when morningShiftTime.InThePeriod(now):
-                    return ScheduleShift.Morning;
-                case DateTime now when afternoonShiftTime.InThePeriod(now):
-                    return ScheduleShift.Afternoon;
-                case DateTime now when dinnerShiftTime.InThePeriod(now):
-                    return ScheduleShift.Night;
-                default:
-                    return ScheduleShift.All;
-            }
-        }
-        private DateTime ParseExact(string timeString, string parseFormat)
-        {
-            return DateTime.ParseExact(timeString, parseFormat, CultureInfo.InvariantCulture);
-        }
+        //    Setting.ShiftTime morningShiftTime= new Setting.ShiftTime();
+        //    Setting.ShiftTime afternoonShiftTime = new Setting.ShiftTime();
+        //    Setting.ShiftTime dinnerShiftTime = new Setting.ShiftTime();
+
+        //    morningShiftTime.SetShiftTimeWithString(
+        //        shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Morning").Value);
+        //    afternoonShiftTime.SetShiftTimeWithString(
+        //        shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Afternoon").Value);
+        //    dinnerShiftTime.SetShiftTimeWithString(
+        //        shifts.FirstOrDefault(a => a.SettingName == "Opd_Shift_Night").Value);
+
+        //    switch(DateTime.Now)
+        //    {
+        //        case DateTime now when morningShiftTime.InThePeriod(now):
+        //            return ScheduleShift.Morning;
+        //        case DateTime now when afternoonShiftTime.InThePeriod(now):
+        //            return ScheduleShift.Afternoon;
+        //        case DateTime now when dinnerShiftTime.InThePeriod(now):
+        //            return ScheduleShift.Night;
+        //        default:
+        //            return ScheduleShift.All;
+        //    }
+        //}
         //public bool ValidShift(string shift)
         //{
         //    var shifts = GetValidShift();
@@ -172,15 +170,15 @@ namespace DAL
         //    return result;
         //}
 
-        public void Update(string settingName, SettingType parentName, string newValue)
+        public void Update(string settingName, SettingTypes parentName, string newValue)
         {
             Setting update = GetAll()
                 .Include(a => a.ParentSetting)
                 .FirstOrDefault(a => 
-                    a.ParentSetting.SettingName == parentName 
+                    a.ParentSetting.SettingName == parentName.ToString() 
                     && a.SettingName == settingName);
             update.Value = newValue;
-            Save();
+            Edit(update);
         }
     }
 }
