@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E4BAC5CB-CAB0-4C7E-928C-946302926B65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MobileHis.Models</RootNamespace>
+    <AssemblyName>MobileHis.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Expressions">
+      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="X.PagedList, Version=7.5.0.0, Culture=neutral, PublicKeyToken=00b6c4f97602e5e8, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.7.5.0\lib\net461\X.PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="X.PagedList.Mvc, Version=7.5.0.0, Culture=neutral, PublicKeyToken=c6e0b5b21f916f4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.Mvc.7.5.0\lib\net461\X.PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractModel\DecoratorDrug.cs" />
+    <Compile Include="ApiModel\DashboardApiModel.cs" />
+    <Compile Include="ApiModel\FingerApi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApiModel\IndexApiModel.cs" />
+    <Compile Include="ApiModel\LabIsuueApi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApiModel\MailApiModel.cs" />
+    <Compile Include="ApiModel\OnlineRegistionApiModel.cs" />
+    <Compile Include="ApiModel\SmartHealthSetting.cs" />
+    <Compile Include="ApiModel\WebApiModels.cs" />
+    <Compile Include="Areas\Billing\BillingModels.cs" />
+    <Compile Include="Areas\Clinical\HistoryCalendar.cs" />
+    <Compile Include="Areas\Drug\DrugDecorator.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugSearchByCaseViewModel.cs" />
+    <Compile Include="Areas\Drug\ViewModels\OrderDrugView.cs" />
+    <Compile Include="Areas\MedicalRecord\ReceptionListModel.cs" />
+    <Compile Include="Areas\OPD\ViewModels\OpdRegisterUndoneFilter.cs" />
+    <Compile Include="Areas\OPD\ViewModels\PrintEncounterFormModel.cs" />
+    <Compile Include="Areas\OPD\ViewModels\VitalSignModel.cs" />
+    <Compile Include="Areas\MedicalRecord\MedicalRecordViewModel.cs" />
+    <Compile Include="Areas\PatientMgr\PatientViewModel.cs" />
+    <Compile Include="Areas\Registered\SyndromicSurveillancViewModel.cs" />
+    <Compile Include="Areas\Report\BiReportModel.cs" />
+    <Compile Include="Areas\Report\DoctorViewModel.cs" />
+    <Compile Include="Areas\Report\GeneralReportModels.cs" />
+    <Compile Include="Areas\Report\ReceiptModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\DoctorSchModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\SettingViewModel.cs" />
+    <Compile Include="MobileHisModel\ExcelUploadModel.cs" />
+    <Compile Include="MobileHisModel\JwtModel.cs" />
+    <Compile Include="ViewModel\AccountView.cs" />
+    <Compile Include="ViewModel\Bi_ReceptionView.cs" />
+    <Compile Include="ViewModel\GuardianListView.cs" />
+    <Compile Include="ViewModel\HomeModel.cs" />
+    <Compile Include="ViewModel\JsonModel.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugRestictionSingleModel.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugRestictionViewModel.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugSettingModelView.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugsFilter.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugsOrderView.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugsSelectFilter.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugsSort.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugsValidator.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugViewModel.cs" />
+    <Compile Include="Areas\Drug\ViewModels\MedicineVerificationViewModel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\CourseIndexViewModel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\CourseViewModel.cs" />
+    <Compile Include="Areas\Elearning\FileUpload.cs" />
+    <Compile Include="Areas\Elearning\Members.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\ProtalViewModel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\QuestionViewModel.cs" />
+    <Compile Include="Areas\Elearning\TestedExcel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\TestingViewModel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\TestPaperIndexViewModel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\TestPaperViewModel.cs" />
+    <Compile Include="Areas\Elearning\ViewModels\TestQuestionViewModel.cs" />
+    <Compile Include="Areas\Exam\ViewModels\ExamsOrderView.cs" />
+    <Compile Include="Areas\Exam\ViewModels\ExamsValidator.cs" />
+    <Compile Include="Areas\Laboratory\LabCommFun.cs" />
+    <Compile Include="Areas\Laboratory\ViewModels\OrderLaboratoryView.cs" />
+    <Compile Include="Areas\OPD\ViewModels\LabPackageView.cs" />
+    <Compile Include="Areas\OPD\ViewModels\MasterRecordView.cs" />
+    <Compile Include="Areas\OPD\ViewModels\OpdRecordView.cs" />
+    <Compile Include="Areas\OPD\ViewModels\OpdRegisterFilter.cs" />
+    <Compile Include="Areas\Inventory\ViewModels\DeliveryViewModel.cs" />
+    <Compile Include="Areas\Inventory\ViewModels\PurchaseViewModel.cs" />
+    <Compile Include="Areas\Inventory\ViewModels\ReturnViewModel.cs" />
+    <Compile Include="Areas\RIS\ViewModel\ReportViewModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\ExportDataViewModel.cs" />
+    <Compile Include="EntityPagingModel.cs" />
+    <Compile Include="Interface\IDashboardOpd.cs" />
+    <Compile Include="Interface\IDrugComponent.cs" />
+    <Compile Include="Interface\IImportDataBuilder.cs" />
+    <Compile Include="MobileHisModel\DrugSampleModel.cs" />
+    <Compile Include="MobileHisModel\ExcelSampleModel.cs" />
+    <Compile Include="MobileHisModel\UserSampleModel.cs" />
+    <Compile Include="Object\CustomPrincipal.cs" />
+    <Compile Include="Object\Schedule.cs" />
+    <Compile Include="Object\Statistics.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\DashboardView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\DepartmentView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\KitView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\LogOnView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\OrderKitModel.cs" />
+    <Compile Include="ViewModel\Pagination.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\PatientReportView.cs" />
+    <Compile Include="ViewModel\Bi_NewPatientView.cs" />
+    <Compile Include="ViewModel\PatientView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\RegistrationDeptCateView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\RoomView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\SymptomShotView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\sysSettingView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\VM_TreeMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MobileHis.Comm\MobileHis.Comm.csproj">
+      <Project>{2d5966be-7305-4db0-b71f-33ea5c3ba1f4}</Project>
+      <Name>MobileHis.Comm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
+      <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
+      <Name>MobileHis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobileHis.Resources\MobileHis.Resources.csproj">
+      <Project>{19eaaa67-6b03-4c46-b38b-3c062394ae20}</Project>
+      <Name>MobileHis.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

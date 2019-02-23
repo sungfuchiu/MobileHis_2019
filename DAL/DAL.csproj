@@ -51,6 +51,12 @@
   <ItemGroup>
     <Compile Include="DALBase.cs" />
     <Compile Include="DoctorScheduleDAL.cs" />
+    <Compile Include="Setting\GeneralSettingRepo.cs" />
+    <Compile Include="RepositoryBase\EFGenericRepository.cs" />
+    <Compile Include="RepositoryBase\IRepository.cs" />
+    <Compile Include="SettingRepository.cs" />
+    <Compile Include="UnitOfWork\EFUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Validation\IValidationDictionary.cs" />
     <Compile Include="PatientDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

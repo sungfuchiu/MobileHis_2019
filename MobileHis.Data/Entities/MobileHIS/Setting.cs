@@ -92,57 +92,58 @@ namespace MobileHis.Data
         public string FingerPrint { get; set; }
         public string Pacs { get; set; }
         public string ConsultationFee { get; set; }
-        //public HttpPostedFileBase BK_img_file { get; set; }
-        //public HttpPostedFileBase Official_Banner_Img_file { get; set; }
-        //public HttpPostedFileBase Official_Logo_Img_file { get; set; }
-        //public string BK_img { get; set; }
-        //public string Official_Banner_Img { get; set; }
-        //public string Official_Logo_Img { get; set; }
-        //public string Opd_Shift_Morning_Start { get; set; }
-        //public string Opd_Shift_Morning_End { get; set; }
-        //public string Opd_Shift_Afternoon_Start { get; set; }
-        //public string Opd_Shift_Afternoon_End { get; set; }
-        //public string Opd_Shift_Night_Start { get; set; }
-        //public string Opd_Shift_Night_End { get; set; }
-        //public string Opd_Shift_Morning { get; set; }
-        //public string Opd_Shift_Afternoon { get; set; }
-        //public string Opd_Shift_Night { get; set; }
+        public HttpPostedFileBase BK_img_file { get; set; }
+        public HttpPostedFileBase Official_Banner_Img_file { get; set; }
+        public HttpPostedFileBase Official_Logo_Img_file { get; set; }
+        public string BK_img { get; set; }
+        public string Official_Banner_Img { get; set; }
+        public string Official_Logo_Img { get; set; }
+        public string Opd_Shift_Morning_Start { get; set; }
+        public string Opd_Shift_Morning_End { get; set; }
+        public string Opd_Shift_Afternoon_Start { get; set; }
+        public string Opd_Shift_Afternoon_End { get; set; }
+        public string Opd_Shift_Night_Start { get; set; }
+        public string Opd_Shift_Night_End { get; set; }
+        public string Opd_Shift_Morning { get; set; }
+        public string Opd_Shift_Afternoon { get; set; }
+        public string Opd_Shift_Night { get; set; }
         public string Partner_Img { get; set; }
         public string ApiKey { get; set; }
         public HttpRequestBase PartnerFile
         {
-            get
-            {
-                return partnerFile;
-            }
-            set
-            {
-                if ( value.Files["Partner_file"] != null && value.Files["Partner_file"].ContentLength > 0)
-                {
-                    var files = value.Files.GetMultiple("Partner_file");
+            get;set;
+            //get
+            //{
+            //    return partnerFile;
+            //}
+            //set
+            //{
+            //    if ( value.Files["Partner_file"] != null && value.Files["Partner_file"].ContentLength > 0)
+            //    {
+            //        var files = value.Files.GetMultiple("Partner_file");
 
-                    using (SettingDAL settingDAL = new SettingDAL())
-                    {
-                        var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
-                        var cnt = 0;
-                        foreach (var file in files)
-                        {
-                            if (file != null)
-                            {
-                                var fileName = new System.IO.FileInfo(file.FileName).Name;
-                                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-                                fileName = s.Write(fileName, file);
-                                partnerImage[cnt].Value = fileName;
-                                settingDAL.Edit(partnerImage[cnt]);
-                                cnt++;
+            //        using (SettingDAL settingDAL = new SettingDAL())
+            //        {
+            //            var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
+            //            var cnt = 0;
+            //            foreach (var file in files)
+            //            {
+            //                if (file != null)
+            //                {
+            //                    var fileName = new System.IO.FileInfo(file.FileName).Name;
+            //                    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+            //                    fileName = s.Write(fileName, file);
+            //                    partnerImage[cnt].Value = fileName;
+            //                    settingDAL.Edit(partnerImage[cnt]);
+            //                    cnt++;
 
-                            }
-                        }
-                        settingDAL.Save();
-                    }
-                }
-                partnerFile = value;
-            }
+            //                }
+            //            }
+            //            settingDAL.Save();
+            //        }
+            //    }
+            //    partnerFile = value;
+            //}
         }
         public ImageFile BKImage
         {

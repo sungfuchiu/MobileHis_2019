@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace MobileHis.Data
+namespace MobileHis.Models
 {
+    public enum ScheduleShift {
+        Morning, Afternoon, Night
+    }
+
     public partial class DorSchedule
     {
-        public static Dictionary<ScheduleShift, string> ScheduleShiftMap = new Dictionary<ScheduleShift, string>() {
+        private static Dictionary<ScheduleShift, string> ScheduleShiftMap = new Dictionary<ScheduleShift,string>() {
             {ScheduleShift.Morning, "1"},
             {ScheduleShift.Afternoon, "3"},
             {ScheduleShift.Night, "5"}
@@ -19,7 +22,7 @@ namespace MobileHis.Data
             string val;
             return ScheduleShiftMap.TryGetValue(s, out val) ? val : "";
         }
-        [NotMapped]
+
         public ScheduleShift Shift
         {
             get
