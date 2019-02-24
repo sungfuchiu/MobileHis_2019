@@ -10,6 +10,7 @@ using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis.Misc;
 using System.Web;
 using MobileHis.Models.ViewModel;
+using AutoMapper;
 
 namespace BLL
 {
