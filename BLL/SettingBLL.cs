@@ -8,6 +8,7 @@ using System.Web;
 using DAL;
 using MobileHis.Data;
 using MobileHis.Misc;
+using MobileHis.Models.ViewModel;
 
 namespace BLL
 {
@@ -55,34 +56,27 @@ namespace BLL
     {
         //private SettingDAL settingDAL = new SettingDAL();
 
-        public bool SetGeneralSetting(GeneralSettings settings)
+        public bool SetGeneralSetting(sysSettingView settings)
         {
-
-            //if (settings.BK_img_file != null)
-            //{
-            //    var fileName = settings.BK_img_file.FileName;
-            //    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
-
-            //    fileName = s.Write(fileName, settings.BK_img_file);
-
-            //    settings.BK_img = fileName;
-            //}
-            //if (settings.Official_Banner_Img_file != null)
-            //{
-            //    var fileName = settings.Official_Banner_Img_file.FileName;
-            //    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-            //    fileName = s.Write(fileName, settings.Official_Banner_Img_file);
-
-            //    settings.Official_Banner_Img = fileName;
-            //}
-            //if (settings.Official_Logo_Img_file != null)
-            //{
-            //    var fileName = settings.Official_Logo_Img_file.FileName;
-            //    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-            //    fileName = s.Write(fileName, settings.Official_Logo_Img_file);
-
-            //    settings.Official_Logo_Img = fileName;
-            //}
+            GeneralSettings generalSettings = new GeneralSettings();
+            AutoMapper.Mapper.Map(settings, generalSettings);
+            if (settings.BK_img_file != null)
+            {
+                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
+                generalSettings.BK_img = s.Write(settings.BK_img_file.FileName, settings.BK_img_file);
+            }
+            if (settings.Official_Banner_Img_file != null)
+            {
+                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+                generalSettings.Official_Banner_Img = s.Write(
+                    settings.Official_Banner_Img_file.FileName, settings.Official_Banner_Img_file);
+            }
+            if (settings.Official_Logo_Img_file != null)
+            {
+                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+                generalSettings.Official_Logo_Img = s.Write(
+                    settings.Official_Logo_Img_file.FileName, settings.Official_Logo_Img_file);
+            }
 
             //#region shift
             //if ((settings.Opd_Shift_Morning_Start != null) && (settings.Opd_Shift_Morning_End != null))
@@ -100,38 +94,45 @@ namespace BLL
             //    settings.Opd_Shift_Night = settings.Opd_Shift_Night_Start + "-" + settings.Opd_Shift_Night_End;
             //}
             //#endregion
-            Update(SettingTypes.Default, settings);
+            //Update(SettingTypes.Default, settings);
             //for mutli file upload
             if (settings.PartnerFile.Files["Partner_file"] != null && settings.PartnerFile.Files["Partner_file"].ContentLength > 0)
-            {
-                var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
-
-                using (SettingDAL settingDAL = new SettingDAL())
                 {
-                    var partnerImage= settingDAL.GetEmptyPartnerImgSetting();
-                    var cnt = 0;
-                    foreach (var file in files)
-                    {
-                        if (file != null)
-                        {
-                            var fileName = new System.IO.FileInfo(file.FileName).Name;
-                            var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-                            fileName = s.Write(fileName, file);
-                            partnerImage[cnt].Value = fileName;
-                            settingDAL.Edit(partnerImage[cnt]);
-                            cnt++;
+                    var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
 
+                    using (SettingDAL settingDAL = new SettingDAL())
+                    {
+                        var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
+                        var cnt = 0;
+                        foreach (var file in files)
+                        {
+                            if (file != null)
+                            {
+                                var fileName = new System.IO.FileInfo(file.FileName).Name;
+                                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+                                fileName = s.Write(fileName, file);
+                                partnerImage[cnt].Value = fileName;
+                                settingDAL.Edit(partnerImage[cnt]);
+                                cnt++;
+
+                            }
                         }
+                        settingDAL.Save();
                     }
-                    settingDAL.Save();
                 }
+            using (SettingDAL settingDAL = new SettingDAL())
+            {
+
             }
-            return true;
+                return true;
         }
 
-        public bool SetInfoSetting(InfoSettings settings)
+        public void SetInfoSetting(sysInfoSettingView settings)
         {
-            if (settings.EnvironmentFile.Files["Environment_file"] != null && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
+            InfoSettings infoSettings = new InfoSettings();
+            AutoMapper.Mapper.Map(settings, infoSettings);
+            if (settings.EnvironmentFile.Files["Environment_file"] != null 
+                && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
             {
                 var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
                 foreach (var file in files)
@@ -142,46 +143,56 @@ namespace BLL
                         var s = MobileHis.Misc.Storage.GetStorage(StorageScope.HospitalEnvironment);
 
                         fileName = s.Write(fileName, file);
-                        if (!string.IsNullOrEmpty(settings.Hospital_Environment)) settings.Hospital_Environment += ";";
-                        settings.Hospital_Environment += fileName;
+                        if (!string.IsNullOrEmpty(infoSettings.Hospital_Environment))
+                            infoSettings.Hospital_Environment += ";";
+                        infoSettings.Hospital_Environment += fileName;
 
                     }
                 }
             }
-            Update(SettingTypes.Info, settings);
-            return true;
-        }
-        public bool SetOtherSetting(OtherSettings settings)
-        {
-
-            Update(SettingTypes.Other, settings);
-            return true;
-        }
-        public bool SetMailSetting(MailSettings settings)
-        {
-            Update(SettingTypes.Mail, settings);
-            return true;
-        }
-
-        void Update(SettingTypes type, object data)
-        {
-            using (SettingDAL settingDAL = new SettingDAL())
+            using (SettingDAL dal = new SettingDAL())
             {
-                foreach (var prop in data.GetType().GetProperties())
-                {
-                    //挑出六個尚未合成的時段設定不要進入資料庫比較(尾巴下底線_是重要依據不可刪除)
-                    if (!prop.Name.Contains("Opd_Shift_Morning_") && !prop.Name.Contains("Opd_Shift_Afternoon_") && !prop.Name.Contains("Opd_Shift_Night_")
-                        //not post files
-                        && prop.PropertyType.Name != "HttpPostedFileBase")
-                    {
-                        if (!prop.Name.Contains("Partner"))
-                        {
-                            settingDAL.Update(prop.Name, type, Convert.ToString(prop.GetValue(data, null)));
-                        }
-                    }
-                }
+                dal.SetGroupSetting(SettingTypes.Info, infoSettings);
             }
         }
+        public void SetOtherSetting(sysOtherSettingView settings)
+        {
+            OtherSettings otherSettings = new OtherSettings();
+            AutoMapper.Mapper.Map(settings, otherSettings);
+            using (SettingDAL dal = new SettingDAL())
+            {
+                dal.SetGroupSetting(SettingTypes.Other, settings);
+            }
+        }
+        public void SetMailSetting(MailSettings settings)
+        {
+            MailSettings mailSettings = new MailSettings();
+            AutoMapper.Mapper.Map(settings, mailSettings);
+            using (SettingDAL dal = new SettingDAL())
+            {
+                dal.SetGroupSetting(SettingTypes.Mail, settings);
+            }
+        }
+
+        //void Update(SettingTypes type, object data)
+        //{
+        //    using (SettingDAL settingDAL = new SettingDAL())
+        //    {
+        //        foreach (var prop in data.GetType().GetProperties())
+        //        {
+        //            //挑出六個尚未合成的時段設定不要進入資料庫比較(尾巴下底線_是重要依據不可刪除)
+        //            if (!prop.Name.Contains("Opd_Shift_Morning_") && !prop.Name.Contains("Opd_Shift_Afternoon_") && !prop.Name.Contains("Opd_Shift_Night_")
+        //                //not post files
+        //                && prop.PropertyType.Name != "HttpPostedFileBase")
+        //            {
+        //                if (!prop.Name.Contains("Partner"))
+        //                {
+        //                    settingDAL.Update(prop.Name, type, Convert.ToString(prop.GetValue(data, null)));
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
         public ScheduleShift GetCurrentShift()
         {
             var shifts = new List<Setting>();

@@ -1,5 +1,4 @@
-﻿
-using LocalRes;
+﻿using LocalRes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +16,7 @@ namespace MobileHis.Models.ViewModel
         public HttpPostedFileBase BK_img_file { get; set; }
         public HttpPostedFileBase Official_Banner_Img_file { get; set; }
         public HttpPostedFileBase Official_Logo_Img_file { get; set; }
+        public HttpRequestBase PartnerFile { get; set; }
         public string BK_img { get; set; }
         public string Official_Banner_Img { get; set; }
         public string Official_Logo_Img { get; set; }
@@ -27,9 +27,39 @@ namespace MobileHis.Models.ViewModel
         public string Opd_Shift_Afternoon_End { get; set; }
         public string Opd_Shift_Night_Start { get; set; }
         public string Opd_Shift_Night_End { get; set; }
-        public string Opd_Shift_Morning { get; set; }
-        public string Opd_Shift_Afternoon { get; set; }
-        public string Opd_Shift_Night { get; set; }
+        public string Opd_Shift_Morning
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Opd_Shift_Morning_Start)
+                    && !string.IsNullOrEmpty(Opd_Shift_Morning_End))
+                    return Opd_Shift_Morning_Start + "-" + Opd_Shift_Morning_End;
+                else
+                    return "";
+            }
+        }
+        public string Opd_Shift_Afternoon
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Opd_Shift_Afternoon_Start)
+                    && !string.IsNullOrEmpty(Opd_Shift_Afternoon_End))
+                    return Opd_Shift_Afternoon_Start + "-" + Opd_Shift_Afternoon_End;
+                else
+                    return "";
+            }
+        }
+        public string Opd_Shift_Night
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Opd_Shift_Night_Start)
+                    && !string.IsNullOrEmpty(Opd_Shift_Night_End))
+                    return Opd_Shift_Night_Start + "-" + Opd_Shift_Night_End;
+                else
+                    return "";
+            }
+        }
         public string ApiKey { get; set; }
     }
 
@@ -68,6 +98,7 @@ namespace MobileHis.Models.ViewModel
         public string Hospital_lng { get; set; }
         public string Hospital_Environment { get; set; }
         public string Hospital_Slogan { get; set; }
+        public HttpRequestBase EnvironmentFile { get; set; }
 
     }
 
