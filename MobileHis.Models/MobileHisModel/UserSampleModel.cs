@@ -1,4 +1,4 @@
-﻿using MobileHis.Comm;
+﻿//using MobileHis.Comm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,14 +20,14 @@ namespace MobileHis.Models.MobileHisModel
             _ChangedDate = System.DateTime.Now;
             _Status = "01";
         }
-        [SchemaMapping("UserName", IsRequired = true)]
+        //[SchemaMapping("UserName", IsRequired = true)]
         public string UserName { get; set; }
-        [SchemaMapping("Email", IsRequired = true, Regular = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")]
+        //[SchemaMapping("Email", IsRequired = true, Regular = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")]
         public string Email { get; set; }
         public string Phone { get; set; }
         public string CardNumber { get; set; }
 
-        [SchemaMapping("Gender", Format= "M,F")]
+        //[SchemaMapping("Gender", Format= "M,F")]
         public string Gender { get; set; }
 
         public DateTime Birthday { get; set; }
@@ -53,7 +53,7 @@ namespace MobileHis.Models.MobileHisModel
                 }
             }
         }
-        [SchemaMapping("IsDoctor", Format= " ,Y")]
+        //[SchemaMapping("IsDoctor", Format= " ,Y")]
         public string IsDoctor { get; set; }
 
         public string Password

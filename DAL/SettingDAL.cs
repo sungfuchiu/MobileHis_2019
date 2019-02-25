@@ -4,6 +4,7 @@ using System.Linq;
 using MobileHis.Data;
 using System.Data.Entity;
 using System.Globalization;
+using MobileHis.Models.Areas.Sys.ViewModels;
 
 namespace DAL
 {
@@ -13,13 +14,13 @@ namespace DAL
     }
     public class SettingDAL : DALBase<Setting>
     {
-        public Setting GetSetting(string settingName, SettingType settingType)
+        public Setting GetSetting(string settingName, SettingTypes settingType)
         {
             return GetAll()
                 .Include(a => a.ParentSetting)
                 .FirstOrDefault(
                     a => a.SettingName == settingName 
-                    && a.ParentSetting.SettingName == settingType);
+                    && a.ParentSetting.SettingName == settingType.ToString());
         }
         //public List<Setting> GetSetting(string settingType)
         //{
@@ -53,7 +54,7 @@ namespace DAL
         }
         public List<string> GetCategoryList()
         {
-            var itemType = GetSetting("ItemType", SettingType.category);
+            var itemType = GetSetting("ItemType", SettingTypes.Category);
             if (itemType != null)
             {
                 var itemTypeId = itemType.ID;

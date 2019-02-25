@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MobileHis.Comm;
 using MobileHis.Data;
 using System.Linq;
 using MobileHis.Models.Areas.Drug.ViewModels;

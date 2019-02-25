@@ -1,0 +1,2329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_confirm_password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Account_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Account_Name" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="Account_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Account_Tel" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Map_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Map_Sys" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="Create_Account_btn" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="Account_ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Account_ChangePhoto" xml:space="preserve">
+    <value>Change Profile Picture</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Logon_ForgotPassword" xml:space="preserve">
+    <value>Forget Password?</value>
+  </data>
+  <data name="Logon_RemeberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="Logon_Resend" xml:space="preserve">
+    <value>Resend Email</value>
+  </data>
+  <data name="Logon_SignIn" xml:space="preserve">
+    <value>Please Login</value>
+  </data>
+  <data name="Logon_SignInBtn" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="Logon_SignOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="Comm_Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Comm_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Comm_Del" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Comm_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Comm_Keyword" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
+  <data name="Comm_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Comm_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Changepassword_confirm_newPassword" xml:space="preserve">
+    <value>Confirm New Password</value>
+  </data>
+  <data name="Changepassword_newPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Changepassword_Password" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="Changepassword_PasswordError" xml:space="preserve">
+    <value>Wrong Password</value>
+  </data>
+  <data name="ChangePassword_Success" xml:space="preserve">
+    <value>Successfully Changed Password, please sign in again</value>
+  </data>
+  <data name="Comm_Btn_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Create_Account_Duplicate" xml:space="preserve">
+    <value>Email Address Or User No Already in use</value>
+  </data>
+  <data name="MSG_Confirm_Delete" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="MSG_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MSG_Failed" xml:space="preserve">
+    <value>Action failed</value>
+  </data>
+  <data name="MSG_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="IsLockedOut" xml:space="preserve">
+    <value>LockedOut</value>
+  </data>
+  <data name="Comm_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Comm_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Comm_Boy" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Comm_Girl" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Comm_Function" xml:space="preserve">
+    <value>Function Name</value>
+  </data>
+  <data name="Comm_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Comm_Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Map_Log" xml:space="preserve">
+    <value>log</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Date of Birth</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="LastLoginDate" xml:space="preserve">
+    <value>Last Login Date</value>
+  </data>
+  <data name="Map_Bill" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="Map_Bill_PriceFile" xml:space="preserve">
+    <value>Price File</value>
+  </data>
+  <data name="Map_Bill_Total" xml:space="preserve">
+    <value>Total Price</value>
+  </data>
+  <data name="Map_Pharmacy" xml:space="preserve">
+    <value>Pharmacy</value>
+  </data>
+  <data name="Map_Drug_Drugs" xml:space="preserve">
+    <value>Item List</value>
+  </data>
+  <data name="Map_Drug_2Patient" xml:space="preserve">
+    <value>Search Patient</value>
+  </data>
+  <data name="Map_Drug_Manager" xml:space="preserve">
+    <value>Item Manager</value>
+  </data>
+  <data name="Map_Drug_Verification" xml:space="preserve">
+    <value>Verification</value>
+  </data>
+  <data name="Map_OPD" xml:space="preserve">
+    <value>OPD</value>
+  </data>
+  <data name="Map_OPD_LIST" xml:space="preserve">
+    <value>Patient List</value>
+  </data>
+  <data name="Map_Patient" xml:space="preserve">
+    <value>Patient</value>
+  </data>
+  <data name="Map_Patient_Create" xml:space="preserve">
+    <value>Patient Create</value>
+  </data>
+  <data name="Map_Patient_Manager" xml:space="preserve">
+    <value>Manage Patient </value>
+  </data>
+  <data name="Map_Registered" xml:space="preserve">
+    <value>Appointments</value>
+  </data>
+  <data name="Map_Registered_Create" xml:space="preserve">
+    <value>Patient Appointments</value>
+  </data>
+  <data name="Map_Sys_DoctorInfo" xml:space="preserve">
+    <value>Manage Doctor Profile</value>
+  </data>
+  <data name="Map_Sys_DoctorSchedule" xml:space="preserve">
+    <value>Doctor Schedule</value>
+  </data>
+  <data name="Map_Sys_Downloads" xml:space="preserve">
+    <value>Software Download</value>
+  </data>
+  <data name="Map_Sys_HospitalInfo" xml:space="preserve">
+    <value>Manage Hospital Info</value>
+  </data>
+  <data name="Map_Sys_MyProfileInfo" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Map_Sys_Roles" xml:space="preserve">
+    <value>Manage Role</value>
+  </data>
+  <data name="Map_Sys_Users" xml:space="preserve">
+    <value>Manage Users</value>
+  </data>
+  <data name="ModDate" xml:space="preserve">
+    <value>Edit Date</value>
+  </data>
+  <data name="ModUser" xml:space="preserve">
+    <value>Processed User</value>
+  </data>
+  <data name="Account_Dept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Account_JobTitle" xml:space="preserve">
+    <value>Job Title</value>
+  </data>
+  <data name="Account_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Account_UserNo" xml:space="preserve">
+    <value>UserNo</value>
+  </data>
+  <data name="Comm_Select" xml:space="preserve">
+    <value>Select an Option</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="IsDoctor" xml:space="preserve">
+    <value>Can be registered?</value>
+  </data>
+  <data name="Major" xml:space="preserve">
+    <value>Major</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="Account_Status_01" xml:space="preserve">
+    <value>At Work</value>
+  </data>
+  <data name="Account_Status_02" xml:space="preserve">
+    <value>Relegation</value>
+  </data>
+  <data name="Account_Status_03" xml:space="preserve">
+    <value>Leave Without Pay</value>
+  </data>
+  <data name="Account_Status_04" xml:space="preserve">
+    <value>On Business</value>
+  </data>
+  <data name="Account_Status_99" xml:space="preserve">
+    <value>QUIT</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Sys_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Hosptial_Information" xml:space="preserve">
+    <value>Hosptial_Information</value>
+  </data>
+  <data name="Map_Setting" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="Setting_DateFormat" xml:space="preserve">
+    <value>DateFormat</value>
+  </data>
+  <data name="Hospital_Address" xml:space="preserve">
+    <value>Hospital Address</value>
+  </data>
+  <data name="Hospital_Contact_Name" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="Hospital_Contact_Tel" xml:space="preserve">
+    <value>Contact Tel</value>
+  </data>
+  <data name="Hospital_Name" xml:space="preserve">
+    <value>Hospital Name</value>
+  </data>
+  <data name="Hospital_No" xml:space="preserve">
+    <value>Hospital No</value>
+  </data>
+  <data name="Hospital_Tel" xml:space="preserve">
+    <value>Hospital Tel</value>
+  </data>
+  <data name="GuardiansRelation_Classmate" xml:space="preserve">
+    <value>Classmate</value>
+  </data>
+  <data name="GuardiansRelation_Colleague" xml:space="preserve">
+    <value>Colleague</value>
+  </data>
+  <data name="GuardiansRelation_Family" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="GuardiansRelation_Friend" xml:space="preserve">
+    <value>Friend</value>
+  </data>
+  <data name="GuardiansRelation_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="GuardiansRelation_Relative" xml:space="preserve">
+    <value>Relative</value>
+  </data>
+  <data name="CodeFile_ItemCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CodeFile_ItemDesc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CodeFile_ItemType" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CodeFile_Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Map_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="MSG_Duplidate" xml:space="preserve">
+    <value>Duplidate</value>
+  </data>
+  <data name="National_ID" xml:space="preserve">
+    <value>SID</value>
+  </data>
+  <data name="Patient_Address" xml:space="preserve">
+    <value>Residential Address</value>
+  </data>
+  <data name="Patient_Create_Base_Information" xml:space="preserve">
+    <value>Patient Information</value>
+  </data>
+  <data name="Patient_Create_Fingerprint_Regist" xml:space="preserve">
+    <value>Collect Fingerprint</value>
+  </data>
+  <data name="Patient_Create_Health_Related_Data" xml:space="preserve">
+    <value>Medical Aid Details</value>
+  </data>
+  <data name="Patient_Create_New_Patient" xml:space="preserve">
+    <value>Register New Patient</value>
+  </data>
+  <data name="Patient_Create_Patient_Registration" xml:space="preserve">
+    <value>Patient Registration</value>
+  </data>
+  <data name="Patient_Create_Print" xml:space="preserve">
+    <value>Generate Health Card</value>
+  </data>
+  <data name="Patient_District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="Patient_First_Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Patient_Ground_Line" xml:space="preserve">
+    <value>Land Line</value>
+  </data>
+  <data name="Patient_Guardian_Name" xml:space="preserve">
+    <value>Guardian Name</value>
+  </data>
+  <data name="Patient_Guardian_Phone" xml:space="preserve">
+    <value>Kin Tel No.</value>
+  </data>
+  <data name="Patient_Mobile_Phone" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Patient_Nationality" xml:space="preserve">
+    <value>Citizen</value>
+  </data>
+  <data name="Patient_Occupation" xml:space="preserve">
+    <value>Occupation</value>
+  </data>
+  <data name="Patient_Relationship" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+  <data name="Patient_SurName" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="Patient_TA" xml:space="preserve">
+    <value>TA</value>
+  </data>
+  <data name="Patient_Village" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="DateFormatError" xml:space="preserve">
+    <value>Error in Date Format</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailFormatError" xml:space="preserve">
+    <value>Error in Email Format</value>
+  </data>
+  <data name="Patient_Allergic" xml:space="preserve">
+    <value>Allergy</value>
+  </data>
+  <data name="Patient_ArrearsTimes" xml:space="preserve">
+    <value>Time of Arrears</value>
+  </data>
+  <data name="Patient_BloodType" xml:space="preserve">
+    <value>Blood Type</value>
+  </data>
+  <data name="Patient_Disability" xml:space="preserve">
+    <value>Disability</value>
+  </data>
+  <data name="Patient_FirstAdmission" xml:space="preserve">
+    <value>Date of First Admission</value>
+  </data>
+  <data name="Patient_FirstVisitDate" xml:space="preserve">
+    <value>Date of First Visit</value>
+  </data>
+  <data name="Patient_HIV" xml:space="preserve">
+    <value>HIV</value>
+  </data>
+  <data name="Patient_Insurance" xml:space="preserve">
+    <value>Types of Insurance</value>
+  </data>
+  <data name="Patient_InsuranceCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Patient_LastAdmission" xml:space="preserve">
+    <value>Date of Last Admission</value>
+  </data>
+  <data name="Patient_LastVisitDate" xml:space="preserve">
+    <value>Date of Last Visit</value>
+  </data>
+  <data name="Patient_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Patient_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Category_IC" xml:space="preserve">
+    <value>InsuranceCategory</value>
+  </data>
+  <data name="Category_IN" xml:space="preserve">
+    <value>Insurance</value>
+  </data>
+  <data name="Category_NA" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="Category_VI" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="Create_Patient_NationalId_Duplicate" xml:space="preserve">
+    <value>SID Already in use</value>
+  </data>
+  <data name="Comm_Search_Fingerprint" xml:space="preserve">
+    <value>Search Fingerprint</value>
+  </data>
+  <data name="Patient_ID" xml:space="preserve">
+    <value>HospitalNo</value>
+  </data>
+  <data name="Patient_Married" xml:space="preserve">
+    <value>Marriage Status</value>
+  </data>
+  <data name="Patient_Married_0" xml:space="preserve">
+    <value>Married</value>
+  </data>
+  <data name="Patient_Married_1" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="MAP_OPD_CLINIC" xml:space="preserve">
+    <value>Clinical Information System</value>
+  </data>
+  <data name="Patient_Manager_Head_A" xml:space="preserve">
+    <value>Patient Info</value>
+  </data>
+  <data name="Patient_Manager_Head_B" xml:space="preserve">
+    <value>Medical Records</value>
+  </data>
+  <data name="Patient_Manager_Head_C" xml:space="preserve">
+    <value>Medical Aid Details</value>
+  </data>
+  <data name="Patient_Manager_Enroll_FingerPrint" xml:space="preserve">
+    <value>Enroll FingerPrinter</value>
+  </data>
+  <data name="Patient_Manager_PrintCard" xml:space="preserve">
+    <value>Print Card</value>
+  </data>
+  <data name="Patient_Status_0" xml:space="preserve">
+    <value>activate</value>
+  </data>
+  <data name="Patient_Status_1" xml:space="preserve">
+    <value>inactive</value>
+  </data>
+  <data name="Comm_ReadMore" xml:space="preserve">
+    <value>ReadMore</value>
+  </data>
+  <data name="Patient_Blood_presure" xml:space="preserve">
+    <value>Blood presure</value>
+  </data>
+  <data name="Patient_Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Patient_Manager_Head_D" xml:space="preserve">
+    <value>Vital Sign Measurement</value>
+  </data>
+  <data name="Patient_Pulse" xml:space="preserve">
+    <value>Pulse</value>
+  </data>
+  <data name="Patient_Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Comm_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Comm_Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Patient_VitalSign" xml:space="preserve">
+    <value>VitalSign</value>
+  </data>
+  <data name="Comm_Afternoon" xml:space="preserve">
+    <value>Afternoon</value>
+  </data>
+  <data name="Comm_Doctor" xml:space="preserve">
+    <value>Doctor</value>
+  </data>
+  <data name="Comm_Morning" xml:space="preserve">
+    <value>Morning</value>
+  </data>
+  <data name="Comm_Night" xml:space="preserve">
+    <value>Night</value>
+  </data>
+  <data name="Comm_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Category_10" xml:space="preserve">
+    <value>JobTitle</value>
+  </data>
+  <data name="Category_DP" xml:space="preserve">
+    <value>DepartmentCategory</value>
+  </data>
+  <data name="Map_Sys_Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="Comm_Dept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Comm_Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Room_AllowDept" xml:space="preserve">
+    <value>Allow Dept.</value>
+  </data>
+  <data name="Room_Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Room_Name" xml:space="preserve">
+    <value>Room Name</value>
+  </data>
+  <data name="Room_No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="Map_AboutUs" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Map_ContactUs" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="Map_WhatIs" xml:space="preserve">
+    <value>What's mHIS</value>
+  </data>
+  <data name="Comm_Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="Map_Sys_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Department_CategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="Department_DeptName" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="Department_DeptNo" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="Department_IsRegistered" xml:space="preserve">
+    <value>Allow Appointments</value>
+  </data>
+  <data name="Comm_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Comm_Physician" xml:space="preserve">
+    <value>Physician</value>
+  </data>
+  <data name="Registered_NationalID" xml:space="preserve">
+    <value>SID</value>
+  </data>
+  <data name="Registered_OpdDate" xml:space="preserve">
+    <value>OpdDate</value>
+    <comment>:</comment>
+  </data>
+  <data name="Registered_OpdRoom" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="Registered_PatientID" xml:space="preserve">
+    <value>HospitalNo.</value>
+  </data>
+  <data name="Comm_FingerPrint" xml:space="preserve">
+    <value>FingerPrint</value>
+  </data>
+  <data name="Comm_NotFound" xml:space="preserve">
+    <value>NotFound</value>
+  </data>
+  <data name="Patient_Info" xml:space="preserve">
+    <value>Patient Info</value>
+  </data>
+  <data name="Registered_Count" xml:space="preserve">
+    <value>Appointments Count</value>
+  </data>
+  <data name="Comm_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Patient_AddressZipcode" xml:space="preserve">
+    <value>Zipcode</value>
+  </data>
+  <data name="Patient_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Patient_NextOfKinAddress" xml:space="preserve">
+    <value>Next Of Kin Address</value>
+  </data>
+  <data name="Patient_NextOfKinAddressZipcode" xml:space="preserve">
+    <value>Zipcode</value>
+  </data>
+  <data name="Patient_PostAddress" xml:space="preserve">
+    <value>Postal Address</value>
+  </data>
+  <data name="Patient_PostAddressZipcode" xml:space="preserve">
+    <value>Zipcode</value>
+  </data>
+  <data name="Map_IPD" xml:space="preserve">
+    <value>IPD</value>
+  </data>
+  <data name="Map_IPD_DETAIL" xml:space="preserve">
+    <value>INFO</value>
+  </data>
+  <data name="Map_IPD_LIST" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Map_IPD_ROOM" xml:space="preserve">
+    <value>Room List</value>
+  </data>
+  <data name="Account_Card" xml:space="preserve">
+    <value>Card Number</value>
+  </data>
+  <data name="Map_Sys_News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="News_Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="News_IsEnable" xml:space="preserve">
+    <value>IsEnable</value>
+  </data>
+  <data name="News_PublishEnd" xml:space="preserve">
+    <value>PublishEnd</value>
+  </data>
+  <data name="News_PublishStart" xml:space="preserve">
+    <value>PublishStart</value>
+  </data>
+  <data name="News_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Create_Return_btn" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="News_Create" xml:space="preserve">
+    <value>Create News</value>
+  </data>
+  <data name="News_Edit" xml:space="preserve">
+    <value>Edit News</value>
+  </data>
+  <data name="Map_ExamReport" xml:space="preserve">
+    <value>Exam</value>
+  </data>
+  <data name="Map_Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Phrase_Code" xml:space="preserve">
+    <value>PhraseCode</value>
+  </data>
+  <data name="Phrase_Content" xml:space="preserve">
+    <value>PhraseContent</value>
+  </data>
+  <data name="Phrase_Manager" xml:space="preserve">
+    <value>Phrase </value>
+  </data>
+  <data name="Comm_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Drug_Code" xml:space="preserve">
+    <value>Item Code</value>
+  </data>
+  <data name="Drug_Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Drug_Dose" xml:space="preserve">
+    <value>Dose</value>
+  </data>
+  <data name="Drug_Frequency" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="Drug_Route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="Drug_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Drug_Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Exam_AccessionNumber" xml:space="preserve">
+    <value>AccessionNumber</value>
+  </data>
+  <data name="Exam_Code" xml:space="preserve">
+    <value>ExamCode</value>
+  </data>
+  <data name="Exam_Date" xml:space="preserve">
+    <value>ExamDate</value>
+  </data>
+  <data name="Exam_Meaning" xml:space="preserve">
+    <value>ExamMeaning</value>
+  </data>
+  <data name="Exam_Status" xml:space="preserve">
+    <value>ExamStatus</value>
+  </data>
+  <data name="Exam_Time" xml:space="preserve">
+    <value>Exam Time</value>
+  </data>
+  <data name="Comm_Drug" xml:space="preserve">
+    <value>Drug</value>
+  </data>
+  <data name="Comm_Exam" xml:space="preserve">
+    <value>Exam</value>
+  </data>
+  <data name="Comm_Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Comm_Seq" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Comm_Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="Comm_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Comm_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Comm_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Kit_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Kit_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Kit_Manager" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="Category_CO" xml:space="preserve">
+    <value>DrugColor</value>
+  </data>
+  <data name="Category_SP" xml:space="preserve">
+    <value>DrugShape</value>
+  </data>
+  <data name="Category_TP" xml:space="preserve">
+    <value>Major Usage</value>
+  </data>
+  <data name="Drug_Title" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Patient_History" xml:space="preserve">
+    <value>Patient History</value>
+  </data>
+  <data name="Comm_SymptomShot" xml:space="preserve">
+    <value>SymptomShot</value>
+  </data>
+  <data name="Comm_Appearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="Comm_Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="Comm_Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Comm_Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="Drug_Alert" xml:space="preserve">
+    <value>Is Hight Risk</value>
+  </data>
+  <data name="Drug_Barcode" xml:space="preserve">
+    <value>Item Barcode</value>
+  </data>
+  <data name="Drug_Child" xml:space="preserve">
+    <value>Is Pediatrics</value>
+  </data>
+  <data name="Drug_Effect" xml:space="preserve">
+    <value>Effect</value>
+  </data>
+  <data name="Drug_Form" xml:space="preserve">
+    <value>Form</value>
+  </data>
+  <data name="Drug_Grade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="Drug_Information" xml:space="preserve">
+    <value>Item Information</value>
+  </data>
+  <data name="Drug_Manager" xml:space="preserve">
+    <value>Item Manager</value>
+  </data>
+  <data name="Drug_Order_Code" xml:space="preserve">
+    <value>Order Code</value>
+  </data>
+  <data name="Drug_Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Drug_ProcessingMethods" xml:space="preserve">
+    <value>ProcessingMethods</value>
+  </data>
+  <data name="Drug_Restrictions" xml:space="preserve">
+    <value>Restrictions Drug</value>
+  </data>
+  <data name="Map_Drug_Restraint" xml:space="preserve">
+    <value>Restraint</value>
+  </data>
+  <data name="Restrictions_Create" xml:space="preserve">
+    <value>Create Restrictions</value>
+  </data>
+  <data name="Restrictions_Drug" xml:space="preserve">
+    <value>Drug Restrictions</value>
+  </data>
+  <data name="Restrictions_Modify" xml:space="preserve">
+    <value>Modify Restrictions</value>
+  </data>
+  <data name="Comm_Expansion" xml:space="preserve">
+    <value>Expansion</value>
+  </data>
+  <data name="Drug_Name" xml:space="preserve">
+    <value>DrugName</value>
+  </data>
+  <data name="MSG_Confirm_Sure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Comm_Download" xml:space="preserve">
+    <value>Download Sample File</value>
+  </data>
+  <data name="Comm_Execute" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="Comm_File_Change" xml:space="preserve">
+    <value>Reselect File</value>
+  </data>
+  <data name="Comm_File_Remove" xml:space="preserve">
+    <value>Remove File</value>
+  </data>
+  <data name="Comm_File_Select" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="Comm_Upload" xml:space="preserve">
+    <value>Upload File</value>
+  </data>
+  <data name="Map_Environ_Chart" xml:space="preserve">
+    <value>Chart</value>
+  </data>
+  <data name="Map_Environ_Control" xml:space="preserve">
+    <value>ECS</value>
+  </data>
+  <data name="Map_Elearning" xml:space="preserve">
+    <value>E-Learning</value>
+  </data>
+  <data name="Map_Elearning_CourseMgr" xml:space="preserve">
+    <value>Courses Management</value>
+  </data>
+  <data name="Map_Elearning_Protal" xml:space="preserve">
+    <value>Personal Protal</value>
+  </data>
+  <data name="Map_Elearning_Zrs" xml:space="preserve">
+    <value>Rec Management</value>
+  </data>
+  <data name="Map_Elearning_CourseInfo" xml:space="preserve">
+    <value>Course Information</value>
+  </data>
+  <data name="Map_Elearning_Quiz" xml:space="preserve">
+    <value>Quiz</value>
+  </data>
+  <data name="Map_Environ_ECS" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Drug_Setting" xml:space="preserve">
+    <value>Drug Setting</value>
+  </data>
+  <data name="Comm_Setting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="Comm_Upload_Export" xml:space="preserve">
+    <value>Upload file and export data</value>
+  </data>
+  <data name="ConsultationFee" xml:space="preserve">
+    <value>ConsultationFee</value>
+  </data>
+  <data name="Map_Registered_Cancel" xml:space="preserve">
+    <value>Cancel Appointments</value>
+  </data>
+  <data name="Registered_Number" xml:space="preserve">
+    <value>Appointments Number</value>
+  </data>
+  <data name="Registered_Sequence" xml:space="preserve">
+    <value>Appointments Sequence</value>
+  </data>
+  <data name="Comm_Barcode" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
+  <data name="Laboratory_Code" xml:space="preserve">
+    <value>LaboratoryCode</value>
+  </data>
+  <data name="Laboratory_Name" xml:space="preserve">
+    <value>LaboratoryName</value>
+  </data>
+  <data name="Laboratory_Time" xml:space="preserve">
+    <value>Laboratory Time</value>
+  </data>
+  <data name="Comm_Import_Data" xml:space="preserve">
+    <value>ImportData</value>
+  </data>
+  <data name="Comm_Patient" xml:space="preserve">
+    <value>Patient</value>
+  </data>
+  <data name="Laboratory_Date" xml:space="preserve">
+    <value>Laboratory Date</value>
+  </data>
+  <data name="Comm_Laboratory" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="Intro_dashboard_1" xml:space="preserve">
+    <value>Select the tabs to check your monthly/weekly/daily shifts.</value>
+  </data>
+  <data name="Intro_dashboard_2" xml:space="preserve">
+    <value>The latest news in the hospital (click “maintenance" to manage the news displayed.)</value>
+  </data>
+  <data name="Intro_dashboard_3" xml:space="preserve">
+    <value>Infection control surveillance within the wards.</value>
+  </data>
+  <data name="Intro_Bill" xml:space="preserve">
+    <value>Check patients’ payment amount/status by entering HospitalNo.</value>
+  </data>
+  <data name="Intro_Drug" xml:space="preserve">
+    <value>Available for looking up patients’ prescription by scanning barcodes, building dispensary and drug-drug interaction.</value>
+  </data>
+  <data name="Intro_Elearning" xml:space="preserve">
+    <value>Function under construction.</value>
+  </data>
+  <data name="Intro_Environ" xml:space="preserve">
+    <value>Function under construction.</value>
+  </data>
+  <data name="Intro_IPD" xml:space="preserve">
+    <value>Function under construction.</value>
+  </data>
+  <data name="Intro_OPD" xml:space="preserve">
+    <value>Patient list of the day, select patient to start inspection and SOAP.</value>
+  </data>
+  <data name="Intro_PatientMgr" xml:space="preserve">
+    <value>Create/manage patients’ profile, records, and fingerprints.</value>
+  </data>
+  <data name="Intro_Registered" xml:space="preserve">
+    <value>Use HospitalNo. to manage patients’ appointments.Please note that appointments have to be made before canceling.</value>
+  </data>
+  <data name="Intro_Sys" xml:space="preserve">
+    <value>Managements for news publication, doctor shifts, user role, exam. room, departments, and other categories, etc.</value>
+  </data>
+  <data name="Intro_display" xml:space="preserve">
+    <value>Don't Display Again?</value>
+  </data>
+  <data name="BeginTime" xml:space="preserve">
+    <value>Begin Time</value>
+  </data>
+  <data name="Category_CS" xml:space="preserve">
+    <value>Elearing Course</value>
+  </data>
+  <data name="Course_Create" xml:space="preserve">
+    <value>Create Course</value>
+  </data>
+  <data name="Course_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Course_Enrollment" xml:space="preserve">
+    <value>Students Enrollment</value>
+  </data>
+  <data name="Course_Management" xml:space="preserve">
+    <value>Course Management</value>
+  </data>
+  <data name="Course_Title" xml:space="preserve">
+    <value>Course Title</value>
+  </data>
+  <data name="Course_New" xml:space="preserve">
+    <value>New Course</value>
+  </data>
+  <data name="Course_Room" xml:space="preserve">
+    <value>Rooms</value>
+  </data>
+  <data name="Course_Type" xml:space="preserve">
+    <value>Course Type</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="EmailNotice" xml:space="preserve">
+    <value>Email Notice</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+  </data>
+  <data name="OpenEnrollment" xml:space="preserve">
+    <value>Open Enrollment</value>
+  </data>
+  <data name="OpenTime" xml:space="preserve">
+    <value>Open Time</value>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>Participants</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="YoutubeLink" xml:space="preserve">
+    <value>Youtube Link</value>
+  </data>
+  <data name="Course_Attachment" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="Course_List_Create" xml:space="preserve">
+    <value>Create Time</value>
+  </data>
+  <data name="Course_List_Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="Map_Elearning_Course" xml:space="preserve">
+    <value>Course System</value>
+  </data>
+  <data name="Comm_Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="Course_Classroom" xml:space="preserve">
+    <value>Classroom</value>
+  </data>
+  <data name="Course_Info" xml:space="preserve">
+    <value>Course Information</value>
+  </data>
+  <data name="Course_Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="New_TestPaper" xml:space="preserve">
+    <value>New TestPaper</value>
+  </data>
+  <data name="Test_Papers_Create" xml:space="preserve">
+    <value>Create Test Paper</value>
+  </data>
+  <data name="Map_Elearning_TestPaper" xml:space="preserve">
+    <value>Test Papers Manage</value>
+  </data>
+  <data name="Test_Paper_Title" xml:space="preserve">
+    <value>Paper Title</value>
+  </data>
+  <data name="Add_Question" xml:space="preserve">
+    <value>Add Question</value>
+  </data>
+  <data name="Comm_Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="Course_Sign_Out" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="Course_Sign_Up" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="Signed" xml:space="preserve">
+    <value>Signed</value>
+  </data>
+  <data name="Way_Of_Teaching" xml:space="preserve">
+    <value>Way Of Teaching</value>
+  </data>
+  <data name="Correct_rate_of_about" xml:space="preserve">
+    <value>Correct rate of about</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="Course_Anyone" xml:space="preserve">
+    <value>Anyone</value>
+  </data>
+  <data name="Course_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Course_Download_Template" xml:space="preserve">
+    <value>Download Template</value>
+  </data>
+  <data name="Course_Email_Notification" xml:space="preserve">
+    <value>E-mail Notification</value>
+  </data>
+  <data name="Course_Ended" xml:space="preserve">
+    <value>Course Ended</value>
+  </data>
+  <data name="Course_Ending_Date" xml:space="preserve">
+    <value>Ending Date</value>
+  </data>
+  <data name="Course_Ending_Time" xml:space="preserve">
+    <value>Ending Time</value>
+  </data>
+  <data name="Course_End_Course" xml:space="preserve">
+    <value>End Course</value>
+  </data>
+  <data name="Course_Exam_Paper" xml:space="preserve">
+    <value>Exam Paper</value>
+  </data>
+  <data name="Course_in_progress" xml:space="preserve">
+    <value>Course in progress</value>
+  </data>
+  <data name="Course_Method_of_teaching" xml:space="preserve">
+    <value>Method of teaching</value>
+  </data>
+  <data name="Course_not_Available" xml:space="preserve">
+    <value>Course not Available</value>
+  </data>
+  <data name="Course_No_new_application_during_sessions" xml:space="preserve">
+    <value>No new applications during sessions</value>
+  </data>
+  <data name="Course_Number_of_Applicants" xml:space="preserve">
+    <value>Number of Applicants</value>
+  </data>
+  <data name="Course_Open_for_Application" xml:space="preserve">
+    <value>Open for Application</value>
+  </data>
+  <data name="Course_Open_of_Application" xml:space="preserve">
+    <value>Open of Application</value>
+  </data>
+  <data name="Course_Select_Participant" xml:space="preserve">
+    <value>Select Participant</value>
+  </data>
+  <data name="Course_Start_Course" xml:space="preserve">
+    <value>Start Course</value>
+  </data>
+  <data name="Course_Upload_material" xml:space="preserve">
+    <value>Upload material</value>
+  </data>
+  <data name="Course_Upload_Participant" xml:space="preserve">
+    <value>Upload Participant</value>
+  </data>
+  <data name="Elearning_Exam_Paper_Management" xml:space="preserve">
+    <value>Exam Paper Management</value>
+  </data>
+  <data name="Exam_Add_Questions" xml:space="preserve">
+    <value>Add Questions</value>
+  </data>
+  <data name="Exam_Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
+  <data name="Exam_Correct_rate" xml:space="preserve">
+    <value>Correct rate</value>
+  </data>
+  <data name="Exam_Create_Questions" xml:space="preserve">
+    <value>Create Questions</value>
+  </data>
+  <data name="Exam_Essay_question" xml:space="preserve">
+    <value>Essay question</value>
+  </data>
+  <data name="Exam_Multiple_Choice_question" xml:space="preserve">
+    <value>Multiple Choice question</value>
+  </data>
+  <data name="Exam_Not_provided_questions" xml:space="preserve">
+    <value>Not provided questions</value>
+  </data>
+  <data name="Exam_Paper" xml:space="preserve">
+    <value>Exam Paper</value>
+  </data>
+  <data name="Exam_Publication" xml:space="preserve">
+    <value>Publication</value>
+  </data>
+  <data name="Exam_Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="Exam_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Exam_Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Exam_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Exam_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Exam_Test_Time" xml:space="preserve">
+    <value>Exam Time</value>
+  </data>
+  <data name="Exam_Tips_1" xml:space="preserve">
+    <value>It will only list the latest exam data if the person complete the same exam paper under the same course</value>
+  </data>
+  <data name="Comm_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Comm_End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Comm_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Comm_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Course_Application_Deadline" xml:space="preserve">
+    <value>Application Deadline</value>
+  </data>
+  <data name="Course_Cancel_Registration" xml:space="preserve">
+    <value>Cancel Registration</value>
+  </data>
+  <data name="Course_EveryDay_Sync" xml:space="preserve">
+    <value>Sync of datetime</value>
+  </data>
+  <data name="Course_Full" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="Course_Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="Course_Not_Open" xml:space="preserve">
+    <value>Not Open</value>
+  </data>
+  <data name="Course_Number_of_View" xml:space="preserve">
+    <value>Number of View</value>
+  </data>
+  <data name="Course_Participant" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="Course_Precautions" xml:space="preserve">
+    <value>Precautions</value>
+  </data>
+  <data name="Course_Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="Course_Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Course_Teaching_material" xml:space="preserve">
+    <value>Teaching material</value>
+  </data>
+  <data name="Map_Elearning_Course_Management" xml:space="preserve">
+    <value>Course Management</value>
+  </data>
+  <data name="Exam_Create" xml:space="preserve">
+    <value>Create Exam Paper</value>
+  </data>
+  <data name="Exam_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Exam_Edit_Exam" xml:space="preserve">
+    <value>Edit Exam Paper </value>
+  </data>
+  <data name="Exam_Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Exam_Score_Average" xml:space="preserve">
+    <value>Average Score</value>
+  </data>
+  <data name="Exam_Title" xml:space="preserve">
+    <value>Exam Title</value>
+  </data>
+  <data name="Exam_Upload_Question" xml:space="preserve">
+    <value>Upload Questions</value>
+  </data>
+  <data name="Exam_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Comm_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Comm_User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Course_Edit" xml:space="preserve">
+    <value>Course Edit</value>
+  </data>
+  <data name="Comm_No_Funtion" xml:space="preserve">
+    <value>Currently the funtion is not public  and  contact  us</value>
+  </data>
+  <data name="Person_Setting" xml:space="preserve">
+    <value>Person Setting</value>
+  </data>
+  <data name="User_Edit" xml:space="preserve">
+    <value>User Edit</value>
+  </data>
+  <data name="Notification_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Notification_Send_Button" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Notification_Send_To_Label" xml:space="preserve">
+    <value>Send To</value>
+  </data>
+  <data name="Notification_Show_All_Message" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Notification_Target" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Comm_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Notification_Both_Read_Unread" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="Notification_Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Notification_Read_Or_Unread" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Notification_Show_Option" xml:space="preserve">
+    <value>Show by</value>
+  </data>
+  <data name="Notification_Show_Option_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Notification_Show_Option_isRead" xml:space="preserve">
+    <value>Unread first</value>
+  </data>
+  <data name="Notification_Unread" xml:space="preserve">
+    <value>Unread</value>
+  </data>
+  <data name="Notification_All_people" xml:space="preserve">
+    <value>All people</value>
+  </data>
+  <data name="Notification_Header_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Notification_Header_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Notification_Header_isRead" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Notification_Header_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Notification_Header_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Comm_Checkin" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="Map_RIS" xml:space="preserve">
+    <value>RIS</value>
+  </data>
+  <data name="Map_RIS_Checkin" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="Map_RIS_Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Exam_Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Exam_List" xml:space="preserve">
+    <value>Report List</value>
+  </data>
+  <data name="Exam_Title_Name" xml:space="preserve">
+    <value>Exam Name</value>
+  </data>
+  <data name="Comm_By" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="Comm_Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Comm_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Comm_Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Comm_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Comm_Prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="Comm_Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="MSG_Enter_Information" xml:space="preserve">
+    <value>Please Enter Your Information</value>
+  </data>
+  <data name="Pacs_Viewer" xml:space="preserve">
+    <value>PACS Viewer</value>
+  </data>
+  <data name="Patient_Create_Memo1" xml:space="preserve">
+    <value>Please make sure the information is correct</value>
+  </data>
+  <data name="Patient_Create_Memo2" xml:space="preserve">
+    <value>Click finish to complete and print out the National Health Card</value>
+  </data>
+  <data name="Patient_Registration_With" xml:space="preserve">
+    <value>Registration With</value>
+  </data>
+  <data name="Comm_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Comm_Ditto" xml:space="preserve">
+    <value>Ditto</value>
+  </data>
+  <data name="Comm_Package" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="Comm_Waiting" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="AddNewInput" xml:space="preserve">
+    <value>Add New Input</value>
+  </data>
+  <data name="BlockDwellTime" xml:space="preserve">
+    <value>Block Dwell Time(second)</value>
+  </data>
+  <data name="Comm_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Comm_PublishBeginTime" xml:space="preserve">
+    <value>Publish Begin Time</value>
+  </data>
+  <data name="Comm_PublishEndTime" xml:space="preserve">
+    <value>Publish End Time</value>
+  </data>
+  <data name="ConfirmOnline" xml:space="preserve">
+    <value>Confirm Online</value>
+  </data>
+  <data name="CustomerScore" xml:space="preserve">
+    <value>Customer Score</value>
+  </data>
+  <data name="Exam_Multiple" xml:space="preserve">
+    <value>Mulitiple</value>
+  </data>
+  <data name="Exam_Single" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>File Size</value>
+  </data>
+  <data name="Intervals" xml:space="preserve">
+    <value>Intervals(second)</value>
+  </data>
+  <data name="LimitedToTheirOwnUse" xml:space="preserve">
+    <value>Limited To Their Own Use</value>
+  </data>
+  <data name="NumberOfPeople" xml:space="preserve">
+    <value>Number Of People</value>
+  </data>
+  <data name="OpenStaffRegistration" xml:space="preserve">
+    <value>Open Staff Registration</value>
+  </data>
+  <data name="Perview" xml:space="preserve">
+    <value>Perview</value>
+  </data>
+  <data name="QuestionTotal" xml:space="preserve">
+    <value>Question Total</value>
+  </data>
+  <data name="RegistrationBeginTime" xml:space="preserve">
+    <value>Registration Begin Time</value>
+  </data>
+  <data name="RegistrationEndTime" xml:space="preserve">
+    <value>Registration End Time</value>
+  </data>
+  <data name="ScoreTotal" xml:space="preserve">
+    <value>Score Total</value>
+  </data>
+  <data name="SyncInput" xml:space="preserve">
+    <value>Sync Input</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>Upload Image</value>
+  </data>
+  <data name="UseHtml" xml:space="preserve">
+    <value>Use Html Editor</value>
+  </data>
+  <data name="Comm_Manage" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="Course_Name" xml:space="preserve">
+    <value>Course Name</value>
+  </data>
+  <data name="EnrolledCourses" xml:space="preserve">
+    <value>Enrolled Courses</value>
+  </data>
+  <data name="LearningProcess" xml:space="preserve">
+    <value>Learning Process</value>
+  </data>
+  <data name="QuizRecord" xml:space="preserve">
+    <value>Quiz Record</value>
+  </data>
+  <data name="StartQuiz" xml:space="preserve">
+    <value>Start The Quiz</value>
+  </data>
+  <data name="EnrolledINMessage" xml:space="preserve">
+    <value>Enrolled in the course of the quiz, has been enrolled personnel tested</value>
+  </data>
+  <data name="Classroom_Course" xml:space="preserve">
+    <value>Classroom course</value>
+  </data>
+  <data name="Course_Has_Not_Start" xml:space="preserve">
+    <value>Course has not start</value>
+  </data>
+  <data name="Course_That_Have_Been_Enrolled_Can_Not_Be_Deleted" xml:space="preserve">
+    <value>Course that have been enrolled can not be deleted</value>
+  </data>
+  <data name="Exam" xml:space="preserve">
+    <value>Exam</value>
+  </data>
+  <data name="Exam_Not_Exist" xml:space="preserve">
+    <value>Exam not exist</value>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="Num_OF_Questiond_Limit" xml:space="preserve">
+    <value>Number of questions limited to {0} questions</value>
+  </data>
+  <data name="Online_Course_Closed" xml:space="preserve">
+    <value>Online course closed</value>
+  </data>
+  <data name="Online_Course_Not_Started" xml:space="preserve">
+    <value>Online course no started</value>
+  </data>
+  <data name="Please_Pick_Correct" xml:space="preserve">
+    <value>Please pick correct</value>
+  </data>
+  <data name="Question_Not_Empty" xml:space="preserve">
+    <value>Question not empty</value>
+  </data>
+  <data name="Image_Size_2MB" xml:space="preserve">
+    <value>Image Size 2MB</value>
+  </data>
+  <data name="Upload_File_Type_Img" xml:space="preserve">
+    <value>*.jpg *.jpeg *png *.bmp</value>
+  </data>
+  <data name="Answer_Required" xml:space="preserve">
+    <value>Answer is required</value>
+  </data>
+  <data name="Rejected_File_Type" xml:space="preserve">
+    <value>Rejected file type</value>
+  </data>
+  <data name="The_Score_Field_Is_Required" xml:space="preserve">
+    <value>The Score field is required</value>
+  </data>
+  <data name="Data_Not_Exist" xml:space="preserve">
+    <value>Data not exist</value>
+  </data>
+  <data name="TestScore" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Comm_TestDate" xml:space="preserve">
+    <value>Test Date</value>
+  </data>
+  <data name="Patient_VitalSign_BloodSugar" xml:space="preserve">
+    <value>BloodSugar</value>
+  </data>
+  <data name="Patient_VitalSign_BMI" xml:space="preserve">
+    <value>BMI</value>
+  </data>
+  <data name="Patient_VitalSign_BMR" xml:space="preserve">
+    <value>BMR</value>
+  </data>
+  <data name="Patient_VitalSign_BodyFat" xml:space="preserve">
+    <value>BodyFat</value>
+  </data>
+  <data name="Patient_VitalSign_BodyTemp" xml:space="preserve">
+    <value>BodyTemp</value>
+  </data>
+  <data name="Patient_VitalSign_BodyWaterMass" xml:space="preserve">
+    <value>BodyWater Mass</value>
+  </data>
+  <data name="Patient_VitalSign_BoneMass" xml:space="preserve">
+    <value>Bone Mass</value>
+  </data>
+  <data name="Patient_VitalSign_Diastolic" xml:space="preserve">
+    <value>Diastolic</value>
+  </data>
+  <data name="Patient_VitalSign_MetabolicAge" xml:space="preserve">
+    <value>Metabolic Age</value>
+  </data>
+  <data name="Patient_VitalSign_MuscleMass" xml:space="preserve">
+    <value>Muscle Mass</value>
+  </data>
+  <data name="Patient_VitalSign_O2" xml:space="preserve">
+    <value>O2</value>
+  </data>
+  <data name="Patient_VitalSign_Systolic" xml:space="preserve">
+    <value>Systolic</value>
+  </data>
+  <data name="Patient_VitalSign_VatLevel" xml:space="preserve">
+    <value>Vat Level</value>
+  </data>
+  <data name="Must_Specify_Class_Location" xml:space="preserve">
+    <value>Must specify a class location</value>
+  </data>
+  <data name="Class_Time_Over" xml:space="preserve">
+    <value>Class time over</value>
+  </data>
+  <data name="Number_Applicants_Not_Empty" xml:space="preserve">
+    <value>Number of applicants can't empty</value>
+  </data>
+  <data name="Over_BeginTime" xml:space="preserve">
+    <value>Over BeginTime</value>
+  </data>
+  <data name="Registration_Time_Not_Empty" xml:space="preserve">
+    <value>Registration time can't empty</value>
+  </data>
+  <data name="Select_Course_Type" xml:space="preserve">
+    <value>Select the course type</value>
+  </data>
+  <data name="Set_Class_Time" xml:space="preserve">
+    <value>Set the class time</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Can_Not_Delete_Completed_Test" xml:space="preserve">
+    <value>Can't deleted, some students have completed the test</value>
+  </data>
+  <data name="Exam_Valid" xml:space="preserve">
+    <value>Exam Valid</value>
+  </data>
+  <data name="Category_PY" xml:space="preserve">
+    <value>Pay Type</value>
+  </data>
+  <data name="Category_UT" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Map_Pos" xml:space="preserve">
+    <value>Pos</value>
+  </data>
+  <data name="Map_Vendor" xml:space="preserve">
+    <value>Vendor</value>
+  </data>
+  <data name="Map_PurchaseOrder" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="Map_Delivery" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="Map_DeliveryHistory" xml:space="preserve">
+    <value>Delivery History</value>
+  </data>
+  <data name="Comm_StockAmount" xml:space="preserve">
+    <value>Stock Amount</value>
+  </data>
+  <data name="Map_Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="Map_ReturnHistory" xml:space="preserve">
+    <value>Return History</value>
+  </data>
+  <data name="Category_FQ" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="Category_RU" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="Category_LG" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Hospital_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Hospital_OpenTime" xml:space="preserve">
+    <value>Open Time</value>
+  </data>
+  <data name="Mail_Setting" xml:space="preserve">
+    <value>Mail Setting</value>
+  </data>
+  <data name="Mail_Setting_ContactBccMail" xml:space="preserve">
+    <value>Contact Bcc Mail</value>
+  </data>
+  <data name="Mail_Setting_ContactMail" xml:space="preserve">
+    <value>Contact Mail</value>
+  </data>
+  <data name="Mail_Setting_HostUrl" xml:space="preserve">
+    <value>Host Url</value>
+  </data>
+  <data name="Mail_Setting_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Mail_Setting_UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="Mail_Setting_UserPassword" xml:space="preserve">
+    <value>User Password</value>
+  </data>
+  <data name="Official_Banner_Img" xml:space="preserve">
+    <value>Official Banner Image</value>
+  </data>
+  <data name="Official_Logo_Img" xml:space="preserve">
+    <value>Official Logo</value>
+  </data>
+  <data name="Drug_BackToSearchPatient" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Drug_HasBeenSent" xml:space="preserve">
+    <value>Has been sent</value>
+  </data>
+  <data name="Map_Sys_Guardian" xml:space="preserve">
+    <value>Health Education</value>
+  </data>
+  <data name="Guardian_CategoryName" xml:space="preserve">
+    <value>Health Education Category</value>
+  </data>
+  <data name="Guardian_IsUsed" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Guardian_Name" xml:space="preserve">
+    <value>Health Education Name</value>
+  </data>
+  <data name="Guardian_Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="Lobby_And_Queuing_System" xml:space="preserve">
+    <value>Lobby &amp; Queuing System</value>
+  </data>
+  <data name="Guardian_UseInLobby" xml:space="preserve">
+    <value>Use in lobby</value>
+  </data>
+  <data name="VitalSignUnit_BloodSugar" xml:space="preserve">
+    <value>mg/dl</value>
+  </data>
+  <data name="VitalSignUnit_BodyFat" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="VitalSignUnit_BodyFat_bmr" xml:space="preserve">
+    <value>kcal</value>
+  </data>
+  <data name="VitalSignUnit_BodyFat_vatLv" xml:space="preserve">
+    <value>Lv</value>
+  </data>
+  <data name="VitalSignUnit_BodyHeight" xml:space="preserve">
+    <value>cm</value>
+  </data>
+  <data name="VitalSignUnit_BodyTemp" xml:space="preserve">
+    <value>°F</value>
+  </data>
+  <data name="VitalSignUnit_Comm_Mass" xml:space="preserve">
+    <value>lb</value>
+  </data>
+  <data name="VitalSignUnit_O2" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="VitalSignUnit_Weight" xml:space="preserve">
+    <value>lb</value>
+  </data>
+  <data name="VitalSignUnit_Weight_BMI" xml:space="preserve">
+    <value>lb/m2</value>
+  </data>
+  <data name="Guardian_Length_Seconds" xml:space="preserve">
+    <value>Length(Seconds)</value>
+  </data>
+  <data name="Patient_Pay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="Guardian_VideoFormat_remind" xml:space="preserve">
+    <value>Video format only supports MP4</value>
+  </data>
+  <data name="Category_AT" xml:space="preserve">
+    <value>Atoll</value>
+  </data>
+  <data name="Category_ET" xml:space="preserve">
+    <value>Ethnicity</value>
+  </data>
+  <data name="Category_SC" xml:space="preserve">
+    <value>Name Of School</value>
+  </data>
+  <data name="Category_SL" xml:space="preserve">
+    <value>Level In School</value>
+  </data>
+  <data name="Category_ZN" xml:space="preserve">
+    <value>Zone</value>
+  </data>
+  <data name="Patient_Birth_Atoll" xml:space="preserve">
+    <value>Birth_Atoll</value>
+  </data>
+  <data name="Patient_Birth_country" xml:space="preserve">
+    <value>Birth_country</value>
+  </data>
+  <data name="Patient_Birth_Village" xml:space="preserve">
+    <value>Birth_Village</value>
+  </data>
+  <data name="Patient_Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Patient_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Patient_Employer" xml:space="preserve">
+    <value>Employer</value>
+  </data>
+  <data name="Patient_Ethnicity" xml:space="preserve">
+    <value>Ethnicity</value>
+  </data>
+  <data name="Patient_FatherFName" xml:space="preserve">
+    <value>Father's First Name</value>
+  </data>
+  <data name="Patient_FatherLName" xml:space="preserve">
+    <value>Father's LastName</value>
+  </data>
+  <data name="Patient_FatherMName" xml:space="preserve">
+    <value>Father's MiddleName</value>
+  </data>
+  <data name="Patient_HomeAtoll" xml:space="preserve">
+    <value>Home Atoll</value>
+  </data>
+  <data name="Patient_LevelinSchool" xml:space="preserve">
+    <value>Level In School</value>
+  </data>
+  <data name="Patient_Marshall_Atoll" xml:space="preserve">
+    <value>Atoll</value>
+  </data>
+  <data name="Patient_Marshall_Village" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="Patient_Marshall_Zone" xml:space="preserve">
+    <value>Zone</value>
+  </data>
+  <data name="Patient_Mid_Name" xml:space="preserve">
+    <value>MidName</value>
+  </data>
+  <data name="Patient_MotherFName" xml:space="preserve">
+    <value>Mother's First Name</value>
+  </data>
+  <data name="Patient_MotherLName" xml:space="preserve">
+    <value>Mother's Last Name</value>
+  </data>
+  <data name="Patient_MotherMName" xml:space="preserve">
+    <value>Mother's Middle Name</value>
+  </data>
+  <data name="Patient_NameOfSchool" xml:space="preserve">
+    <value>Name Of School</value>
+  </data>
+  <data name="Patient_Religion" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="Patient_Manager_Reception" xml:space="preserve">
+    <value>Reception</value>
+  </data>
+  <data name="Comm_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Map_MedicalRecord" xml:space="preserve">
+    <value>MedicalRecord</value>
+  </data>
+  <data name="Map_MedicalRecord_Manager" xml:space="preserve">
+    <value>MedicalRecord Manager</value>
+  </data>
+  <data name="Pay_Btn_Pay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="Pay_Balance" xml:space="preserve">
+    <value>BALANCE DUE</value>
+  </data>
+  <data name="Pay_Paid" xml:space="preserve">
+    <value>AMT. PAID</value>
+  </data>
+  <data name="Pay_Total" xml:space="preserve">
+    <value>AMT. OF ACCOUNT</value>
+  </data>
+  <data name="Category_CT" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="BillingLog_Title" xml:space="preserve">
+    <value>Billing Log</value>
+  </data>
+  <data name="Pay_PriceDetail" xml:space="preserve">
+    <value>Price Detail</value>
+  </data>
+  <data name="Pay_ReceiptDetails" xml:space="preserve">
+    <value>Receipt Details</value>
+  </data>
+  <data name="Pay_AllPaid" xml:space="preserve">
+    <value>All Paid</value>
+  </data>
+  <data name="Pay_NotPay" xml:space="preserve">
+    <value>Not Pay</value>
+  </data>
+  <data name="Patient_From" xml:space="preserve">
+    <value>Patient From</value>
+  </data>
+  <data name="Patient_Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Patient_Visitor" xml:space="preserve">
+    <value>Visitor</value>
+  </data>
+  <data name="StateCityAtoll" xml:space="preserve">
+    <value>State/City/Atoll</value>
+  </data>
+  <data name="Patient_RegAtoll" xml:space="preserve">
+    <value>Reg Atoll</value>
+  </data>
+  <data name="Hospital_Environment" xml:space="preserve">
+    <value>Hospital Environment</value>
+  </data>
+  <data name="Category_CR" xml:space="preserve">
+    <value>Cancel Reason</value>
+  </data>
+  <data name="Map_Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Category_IS" xml:space="preserve">
+    <value>Insurance</value>
+  </data>
+  <data name="Category_PL" xml:space="preserve">
+    <value>Poverty Level</value>
+  </data>
+  <data name="Category_RA" xml:space="preserve">
+    <value>RACE</value>
+  </data>
+  <data name="Patient_PovertyLevel" xml:space="preserve">
+    <value>Poverty Level</value>
+  </data>
+  <data name="Patient_Race" xml:space="preserve">
+    <value>Race</value>
+  </data>
+  <data name="Patient_ReprintBarcode" xml:space="preserve">
+    <value>Re-print barcode</value>
+  </data>
+  <data name="Category_GD" xml:space="preserve">
+    <value>Health Education Category</value>
+  </data>
+  <data name="Patient_ContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="Patient_ContactPersonPhone" xml:space="preserve">
+    <value>Contact Person Phone</value>
+  </data>
+  <data name="Patient_PassportExpiredDate" xml:space="preserve">
+    <value>Passport Expired Date</value>
+  </data>
+  <data name="Patient_PassportIssueDate" xml:space="preserve">
+    <value>Passport Issue Date</value>
+  </data>
+  <data name="Patient_SocialSecurityNo" xml:space="preserve">
+    <value>Social Security No.</value>
+  </data>
+  <data name="Patient_AllergicDesc" xml:space="preserve">
+    <value>Allergic Description</value>
+  </data>
+  <data name="Patient_Paternity" xml:space="preserve">
+    <value>Paternity</value>
+  </data>
+  <data name="Patient_Smoking" xml:space="preserve">
+    <value>Smoking</value>
+  </data>
+  <data name="Patient_Foster" xml:space="preserve">
+    <value>Foster</value>
+  </data>
+  <data name="Patient_Natural" xml:space="preserve">
+    <value>Natural</value>
+  </data>
+  <data name="Patient_ContactPersonRelationship" xml:space="preserve">
+    <value>Contact Person Relationship</value>
+  </data>
+  <data name="Map_Sys_Log" xml:space="preserve">
+    <value>SysLog</value>
+  </data>
+  <data name="Billing_Info" xml:space="preserve">
+    <value>Billing Info</value>
+  </data>
+  <data name="Drug_Item_Name" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="Drug_Initial_Fee" xml:space="preserve">
+    <value>Initial Fee</value>
+  </data>
+  <data name="Drug_Patient_From" xml:space="preserve">
+    <value>Patient Type</value>
+  </data>
+  <data name="Drug_Daily_Fee" xml:space="preserve">
+    <value>Daily Fee</value>
+  </data>
+  <data name="Patient_Diabetes" xml:space="preserve">
+    <value>Diabetes</value>
+  </data>
+  <data name="Patient_Alcohol" xml:space="preserve">
+    <value>Alcohol</value>
+  </data>
+  <data name="Category_RG" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="Category_MR" xml:space="preserve">
+    <value>Marriage Status</value>
+  </data>
+  <data name="Hospital_Slogan" xml:space="preserve">
+    <value>Hospital Slogan</value>
+  </data>
+  <data name="Comm_Cashier" xml:space="preserve">
+    <value>Cashier</value>
+  </data>
+  <data name="MSG_ClickToPay" xml:space="preserve">
+    <value>Click Cashier button for payment</value>
+  </data>
+  <data name="Category_DU" xml:space="preserve">
+    <value>Department Unit</value>
+  </data>
+  <data name="Account_Expertise" xml:space="preserve">
+    <value>Expertise</value>
+  </data>
+  <data name="Department_Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Account_RegDept" xml:space="preserve">
+    <value>Register Department</value>
+  </data>
+  <data name="Patient_LandMark" xml:space="preserve">
+    <value>Land Mark</value>
+  </data>
+  <data name="Patient_Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="Patient_Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="Patient_Pobox" xml:space="preserve">
+    <value>P.O.Box No</value>
+  </data>
+  <data name="Map_BiReport" xml:space="preserve">
+    <value>BI Report</value>
+  </data>
+  <data name="Map_ReceiptReport" xml:space="preserve">
+    <value>Receipt Report</value>
+  </data>
+  <data name="Map_BiReports" xml:space="preserve">
+    <value>BiReports</value>
+  </data>
+  <data name="String2Map_Reports" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CallNo" xml:space="preserve">
+    <value>Call No</value>
+  </data>
+  <data name="Category_PR" xml:space="preserve">
+    <value>Contact Person Relationship</value>
+  </data>
+  <data name="Patient_Status_2" xml:space="preserve">
+    <value>deceased</value>
+  </data>
+  <data name="Patient_Alab" xml:space="preserve">
+    <value>Alab</value>
+  </data>
+  <data name="Patient_Household" xml:space="preserve">
+    <value>Household</value>
+  </data>
+  <data name="Patient_Household_Head" xml:space="preserve">
+    <value>Household Head</value>
+  </data>
+  <data name="Patient_Weto" xml:space="preserve">
+    <value>Weto</value>
+  </data>
+  <data name="Comm_Retrieved" xml:space="preserve">
+    <value>Retrieved</value>
+  </data>
+  <data name="MSG_Confirm_Retrieved" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Encounter_Form" xml:space="preserve">
+    <value>Encounter Form</value>
+  </data>
+  <data name="Patient_Household_Address" xml:space="preserve">
+    <value>Household Address</value>
+  </data>
+  <data name="Clinic_And_Queuing_System" xml:space="preserve">
+    <value>Clinic &amp; Queuing System</value>
+  </data>
+  <data name="Map_ICD10" xml:space="preserve">
+    <value>ICD 10 Management</value>
+  </data>
+  <data name="Category_CD" xml:space="preserve">
+    <value>ICD10 Type</value>
+  </data>
+  <data name="Category_WE" xml:space="preserve">
+    <value>Weto</value>
+  </data>
+  <data name="ICD10Code" xml:space="preserve">
+    <value>ICD10 Code</value>
+  </data>
+  <data name="ICD10Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ICD10Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Patient_Manager_Clear_FingerPrint1" xml:space="preserve">
+    <value>Clear FingerPrinter</value>
+  </data>
+  <data name="AdmissionForm" xml:space="preserve">
+    <value>Admission Form</value>
+  </data>
+  <data name="Patient_BirthPlace" xml:space="preserve">
+    <value>Birth Place</value>
+  </data>
+  <data name="Map_ReceptionList_Manager" xml:space="preserve">
+    <value>Triage List</value>
+  </data>
+  <data name="Map_Triage" xml:space="preserve">
+    <value>Triage</value>
+  </data>
+  <data name="Reception_Booked" xml:space="preserve">
+    <value>Booked</value>
+  </data>
+  <data name="Reception_TodayAppointment" xml:space="preserve">
+    <value>Today's Appointment</value>
+  </data>
+  <data name="Message_ChangeRoom" xml:space="preserve">
+    <value>This room has been used,are you sure switch this room?</value>
+  </data>
+  <data name="Family_History" xml:space="preserve">
+    <value>FamilyHistory</value>
+  </data>
+  <data name="Past_History" xml:space="preserve">
+    <value>PastHistory</value>
+  </data>
+  <data name="Quick_History" xml:space="preserve">
+    <value>QuickHistory</value>
+  </data>
+  <data name="Map_OPD_UndoneList" xml:space="preserve">
+    <value>Undone Appointment List</value>
+  </data>
+  <data name="Transfer_Data_Duplicate" xml:space="preserve">
+    <value>Avatar or fingerprint or attachment already exists on target Hosp.No</value>
+  </data>
+  <data name="Category_DC" xml:space="preserve">
+    <value>Drug Sub Category</value>
+  </data>
+  <data name="Drug_Formulation" xml:space="preserve">
+    <value>Formulation</value>
+  </data>
+  <data name="Drug_SubCategory" xml:space="preserve">
+    <value>Sub Category</value>
+  </data>
+  <data name="Map_GeneralReports" xml:space="preserve">
+    <value>General Reports</value>
+  </data>
+  <data name="VitalSignUnit_Comm_Mass_OZ" xml:space="preserve">
+    <value>oz</value>
+  </data>
+  <data name="Comm_Cancel_Reception" xml:space="preserve">
+    <value>Cancel Reception</value>
+  </data>
+  <data name="Cancel_Reception_Fail_Message" xml:space="preserve">
+    <value>&lt;font color=red&gt;Cancel failed. The appointment has been finished.&lt;/font&gt;</value>
+  </data>
+  <data name="Cancel_Reception_Success_Message" xml:space="preserve">
+    <value>Cancel reception successfully.</value>
+  </data>
+  <data name="Cancel_Reception_Warning_Message" xml:space="preserve">
+    <value>Are you sure you want to cancel reception?</value>
+  </data>
+  <data name="Comm_Prescription" xml:space="preserve">
+    <value>Prescription</value>
+  </data>
+  <data name="Comm_Signature" xml:space="preserve">
+    <value>SIGNATURE</value>
+  </data>
+  <data name="Appointment_Slip" xml:space="preserve">
+    <value>Appointment Slip</value>
+  </data>
+</root>

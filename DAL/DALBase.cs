@@ -13,7 +13,7 @@ namespace DAL
         protected MobileHISEntities Entities;
         DbContextTransaction Trans;
         bool Disposed = false;
-        Validation.ValidationImplement validation = new Dictionary<string, string>();
+        Validation.ValidationImplement validation = new Validation.ValidationImplement(new Dictionary<string, string>());
 
         public DALBase() { Entities = new MobileHISEntities(); }
         public DALBase(MobileHISEntities entities) { Entities = entities; }
@@ -55,26 +55,13 @@ namespace DAL
             IQueryable<T> query = Entities.Set<T>().AsNoTracking();
             return query;
         }
-        public virtual bool IsValid(T entity)
+        public virtual void Add(T entity)
         {
-            return true;
-        }
-        public virtual bool Add(T entity)
-        {
-            if (!IsValid)
-                return false;
             Entities.Set<T>().Add(entity);
-            Entities.SaveChanges();
-            return true;
         }
         public virtual void Edit(T entity)
         {
-            if (!IsValid)
-                return false;
             Entities.Entry(entity).State = EntityState.Modified;
-            Entities.SaveChanges();
-            return true;
-            //db.Entry(entity).State = System.Data.EntityState.Modified;
         }
         public virtual void Delete(IQueryable<T> deleteRange)
         {
@@ -92,7 +79,10 @@ namespace DAL
 
         public virtual void Save()
         {
-            Entities.SaveChanges();
+            if (validation.IsValid)
+                Entities.SaveChanges();
+            else
+                throw new Exception("");
         }
         public virtual void Dispose()
         {

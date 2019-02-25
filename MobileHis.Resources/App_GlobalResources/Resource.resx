@@ -1,0 +1,2316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_confirm_password" xml:space="preserve">
+    <value>確認密碼</value>
+  </data>
+  <data name="Account_Email" xml:space="preserve">
+    <value>電子郵件</value>
+  </data>
+  <data name="Account_Name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="Account_Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="Account_Tel" xml:space="preserve">
+    <value>聯絡電話</value>
+  </data>
+  <data name="Map_Home" xml:space="preserve">
+    <value>首頁</value>
+  </data>
+  <data name="Map_Sys" xml:space="preserve">
+    <value>系統</value>
+  </data>
+  <data name="Create_Account_btn" xml:space="preserve">
+    <value>建立帳戶</value>
+  </data>
+  <data name="Account_ChangePassword" xml:space="preserve">
+    <value>更改密碼</value>
+  </data>
+  <data name="Account_ChangePhoto" xml:space="preserve">
+    <value>更改圖片</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>檢視個人資料</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Logon_ForgotPassword" xml:space="preserve">
+    <value>忘記密碼?</value>
+  </data>
+  <data name="Logon_RemeberMe" xml:space="preserve">
+    <value>記住我</value>
+  </data>
+  <data name="Logon_Resend" xml:space="preserve">
+    <value>重寄</value>
+  </data>
+  <data name="Logon_SignIn" xml:space="preserve">
+    <value>請登錄</value>
+  </data>
+  <data name="Logon_SignInBtn" xml:space="preserve">
+    <value>登錄</value>
+  </data>
+  <data name="Logon_SignOut" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Comm_Action" xml:space="preserve">
+    <value>功能</value>
+  </data>
+  <data name="Comm_Create" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="Comm_Del" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="Comm_Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="Comm_Keyword" xml:space="preserve">
+    <value>關鍵字</value>
+  </data>
+  <data name="Comm_Print" xml:space="preserve">
+    <value>列印</value>
+  </data>
+  <data name="Comm_Search" xml:space="preserve">
+    <value>查詢</value>
+  </data>
+  <data name="Changepassword_confirm_newPassword" xml:space="preserve">
+    <value>確認新密碼</value>
+  </data>
+  <data name="Changepassword_newPassword" xml:space="preserve">
+    <value>新密碼</value>
+  </data>
+  <data name="Changepassword_Password" xml:space="preserve">
+    <value>舊密碼</value>
+  </data>
+  <data name="Changepassword_PasswordError" xml:space="preserve">
+    <value>密碼錯誤</value>
+  </data>
+  <data name="ChangePassword_Success" xml:space="preserve">
+    <value>執行成功,請重新登錄</value>
+  </data>
+  <data name="Comm_Btn_Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="Create_Account_Duplicate" xml:space="preserve">
+    <value>電子郵件或使用者編號重複</value>
+  </data>
+  <data name="MSG_Confirm_Delete" xml:space="preserve">
+    <value>確定刪除?</value>
+  </data>
+  <data name="MSG_Error" xml:space="preserve">
+    <value>執行錯誤</value>
+  </data>
+  <data name="MSG_Failed" xml:space="preserve">
+    <value>執行失敗</value>
+  </data>
+  <data name="MSG_Success" xml:space="preserve">
+    <value>執行成功</value>
+  </data>
+  <data name="IsLockedOut" xml:space="preserve">
+    <value>封鎖</value>
+  </data>
+  <data name="Comm_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Comm_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Comm_Boy" xml:space="preserve">
+    <value>男生</value>
+  </data>
+  <data name="Comm_Girl" xml:space="preserve">
+    <value>女生</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Comm_Function" xml:space="preserve">
+    <value>程式名稱</value>
+  </data>
+  <data name="Comm_Name" xml:space="preserve">
+    <value>名稱</value>
+  </data>
+  <data name="Comm_Read" xml:space="preserve">
+    <value>讀取</value>
+  </data>
+  <data name="Map_Log" xml:space="preserve">
+    <value>記錄檔</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>生日</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>備註</value>
+  </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>建立日期</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="LastLoginDate" xml:space="preserve">
+    <value>最後登錄日期</value>
+  </data>
+  <data name="Map_Bill" xml:space="preserve">
+    <value>付款</value>
+  </data>
+  <data name="Map_Bill_PriceFile" xml:space="preserve">
+    <value>價格檔案</value>
+  </data>
+  <data name="Map_Bill_Total" xml:space="preserve">
+    <value>總價格</value>
+  </data>
+  <data name="Map_Pharmacy" xml:space="preserve">
+    <value>藥局</value>
+  </data>
+  <data name="Map_Drug_Drugs" xml:space="preserve">
+    <value>項目清單</value>
+  </data>
+  <data name="Map_Drug_2Patient" xml:space="preserve">
+    <value>病患給藥查詢</value>
+  </data>
+  <data name="Map_Drug_Manager" xml:space="preserve">
+    <value>項目管理</value>
+  </data>
+  <data name="Map_Drug_Verification" xml:space="preserve">
+    <value>驗證</value>
+  </data>
+  <data name="Map_OPD" xml:space="preserve">
+    <value>門診</value>
+  </data>
+  <data name="Map_OPD_LIST" xml:space="preserve">
+    <value>病患清單</value>
+  </data>
+  <data name="Map_Patient" xml:space="preserve">
+    <value>病患管理</value>
+  </data>
+  <data name="Map_Patient_Create" xml:space="preserve">
+    <value>病患建立</value>
+  </data>
+  <data name="Map_Patient_Manager" xml:space="preserve">
+    <value>病患管理</value>
+  </data>
+  <data name="Map_Registered" xml:space="preserve">
+    <value>掛號</value>
+  </data>
+  <data name="Map_Registered_Create" xml:space="preserve">
+    <value>病患掛號</value>
+  </data>
+  <data name="Map_Sys_DoctorInfo" xml:space="preserve">
+    <value>醫生資料維護</value>
+  </data>
+  <data name="Map_Sys_DoctorSchedule" xml:space="preserve">
+    <value>醫生排班</value>
+  </data>
+  <data name="Map_Sys_Downloads" xml:space="preserve">
+    <value>軟體下載</value>
+  </data>
+  <data name="Map_Sys_HospitalInfo" xml:space="preserve">
+    <value>醫院資料維護</value>
+  </data>
+  <data name="Map_Sys_MyProfileInfo" xml:space="preserve">
+    <value>個人資料</value>
+  </data>
+  <data name="Map_Sys_Roles" xml:space="preserve">
+    <value>角色維護</value>
+  </data>
+  <data name="Map_Sys_Users" xml:space="preserve">
+    <value>使用者維護</value>
+  </data>
+  <data name="ModDate" xml:space="preserve">
+    <value>修改日期</value>
+  </data>
+  <data name="ModUser" xml:space="preserve">
+    <value>作業人員</value>
+  </data>
+  <data name="Account_Dept" xml:space="preserve">
+    <value>科別</value>
+  </data>
+  <data name="Account_JobTitle" xml:space="preserve">
+    <value>職稱</value>
+  </data>
+  <data name="Account_Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Account_UserNo" xml:space="preserve">
+    <value>使用者編號</value>
+  </data>
+  <data name="Comm_Select" xml:space="preserve">
+    <value>請選擇</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>經歷</value>
+  </data>
+  <data name="IsDoctor" xml:space="preserve">
+    <value>可否被掛號?</value>
+  </data>
+  <data name="Major" xml:space="preserve">
+    <value>主治</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>請輸入</value>
+  </data>
+  <data name="Account_Status_01" xml:space="preserve">
+    <value>在職</value>
+  </data>
+  <data name="Account_Status_02" xml:space="preserve">
+    <value>調職</value>
+  </data>
+  <data name="Account_Status_03" xml:space="preserve">
+    <value>留停</value>
+  </data>
+  <data name="Account_Status_04" xml:space="preserve">
+    <value>公差</value>
+  </data>
+  <data name="Account_Status_99" xml:space="preserve">
+    <value>離職</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="Sys_Settings" xml:space="preserve">
+    <value>系統設定</value>
+  </data>
+  <data name="Hosptial_Information" xml:space="preserve">
+    <value>醫院簡介</value>
+  </data>
+  <data name="Map_Setting" xml:space="preserve">
+    <value>系統設定</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>其它</value>
+  </data>
+  <data name="Setting_DateFormat" xml:space="preserve">
+    <value>日期格式</value>
+  </data>
+  <data name="Hospital_Address" xml:space="preserve">
+    <value>醫院住址</value>
+  </data>
+  <data name="Hospital_Contact_Name" xml:space="preserve">
+    <value>聯絡人姓名</value>
+  </data>
+  <data name="Hospital_Contact_Tel" xml:space="preserve">
+    <value>聯絡人電話</value>
+  </data>
+  <data name="Hospital_Name" xml:space="preserve">
+    <value>醫院名稱</value>
+  </data>
+  <data name="Hospital_No" xml:space="preserve">
+    <value>醫院編號</value>
+  </data>
+  <data name="Hospital_Tel" xml:space="preserve">
+    <value>醫院電話</value>
+  </data>
+  <data name="GuardiansRelation_Classmate" xml:space="preserve">
+    <value>同學</value>
+  </data>
+  <data name="GuardiansRelation_Colleague" xml:space="preserve">
+    <value>同事</value>
+  </data>
+  <data name="GuardiansRelation_Family" xml:space="preserve">
+    <value>家人</value>
+  </data>
+  <data name="GuardiansRelation_Friend" xml:space="preserve">
+    <value>朋友</value>
+  </data>
+  <data name="GuardiansRelation_Other" xml:space="preserve">
+    <value>其它</value>
+  </data>
+  <data name="GuardiansRelation_Relative" xml:space="preserve">
+    <value>親戚</value>
+  </data>
+  <data name="CodeFile_ItemCode" xml:space="preserve">
+    <value>項目代碼</value>
+  </data>
+  <data name="CodeFile_ItemDesc" xml:space="preserve">
+    <value>項目說明</value>
+  </data>
+  <data name="CodeFile_ItemType" xml:space="preserve">
+    <value>項目分類</value>
+  </data>
+  <data name="CodeFile_Remark" xml:space="preserve">
+    <value>註記</value>
+  </data>
+  <data name="Map_Category" xml:space="preserve">
+    <value>分類設定</value>
+  </data>
+  <data name="MSG_Duplidate" xml:space="preserve">
+    <value>資料重複</value>
+  </data>
+  <data name="National_ID" xml:space="preserve">
+    <value>身份證號</value>
+  </data>
+  <data name="Patient_Address" xml:space="preserve">
+    <value>住址</value>
+  </data>
+  <data name="Patient_Create_Base_Information" xml:space="preserve">
+    <value>基本資料</value>
+  </data>
+  <data name="Patient_Create_Fingerprint_Regist" xml:space="preserve">
+    <value>指紋註冊</value>
+  </data>
+  <data name="Patient_Create_Health_Related_Data" xml:space="preserve">
+    <value>健康資訊資料</value>
+  </data>
+  <data name="Patient_Create_New_Patient" xml:space="preserve">
+    <value>建立基本資料</value>
+  </data>
+  <data name="Patient_Create_Patient_Registration" xml:space="preserve">
+    <value>註冊新病患</value>
+  </data>
+  <data name="Patient_Create_Print" xml:space="preserve">
+    <value>印製卡片</value>
+  </data>
+  <data name="Patient_District" xml:space="preserve">
+    <value>地區</value>
+  </data>
+  <data name="Patient_First_Name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="Patient_Ground_Line" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="Patient_Guardian_Name" xml:space="preserve">
+    <value>監護人姓名</value>
+  </data>
+  <data name="Patient_Guardian_Phone" xml:space="preserve">
+    <value>監護人電話</value>
+  </data>
+  <data name="Patient_Mobile_Phone" xml:space="preserve">
+    <value>手機號碼</value>
+  </data>
+  <data name="Patient_Nationality" xml:space="preserve">
+    <value>國籍</value>
+  </data>
+  <data name="Patient_Occupation" xml:space="preserve">
+    <value>職業</value>
+  </data>
+  <data name="Patient_Relationship" xml:space="preserve">
+    <value>與監護人關係</value>
+  </data>
+  <data name="Patient_SurName" xml:space="preserve">
+    <value>姓氏</value>
+  </data>
+  <data name="Patient_TA" xml:space="preserve">
+    <value>聚落</value>
+  </data>
+  <data name="Patient_Village" xml:space="preserve">
+    <value>村莊</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>年齡</value>
+  </data>
+  <data name="DateFormatError" xml:space="preserve">
+    <value>日期格式錯誤</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>電子信箱</value>
+  </data>
+  <data name="EmailFormatError" xml:space="preserve">
+    <value>電子信箱格式錯誤</value>
+  </data>
+  <data name="Patient_Allergic" xml:space="preserve">
+    <value>有無過敏</value>
+  </data>
+  <data name="Patient_ArrearsTimes" xml:space="preserve">
+    <value>欠款次數</value>
+  </data>
+  <data name="Patient_BloodType" xml:space="preserve">
+    <value>血型</value>
+  </data>
+  <data name="Patient_Disability" xml:space="preserve">
+    <value>有無殘疾</value>
+  </data>
+  <data name="Patient_FirstAdmission" xml:space="preserve">
+    <value>初次住院日期</value>
+  </data>
+  <data name="Patient_FirstVisitDate" xml:space="preserve">
+    <value>初診日期</value>
+  </data>
+  <data name="Patient_HIV" xml:space="preserve">
+    <value>HIV陽性</value>
+  </data>
+  <data name="Patient_Insurance" xml:space="preserve">
+    <value>保險類型</value>
+  </data>
+  <data name="Patient_InsuranceCategory" xml:space="preserve">
+    <value>保險別</value>
+  </data>
+  <data name="Patient_LastAdmission" xml:space="preserve">
+    <value>上次住院日期</value>
+  </data>
+  <data name="Patient_LastVisitDate" xml:space="preserve">
+    <value>上一次看診日期</value>
+  </data>
+  <data name="Patient_Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Patient_TB" xml:space="preserve">
+    <value>有無肺結核</value>
+  </data>
+  <data name="Category_IC" xml:space="preserve">
+    <value>保險別</value>
+  </data>
+  <data name="Category_IN" xml:space="preserve">
+    <value>保險類型</value>
+  </data>
+  <data name="Category_NA" xml:space="preserve">
+    <value>國籍</value>
+  </data>
+  <data name="Category_VI" xml:space="preserve">
+    <value>村落</value>
+  </data>
+  <data name="Create_Patient_NationalId_Duplicate" xml:space="preserve">
+    <value>身份證字號重複</value>
+  </data>
+  <data name="Comm_Search_Fingerprint" xml:space="preserve">
+    <value>查詢指紋</value>
+  </data>
+  <data name="Patient_ID" xml:space="preserve">
+    <value>病歷號碼</value>
+  </data>
+  <data name="Patient_Married" xml:space="preserve">
+    <value>婚姻</value>
+  </data>
+  <data name="Patient_Married_0" xml:space="preserve">
+    <value>已婚</value>
+  </data>
+  <data name="Patient_Married_1" xml:space="preserve">
+    <value>未婚</value>
+  </data>
+  <data name="MAP_OPD_CLINIC" xml:space="preserve">
+    <value>臨床資訊</value>
+  </data>
+  <data name="Patient_Manager_Head_A" xml:space="preserve">
+    <value>病患資訊</value>
+  </data>
+  <data name="Patient_Manager_Head_B" xml:space="preserve">
+    <value>病歷資訊</value>
+  </data>
+  <data name="Patient_Manager_Head_C" xml:space="preserve">
+    <value>建康相關資訊</value>
+  </data>
+  <data name="Patient_Manager_Enroll_FingerPrint" xml:space="preserve">
+    <value>註冊指紋</value>
+  </data>
+  <data name="Patient_Manager_PrintCard" xml:space="preserve">
+    <value>列印卡片</value>
+  </data>
+  <data name="Patient_Status_0" xml:space="preserve">
+    <value>無效</value>
+  </data>
+  <data name="Patient_Status_1" xml:space="preserve">
+    <value>有效</value>
+  </data>
+  <data name="Comm_ReadMore" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="Patient_Blood_presure" xml:space="preserve">
+    <value>血壓</value>
+  </data>
+  <data name="Patient_Height" xml:space="preserve">
+    <value>身高</value>
+  </data>
+  <data name="Patient_Manager_Head_D" xml:space="preserve">
+    <value>生物訊號量測</value>
+  </data>
+  <data name="Patient_Pulse" xml:space="preserve">
+    <value>脈搏</value>
+  </data>
+  <data name="Patient_Weight" xml:space="preserve">
+    <value>體重</value>
+  </data>
+  <data name="Comm_Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Comm_Value" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="Patient_VitalSign" xml:space="preserve">
+    <value>量測資訊</value>
+  </data>
+  <data name="Comm_Afternoon" xml:space="preserve">
+    <value>下午</value>
+  </data>
+  <data name="Comm_Doctor" xml:space="preserve">
+    <value>醫生</value>
+  </data>
+  <data name="Comm_Morning" xml:space="preserve">
+    <value>早上</value>
+  </data>
+  <data name="Comm_Night" xml:space="preserve">
+    <value>夜間</value>
+  </data>
+  <data name="Comm_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Category_10" xml:space="preserve">
+    <value>職稱</value>
+  </data>
+  <data name="Category_DP" xml:space="preserve">
+    <value>科別分類</value>
+  </data>
+  <data name="Map_Sys_Room" xml:space="preserve">
+    <value>診間維護</value>
+  </data>
+  <data name="Comm_Dept" xml:space="preserve">
+    <value>科別</value>
+  </data>
+  <data name="Comm_Remark" xml:space="preserve">
+    <value>備註</value>
+  </data>
+  <data name="Room_AllowDept" xml:space="preserve">
+    <value>充許使用的科別</value>
+  </data>
+  <data name="Room_Max" xml:space="preserve">
+    <value>可掛號上限</value>
+  </data>
+  <data name="Room_Name" xml:space="preserve">
+    <value>診間名稱</value>
+  </data>
+  <data name="Room_No" xml:space="preserve">
+    <value>診間代碼</value>
+  </data>
+  <data name="Map_AboutUs" xml:space="preserve">
+    <value>關於我們</value>
+  </data>
+  <data name="Map_ContactUs" xml:space="preserve">
+    <value>聯絡我們</value>
+  </data>
+  <data name="Map_WhatIs" xml:space="preserve">
+    <value>關於mHIS</value>
+  </data>
+  <data name="Comm_Room" xml:space="preserve">
+    <value>診間</value>
+  </data>
+  <data name="Map_Sys_Department" xml:space="preserve">
+    <value>科別</value>
+  </data>
+  <data name="Department_CategoryName" xml:space="preserve">
+    <value>科別種類</value>
+  </data>
+  <data name="Department_DeptName" xml:space="preserve">
+    <value>科別名稱</value>
+  </data>
+  <data name="Department_DeptNo" xml:space="preserve">
+    <value>科別代碼</value>
+  </data>
+  <data name="Department_IsRegistered" xml:space="preserve">
+    <value>可否掛號</value>
+  </data>
+  <data name="Comm_Message" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="Comm_Physician" xml:space="preserve">
+    <value>醫生</value>
+  </data>
+  <data name="Registered_NationalID" xml:space="preserve">
+    <value>身分證號</value>
+  </data>
+  <data name="Registered_OpdDate" xml:space="preserve">
+    <value>門診日期</value>
+  </data>
+  <data name="Registered_OpdRoom" xml:space="preserve">
+    <value>門診名稱</value>
+  </data>
+  <data name="Registered_PatientID" xml:space="preserve">
+    <value>病歷號碼</value>
+  </data>
+  <data name="Comm_FingerPrint" xml:space="preserve">
+    <value>指紋機</value>
+  </data>
+  <data name="Comm_NotFound" xml:space="preserve">
+    <value>找不到相關資料</value>
+  </data>
+  <data name="Patient_Info" xml:space="preserve">
+    <value>病患資料</value>
+  </data>
+  <data name="Registered_Count" xml:space="preserve">
+    <value>掛號人數</value>
+  </data>
+  <data name="Comm_Save" xml:space="preserve">
+    <value>儲存</value>
+  </data>
+  <data name="Map_IPD" xml:space="preserve">
+    <value>住院管理</value>
+  </data>
+  <data name="Map_IPD_DETAIL" xml:space="preserve">
+    <value>出入院醫囑內容</value>
+  </data>
+  <data name="Map_IPD_LIST" xml:space="preserve">
+    <value>出入院醫囑</value>
+  </data>
+  <data name="Map_IPD_ROOM" xml:space="preserve">
+    <value>病房查詢</value>
+  </data>
+  <data name="Patient_AddressZipcode" xml:space="preserve">
+    <value>郵遞區號</value>
+  </data>
+  <data name="Patient_Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="Patient_NextOfKinAddress" xml:space="preserve">
+    <value>聯絡人地址</value>
+  </data>
+  <data name="Patient_NextOfKinAddressZipcode" xml:space="preserve">
+    <value>郵遞區號</value>
+  </data>
+  <data name="Patient_PostAddress" xml:space="preserve">
+    <value>郵寄地址</value>
+  </data>
+  <data name="Patient_PostAddressZipcode" xml:space="preserve">
+    <value>郵遞區號</value>
+  </data>
+  <data name="Account_Card" xml:space="preserve">
+    <value>卡號</value>
+  </data>
+  <data name="Map_Sys_News" xml:space="preserve">
+    <value>院內消息</value>
+  </data>
+  <data name="News_Content" xml:space="preserve">
+    <value>消息內容</value>
+  </data>
+  <data name="News_IsEnable" xml:space="preserve">
+    <value>是否啟用</value>
+  </data>
+  <data name="News_PublishEnd" xml:space="preserve">
+    <value>發佈時間(迄)</value>
+  </data>
+  <data name="News_PublishStart" xml:space="preserve">
+    <value>發佈時間(起)</value>
+  </data>
+  <data name="News_Title" xml:space="preserve">
+    <value>標題</value>
+  </data>
+  <data name="Create_Return_btn" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="News_Create" xml:space="preserve">
+    <value>建立消息</value>
+  </data>
+  <data name="News_Edit" xml:space="preserve">
+    <value>編輯消息</value>
+  </data>
+  <data name="Map_ExamReport" xml:space="preserve">
+    <value>檢查報告</value>
+  </data>
+  <data name="Map_Report" xml:space="preserve">
+    <value>檢查/檢驗報告</value>
+  </data>
+  <data name="Phrase_Code" xml:space="preserve">
+    <value>片語代碼</value>
+  </data>
+  <data name="Phrase_Content" xml:space="preserve">
+    <value>片語內容</value>
+  </data>
+  <data name="Phrase_Manager" xml:space="preserve">
+    <value>片語</value>
+  </data>
+  <data name="Comm_View" xml:space="preserve">
+    <value>檢視</value>
+  </data>
+  <data name="Exam_AccessionNumber" xml:space="preserve">
+    <value>檢查編號</value>
+  </data>
+  <data name="Exam_Code" xml:space="preserve">
+    <value>檢查碼</value>
+  </data>
+  <data name="Exam_Date" xml:space="preserve">
+    <value>檢查日期</value>
+  </data>
+  <data name="Exam_Meaning" xml:space="preserve">
+    <value>檢查說明</value>
+  </data>
+  <data name="Exam_Status" xml:space="preserve">
+    <value>檢查狀態</value>
+  </data>
+  <data name="Exam_Time" xml:space="preserve">
+    <value>檢查時間</value>
+  </data>
+  <data name="Drug_Code" xml:space="preserve">
+    <value>項目代碼</value>
+  </data>
+  <data name="Drug_Days" xml:space="preserve">
+    <value>天數</value>
+  </data>
+  <data name="Drug_Dose" xml:space="preserve">
+    <value>劑量</value>
+  </data>
+  <data name="Drug_Frequency" xml:space="preserve">
+    <value>頻率</value>
+  </data>
+  <data name="Drug_Route" xml:space="preserve">
+    <value>途徑</value>
+  </data>
+  <data name="Drug_Total" xml:space="preserve">
+    <value>總量</value>
+  </data>
+  <data name="Drug_Unit" xml:space="preserve">
+    <value>單位</value>
+  </data>
+  <data name="Comm_Drug" xml:space="preserve">
+    <value>藥物</value>
+  </data>
+  <data name="Comm_Exam" xml:space="preserve">
+    <value>檢查</value>
+  </data>
+  <data name="Comm_Price" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="Comm_Seq" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="Comm_Shift" xml:space="preserve">
+    <value>時段</value>
+  </data>
+  <data name="Comm_Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Comm_Submit" xml:space="preserve">
+    <value>送出</value>
+  </data>
+  <data name="Drug_Title" xml:space="preserve">
+    <value>藥物標題</value>
+  </data>
+  <data name="Comm_Apply" xml:space="preserve">
+    <value>套用</value>
+  </data>
+  <data name="Kit_Code" xml:space="preserve">
+    <value>套件代碼</value>
+  </data>
+  <data name="Kit_Description" xml:space="preserve">
+    <value>套件說明</value>
+  </data>
+  <data name="Kit_Manager" xml:space="preserve">
+    <value>套件</value>
+  </data>
+  <data name="Category_CO" xml:space="preserve">
+    <value>藥品顏色</value>
+  </data>
+  <data name="Category_SP" xml:space="preserve">
+    <value>藥品形狀</value>
+  </data>
+  <data name="Category_TP" xml:space="preserve">
+    <value>藥品用途</value>
+  </data>
+  <data name="Patient_History" xml:space="preserve">
+    <value>就診記錄</value>
+  </data>
+  <data name="Comm_SymptomShot" xml:space="preserve">
+    <value>病徵快拍</value>
+  </data>
+  <data name="Comm_Appearance" xml:space="preserve">
+    <value>外觀</value>
+  </data>
+  <data name="Comm_Brand" xml:space="preserve">
+    <value>商標</value>
+  </data>
+  <data name="Comm_Change" xml:space="preserve">
+    <value>更換</value>
+  </data>
+  <data name="Comm_Photo" xml:space="preserve">
+    <value>照片</value>
+  </data>
+  <data name="Drug_Alert" xml:space="preserve">
+    <value>是否具有高危險性</value>
+  </data>
+  <data name="Drug_Barcode" xml:space="preserve">
+    <value>項目條碼</value>
+  </data>
+  <data name="Drug_Child" xml:space="preserve">
+    <value>是否為兒科藥物</value>
+  </data>
+  <data name="Drug_Effect" xml:space="preserve">
+    <value>作用</value>
+  </data>
+  <data name="Drug_Form" xml:space="preserve">
+    <value>形式</value>
+  </data>
+  <data name="Drug_Grade" xml:space="preserve">
+    <value>級數</value>
+  </data>
+  <data name="Drug_Information" xml:space="preserve">
+    <value>項目資訊</value>
+  </data>
+  <data name="Drug_Manager" xml:space="preserve">
+    <value>項目管理</value>
+  </data>
+  <data name="Drug_Order_Code" xml:space="preserve">
+    <value>醫囑碼</value>
+  </data>
+  <data name="Drug_Price" xml:space="preserve">
+    <value>藥品單價</value>
+  </data>
+  <data name="Drug_ProcessingMethods" xml:space="preserve">
+    <value>處置</value>
+  </data>
+  <data name="Drug_Restrictions" xml:space="preserve">
+    <value>限制藥物</value>
+  </data>
+  <data name="Map_Drug_Restraint" xml:space="preserve">
+    <value>藥物交互作用</value>
+  </data>
+  <data name="Restrictions_Drug" xml:space="preserve">
+    <value>藥物交互作用</value>
+  </data>
+  <data name="Restrictions_Create" xml:space="preserve">
+    <value>建立限制</value>
+  </data>
+  <data name="Restrictions_Modify" xml:space="preserve">
+    <value>修改限制</value>
+  </data>
+  <data name="Comm_Expansion" xml:space="preserve">
+    <value>展開</value>
+  </data>
+  <data name="Drug_Name" xml:space="preserve">
+    <value>藥物名稱</value>
+  </data>
+  <data name="MSG_Confirm_Sure" xml:space="preserve">
+    <value>是否確認?</value>
+  </data>
+  <data name="Comm_Download" xml:space="preserve">
+    <value>下載樣本檔案</value>
+  </data>
+  <data name="Comm_Execute" xml:space="preserve">
+    <value>執行</value>
+  </data>
+  <data name="Comm_File_Change" xml:space="preserve">
+    <value>更換檔案</value>
+  </data>
+  <data name="Comm_File_Remove" xml:space="preserve">
+    <value>移除檔案</value>
+  </data>
+  <data name="Comm_File_Select" xml:space="preserve">
+    <value>選擇檔案</value>
+  </data>
+  <data name="Comm_Upload" xml:space="preserve">
+    <value>上傳檔案</value>
+  </data>
+  <data name="Map_Environ_Chart" xml:space="preserve">
+    <value>數據顯示</value>
+  </data>
+  <data name="Map_Environ_Control" xml:space="preserve">
+    <value>環境控制</value>
+  </data>
+  <data name="Map_Elearning" xml:space="preserve">
+    <value>數位學習</value>
+  </data>
+  <data name="Map_Elearning_CourseMgr" xml:space="preserve">
+    <value>課程管理</value>
+  </data>
+  <data name="Map_Elearning_Protal" xml:space="preserve">
+    <value>個人面版</value>
+  </data>
+  <data name="Map_Elearning_Zrs" xml:space="preserve">
+    <value>錄播管理</value>
+  </data>
+  <data name="Map_Elearning_CourseInfo" xml:space="preserve">
+    <value>課程維護</value>
+  </data>
+  <data name="Map_Elearning_Quiz" xml:space="preserve">
+    <value>課程測驗</value>
+  </data>
+  <data name="Map_Environ_ECS" xml:space="preserve">
+    <value>環境監控系統</value>
+  </data>
+  <data name="Drug_Setting" xml:space="preserve">
+    <value>藥物設定</value>
+  </data>
+  <data name="Comm_Setting" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Comm_Upload_Export" xml:space="preserve">
+    <value>上傳並匯入資料</value>
+  </data>
+  <data name="ConsultationFee" xml:space="preserve">
+    <value>診療費</value>
+  </data>
+  <data name="Map_Registered_Cancel" xml:space="preserve">
+    <value>掛號取消</value>
+  </data>
+  <data name="Registered_Number" xml:space="preserve">
+    <value>掛號編號</value>
+  </data>
+  <data name="Registered_Sequence" xml:space="preserve">
+    <value>排診順序</value>
+  </data>
+  <data name="Comm_Barcode" xml:space="preserve">
+    <value>條碼</value>
+  </data>
+  <data name="Laboratory_Code" xml:space="preserve">
+    <value>檢驗代碼</value>
+  </data>
+  <data name="Laboratory_Date" xml:space="preserve">
+    <value>檢驗日期</value>
+  </data>
+  <data name="Laboratory_Name" xml:space="preserve">
+    <value>檢驗名稱</value>
+  </data>
+  <data name="Laboratory_Time" xml:space="preserve">
+    <value>檢驗時間</value>
+  </data>
+  <data name="Comm_Import_Data" xml:space="preserve">
+    <value>匯入資料</value>
+  </data>
+  <data name="Comm_Patient" xml:space="preserve">
+    <value>病患</value>
+  </data>
+  <data name="Comm_Laboratory" xml:space="preserve">
+    <value>檢驗</value>
+  </data>
+  <data name="Intro_dashboard_1" xml:space="preserve">
+    <value>在此能看到您目前一周內的班表</value>
+  </data>
+  <data name="Intro_dashboard_2" xml:space="preserve">
+    <value>院內最新消息，可到系統維護</value>
+  </data>
+  <data name="Intro_dashboard_3" xml:space="preserve">
+    <value>院內感染人數、細菌數</value>
+  </data>
+  <data name="Intro_display" xml:space="preserve">
+    <value>不再顯示?</value>
+  </data>
+  <data name="Intro_Bill" xml:space="preserve">
+    <value>透過輸入病患ID，即可查出病患應付帳款為多少</value>
+  </data>
+  <data name="Intro_Drug" xml:space="preserve">
+    <value>可查詢領藥病患、使用條碼掃描藥品、可建立藥庫、藥品交互作用建立</value>
+  </data>
+  <data name="Intro_Elearning" xml:space="preserve">
+    <value>目前此系統開發中</value>
+  </data>
+  <data name="Intro_Environ" xml:space="preserve">
+    <value>目前此系統開發中</value>
+  </data>
+  <data name="Intro_IPD" xml:space="preserve">
+    <value>目前此系統開發中</value>
+  </data>
+  <data name="Intro_OPD" xml:space="preserve">
+    <value>可列出當天掛號病歷資料，並開出資料進行SOAP診斷、開檢驗單</value>
+  </data>
+  <data name="Intro_PatientMgr" xml:space="preserve">
+    <value>您能建立病患的基本病歷、指紋辨識與病患管理列表</value>
+  </data>
+  <data name="Intro_Registered" xml:space="preserve">
+    <value>使用身分證或病歷號進行病患查詢及取消病患掛號，請先幫病患掛號，才能取消掛號資料</value>
+  </data>
+  <data name="Intro_Sys" xml:space="preserve">
+    <value>新聞發佈、醫生排班表、管理角色設定、登入者設定、診間名稱設定、科別設定、診所資訊建立、分類設定</value>
+  </data>
+  <data name="Category_CS" xml:space="preserve">
+    <value>數位學習課程</value>
+  </data>
+  <data name="Course_Description" xml:space="preserve">
+    <value>簡介</value>
+  </data>
+  <data name="Course_Name" xml:space="preserve">
+    <value>課程名稱</value>
+  </data>
+  <data name="BeginTime" xml:space="preserve">
+    <value>開始時間</value>
+  </data>
+  <data name="Course_Create" xml:space="preserve">
+    <value>建立課程</value>
+  </data>
+  <data name="Course_Enrollment" xml:space="preserve">
+    <value>人數</value>
+  </data>
+  <data name="Course_Management" xml:space="preserve">
+    <value>課程管理</value>
+  </data>
+  <data name="Course_New" xml:space="preserve">
+    <value>新課程</value>
+  </data>
+  <data name="Course_Room" xml:space="preserve">
+    <value>教室</value>
+  </data>
+  <data name="Course_Type" xml:space="preserve">
+    <value>類型</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>結束時間</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>不限制</value>
+  </data>
+  <data name="EmailNotice" xml:space="preserve">
+    <value>郵件通知</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>直播</value>
+  </data>
+  <data name="OpenEnrollment" xml:space="preserve">
+    <value>開放報名</value>
+  </data>
+  <data name="OpenTime" xml:space="preserve">
+    <value>開放時間</value>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>參加人員</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>錄影</value>
+  </data>
+  <data name="YoutubeLink" xml:space="preserve">
+    <value>影片連結</value>
+  </data>
+  <data name="Course_Attachment" xml:space="preserve">
+    <value>教材</value>
+  </data>
+  <data name="Course_List_Create" xml:space="preserve">
+    <value>建立時間</value>
+  </data>
+  <data name="Course_List_Room" xml:space="preserve">
+    <value>教室</value>
+  </data>
+  <data name="Map_Elearning_Course" xml:space="preserve">
+    <value>課程系統</value>
+  </data>
+  <data name="Comm_Public" xml:space="preserve">
+    <value>公開</value>
+  </data>
+  <data name="Course_Classroom" xml:space="preserve">
+    <value>實體教室</value>
+  </data>
+  <data name="Course_Online" xml:space="preserve">
+    <value>線上</value>
+  </data>
+  <data name="New_TestPaper" xml:space="preserve">
+    <value>新試卷</value>
+  </data>
+  <data name="Map_Elearning_TestPaper" xml:space="preserve">
+    <value>試卷管理</value>
+  </data>
+  <data name="Exam_Title" xml:space="preserve">
+    <value>試卷標題</value>
+  </data>
+  <data name="Course_Info" xml:space="preserve">
+    <value>課程資訊</value>
+  </data>
+  <data name="Add_Question" xml:space="preserve">
+    <value>加入試題</value>
+  </data>
+  <data name="Comm_Private" xml:space="preserve">
+    <value>私有</value>
+  </data>
+  <data name="Course_Sign_Out" xml:space="preserve">
+    <value>取消報名</value>
+  </data>
+  <data name="Course_Sign_Up" xml:space="preserve">
+    <value>報名</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>建立人員</value>
+  </data>
+  <data name="Signed" xml:space="preserve">
+    <value>已報名</value>
+  </data>
+  <data name="Correct_rate_of_about" xml:space="preserve">
+    <value>正確率約</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>課程</value>
+  </data>
+  <data name="Course_Anyone" xml:space="preserve">
+    <value>任何人</value>
+  </data>
+  <data name="Course_Department" xml:space="preserve">
+    <value>部門</value>
+  </data>
+  <data name="Course_Download_Template" xml:space="preserve">
+    <value>下載範本</value>
+  </data>
+  <data name="Course_Eding_Date" xml:space="preserve">
+    <value>結束日期</value>
+  </data>
+  <data name="Course_Email_Notification" xml:space="preserve">
+    <value>電子信箱通知人員</value>
+  </data>
+  <data name="Course_Ended" xml:space="preserve">
+    <value>課程已結束</value>
+  </data>
+  <data name="Course_Ending_Time" xml:space="preserve">
+    <value>結束時間</value>
+  </data>
+  <data name="Course_End_Course" xml:space="preserve">
+    <value>結束課程</value>
+  </data>
+  <data name="Course_Exam_Paper" xml:space="preserve">
+    <value>試卷</value>
+  </data>
+  <data name="Course_in_progress" xml:space="preserve">
+    <value>課程已開始</value>
+  </data>
+  <data name="Course_Method_of_teaching" xml:space="preserve">
+    <value>教學方式</value>
+  </data>
+  <data name="Course_not_Available" xml:space="preserve">
+    <value>未開課</value>
+  </data>
+  <data name="Course_No_new_application_during_sessions" xml:space="preserve">
+    <value>上課中不開放報名</value>
+  </data>
+  <data name="Course_Number_of_Applicants" xml:space="preserve">
+    <value>人數</value>
+  </data>
+  <data name="Course_Open_for_Application" xml:space="preserve">
+    <value>開放報名</value>
+  </data>
+  <data name="Course_Select_Participant" xml:space="preserve">
+    <value>選擇人員</value>
+  </data>
+  <data name="Course_Start_Course" xml:space="preserve">
+    <value>開始上課</value>
+  </data>
+  <data name="Course_Upload_material" xml:space="preserve">
+    <value>上傳教材</value>
+  </data>
+  <data name="Course_Upload_Participant" xml:space="preserve">
+    <value>上傳人員</value>
+  </data>
+  <data name="Elearning_Exam_Paper_Management" xml:space="preserve">
+    <value>試卷管理</value>
+  </data>
+  <data name="Exam" xml:space="preserve">
+    <value>測驗</value>
+  </data>
+  <data name="Exam_Add_Questions" xml:space="preserve">
+    <value>新增試題</value>
+  </data>
+  <data name="Exam_Answer" xml:space="preserve">
+    <value>答案</value>
+  </data>
+  <data name="Exam_Correct_rate" xml:space="preserve">
+    <value>正確率</value>
+  </data>
+  <data name="Exam_Create_Questions" xml:space="preserve">
+    <value>建立試題</value>
+  </data>
+  <data name="Exam_Essay_question" xml:space="preserve">
+    <value>問答題</value>
+  </data>
+  <data name="Exam_Multiple_Choice_question" xml:space="preserve">
+    <value>選擇題</value>
+  </data>
+  <data name="Exam_Not_provided_questions" xml:space="preserve">
+    <value>未提供試題</value>
+  </data>
+  <data name="Exam_Paper" xml:space="preserve">
+    <value>試卷</value>
+  </data>
+  <data name="Exam_Publication" xml:space="preserve">
+    <value>公開</value>
+  </data>
+  <data name="Exam_Question" xml:space="preserve">
+    <value>試題</value>
+  </data>
+  <data name="Exam_Review" xml:space="preserve">
+    <value>測驗評分</value>
+  </data>
+  <data name="Exam_Score" xml:space="preserve">
+    <value>分數</value>
+  </data>
+  <data name="Exam_Start" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="Exam_Submit" xml:space="preserve">
+    <value>完成測驗</value>
+  </data>
+  <data name="Exam_Test_Time" xml:space="preserve">
+    <value>受測時間</value>
+  </data>
+  <data name="Exam_Tips_1" xml:space="preserve">
+    <value>若受測人員於同一課程中同一試卷進行重複測試，僅列出受測者最近一次測試資料</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>參與人員</value>
+  </data>
+  <data name="Comm_Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Comm_End" xml:space="preserve">
+    <value>結束</value>
+  </data>
+  <data name="Comm_Start" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="Comm_Type" xml:space="preserve">
+    <value>類型</value>
+  </data>
+  <data name="Course_Application_Deadline" xml:space="preserve">
+    <value>報名截止日</value>
+  </data>
+  <data name="Course_Cancel_Registration" xml:space="preserve">
+    <value>取消報名</value>
+  </data>
+  <data name="Course_EveryDay_Sync" xml:space="preserve">
+    <value>同步設定</value>
+  </data>
+  <data name="Course_Full" xml:space="preserve">
+    <value>額滿</value>
+  </data>
+  <data name="Course_Hours" xml:space="preserve">
+    <value>時數</value>
+  </data>
+  <data name="Course_Not_Open" xml:space="preserve">
+    <value>未開放</value>
+  </data>
+  <data name="Course_Number_of_View" xml:space="preserve">
+    <value>瀏覽</value>
+  </data>
+  <data name="Course_Participant" xml:space="preserve">
+    <value>人員</value>
+  </data>
+  <data name="Course_Precautions" xml:space="preserve">
+    <value>注意事項</value>
+  </data>
+  <data name="Course_Registration" xml:space="preserve">
+    <value>報名</value>
+  </data>
+  <data name="Course_Remark" xml:space="preserve">
+    <value>備註</value>
+  </data>
+  <data name="Course_Teaching_material" xml:space="preserve">
+    <value>教材</value>
+  </data>
+  <data name="Course_Title" xml:space="preserve">
+    <value>課程名稱</value>
+  </data>
+  <data name="Exam_Create" xml:space="preserve">
+    <value>建立試卷</value>
+  </data>
+  <data name="Exam_Description" xml:space="preserve">
+    <value>說明</value>
+  </data>
+  <data name="Exam_Edit_Exam" xml:space="preserve">
+    <value>編輯試卷</value>
+  </data>
+  <data name="Exam_Publish" xml:space="preserve">
+    <value>開放</value>
+  </data>
+  <data name="Exam_Score_Average" xml:space="preserve">
+    <value>平均分數</value>
+  </data>
+  <data name="Exam_Upload_Question" xml:space="preserve">
+    <value>上傳試題</value>
+  </data>
+  <data name="Exam_Download" xml:space="preserve">
+    <value>下載</value>
+  </data>
+  <data name="Comm_Account" xml:space="preserve">
+    <value>帳號</value>
+  </data>
+  <data name="Comm_User" xml:space="preserve">
+    <value>使用者</value>
+  </data>
+  <data name="Course_Edit" xml:space="preserve">
+    <value>課程編輯</value>
+  </data>
+  <data name="Map_Elearning_Course_Management" xml:space="preserve">
+    <value>課程管理</value>
+  </data>
+  <data name="Comm_No_Funtion" xml:space="preserve">
+    <value>"目前本功能尚不開放”或“請與我們連絡申請開放”</value>
+  </data>
+  <data name="Person_Setting" xml:space="preserve">
+    <value>個人設定</value>
+  </data>
+  <data name="User_Edit" xml:space="preserve">
+    <value>使用者編輯</value>
+  </data>
+  <data name="Way_Of_Teaching" xml:space="preserve">
+    <value>上課方式</value>
+  </data>
+  <data name="Notification_Message" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="Notification_Send_Button" xml:space="preserve">
+    <value>傳送</value>
+  </data>
+  <data name="Notification_Send_To_Label" xml:space="preserve">
+    <value>傳送給</value>
+  </data>
+  <data name="Notification_Show_All_Message" xml:space="preserve">
+    <value>所有訊息</value>
+  </data>
+  <data name="Comm_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Notification_Target" xml:space="preserve">
+    <value>對象</value>
+  </data>
+  <data name="Notification_Both_Read_Unread" xml:space="preserve">
+    <value>已讀取&amp;未讀取</value>
+  </data>
+  <data name="Notification_Read" xml:space="preserve">
+    <value>已讀取</value>
+  </data>
+  <data name="Notification_Read_Or_Unread" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Notification_Show_Option" xml:space="preserve">
+    <value>顯示</value>
+  </data>
+  <data name="Notification_Show_Option_Date" xml:space="preserve">
+    <value>依日期</value>
+  </data>
+  <data name="Notification_Show_Option_isRead" xml:space="preserve">
+    <value>未讀訊息優先</value>
+  </data>
+  <data name="Notification_Unread" xml:space="preserve">
+    <value>未讀取</value>
+  </data>
+  <data name="Notification_All_people" xml:space="preserve">
+    <value>所有人</value>
+  </data>
+  <data name="Notification_Header_Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Notification_Header_From" xml:space="preserve">
+    <value>發送</value>
+  </data>
+  <data name="Notification_Header_isRead" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Notification_Header_Message" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="Notification_Header_To" xml:space="preserve">
+    <value>接收</value>
+  </data>
+  <data name="Comm_Checkin" xml:space="preserve">
+    <value>報到</value>
+  </data>
+  <data name="Map_RIS" xml:space="preserve">
+    <value>檢查報告系統</value>
+  </data>
+  <data name="Map_RIS_Checkin" xml:space="preserve">
+    <value>檢查報到</value>
+  </data>
+  <data name="Map_RIS_Report" xml:space="preserve">
+    <value>檢查報告管理</value>
+  </data>
+  <data name="Exam_Report" xml:space="preserve">
+    <value>檢查報告</value>
+  </data>
+  <data name="Exam_List" xml:space="preserve">
+    <value>報告清單</value>
+  </data>
+  <data name="Exam_Title_Name" xml:space="preserve">
+    <value>檢查名稱</value>
+  </data>
+  <data name="Comm_By" xml:space="preserve">
+    <value>於</value>
+  </data>
+  <data name="Comm_Calendar" xml:space="preserve">
+    <value>行事曆</value>
+  </data>
+  <data name="Comm_Finish" xml:space="preserve">
+    <value>結束</value>
+  </data>
+  <data name="Comm_Monitor" xml:space="preserve">
+    <value>分析圖表</value>
+  </data>
+  <data name="Comm_Next" xml:space="preserve">
+    <value>下一頁</value>
+  </data>
+  <data name="Comm_Prev" xml:space="preserve">
+    <value>上一頁</value>
+  </data>
+  <data name="Comm_Welcome" xml:space="preserve">
+    <value>歡迎</value>
+  </data>
+  <data name="MSG_Enter_Information" xml:space="preserve">
+    <value>請輸入訊息</value>
+  </data>
+  <data name="Pacs_Viewer" xml:space="preserve">
+    <value>PACS檢視器</value>
+  </data>
+  <data name="Patient_Create_Memo1" xml:space="preserve">
+    <value>請確認資料是否正確</value>
+  </data>
+  <data name="Patient_Create_Memo2" xml:space="preserve">
+    <value>按結束後列印卡片</value>
+  </data>
+  <data name="Patient_Registration_With" xml:space="preserve">
+    <value>掛號者</value>
+  </data>
+  <data name="Comm_Active" xml:space="preserve">
+    <value>啟動</value>
+  </data>
+  <data name="Comm_Ditto" xml:space="preserve">
+    <value>複製病歷</value>
+  </data>
+  <data name="Comm_Package" xml:space="preserve">
+    <value>套組</value>
+  </data>
+  <data name="Comm_Waiting" xml:space="preserve">
+    <value>等待</value>
+  </data>
+  <data name="AddNewInput" xml:space="preserve">
+    <value>增加欄位</value>
+  </data>
+  <data name="BlockDwellTime" xml:space="preserve">
+    <value>視窗停留時間(秒)</value>
+  </data>
+  <data name="Comm_Location" xml:space="preserve">
+    <value>地點</value>
+  </data>
+  <data name="Comm_PublishBeginTime" xml:space="preserve">
+    <value>發布時間</value>
+  </data>
+  <data name="Comm_PublishEndTime" xml:space="preserve">
+    <value>停止發布時間</value>
+  </data>
+  <data name="ConfirmOnline" xml:space="preserve">
+    <value>線上確認</value>
+  </data>
+  <data name="CustomerScore" xml:space="preserve">
+    <value>自訂分數</value>
+  </data>
+  <data name="Exam_Multiple" xml:space="preserve">
+    <value>多選</value>
+  </data>
+  <data name="Exam_Single" xml:space="preserve">
+    <value>單選</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>檔案名稱</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>檔案大小</value>
+  </data>
+  <data name="Intervals" xml:space="preserve">
+    <value>間格時間(秒)</value>
+  </data>
+  <data name="LimitedToTheirOwnUse" xml:space="preserve">
+    <value>只限本人使用</value>
+  </data>
+  <data name="NumberOfPeople" xml:space="preserve">
+    <value>人數限制</value>
+  </data>
+  <data name="OpenStaffRegistration" xml:space="preserve">
+    <value>開放內部人員報名</value>
+  </data>
+  <data name="Perview" xml:space="preserve">
+    <value>預覽</value>
+  </data>
+  <data name="QuestionTotal" xml:space="preserve">
+    <value>總題數</value>
+  </data>
+  <data name="RegistrationBeginTime" xml:space="preserve">
+    <value>報名開始時間</value>
+  </data>
+  <data name="RegistrationEndTime" xml:space="preserve">
+    <value>報名截止時間</value>
+  </data>
+  <data name="ScoreTotal" xml:space="preserve">
+    <value>總分</value>
+  </data>
+  <data name="SyncInput" xml:space="preserve">
+    <value>同步輸入</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>上傳圖片</value>
+  </data>
+  <data name="UseHtml" xml:space="preserve">
+    <value>使用Html編輯器</value>
+  </data>
+  <data name="Comm_Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="EnrolledCourses" xml:space="preserve">
+    <value>已報名課程</value>
+  </data>
+  <data name="LearningProcess" xml:space="preserve">
+    <value>學習歷程</value>
+  </data>
+  <data name="QuizRecord" xml:space="preserve">
+    <value>測驗記錄</value>
+  </data>
+  <data name="StartQuiz" xml:space="preserve">
+    <value>開始測驗</value>
+  </data>
+  <data name="EnrolledINMessage" xml:space="preserve">
+    <value>報名課程的測驗，限已報名的人員受測</value>
+  </data>
+  <data name="Classroom_Course" xml:space="preserve">
+    <value>教室課程</value>
+  </data>
+  <data name="Course_Has_Not_Start" xml:space="preserve">
+    <value>課程未開始</value>
+  </data>
+  <data name="Course_That_Have_Been_Enrolled_Can_Not_Be_Deleted" xml:space="preserve">
+    <value>已經報名的課程無法刪除</value>
+  </data>
+  <data name="Exam_Not_Exist" xml:space="preserve">
+    <value>試卷不存在</value>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="Num_OF_Questiond_Limit" xml:space="preserve">
+    <value>題目數量限制{0}題</value>
+  </data>
+  <data name="Online_Course_Closed" xml:space="preserve">
+    <value>線上課程已關閉</value>
+  </data>
+  <data name="Online_Course_Not_Started" xml:space="preserve">
+    <value>線上課程未開始</value>
+  </data>
+  <data name="Please_Pick_Correct" xml:space="preserve">
+    <value>請勾選正確答案</value>
+  </data>
+  <data name="Question_Not_Empty" xml:space="preserve">
+    <value>題目勢必填項目</value>
+  </data>
+  <data name="Image_Size_2MB" xml:space="preserve">
+    <value>檔案大小2MB</value>
+  </data>
+  <data name="Upload_File_Type_Img" xml:space="preserve">
+    <value>*.jpg *.jpeg *.png *.bmp</value>
+  </data>
+  <data name="Answer_Required" xml:space="preserve">
+    <value>答案為必填</value>
+  </data>
+  <data name="Rejected_File_Type" xml:space="preserve">
+    <value>拒絕的檔案類型</value>
+  </data>
+  <data name="The_Score_Field_Is_Required" xml:space="preserve">
+    <value>分數欄位不正確</value>
+  </data>
+  <data name="Data_Not_Exist" xml:space="preserve">
+    <value>資料不存在</value>
+  </data>
+  <data name="TestScore" xml:space="preserve">
+    <value>得分</value>
+  </data>
+  <data name="Comm_TestDate" xml:space="preserve">
+    <value>量測日期</value>
+  </data>
+  <data name="Patient_VitalSign_BloodSugar" xml:space="preserve">
+    <value>血糖</value>
+  </data>
+  <data name="Patient_VitalSign_BMI" xml:space="preserve">
+    <value>BMI</value>
+  </data>
+  <data name="Patient_VitalSign_BMR" xml:space="preserve">
+    <value>基礎代謝</value>
+  </data>
+  <data name="Patient_VitalSign_BodyFat" xml:space="preserve">
+    <value>體脂</value>
+  </data>
+  <data name="Patient_VitalSign_BodyTemp" xml:space="preserve">
+    <value>體溫</value>
+  </data>
+  <data name="Patient_VitalSign_BodyWaterMass" xml:space="preserve">
+    <value>體水份</value>
+  </data>
+  <data name="Patient_VitalSign_BoneMass" xml:space="preserve">
+    <value>骨量</value>
+  </data>
+  <data name="Patient_VitalSign_Diastolic" xml:space="preserve">
+    <value>舒張壓</value>
+  </data>
+  <data name="Patient_VitalSign_MetabolicAge" xml:space="preserve">
+    <value>體年齡</value>
+  </data>
+  <data name="Patient_VitalSign_MuscleMass" xml:space="preserve">
+    <value>肌肉含量</value>
+  </data>
+  <data name="Patient_VitalSign_O2" xml:space="preserve">
+    <value>血氧</value>
+  </data>
+  <data name="Patient_VitalSign_Systolic" xml:space="preserve">
+    <value>收縮壓</value>
+  </data>
+  <data name="Patient_VitalSign_VatLevel" xml:space="preserve">
+    <value>內臟脂肪</value>
+  </data>
+  <data name="Must_Specify_Class_Location" xml:space="preserve">
+    <value>請指定上課地點</value>
+  </data>
+  <data name="Class_Time_Over" xml:space="preserve">
+    <value>上下課時間不符</value>
+  </data>
+  <data name="Number_Applicants_Not_Empty" xml:space="preserve">
+    <value>請輸入報名人數</value>
+  </data>
+  <data name="Over_BeginTime" xml:space="preserve">
+    <value>已超過現在時間</value>
+  </data>
+  <data name="Registration_Time_Not_Empty" xml:space="preserve">
+    <value>請輸入報名時間</value>
+  </data>
+  <data name="Select_Course_Type" xml:space="preserve">
+    <value>請選擇課程類型</value>
+  </data>
+  <data name="Set_Class_Time" xml:space="preserve">
+    <value>請指定上課時間</value>
+  </data>
+  <data name="Can_Not_Delete_Completed_Test" xml:space="preserve">
+    <value>無法刪除，已經有學員完成測驗</value>
+  </data>
+  <data name="Exam_Valid" xml:space="preserve">
+    <value>有效測驗</value>
+  </data>
+  <data name="Category_PY" xml:space="preserve">
+    <value>付款方式</value>
+  </data>
+  <data name="Category_UT" xml:space="preserve">
+    <value>單位</value>
+  </data>
+  <data name="Map_Pos" xml:space="preserve">
+    <value>進銷存管理</value>
+  </data>
+  <data name="Map_Vendor" xml:space="preserve">
+    <value>廠商維護</value>
+  </data>
+  <data name="Map_PurchaseOrder" xml:space="preserve">
+    <value>採購單維護</value>
+  </data>
+  <data name="Map_Delivery" xml:space="preserve">
+    <value>驗收作業</value>
+  </data>
+  <data name="Map_DeliveryHistory" xml:space="preserve">
+    <value>歷史驗收清單</value>
+  </data>
+  <data name="Comm_StockAmount" xml:space="preserve">
+    <value>庫存量</value>
+  </data>
+  <data name="Map_Return" xml:space="preserve">
+    <value>退貨作業</value>
+  </data>
+  <data name="Map_ReturnHistory" xml:space="preserve">
+    <value>歷史退貨清單</value>
+  </data>
+  <data name="Category_FQ" xml:space="preserve">
+    <value>頻率</value>
+  </data>
+  <data name="Category_RU" xml:space="preserve">
+    <value>途徑</value>
+  </data>
+  <data name="Category_LG" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="Hospital_About" xml:space="preserve">
+    <value>關於醫院</value>
+  </data>
+  <data name="Hospital_OpenTime" xml:space="preserve">
+    <value>開診時間</value>
+  </data>
+  <data name="Mail_Setting" xml:space="preserve">
+    <value>郵件設定</value>
+  </data>
+  <data name="Mail_Setting_ContactBccMail" xml:space="preserve">
+    <value>郵絡人副本郵件</value>
+  </data>
+  <data name="Mail_Setting_ContactMail" xml:space="preserve">
+    <value>聯絡人郵件</value>
+  </data>
+  <data name="Mail_Setting_HostUrl" xml:space="preserve">
+    <value>郵件主機網址</value>
+  </data>
+  <data name="Mail_Setting_Port" xml:space="preserve">
+    <value>埠</value>
+  </data>
+  <data name="Mail_Setting_UserName" xml:space="preserve">
+    <value>登入帳號</value>
+  </data>
+  <data name="Mail_Setting_UserPassword" xml:space="preserve">
+    <value>登入密碼</value>
+  </data>
+  <data name="Official_Banner_Img" xml:space="preserve">
+    <value>官網橫幅圖</value>
+  </data>
+  <data name="Official_Logo_Img" xml:space="preserve">
+    <value>官網Logo</value>
+  </data>
+  <data name="Drug_BackToSearchPatient" xml:space="preserve">
+    <value>返回病患給藥查詢</value>
+  </data>
+  <data name="Drug_HasBeenSent" xml:space="preserve">
+    <value>已配送</value>
+  </data>
+  <data name="Map_Sys_Guardian" xml:space="preserve">
+    <value>衛教宣導</value>
+  </data>
+  <data name="Category_GD" xml:space="preserve">
+    <value>衛教分類</value>
+  </data>
+  <data name="Guardian_CategoryName" xml:space="preserve">
+    <value>衛教分類</value>
+  </data>
+  <data name="Guardian_IsUsed" xml:space="preserve">
+    <value>可否使用</value>
+  </data>
+  <data name="Guardian_Name" xml:space="preserve">
+    <value>衛教名稱</value>
+  </data>
+  <data name="Guardian_Sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="Lobby_And_Queuing_System" xml:space="preserve">
+    <value>大廳叫號</value>
+  </data>
+  <data name="Guardian_UseInLobby" xml:space="preserve">
+    <value>在大廳使用</value>
+  </data>
+  <data name="VitalSignUnit_BloodSugar" xml:space="preserve">
+    <value>mg/dl</value>
+  </data>
+  <data name="VitalSignUnit_BodyFat" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="VitalSignUnit_BodyFat_bmr" xml:space="preserve">
+    <value>kcal</value>
+  </data>
+  <data name="VitalSignUnit_BodyFat_vatLv" xml:space="preserve">
+    <value>Lv</value>
+  </data>
+  <data name="VitalSignUnit_BodyHeight" xml:space="preserve">
+    <value>cm</value>
+  </data>
+  <data name="VitalSignUnit_BodyTemp" xml:space="preserve">
+    <value>°F</value>
+  </data>
+  <data name="VitalSignUnit_Comm_Mass" xml:space="preserve">
+    <value>磅</value>
+  </data>
+  <data name="VitalSignUnit_O2" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="VitalSignUnit_Weight" xml:space="preserve">
+    <value>磅</value>
+  </data>
+  <data name="VitalSignUnit_Weight_BMI" xml:space="preserve">
+    <value>lb/m2</value>
+  </data>
+  <data name="Guardian_Length_Seconds" xml:space="preserve">
+    <value>長度(秒)</value>
+  </data>
+  <data name="Patient_Pay" xml:space="preserve">
+    <value>付費</value>
+  </data>
+  <data name="Guardian_VideoFormat_remind" xml:space="preserve">
+    <value>影片格式僅支援MP4</value>
+  </data>
+  <data name="Category_AT" xml:space="preserve">
+    <value>環礁</value>
+  </data>
+  <data name="Category_ET" xml:space="preserve">
+    <value>種族</value>
+  </data>
+  <data name="Category_SC" xml:space="preserve">
+    <value>學校</value>
+  </data>
+  <data name="Category_SL" xml:space="preserve">
+    <value>學歷</value>
+  </data>
+  <data name="Category_ZN" xml:space="preserve">
+    <value>區域</value>
+  </data>
+  <data name="Patient_Birth_Atoll" xml:space="preserve">
+    <value>出生環礁</value>
+  </data>
+  <data name="Patient_Birth_country" xml:space="preserve">
+    <value>出生國家</value>
+  </data>
+  <data name="Patient_Birth_Village" xml:space="preserve">
+    <value>出生村莊</value>
+  </data>
+  <data name="Patient_Company" xml:space="preserve">
+    <value>公司</value>
+  </data>
+  <data name="Patient_Country" xml:space="preserve">
+    <value>居住國家</value>
+  </data>
+  <data name="Patient_Employer" xml:space="preserve">
+    <value>雇員</value>
+  </data>
+  <data name="Patient_Ethnicity" xml:space="preserve">
+    <value>種族</value>
+  </data>
+  <data name="Patient_FatherFName" xml:space="preserve">
+    <value>父親(名)</value>
+  </data>
+  <data name="Patient_FatherLName" xml:space="preserve">
+    <value>父親(姓)</value>
+  </data>
+  <data name="Patient_FatherMName" xml:space="preserve">
+    <value>父親(中間名)</value>
+  </data>
+  <data name="Patient_HomeAtoll" xml:space="preserve">
+    <value>環礁(家)</value>
+  </data>
+  <data name="Patient_LevelinSchool" xml:space="preserve">
+    <value>最高學歷</value>
+  </data>
+  <data name="Patient_Marshall_Atoll" xml:space="preserve">
+    <value>環礁</value>
+  </data>
+  <data name="Patient_Marshall_Village" xml:space="preserve">
+    <value>村莊</value>
+  </data>
+  <data name="Patient_Marshall_Zone" xml:space="preserve">
+    <value>區域</value>
+  </data>
+  <data name="Patient_Mid_Name" xml:space="preserve">
+    <value>中間名</value>
+  </data>
+  <data name="Patient_MotherFName" xml:space="preserve">
+    <value>母親(名)</value>
+  </data>
+  <data name="Patient_MotherLName" xml:space="preserve">
+    <value>母親(姓)</value>
+  </data>
+  <data name="Patient_MotherMName" xml:space="preserve">
+    <value>母親(中間名)</value>
+  </data>
+  <data name="Patient_NameOfSchool" xml:space="preserve">
+    <value>就讀學校</value>
+  </data>
+  <data name="Patient_Religion" xml:space="preserve">
+    <value>宗教</value>
+  </data>
+  <data name="Patient_Manager_Reception" xml:space="preserve">
+    <value>約診</value>
+  </data>
+  <data name="Comm_None" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="Map_MedicalRecord" xml:space="preserve">
+    <value>病歷室</value>
+  </data>
+  <data name="Map_MedicalRecord_Manager" xml:space="preserve">
+    <value>病歷管理</value>
+  </data>
+  <data name="Pay_Btn_Pay" xml:space="preserve">
+    <value>付款</value>
+  </data>
+  <data name="Pay_Balance" xml:space="preserve">
+    <value>餘款</value>
+  </data>
+  <data name="Pay_Paid" xml:space="preserve">
+    <value>已收款</value>
+  </data>
+  <data name="Pay_Total" xml:space="preserve">
+    <value>應收款</value>
+  </data>
+  <data name="Category_CT" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="BillingLog_Title" xml:space="preserve">
+    <value>付款記錄</value>
+  </data>
+  <data name="Pay_PriceDetail" xml:space="preserve">
+    <value>批價內容</value>
+  </data>
+  <data name="Pay_ReceiptDetails" xml:space="preserve">
+    <value>收款明細</value>
+  </data>
+  <data name="Pay_AllPaid" xml:space="preserve">
+    <value>已付清</value>
+  </data>
+  <data name="Pay_NotPay" xml:space="preserve">
+    <value>未付清</value>
+  </data>
+  <data name="Patient_From" xml:space="preserve">
+    <value>病人來自</value>
+  </data>
+  <data name="Patient_Local" xml:space="preserve">
+    <value>本地人</value>
+  </data>
+  <data name="Patient_Visitor" xml:space="preserve">
+    <value>來訪者</value>
+  </data>
+  <data name="StateCityAtoll" xml:space="preserve">
+    <value>城市或環礁</value>
+  </data>
+  <data name="Patient_RegAtoll" xml:space="preserve">
+    <value>註冊環礁</value>
+  </data>
+  <data name="Hospital_Environment" xml:space="preserve">
+    <value>醫院環境</value>
+  </data>
+  <data name="Category_CR" xml:space="preserve">
+    <value>取消原因</value>
+  </data>
+  <data name="Map_Reports" xml:space="preserve">
+    <value>報表</value>
+  </data>
+  <data name="Category_IS" xml:space="preserve">
+    <value>保險</value>
+  </data>
+  <data name="Category_PL" xml:space="preserve">
+    <value>貧窮程度</value>
+  </data>
+  <data name="Category_RA" xml:space="preserve">
+    <value>種族</value>
+  </data>
+  <data name="Patient_PovertyLevel" xml:space="preserve">
+    <value>貧窮程度</value>
+  </data>
+  <data name="Patient_Race" xml:space="preserve">
+    <value>人種</value>
+  </data>
+  <data name="Patient_ReprintBarcode" xml:space="preserve">
+    <value>Re-print barcode</value>
+  </data>
+  <data name="Patient_ContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="Patient_ContactPersonPhone" xml:space="preserve">
+    <value>Contact Person Phone</value>
+  </data>
+  <data name="Patient_PassportExpiredDate" xml:space="preserve">
+    <value>Passport Expired Date</value>
+  </data>
+  <data name="Patient_PassportIssueDate" xml:space="preserve">
+    <value>Passport Issue Date</value>
+  </data>
+  <data name="Patient_SocialSecurityNo" xml:space="preserve">
+    <value>Social Security No.</value>
+  </data>
+  <data name="Patient_AllergicDesc" xml:space="preserve">
+    <value>Allergic Description</value>
+  </data>
+  <data name="Patient_Paternity" xml:space="preserve">
+    <value>血緣</value>
+  </data>
+  <data name="Patient_Smoking" xml:space="preserve">
+    <value>Smoking</value>
+  </data>
+  <data name="Patient_Foster" xml:space="preserve">
+    <value>收養</value>
+  </data>
+  <data name="Patient_Natural" xml:space="preserve">
+    <value>親生</value>
+  </data>
+  <data name="Patient_ContactPersonRelationship" xml:space="preserve">
+    <value>Contact Person Relationship</value>
+  </data>
+  <data name="Map_Sys_Log" xml:space="preserve">
+    <value>系統Log</value>
+  </data>
+  <data name="Billing_Info" xml:space="preserve">
+    <value>Billing Info </value>
+  </data>
+  <data name="Drug_Item_Name" xml:space="preserve">
+    <value>項目名稱</value>
+  </data>
+  <data name="Drug_Initial_Fee" xml:space="preserve">
+    <value>Initial Fee</value>
+  </data>
+  <data name="Drug_Patient_From" xml:space="preserve">
+    <value>Patient Type</value>
+  </data>
+  <data name="Drug_Daily_Fee" xml:space="preserve">
+    <value>Daily Fee</value>
+  </data>
+  <data name="Patient_Diabetes" xml:space="preserve">
+    <value>Diabetes</value>
+  </data>
+  <data name="Patient_Alcohol" xml:space="preserve">
+    <value>Alcohol</value>
+  </data>
+  <data name="Category_RG" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="Category_MR" xml:space="preserve">
+    <value>Marriage Status</value>
+  </data>
+  <data name="Hospital_Slogan" xml:space="preserve">
+    <value>口號</value>
+  </data>
+  <data name="Comm_Cashier" xml:space="preserve">
+    <value>支付</value>
+  </data>
+  <data name="MSG_ClickToPay" xml:space="preserve">
+    <value>按 "支付" 按鈕去付款</value>
+  </data>
+  <data name="Category_DU" xml:space="preserve">
+    <value>科別單位</value>
+  </data>
+  <data name="Account_Expertise" xml:space="preserve">
+    <value>專長</value>
+  </data>
+  <data name="Department_Unit" xml:space="preserve">
+    <value>單位</value>
+  </data>
+  <data name="Account_RegDept" xml:space="preserve">
+    <value>可掛號部門</value>
+  </data>
+  <data name="Patient_LandMark" xml:space="preserve">
+    <value>地標</value>
+  </data>
+  <data name="Patient_Latitude" xml:space="preserve">
+    <value>緯度</value>
+  </data>
+  <data name="Patient_Longitude" xml:space="preserve">
+    <value>經度</value>
+  </data>
+  <data name="Patient_Pobox" xml:space="preserve">
+    <value>郵政信箱</value>
+  </data>
+  <data name="Map_BiReport" xml:space="preserve">
+    <value>BI分析資料</value>
+  </data>
+  <data name="Map_ReceiptReport" xml:space="preserve">
+    <value>收據報表</value>
+  </data>
+  <data name="Map_BiReports" xml:space="preserve">
+    <value>Bi 資料分析</value>
+  </data>
+  <data name="CallNo" xml:space="preserve">
+    <value>Call No</value>
+  </data>
+  <data name="Category_PR" xml:space="preserve">
+    <value>Contact Person Relationship</value>
+  </data>
+  <data name="Patient_Status_2" xml:space="preserve">
+    <value>死亡</value>
+  </data>
+  <data name="Patient_Alab" xml:space="preserve">
+    <value>Alab</value>
+  </data>
+  <data name="Patient_Household" xml:space="preserve">
+    <value>Household</value>
+  </data>
+  <data name="Patient_Household_Head" xml:space="preserve">
+    <value>Household Head</value>
+  </data>
+  <data name="Patient_Weto" xml:space="preserve">
+    <value>Weto</value>
+  </data>
+  <data name="Comm_Retrieved" xml:space="preserve">
+    <value>Retrieved</value>
+  </data>
+  <data name="MSG_Confirm_Retrieved" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Encounter_Form" xml:space="preserve">
+    <value>Encounter Form</value>
+  </data>
+  <data name="Patient_Household_Address" xml:space="preserve">
+    <value>Household Address</value>
+  </data>
+  <data name="Clinic_And_Queuing_System" xml:space="preserve">
+    <value>診間叫號</value>
+  </data>
+  <data name="Map_ICD10" xml:space="preserve">
+    <value>ICD 10 設定</value>
+  </data>
+  <data name="Category_CD" xml:space="preserve">
+    <value>ICD10 Type</value>
+  </data>
+  <data name="Category_WE" xml:space="preserve">
+    <value>Weto</value>
+  </data>
+  <data name="ICD10Code" xml:space="preserve">
+    <value>ICD10 Code</value>
+  </data>
+  <data name="ICD10Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ICD10Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Patient_Manager_Clear_FingerPrint1" xml:space="preserve">
+    <value>Clear FingerPrinter</value>
+  </data>
+  <data name="AdmissionForm" xml:space="preserve">
+    <value>AdmissionForm</value>
+  </data>
+  <data name="Patient_BirthPlace" xml:space="preserve">
+    <value>Birth Place</value>
+  </data>
+  <data name="Map_ReceptionList_Manager" xml:space="preserve">
+    <value>Triage List</value>
+  </data>
+  <data name="Map_Triage" xml:space="preserve">
+    <value>分診</value>
+  </data>
+  <data name="Reception_Booked" xml:space="preserve">
+    <value>預約</value>
+  </data>
+  <data name="Reception_TodayAppointment" xml:space="preserve">
+    <value>今日掛號</value>
+  </data>
+  <data name="Message_ChangeRoom" xml:space="preserve">
+    <value>是否跟此房間交換?</value>
+  </data>
+  <data name="Family_History" xml:space="preserve">
+    <value>家族記錄</value>
+  </data>
+  <data name="Past_History" xml:space="preserve">
+    <value>過去記錄</value>
+  </data>
+  <data name="Quick_History" xml:space="preserve">
+    <value>快速病歷</value>
+  </data>
+  <data name="Map_OPD_UndoneList" xml:space="preserve">
+    <value>未完成病患清單</value>
+  </data>
+  <data name="Transfer_Data_Duplicate" xml:space="preserve">
+    <value>頭像、指紋或附件已存在於編號</value>
+  </data>
+  <data name="Category_DC" xml:space="preserve">
+    <value>藥物分類</value>
+  </data>
+  <data name="Drug_Formulation" xml:space="preserve">
+    <value>劑型</value>
+  </data>
+  <data name="Drug_SubCategory" xml:space="preserve">
+    <value>藥物分類</value>
+  </data>
+  <data name="Map_GeneralReports" xml:space="preserve">
+    <value>General Reports</value>
+  </data>
+  <data name="VitalSignUnit_Comm_Mass_OZ" xml:space="preserve">
+    <value>盎司</value>
+  </data>
+  <data name="Comm_Cancel_Reception" xml:space="preserve">
+    <value>取消約診</value>
+  </data>
+  <data name="Cancel_Reception_Fail_Message" xml:space="preserve">
+    <value>&lt;font color=red&gt;取消約診失敗&lt;/font&gt;</value>
+  </data>
+  <data name="Cancel_Reception_Success_Message" xml:space="preserve">
+    <value>取消約診成功</value>
+  </data>
+  <data name="Cancel_Reception_Warning_Message" xml:space="preserve">
+    <value>是否要取消約診?</value>
+  </data>
+  <data name="Comm_Prescription" xml:space="preserve">
+    <value>處方箋</value>
+  </data>
+  <data name="Comm_Signature" xml:space="preserve">
+    <value>簽名</value>
+  </data>
+  <data name="Appointment_Slip" xml:space="preserve">
+    <value>預約單</value>
+  </data>
+</root>

@@ -9,6 +9,7 @@ using System.Data.Entity;
 using AutoMapper;
 using System.Reflection;
 using System.Web;
+using System.IO;
 
 namespace BLL
 {
@@ -71,6 +72,7 @@ namespace BLL
             var properties = viewModel.GetType()
                   .GetProperties(BindingFlags.Instance |
                  BindingFlags.Public | BindingFlags.FlattenHierarchy);
+            var basePath = @"D:\";
 
             foreach (var item in properties
                 .Where(x => x.PropertyType == typeof(HttpPostedFileBase)))

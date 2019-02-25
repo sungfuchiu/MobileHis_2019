@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace DAL
 {
     public class EFGenericRepository<TEntity> : IRepository<TEntity> where TEntity :class
     {
-        private DbContext Context { get; set; }
+        protected DbContext Context { get; set; }
         public EFGenericRepository(DbContext entityContext)
         {
             Context = entityContext;
@@ -46,7 +47,7 @@ namespace DAL
             {
                 foreach(var property in updateProperties)
                 {
-                    Context.Entry<TEnttiy>(entity).Property(property).IsModified = true;
+                    Context.Entry<TEntity>(entity).Property(property).IsModified = true;
                 }
             }
         }
