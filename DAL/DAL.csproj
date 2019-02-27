@@ -72,6 +72,10 @@
       <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
       <Name>MobileHis.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
+      <Project>{E4BAC5CB-CAB0-4C7E-928C-946302926B65}</Project>
+      <Name>MobileHis.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
