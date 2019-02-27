@@ -56,7 +56,7 @@ namespace BLL
     {
         //private SettingDAL settingDAL = new SettingDAL();
 
-        public bool SetGeneralSetting(sysSettingView settings)
+        public bool SetGeneralSetting(SystemSettingView settings)
         {
             GeneralSettings generalSettings = new GeneralSettings();
             AutoMapper.Mapper.Map(settings, generalSettings);
@@ -127,7 +127,7 @@ namespace BLL
                 return true;
         }
 
-        public void SetInfoSetting(sysInfoSettingView settings)
+        public void SetInfoSetting(InfoSettingView settings)
         {
             InfoSettings infoSettings = new InfoSettings();
             AutoMapper.Mapper.Map(settings, infoSettings);
@@ -155,7 +155,7 @@ namespace BLL
                 dal.SetGroupSetting(SettingTypes.Info, infoSettings);
             }
         }
-        public void SetOtherSetting(sysOtherSettingView settings)
+        public void SetOtherSetting(OtherSettingView settings)
         {
             OtherSettings otherSettings = new OtherSettings();
             AutoMapper.Mapper.Map(settings, otherSettings);
@@ -257,6 +257,27 @@ namespace BLL
             }
             return validShift;
         }
-            
+
+        public SettingView GetAllSetting()
+        {
+            InfoSettings infoSettings = new InfoSettings();
+            GeneralSettings generalSettings = new GeneralSettings();
+            MailSettings mailSettings = new MailSettings();
+            OtherSettings otherSettings = new OtherSettings();
+            using (SettingDAL dal = new SettingDAL())
+            {
+                infoSettings = dal.GetInfoSettings();
+                generalSettings = dal.GetGeneralSettings();
+                mailSettings = dal.GetMailSettings();
+                otherSettings = dal.GetOthersSettings();
+            }
+            var settingView = new SettingView();
+            AutoMapper.Mapper.Map(infoSettings, settingView.InfoSetting);
+            AutoMapper.Mapper.Map(generalSettings, settingView.MailSystemSetting);
+            AutoMapper.Mapper.Map(mailSettings, settingView.OtherSetting);
+            AutoMapper.Mapper.Map(otherSettings, settingView.SystemSetting);
+            return settingView;
+        }
+
     }
 }

@@ -18,7 +18,8 @@ namespace MobileHis.Models.ApiModel
     public struct LoadCalendarResponse
     {
         public List<DeptResponse> depts { get; set; }
-        public string dateFormat { get { return MobileHis.Comm.DateTimeHelper.CultureDateFormat().ToUpper(); } }
+        public string dateFormat { get { return ""; } }
+                    //MobileHis.Comm.DateTimeHelper.CultureDateFormat().ToUpper(); } }
     }
     public struct DeptResponse
     {

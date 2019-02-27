@@ -8,7 +8,14 @@ using System.Web;
 
 namespace MobileHis.Models.ViewModel
 {
-    public class sysSettingView
+    public class SettingView
+    {
+        public SystemSettingView SystemSetting { get; set; }
+        public OtherSettingView OtherSetting { get; set; }
+        public InfoSettingView InfoSetting { get; set; }
+        public MailSettingView MailSystemSetting { get; set; }
+    }
+    public class SystemSettingView
     {
         public string FingerPrint { get; set; }
         public string Pacs { get; set; }
@@ -63,7 +70,7 @@ namespace MobileHis.Models.ViewModel
         public string ApiKey { get; set; }
     }
 
-    public class sysOtherSettingView
+    public class OtherSettingView
     {
         public string UPIS_IP { get; set; }
         public string UPIS_APIKEY { get; set; }
@@ -85,7 +92,7 @@ namespace MobileHis.Models.ViewModel
 
     }
 
-    public class sysInfoSettingView
+    public class InfoSettingView
     {
         //public string Hospital_No { get; set; }
         public string Hospital_Name { get; set; }
@@ -103,7 +110,7 @@ namespace MobileHis.Models.ViewModel
     }
 
 
-    public class sysMailSettingView
+    public class MailSettingView
     {
         public string Mail_UserName { get; set; }
         public string Mail_UserPassword { get; set; }

@@ -8,6 +8,10 @@ using MobileHis.Data;
 
 namespace DAL
 {
+    //public class DatabaseValidationErrors : Exception
+    //{
+    //    public DatabaseValidationErrors()
+    //}
     public class DALBase<T> : IDisposable where T : class
     {
         protected MobileHISEntities Entities;
@@ -55,24 +59,13 @@ namespace DAL
             IQueryable<T> query = Entities.Set<T>().AsNoTracking();
             return query;
         }
-        public virtual bool IsValid()
+        public virtual void Add(T entity)
         {
-            return true;
-        }
-        public virtual bool Add(T entity)
-        {
-            if (!IsValid())
-                return false;
             Entities.Set<T>().Add(entity);
-            return true;
         }
         public virtual void Edit(T entity)
         {
-            if (!IsValid())
-                return false;
             Entities.Entry(entity).State = EntityState.Modified;
-            return true;
-            //db.Entry(entity).State = System.Data.EntityState.Modified;
         }
         public virtual void Delete(IQueryable<T> deleteRange)
         {
@@ -97,7 +90,8 @@ namespace DAL
             }
             else
             {
-                throw new DatabaseValidationErrors(errors);
+                //throw new DatabaseValidationErrors(errors);
+                throw new Exception("DBError");
             }
         }
         public virtual void Dispose()

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Web;
-using MobileHis.Misc;
+//using MobileHis.Misc;
 
 namespace MobileHis.Data
 {
@@ -225,13 +225,13 @@ namespace MobileHis.Data
                 get => _imageFileBase;
                 set
                 {
-                    if (value != null)
-                    {
-                        _imageFileBase = value;
-                        ImageFileName = value.FileName;
-                        var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
-                        ImageFileName = s.Write(ImageFileName, value);
-                    }
+                    //if (value != null)
+                    //{
+                    //    _imageFileBase = value;
+                    //    ImageFileName = value.FileName;
+                    //    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
+                    //    ImageFileName = s.Write(ImageFileName, value);
+                    //}
                 }
             }
             public string ImageFileName { get; set; }
