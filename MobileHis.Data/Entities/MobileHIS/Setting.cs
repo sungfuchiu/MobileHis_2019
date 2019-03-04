@@ -80,7 +80,22 @@ namespace MobileHis.Data
         }
     }
     [NotMapped]
-    public class GeneralSettings
+    public class DefaultSettings
+    {
+        public string FingerPrint { get; set; }
+        public string Pacs { get; set; }
+        public string ConsultationFee { get; set; }
+        public string BK_img { get; set; }
+        public string Partner1 { get; set; }
+        public string Official_Banner_Img { get; set; }
+        public string Official_Logo_Img { get; set; }
+        public string Opd_Shift_Morning { get; set; }
+        public string Opd_Shift_Afternoon { get; set; }
+        public string Opd_Shift_Night { get; set; }
+        public string ApiKey { get; set; }
+    }
+    [NotMapped]
+    public class DefaultSetting
     {
         private ShiftTime morningShift;
         private ShiftTime afternoonShift;
@@ -295,7 +310,8 @@ namespace MobileHis.Data
     [NotMapped]
     public class InfoSettings
     {
-        public HttpRequestBase EnvironmentFile { get; set; }
+        //public HttpRequestBase EnvironmentFile { get; set; }
+        public string Hospital_No { get; set; }
         public string Hospital_Name { get; set; }
         public string Hospital_Tel { get; set; }
         public string Hospital_Address { get; set; }
@@ -320,8 +336,8 @@ namespace MobileHis.Data
     [NotMapped]
     public class OtherSettings
     {
-        public string UPIS_IP { get; set; }
         public string UPIS_APIKEY { get; set; }
+        public string UPIS_IP { get; set; }
         public string SymptomShot { get; set; }
         public string SymptomShotIP { get; set; }
         public string SymptomShot_3DesKey { get; set; }
@@ -332,8 +348,8 @@ namespace MobileHis.Data
         public string SmartHealth_3DesKey { get; set; }
         public string SmartHealth_3DesIv { get; set; }
 
-        public string Owl_IP { get; set; }
         public string Owl_APIKEY { get; set; }
+        public string Owl_IP { get; set; }
         public string Owl_3DesKey { get; set; }
         public string Owl_3DesIv { get; set; }
         public string Lab_IP { get; set; }

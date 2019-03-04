@@ -10,10 +10,10 @@ namespace MobileHis.Models.ViewModel
 {
     public class SettingView
     {
-        public SystemSettingView SystemSetting { get; set; }
-        public OtherSettingView OtherSetting { get; set; }
-        public InfoSettingView InfoSetting { get; set; }
-        public MailSettingView MailSystemSetting { get; set; }
+        public SystemSettingView SystemSettingView { get; set; }
+        public OtherSettingView OtherSettingView { get; set; }
+        public InfoSettingView InfoSettingView { get; set; }
+        public MailSettingView MailSettingView { get; set; }
     }
     public class SystemSettingView
     {

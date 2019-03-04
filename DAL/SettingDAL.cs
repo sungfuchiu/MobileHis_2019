@@ -30,9 +30,9 @@ namespace DAL
         //    }
         //    return settings;
         //}
-        public GeneralSettings GetGeneralSettings()
+        public DefaultSettings GetDefaultSettings()
         {
-            return (GeneralSettings)GetGroupSetting(SettingTypes.Default, new GeneralSettings());
+            return (DefaultSettings)GetGroupSetting(SettingTypes.Default, new DefaultSettings());
         }
         public InfoSettings GetInfoSettings()
         {

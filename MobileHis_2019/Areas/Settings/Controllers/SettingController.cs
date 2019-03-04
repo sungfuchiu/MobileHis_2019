@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
+using MobileHis.Models.ViewModel;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
@@ -14,7 +15,8 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             SettingBLL bll = new SettingBLL();
 
-            return View(bll.GetAllSetting());
+            SettingView settingView = bll.GetAllSetting();
+            return View(settingView);
         }
     }
 }
