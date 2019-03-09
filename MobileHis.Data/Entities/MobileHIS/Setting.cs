@@ -79,8 +79,149 @@ namespace MobileHis.Data
             }
         }
     }
+
     [NotMapped]
     public class GeneralSettings
+    {
+        //private ShiftTime morningShift;
+        //private ShiftTime afternoonShift;
+        //private ShiftTime nightShift;
+        //private ImageFile _BKImage;
+        //private ImageFile bannerImage;
+        //private ImageFile logoImage;
+        //private HttpRequestBase partnerFile;
+        public string FingerPrint { get; set; }
+        public string Pacs { get; set; }
+        public string ConsultationFee { get; set; }
+        //public HttpPostedFileBase BK_img_file { get; set; }
+        //public HttpPostedFileBase Official_Banner_Img_file { get; set; }
+        //public HttpPostedFileBase Official_Logo_Img_file { get; set; }
+        public string BK_img { get; set; }
+        public string Official_Banner_Img { get; set; }
+        public string Official_Logo_Img { get; set; }
+        //public string Opd_Shift_Morning_Start { get; set; }
+        //public string Opd_Shift_Morning_End { get; set; }
+        //public string Opd_Shift_Afternoon_Start { get; set; }
+        //public string Opd_Shift_Afternoon_End { get; set; }
+        //public string Opd_Shift_Night_Start { get; set; }
+        //public string Opd_Shift_Night_End { get; set; }
+        public string Opd_Shift_Morning { get; set; }
+        public string Opd_Shift_Afternoon { get; set; }
+        public string Opd_Shift_Night { get; set; }
+        //public string Partner_Img { get; set; }
+        public string ApiKey { get; set; }
+        //public string PartnerFile { get; set; }
+        //public HttpRequestBase PartnerFile
+        //{
+        //    get; set;
+        //    //get
+        //    //{
+        //    //    return partnerFile;
+        //    //}
+        //    //set
+        //    //{
+        //    //    if ( value.Files["Partner_file"] != null && value.Files["Partner_file"].ContentLength > 0)
+        //    //    {
+        //    //        var files = value.Files.GetMultiple("Partner_file");
+
+        //    //        using (SettingDAL settingDAL = new SettingDAL())
+        //    //        {
+        //    //            var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
+        //    //            var cnt = 0;
+        //    //            foreach (var file in files)
+        //    //            {
+        //    //                if (file != null)
+        //    //                {
+        //    //                    var fileName = new System.IO.FileInfo(file.FileName).Name;
+        //    //                    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+        //    //                    fileName = s.Write(fileName, file);
+        //    //                    partnerImage[cnt].Value = fileName;
+        //    //                    settingDAL.Edit(partnerImage[cnt]);
+        //    //                    cnt++;
+
+        //    //                }
+        //    //            }
+        //    //            settingDAL.Save();
+        //    //        }
+        //    //    }
+        //    //    partnerFile = value;
+        //    //}
+        //}
+        //public ImageFile BKImage
+        //{
+        //    get
+        //    {
+        //        _BKImage.ColumnName = "BK_img_file";
+        //        return _BKImage;
+        //    }
+        //    set
+        //    {
+        //        _BKImage = value;
+        //    }
+        //}
+        //public ImageFile BannerImage
+        //{
+        //    get
+        //    {
+        //        bannerImage.ColumnName = "Official_Banner_Img_file";
+        //        return bannerImage;
+        //    }
+        //    set
+        //    {
+        //        bannerImage = value;
+        //    }
+        //}
+        //public ImageFile LogoImage
+        //{
+        //    get
+        //    {
+        //        logoImage.ColumnName = "Official_Logo_Img_file";
+        //        return logoImage;
+        //    }
+        //    set
+        //    {
+        //        logoImage = value;
+        //    }
+        //}
+        //public ShiftTime MorningShift
+        //{
+        //    get
+        //    {
+        //        morningShift.ColumnName = "Opd_Shift_Morning";
+        //        return morningShift;
+        //    }
+        //    set
+        //    {
+        //        morningShift = value;
+        //    }
+        //}
+        //public ShiftTime AfternoonShift
+        //{
+        //    get
+        //    {
+        //        afternoonShift.ColumnName = "Opd_Shift_Afternoon";
+        //        return afternoonShift;
+        //    }
+        //    set
+        //    {
+        //        afternoonShift = value;
+        //    }
+        //}
+        //public ShiftTime NightShift
+        //{
+        //    get
+        //    {
+        //        nightShift.ColumnName = "Opd_Shift_Night";
+        //        return nightShift;
+        //    }
+        //    set
+        //    {
+        //        nightShift = value;
+        //    }
+        //}
+    }
+    [NotMapped]
+    public class GeneralSetting
     {
         private ShiftTime morningShift;
         private ShiftTime afternoonShift;
@@ -295,7 +436,7 @@ namespace MobileHis.Data
     [NotMapped]
     public class InfoSettings
     {
-        public HttpRequestBase EnvironmentFile { get; set; }
+        //public HttpRequestBase EnvironmentFile { get; set; }
         public string Hospital_Name { get; set; }
         public string Hospital_Tel { get; set; }
         public string Hospital_Address { get; set; }

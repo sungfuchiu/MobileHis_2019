@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using AutoMapper;
 using DAL;
 using MobileHis.Data;
 using MobileHis.Misc;
@@ -272,10 +273,30 @@ namespace BLL
                 otherSettings = dal.GetOthersSettings();
             }
             var settingView = new SettingView();
-            AutoMapper.Mapper.Map(infoSettings, settingView.InfoSetting);
-            AutoMapper.Mapper.Map(generalSettings, settingView.MailSystemSetting);
-            AutoMapper.Mapper.Map(mailSettings, settingView.OtherSetting);
-            AutoMapper.Mapper.Map(otherSettings, settingView.SystemSetting);
+            settingView.InfoSetting = new InfoSettingView();
+            settingView.MailSystemSetting = new MailSettingView();
+            settingView.OtherSetting = new OtherSettingView();
+            settingView.SystemSetting = new SystemSettingView();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<InfoSettings, InfoSettingView>();
+            });
+            IMapper mapper = config.CreateMapper();
+            mapper.Map(infoSettings, settingView.InfoSetting);
+            config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<GeneralSettings, SystemSettingView>();
+            });
+            mapper = config.CreateMapper();
+            mapper.Map(generalSettings, settingView.SystemSetting);
+            config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<MailSettings, MailSettingView>();
+            });
+            mapper = config.CreateMapper();
+            mapper.Map(mailSettings, settingView.MailSystemSetting);
+            config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<OtherSettings, OtherSettingView>();
+            });
+            mapper = config.CreateMapper();
+            mapper.Map(otherSettings, settingView.OtherSetting);
             return settingView;
         }
 

@@ -1,4 +1,4 @@
-﻿@model MobileHis.Models.Areas.Sys.ViewModels.SettingViewModel
+﻿@model MobileHis.Models.ViewModel.SettingView
 
 @{
     ViewBag.Title = "View";
@@ -6,4 +6,21 @@
 
 <h2>View</h2>
 
-<div class=""
+<div class="row">
+    <div class="col-md-6">
+        @Html.TextBoxFor(Model => Model.SystemSetting.ApiKey,new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.BK_img, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.ConsultationFee, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.FingerPrint, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Partner_Img, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Pacs, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Official_Banner_Img, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Official_Logo_Img, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Opd_Shift_Morning_Start, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Opd_Shift_Morning_End, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Opd_Shift_Afternoon_Start, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Opd_Shift_Afternoon_End, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Opd_Shift_Night_Start, new { @class = "form-control" })
+        @Html.TextBoxFor(Model => Model.SystemSetting.Opd_Shift_Night_End, new { @class = "form-control" })
+    </div>
+</div>

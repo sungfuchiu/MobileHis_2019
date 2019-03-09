@@ -18,7 +18,7 @@ namespace BLL
     public class SettingService : GenericService<Setting>, ISettingService
     {
         public SettingService(IUnitOfWork unitOfWork) : base(unitOfWork){ }
-        public bool SetGeneralSetting(sysSettingView settings)
+        public bool SetGeneralSetting(SystemSettingView settings)
         {
             var entity = db.Repository<Setting>().Read(x => x.ParentSetting.SettingName == SettingType.Default);
 
@@ -40,22 +40,6 @@ namespace BLL
                     settings.Official_Logo_Img_file.FileName, settings.Official_Logo_Img_file); ;
             }
 
-            #region shift
-            if ((settings.Opd_Shift_Morning_Start != null) && (settings.Opd_Shift_Morning_End != null))
-            {
-                settings.Opd_Shift_Morning = settings.Opd_Shift_Morning_Start + "-" + settings.Opd_Shift_Morning_End;
-            }
-
-            if ((settings.Opd_Shift_Afternoon_Start != null) && (settings.Opd_Shift_Afternoon_End != null))
-            {
-                settings.Opd_Shift_Afternoon = settings.Opd_Shift_Afternoon_Start + "-" + settings.Opd_Shift_Afternoon_End;
-            }
-
-            if ((settings.Opd_Shift_Night_Start != null) && (settings.Opd_Shift_Night_End != null))
-            {
-                settings.Opd_Shift_Night = settings.Opd_Shift_Night_Start + "-" + settings.Opd_Shift_Night_End;
-            }
-            #endregion
             UpdateAll(SettingTypes.Default, settings);
             
             //for mutli file upload
@@ -93,23 +77,23 @@ namespace BLL
 
         public bool SetInfoSetting(InfoSettings settings)
         {
-            if (settings.EnvironmentFile.Files["Environment_file"] != null && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
-            {
-                var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
-                foreach (var file in files)
-                {
-                    if (file != null)
-                    {
-                        var fileName = new System.IO.FileInfo(file.FileName).Name;
-                        var s = MobileHis.Misc.Storage.GetStorage(StorageScope.HospitalEnvironment);
+            //if (settings.EnvironmentFile.Files["Environment_file"] != null && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
+            //{
+            //    var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
+            //    foreach (var file in files)
+            //    {
+            //        if (file != null)
+            //        {
+            //            var fileName = new System.IO.FileInfo(file.FileName).Name;
+            //            var s = MobileHis.Misc.Storage.GetStorage(StorageScope.HospitalEnvironment);
 
-                        fileName = s.Write(fileName, file);
-                        if (!string.IsNullOrEmpty(settings.Hospital_Environment)) settings.Hospital_Environment += ";";
-                        settings.Hospital_Environment += fileName;
+            //            fileName = s.Write(fileName, file);
+            //            if (!string.IsNullOrEmpty(settings.Hospital_Environment)) settings.Hospital_Environment += ";";
+            //            settings.Hospital_Environment += fileName;
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
             Update(SettingTypes.Info, settings);
             return true;
         }
