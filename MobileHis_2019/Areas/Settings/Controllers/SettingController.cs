@@ -14,8 +14,9 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         public ActionResult Index()
         {
             SettingBLL bll = new SettingBLL();
-            SettingView view = bll.GetAllSetting();
-            return View(bll.GetAllSetting());
+
+            SettingView settingView = bll.GetAllSetting();
+            return View(settingView);
         }
     }
 }

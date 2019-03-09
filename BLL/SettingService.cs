@@ -10,6 +10,7 @@ using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis.Misc;
 using System.Web;
 using MobileHis.Models.ViewModel;
+using DAL;
 using AutoMapper;
 
 namespace BLL
@@ -18,53 +19,59 @@ namespace BLL
     public class SettingService : GenericService<Setting>, ISettingService
     {
         public SettingService(IUnitOfWork unitOfWork) : base(unitOfWork){ }
-        public bool SetGeneralSetting(SystemSettingView settings)
+        public bool SetGeneralSetting(SystemSettingView settingView)
         {
-            var entity = db.Repository<Setting>().Read(x => x.ParentSetting.SettingName == SettingType.Default);
+            //var entity = db.Repository<Setting>().Read(x => x.ParentSetting.SettingName == SettingType.Default);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<DefaultSettings, SystemSettingView>());
+            var mapper = config.CreateMapper();
+            var settings = mapper.Map<DefaultSettings>(settingView);
 
-            AutoMapper.Mapper.Map(settings, entity);
-
-            db.Repository<Setting>().Update(entity);
-            if (settings.BK_img_file != null)
+            //db.Repository<Setting>().Update(entity);
+            if (settingView.BK_img_file != null)
             {
-                settings.BK_img = WriteFile(settings.BK_img_file.FileName, settings.BK_img_file); ;
+                settings.BK_img = WriteFile(settingView.BK_img, settingView.BK_img_file); ;
             }
-            if (settings.Official_Banner_Img_file != null)
+            if (settingView.Official_Banner_Img_file != null)
             {
                 settings.Official_Banner_Img = WriteFile(
-                    settings.Official_Banner_Img_file.FileName, settings.Official_Banner_Img_file); ;
+                    settingView.Official_Banner_Img, settingView.Official_Banner_Img_file);
             }
-            if (settings.Official_Logo_Img_file != null)
+            if (settingView.Official_Logo_Img_file != null)
             {
                 settings.Official_Logo_Img = WriteFile(
-                    settings.Official_Logo_Img_file.FileName, settings.Official_Logo_Img_file); ;
+                    settingView.Official_Logo_Img, settingView.Official_Logo_Img_file); ;
+            }
+            
+            //UpdateAll(SettingTypes.Default, settings);
+           
+            using (SettingDAL dal = new SettingDAL())
+            {
+                dal.SetGroupSetting(SettingTypes.Default, settings);
             }
 
-            UpdateAll(SettingTypes.Default, settings);
-            
-            //for mutli file upload
-            //if (settings.PartnerFile.Files["Partner_file"] != null && settings.PartnerFile.Files["Partner_file"].ContentLength > 0)
-            //{
-            //    var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
+                //for mutli file upload
+                //if (settings.PartnerFile.Files["Partner_file"] != null && settings.PartnerFile.Files["Partner_file"].ContentLength > 0)
+                //{
+                //    var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
 
-            //        var partnerImage = GetEmptyPartnerImgSetting();
-            //        var cnt = 0;
-            //        foreach (var file in files)
-            //        {
-            //            if (file != null)
-            //            {
-            //                var fileName = new System.IO.FileInfo(file.FileName).Name;
-            //                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-            //                fileName = s.Write(fileName, file);
-            //                partnerImage[cnt].Value = fileName;
-            //                db.Repository<Setting>().Update(partnerImage[cnt]);
-            //                cnt++;
+                //        var partnerImage = GetEmptyPartnerImgSetting();
+                //        var cnt = 0;
+                //        foreach (var file in files)
+                //        {
+                //            if (file != null)
+                //            {
+                //                var fileName = new System.IO.FileInfo(file.FileName).Name;
+                //                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+                //                fileName = s.Write(fileName, file);
+                //                partnerImage[cnt].Value = fileName;
+                //                db.Repository<Setting>().Update(partnerImage[cnt]);
+                //                cnt++;
 
-            //            }
-            //        }
-            //        db.Save();
-            //}
-            return true;
+                //            }
+                //        }
+                //        db.Save();
+                //}
+                return true;
         }
         private string WriteFile(string fileName, HttpPostedFileBase file)
         {
@@ -75,25 +82,25 @@ namespace BLL
             return fileName;
         }
 
-        public bool SetInfoSetting(InfoSettings settings)
+        public bool SetInfoSetting(InfoSettingView settings)
         {
-            //if (settings.EnvironmentFile.Files["Environment_file"] != null && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
-            //{
-            //    var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
-            //    foreach (var file in files)
-            //    {
-            //        if (file != null)
-            //        {
-            //            var fileName = new System.IO.FileInfo(file.FileName).Name;
-            //            var s = MobileHis.Misc.Storage.GetStorage(StorageScope.HospitalEnvironment);
+            if (settings.EnvironmentFile.Files["Environment_file"] != null && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
+            {
+                var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
+                foreach (var file in files)
+                {
+                    if (file != null)
+                    {
+                        var fileName = new System.IO.FileInfo(file.FileName).Name;
+                        var s = MobileHis.Misc.Storage.GetStorage(StorageScope.HospitalEnvironment);
 
-            //            fileName = s.Write(fileName, file);
-            //            if (!string.IsNullOrEmpty(settings.Hospital_Environment)) settings.Hospital_Environment += ";";
-            //            settings.Hospital_Environment += fileName;
+                        fileName = s.Write(fileName, file);
+                        if (!string.IsNullOrEmpty(settings.Hospital_Environment)) settings.Hospital_Environment += ";";
+                        settings.Hospital_Environment += fileName;
 
-            //        }
-            //    }
-            //}
+                    }
+                }
+            }
             Update(SettingTypes.Info, settings);
             return true;
         }
@@ -271,6 +278,24 @@ namespace BLL
                     a => a.SettingName == settingName
                     && a.ParentSetting.SettingName == settingType.ToString());
         }
+        //public SettingView GetAllSettings()
+        //{
+        //    SettingView settingView = new SettingView();
+        //    GeneralSettings general = new GeneralSettings();
+        //    InfoSettings info = new InfoSettings();
+        //    MailSettings mail = new MailSettings();
+        //    OtherSettings other = new OtherSettings();
+        //    using (SettingDAL dal = new SettingDAL())
+        //    {
+        //        general = dal.GetGeneralSettings();
+        //        info = dal.GetInfoSettings();
+        //        mail = dal.GetMailSettings();
+        //        other = dal.GetOthersSettings();
+        //    }
+        //    var config = new MapperConfiguration(cfg => cfg.CreateMap<GeneralSettings, SystemSettingView>());
+        //    var mapper = config.CreateMapper();
+        //    var settings = mapper.Map<GeneralSettings>(settingView);
+        //}
         public List<Setting> GetEmptyPartnerImgSetting()
         {
             return db.Repository<Setting>().Reads()

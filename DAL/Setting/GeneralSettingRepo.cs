@@ -17,12 +17,12 @@ namespace DAL
             Context = entityContext;
         }
 
-        public GeneralSettings GetGeneralSetting()
+        public DefaultSettings GetGeneralSetting()
         {
             var generalSettings = Context.Set<Setting>()
                 .Where(a => a.ParentSetting.SettingName == SettingType.Default)
                 .ToDictionary(o => o.SettingName, o => o.Value);
-            GeneralSettings setting = new GeneralSettings();
+            DefaultSettings setting = new DefaultSettings();
             foreach(var item in GetType().GetProperties())
             {
                 PropertyInfo propertyInfo = setting.GetType().GetProperty(item.Name);
@@ -30,7 +30,7 @@ namespace DAL
             }
             return setting;
         }
-        public void SetGeneralSetting(GeneralSettings generalSettings)
+        public void SetGeneralSetting(DefaultSettings generalSettings)
         {
 
             //foreach (var prop in data.GetType().GetProperties())

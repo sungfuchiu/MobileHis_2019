@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using AutoMapper;
 using DAL;
 using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.ViewModel;
+using AutoMapper;
 
 namespace BLL
 {
@@ -59,7 +59,7 @@ namespace BLL
 
         public bool SetGeneralSetting(SystemSettingView settings)
         {
-            GeneralSettings generalSettings = new GeneralSettings();
+            DefaultSettings generalSettings = new DefaultSettings();
             AutoMapper.Mapper.Map(settings, generalSettings);
             if (settings.BK_img_file != null)
             {
@@ -262,41 +262,37 @@ namespace BLL
         public SettingView GetAllSetting()
         {
             InfoSettings infoSettings = new InfoSettings();
-            GeneralSettings generalSettings = new GeneralSettings();
+            DefaultSettings generalSettings = new DefaultSettings();
             MailSettings mailSettings = new MailSettings();
             OtherSettings otherSettings = new OtherSettings();
             using (SettingDAL dal = new SettingDAL())
             {
                 infoSettings = dal.GetInfoSettings();
-                generalSettings = dal.GetGeneralSettings();
+                generalSettings = dal.GetDefaultSettings();
                 mailSettings = dal.GetMailSettings();
                 otherSettings = dal.GetOthersSettings();
             }
             var settingView = new SettingView();
-            settingView.InfoSetting = new InfoSettingView();
-            settingView.MailSystemSetting = new MailSettingView();
-            settingView.OtherSetting = new OtherSettingView();
-            settingView.SystemSetting = new SystemSettingView();
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<InfoSettings, InfoSettingView>();
-            });
-            IMapper mapper = config.CreateMapper();
-            mapper.Map(infoSettings, settingView.InfoSetting);
-            config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<GeneralSettings, SystemSettingView>();
-            });
+
+            settingView.InfoSettingView = new InfoSettingView();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<InfoSettings, InfoSettingView>());
+            var mapper = config.CreateMapper();
+            settingView.InfoSettingView = mapper.Map<InfoSettingView>(infoSettings);
+
+            settingView.SystemSettingView = new SystemSettingView();
+            config = new MapperConfiguration(cfg => cfg.CreateMap<DefaultSettings, SystemSettingView>());
             mapper = config.CreateMapper();
-            mapper.Map(generalSettings, settingView.SystemSetting);
-            config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<MailSettings, MailSettingView>();
-            });
+            settingView.SystemSettingView = mapper.Map<SystemSettingView>(generalSettings);
+
+            settingView.MailSettingView = new MailSettingView();
+            config = new MapperConfiguration(cfg => cfg.CreateMap<MailSettings, MailSettingView>());
             mapper = config.CreateMapper();
-            mapper.Map(mailSettings, settingView.MailSystemSetting);
-            config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<OtherSettings, OtherSettingView>();
-            });
+            settingView.MailSettingView = mapper.Map<MailSettingView>(mailSettings);
+
+            settingView.OtherSettingView = new OtherSettingView();
+            config = new MapperConfiguration(cfg => cfg.CreateMap<OtherSettings, OtherSettingView>());
             mapper = config.CreateMapper();
-            mapper.Map(otherSettings, settingView.OtherSetting);
+            settingView.OtherSettingView = mapper.Map<OtherSettingView>(otherSettings);
             return settingView;
         }
 
