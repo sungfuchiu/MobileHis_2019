@@ -11,7 +11,7 @@ namespace MobileHis.Models.ViewModel
     public class SettingView
     {
         public SystemSettingView SystemSettingView { get; set; }
-        public OtherSettingView OtherSettingView { get; set; }
+        public OthersSettingView OthersSettingView { get; set; }
         public InfoSettingView InfoSettingView { get; set; }
         public MailSettingView MailSettingView { get; set; }
     }
@@ -23,7 +23,7 @@ namespace MobileHis.Models.ViewModel
         public HttpPostedFileBase BK_img_file { get; set; }
         public HttpPostedFileBase Official_Banner_Img_file { get; set; }
         public HttpPostedFileBase Official_Logo_Img_file { get; set; }
-        public HttpRequestBase PartnerFile { get; set; }
+        public HttpPostedFileBase[] PartnerFile { get; set; }
         public string BK_img { get; set; }
         public string Official_Banner_Img { get; set; }
         public string Official_Logo_Img { get; set; }
@@ -34,6 +34,7 @@ namespace MobileHis.Models.ViewModel
         public string Opd_Shift_Afternoon_End { get; set; }
         public string Opd_Shift_Night_Start { get; set; }
         public string Opd_Shift_Night_End { get; set; }
+        [Display(Name = "Morning")]
         public string Opd_Shift_Morning
         {
             get
@@ -45,6 +46,7 @@ namespace MobileHis.Models.ViewModel
                     return "";
             }
         }
+        [Display(Name = "Afternoon")]
         public string Opd_Shift_Afternoon
         {
             get
@@ -56,6 +58,7 @@ namespace MobileHis.Models.ViewModel
                     return "";
             }
         }
+        [Display(Name = "Night")]
         public string Opd_Shift_Night
         {
             get
@@ -70,7 +73,7 @@ namespace MobileHis.Models.ViewModel
         public string ApiKey { get; set; }
     }
 
-    public class OtherSettingView
+    public class OthersSettingView
     {
         public string UPIS_IP { get; set; }
         public string UPIS_APIKEY { get; set; }

@@ -8,18 +8,91 @@
 
 <div class="row">
     <div class="col-md-6">
-        @Html.TextBoxFor(Model => Model.SystemSettingView.FingerPrint, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Pacs, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.ConsultationFee, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.ApiKey, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.BK_img, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Official_Logo_Img, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Partner_Img, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Night_Start, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Night_End, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon_Start, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon_End, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Morning_Start, new { @class = "form-control" })
-        @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Morning_End, new { @class = "form-control" })
+        <h3>System</h3>
+        @using (Html.BeginForm("DefaultSetting", "Setting", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(Model => Model.SystemSettingView.FingerPrint)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.FingerPrint, new { @class = "form-control" })
+            @Html.LabelFor(Model => Model.SystemSettingView.Pacs)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Pacs, new { @class = "form-control" })
+            @Html.LabelFor(Model => Model.SystemSettingView.ConsultationFee)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.ConsultationFee, new { @class = "form-control" })
+            @Html.LabelFor(Model => Model.SystemSettingView.ApiKey)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.ApiKey, new { @class = "form-control" })
+            @Html.LabelFor(Model => Model.SystemSettingView.BK_img_file)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.BK_img_file, new { @class = "form-control", @type = "file" })
+            @Html.LabelFor(Model => Model.SystemSettingView.Official_Logo_Img_file)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Official_Logo_Img_file, new { @class = "form-control", @type = "file" })
+            @Html.LabelFor(Model => Model.SystemSettingView.Official_Banner_Img_file)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Official_Banner_Img_file, new { @class = "form-control", @type = "file" })
+            @Html.LabelFor(Model => Model.SystemSettingView.PartnerFile)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.PartnerFile, new { @class = "form-control", @type = "file", @multiple = "multiple" })
+            @Html.LabelFor(Model => Model.SystemSettingView.Opd_Shift_Morning)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Morning_Start, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Morning_End, new { @class = "form-control" })
+            @Html.LabelFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon_Start, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon_End, new { @class = "form-control" })
+            @Html.LabelFor(Model => Model.SystemSettingView.Opd_Shift_Night)
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Night_Start, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Night_End, new { @class = "form-control" })
+            <button class="btn btn-success">submit</button>
+        }
+    </div>
+    <div class="col-md-6">
+        <h3>Info</h3>
+        @using (Html.BeginForm("InfoSetting", "Setting", FormMethod.Post))
+        {
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_About, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Address, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Contact_Name, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Contact_Tel, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Environment, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_lat, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_lng, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Name, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Slogan, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.Hospital_Tel, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.InfoSettingView.EnvironmentFile, new { @class = "form-control" })
+            <button class="btn btn-success">submit</button>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Mail</h3>
+        @using (Html.BeginForm("MailSetting", "Setting", FormMethod.Post))
+        {
+            @Html.TextBoxFor(Model => Model.MailSettingView.Mail_ContactBccMail, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MailSettingView.Mail_ContactMail, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MailSettingView.Mail_Port, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MailSettingView.Mail_Url, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MailSettingView.Mail_UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MailSettingView.Mail_UserPassword, new { @class = "form-control" })
+            <button class="btn btn-success">submit</button>
+        }
+    </div>
+    <div class="col-md-6">
+        <h3>Other</h3>
+        @using (Html.BeginForm("OtherSetting", "Setting", FormMethod.Post))
+        {
+            @Html.TextBoxFor(Model => Model.OthersSettingView.Lab_IP, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.Owl_3DesIv, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.Owl_3DesKey, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.Owl_APIKEY, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.Owl_IP, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SmartHealth_3DesIv, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SmartHealth_3DesKey, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SmartHealth_APIKEY, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SmartHealth_IP, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SmartHealth_Register_IP, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SymptomShot, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SymptomShotIP, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SymptomShot_3DesIv, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.SymptomShot_3DesKey, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.UPIS_APIKEY, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.OthersSettingView.UPIS_IP, new { @class = "form-control" })
+            <button class="btn btn-success">submit</button>
+        }
     </div>
 </div>

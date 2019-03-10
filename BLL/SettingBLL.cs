@@ -60,7 +60,11 @@ namespace BLL
         public bool SetGeneralSetting(SystemSettingView settings)
         {
             DefaultSettings generalSettings = new DefaultSettings();
-            AutoMapper.Mapper.Map(settings, generalSettings);
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<SystemSettingView, DefaultSettings>());
+            var mapper = config.CreateMapper();
+            generalSettings = mapper.Map<DefaultSettings>(settings);
+
             if (settings.BK_img_file != null)
             {
                 var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
@@ -97,41 +101,63 @@ namespace BLL
             //#endregion
             //Update(SettingTypes.Default, settings);
             //for mutli file upload
-            if (settings.PartnerFile.Files["Partner_file"] != null && settings.PartnerFile.Files["Partner_file"].ContentLength > 0)
-                {
-                    var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
-
-                    using (SettingDAL settingDAL = new SettingDAL())
-                    {
-                        var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
-                        var cnt = 0;
-                        foreach (var file in files)
-                        {
-                            if (file != null)
-                            {
-                                var fileName = new System.IO.FileInfo(file.FileName).Name;
-                                var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-                                fileName = s.Write(fileName, file);
-                                partnerImage[cnt].Value = fileName;
-                                settingDAL.Edit(partnerImage[cnt]);
-                                cnt++;
-
-                            }
-                        }
-                        settingDAL.Save();
-                    }
-                }
-            using (SettingDAL settingDAL = new SettingDAL())
+            if (settings.PartnerFile != null && settings.PartnerFile[0].ContentLength > 0)
             {
+                //var files = settings.PartnerFile.GetMultiple("Partner_file");
 
+                using (SettingDAL settingDAL = new SettingDAL())
+                {
+                    var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
+                    var cnt = 0;
+                    foreach (var file in settings.PartnerFile)
+                    {
+                        if (file != null)
+                        {
+                            var fileName = new System.IO.FileInfo(file.FileName).Name;
+                            var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+                            fileName = s.Write(fileName, file);
+                            partnerImage[cnt].Value = fileName;
+                            settingDAL.Edit(partnerImage[cnt]);
+                            cnt++;
+
+                        }
+                    }
+                    settingDAL.Save();
+                }
             }
+            //if (settings.PartnerFile.Files["Partner_file"] != null && settings.PartnerFile.Files["Partner_file"].ContentLength > 0)
+            //    {
+            //        var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
+
+            //        using (SettingDAL settingDAL = new SettingDAL())
+            //        {
+            //            var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
+            //            var cnt = 0;
+            //            foreach (var file in files)
+            //            {
+            //                if (file != null)
+            //                {
+            //                    var fileName = new System.IO.FileInfo(file.FileName).Name;
+            //                    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+            //                    fileName = s.Write(fileName, file);
+            //                    partnerImage[cnt].Value = fileName;
+            //                    settingDAL.Edit(partnerImage[cnt]);
+            //                    cnt++;
+
+            //                }
+            //            }
+            //            settingDAL.Save();
+            //        }
+            //    }
                 return true;
         }
 
         public void SetInfoSetting(InfoSettingView settings)
         {
             InfoSettings infoSettings = new InfoSettings();
-            AutoMapper.Mapper.Map(settings, infoSettings);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<InfoSettingView, InfoSettings>());
+            var mapper = config.CreateMapper();
+            infoSettings = mapper.Map<InfoSettings>(settings);
             if (settings.EnvironmentFile.Files["Environment_file"] != null 
                 && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
             {
@@ -156,19 +182,23 @@ namespace BLL
                 dal.SetGroupSetting(SettingTypes.Info, infoSettings);
             }
         }
-        public void SetOtherSetting(OtherSettingView settings)
+        public void SetOthersSetting(OthersSettingView settings)
         {
             OtherSettings otherSettings = new OtherSettings();
-            AutoMapper.Mapper.Map(settings, otherSettings);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<OthersSettingView, OtherSettings>());
+            var mapper = config.CreateMapper();
+            otherSettings = mapper.Map<OtherSettings>(settings);
             using (SettingDAL dal = new SettingDAL())
             {
                 dal.SetGroupSetting(SettingTypes.Other, settings);
             }
         }
-        public void SetMailSetting(MailSettings settings)
+        public void SetMailSetting(MailSettingView settings)
         {
             MailSettings mailSettings = new MailSettings();
-            AutoMapper.Mapper.Map(settings, mailSettings);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<MailSettingView, MailSettings>());
+            var mapper = config.CreateMapper();
+            mailSettings = mapper.Map<MailSettings>(settings);
             using (SettingDAL dal = new SettingDAL())
             {
                 dal.SetGroupSetting(SettingTypes.Mail, settings);
@@ -289,11 +319,54 @@ namespace BLL
             mapper = config.CreateMapper();
             settingView.MailSettingView = mapper.Map<MailSettingView>(mailSettings);
 
-            settingView.OtherSettingView = new OtherSettingView();
-            config = new MapperConfiguration(cfg => cfg.CreateMap<OtherSettings, OtherSettingView>());
+            settingView.OthersSettingView = new OthersSettingView();
+            config = new MapperConfiguration(cfg => cfg.CreateMap<OtherSettings, OthersSettingView>());
             mapper = config.CreateMapper();
-            settingView.OtherSettingView = mapper.Map<OtherSettingView>(otherSettings);
+            settingView.OthersSettingView = mapper.Map<OthersSettingView>(otherSettings);
             return settingView;
+        }
+
+        public bool DeleteImage(string category, string settingName, string fileName)
+        {
+            try
+            {
+                Storage storage = Storage.GetStorage(category);
+                SettingTypes settingType = SettingTypes.Default;
+                if (category == StorageScope.HospitalEnvironment)
+                    settingType = SettingTypes.Info;
+
+                using (SettingDAL dal = new SettingDAL())
+                {
+                    var setting = dal.GetSetting(settingName, settingType);
+                    if (setting != null)
+                    {
+                        if (category == StorageScope.Official)
+                        {
+                            fileName = setting.Value;
+                            storage.Delete(fileName);
+                            setting.Value = "";
+                        }
+                        else if (category == StorageScope.HospitalEnvironment)
+                        {
+                            var fileArr = setting.Value.Split(';');
+                            var fileList = new List<string>(fileArr);
+                            storage.Delete(fileName);
+                            var newStrArr = fileList.Where(a => a != fileName).ToArray();
+                            if (newStrArr.Length == 0)
+                                setting.Value = "";
+                            else
+                                setting.Value = string.Join(";", newStrArr);
+                        }
+                        dal.Edit(setting);
+                        dal.Save();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
     }
