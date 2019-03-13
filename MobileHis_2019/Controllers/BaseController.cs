@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using ValidationDictionary;
@@ -21,9 +22,22 @@ namespace MobileHis_2019.Controllers
             {
                 modelState.AddModelError(string.Empty, errorMessage);
             }
-            public void AddPropertyError(string key, string errorMessage)
+            //public void AddPropertyError(string key, string errorMessage)
+            //{
+            //    modelState.AddModelError(key, errorMessage);
+            //}
+            public void AddPropertyError<TModel>(
+                Expression<Func<TModel, object>> method, 
+                string message)
             {
-                modelState.AddModelError(key, errorMessage);
+                if (method == null)
+                {
+                    throw new ArgumentNullException("method");
+                }
+             
+                MemberExpression mce = method.Body as MemberExpression;
+                string property = mce.Member.Name;
+                modelState.AddModelError(property, message);
             }
 
             public bool Any()

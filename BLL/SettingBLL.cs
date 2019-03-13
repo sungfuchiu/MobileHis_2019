@@ -32,11 +32,13 @@ namespace BLL
 
             if(!TestTimeValid(settings.Opd_Shift_Morning_Start))
             {
-                ValidationDictionary.AddPropertyError("SystemSettingView.Opd_Shift_Morning_Start", "Wrong Format");
+                //ValidationDictionary.AddPropertyError("SystemSettingView.Opd_Shift_Morning_Start", "Wrong Format");
+                ValidationDictionary.AddPropertyError<SystemSettingView>(s => s.Opd_Shift_Morning_Start, "Wrong Format");
                 return false;
             }
             if (!TestTimeValid(settings.Opd_Shift_Morning_Start))
             {
+                //ValidationDictionary.AddPropertyError(settings.GetType().Name+"."+nameof(settings.Opd_Shift_Morning_End), "Wrong Format");
                 return false;
             }
             if (!TestTimeValid(settings.Opd_Shift_Afternoon_Start))
