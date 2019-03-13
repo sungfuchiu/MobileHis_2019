@@ -10,51 +10,16 @@ using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.ViewModel;
 using AutoMapper;
+using ValidationDictionary;
 
-namespace BLL
+namespace BLL 
 {
-    //public class SettingEntity
-    //{
-    //    HttpPostedFileBase BKImageFile { get; set; }
-    //    public class ShiftTime
-    //    {
-    //        public DateTime? BeginTime { get; set; }
-    //        public DateTime? EndTime { get; set; }
-    //        public void SetShiftTimeWithString(string timeString)
-    //        {
-    //            var timePeriod = timeString.Split('-');
-    //            BeginTime = ReturnTimeByFourDigit(timePeriod[0]);
-    //            EndTime = ReturnTimeByFourDigit(timePeriod[1]);
-    //        }
-    //        private DateTime? ReturnTimeByFourDigit(string fourDigit)
-    //        {
-    //            var parseFormat = "yyyy-MM-dd HH:mm";
-    //            DateTime dateTime = new DateTime();
-    //            if (DateTime.TryParseExact(
-    //                   DateTime.Now.ToString("yyyy-MM-dd") + fourDigit
-    //                   , parseFormat
-    //                   , CultureInfo.InvariantCulture
-    //                   , DateTimeStyles.None
-    //                   , out dateTime))
-    //                return dateTime;
-    //            else
-    //                return null;
-    //        }
-    //        public string GetShiftTimeString()
-    //        {
-    //            return BeginTime.Value.ToString("HHmm") + '-' + EndTime.Value.ToString("HHmm");
-    //        }
-    //        public bool IsShiftTimeNotNull()
-    //        {
-    //            return BeginTime.HasValue && EndTime.HasValue;
-    //        }
-    //        public bool InThePeriod(DateTime time)
-    //        {
-    //            return ((time >= BeginTime && time <= EndTime) || time < BeginTime);
-    //        }
-    //    }
-    public class SettingBLL
+    public class SettingBLL : BaseBLL<Setting>
     {
+        public SettingBLL(IValidationDictionary validationDictionary)
+        {
+            InitialiseIValidationDictionary(validationDictionary);
+        }
         //private SettingDAL settingDAL = new SettingDAL();
 
         public bool SetGeneralSetting(SystemSettingView settings)
@@ -65,6 +30,31 @@ namespace BLL
             var mapper = config.CreateMapper();
             generalSettings = mapper.Map<DefaultSettings>(settings);
 
+            if(!TestTimeValid(settings.Opd_Shift_Morning_Start))
+            {
+                ValidationDictionary.AddPropertyError("SystemSettingView.Opd_Shift_Morning_Start", "Wrong Format");
+                return false;
+            }
+            if (!TestTimeValid(settings.Opd_Shift_Morning_Start))
+            {
+                return false;
+            }
+            if (!TestTimeValid(settings.Opd_Shift_Afternoon_Start))
+            {
+                return false;
+            }
+            if (!TestTimeValid(settings.Opd_Shift_Afternoon_End))
+            {
+                return false;
+            }
+            if (!TestTimeValid(settings.Opd_Shift_Night_Start))
+            {
+                return false;
+            }
+            if (!TestTimeValid(settings.Opd_Shift_Night_End))
+            {
+                return false;
+            }
             if (settings.BK_img_file != null)
             {
                 var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
@@ -82,29 +72,8 @@ namespace BLL
                 generalSettings.Official_Logo_Img = s.Write(
                     settings.Official_Logo_Img_file.FileName, settings.Official_Logo_Img_file);
             }
-
-            //#region shift
-            //if ((settings.Opd_Shift_Morning_Start != null) && (settings.Opd_Shift_Morning_End != null))
-            //{
-            //    settings.Opd_Shift_Morning = settings.Opd_Shift_Morning_Start + "-" + settings.Opd_Shift_Morning_End;
-            //}
-
-            //if ((settings.Opd_Shift_Afternoon_Start != null) && (settings.Opd_Shift_Afternoon_End != null))
-            //{
-            //    settings.Opd_Shift_Afternoon = settings.Opd_Shift_Afternoon_Start + "-" + settings.Opd_Shift_Afternoon_End;
-            //}
-
-            //if ((settings.Opd_Shift_Night_Start != null) && (settings.Opd_Shift_Night_End != null))
-            //{
-            //    settings.Opd_Shift_Night = settings.Opd_Shift_Night_Start + "-" + settings.Opd_Shift_Night_End;
-            //}
-            //#endregion
-            //Update(SettingTypes.Default, settings);
-            //for mutli file upload
-            if (settings.PartnerFile != null && settings.PartnerFile[0].ContentLength > 0)
+            if (settings.PartnerFile != null)
             {
-                //var files = settings.PartnerFile.GetMultiple("Partner_file");
-
                 using (SettingDAL settingDAL = new SettingDAL())
                 {
                     var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
@@ -125,31 +94,21 @@ namespace BLL
                     settingDAL.Save();
                 }
             }
-            //if (settings.PartnerFile.Files["Partner_file"] != null && settings.PartnerFile.Files["Partner_file"].ContentLength > 0)
-            //    {
-            //        var files = settings.PartnerFile.Files.GetMultiple("Partner_file");
-
-            //        using (SettingDAL settingDAL = new SettingDAL())
-            //        {
-            //            var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
-            //            var cnt = 0;
-            //            foreach (var file in files)
-            //            {
-            //                if (file != null)
-            //                {
-            //                    var fileName = new System.IO.FileInfo(file.FileName).Name;
-            //                    var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-            //                    fileName = s.Write(fileName, file);
-            //                    partnerImage[cnt].Value = fileName;
-            //                    settingDAL.Edit(partnerImage[cnt]);
-            //                    cnt++;
-
-            //                }
-            //            }
-            //            settingDAL.Save();
-            //        }
-            //    }
+            using (SettingDAL dal = new SettingDAL())
+            {
+                dal.SetGroupSetting(SettingTypes.Default, generalSettings);
+            }
                 return true;
+        }
+        public bool TestTimeValid(string testTime)
+        {
+            string format = "HH:mm";
+            DateTime dateTime;
+            if (!DateTime.TryParseExact(testTime, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
+            {
+                return false;
+            }
+            return true;
         }
 
         public void SetInfoSetting(InfoSettingView settings)

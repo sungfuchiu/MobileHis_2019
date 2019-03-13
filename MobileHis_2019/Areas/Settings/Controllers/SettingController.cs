@@ -8,47 +8,50 @@ using MobileHis.Models.ViewModel;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class SettingController : Controller
+    public class SettingController : MobileHis_2019.Controllers.BaseController
     {
+        private SettingBLL settingBLL;
+        private ModelStateWrapper modelState;
+        public SettingController()
+        {
+            modelState = new ModelStateWrapper(ModelState);
+            settingBLL = new SettingBLL(modelState);
+        }
         // GET: Settings/Setting
         public ActionResult Index()
         {
-            SettingBLL bll = new SettingBLL();
-
-            SettingView settingView = bll.GetAllSetting();
+            if (TempData["ModelState"] != null)
+                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
+            SettingView settingView = settingBLL.GetAllSetting();
             return View(settingView);
         }
 
         public ActionResult DefaultSetting(SettingView setting)
         {
-            SettingBLL bll = new SettingBLL();
-            //setting.SystemSettingView.PartnerFile = Request.Files;
-            bll.SetGeneralSetting(setting.SystemSettingView);
-            return Redirect("Index");
+            settingBLL.SetGeneralSetting(setting.SystemSettingView);
+            if(!ModelState.IsValid)
+                TempData["ModelState"] = ModelState;
+            return RedirectToAction("Index");
         }
         public ActionResult InfoSetting(SettingView setting)
         {
-            SettingBLL bll = new SettingBLL();
-            bll.SetInfoSetting(setting.InfoSettingView);
+            settingBLL.SetInfoSetting(setting.InfoSettingView);
             return Redirect("Index");
         }
         public ActionResult OtherSetting(SettingView setting)
         {
-            SettingBLL bll = new SettingBLL();
-            bll.SetOthersSetting(setting.OthersSettingView);
+            settingBLL.SetOthersSetting(setting.OthersSettingView);
             return Redirect("Index");
         }
         public ActionResult MailSetting(SettingView setting)
         {
-            SettingBLL bll = new SettingBLL();
-            bll.SetMailSetting(setting.MailSettingView);
+            settingBLL.SetMailSetting(setting.MailSettingView);
             return Redirect("Index");
         }
         [HttpPost]
         public bool DeleteImage(string cat, string settingName, string fileName)
         {
-            SettingBLL bll = new SettingBLL();
-            return bll.DeleteImage(cat, settingName, fileName);
+            return settingBLL.DeleteImage(cat, settingName, fileName);
         }
     }
 }

@@ -64,6 +64,7 @@ namespace DAL
             {
                 Update(prop.Name, settingTypes, Convert.ToString(prop.GetValue(settings, null)));
             }
+            Save();
         }
         //public List<Setting> GetSetting(string settingType)
         //{

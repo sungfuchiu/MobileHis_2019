@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseBLL.cs" />
+    <Compile Include="IBLL.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="SettingBLL.cs" />
@@ -78,6 +80,10 @@
     <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
       <Project>{e4bac5cb-cab0-4c7e-928c-946302926b65}</Project>
       <Name>MobileHis.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ValidationDictionary\ValidationDictionary.csproj">
+      <Project>{0aafa14b-2afb-48e6-a6bb-4697fa13f627}</Project>
+      <Name>ValidationDictionary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

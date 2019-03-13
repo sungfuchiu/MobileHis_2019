@@ -150,7 +150,9 @@
     <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CustomClass\ModelStateWrapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +210,7 @@
     <Folder Include="Areas\Backend\Views\Shared\" />
     <Folder Include="Areas\Settings\Models\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -230,6 +233,10 @@
     <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
       <Project>{e4bac5cb-cab0-4c7e-928c-946302926b65}</Project>
       <Name>MobileHis.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ValidationDictionary\ValidationDictionary.csproj">
+      <Project>{0aafa14b-2afb-48e6-a6bb-4697fa13f627}</Project>
+      <Name>ValidationDictionary</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

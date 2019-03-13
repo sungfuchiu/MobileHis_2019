@@ -29,6 +29,7 @@
             @Html.TextBoxFor(Model => Model.SystemSettingView.PartnerFile, new { @class = "form-control", @type = "file", @multiple = "multiple" })
             @Html.LabelFor(Model => Model.SystemSettingView.Opd_Shift_Morning)
             @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Morning_Start, new { @class = "form-control" })
+            @Html.ValidationMessageFor(Model => Model.SystemSettingView.Opd_Shift_Morning_Start)
             @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Morning_End, new { @class = "form-control" })
             @Html.LabelFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon)
             @Html.TextBoxFor(Model => Model.SystemSettingView.Opd_Shift_Afternoon_Start, new { @class = "form-control" })
