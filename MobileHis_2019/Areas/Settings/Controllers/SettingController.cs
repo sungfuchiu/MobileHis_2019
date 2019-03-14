@@ -28,24 +28,26 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 
         public ActionResult DefaultSetting(SettingView setting)
         {
-            settingBLL.SetGeneralSetting(setting.SystemSettingView);
-            if(!ModelState.IsValid)
+            if(!settingBLL.SetGeneralSetting(setting))
                 TempData["ModelState"] = ModelState;
             return RedirectToAction("Index");
         }
         public ActionResult InfoSetting(SettingView setting)
         {
-            settingBLL.SetInfoSetting(setting.InfoSettingView);
+            if(settingBLL.SetInfoSetting(setting))
+                TempData["ModelState"] = ModelState;
             return Redirect("Index");
         }
         public ActionResult OtherSetting(SettingView setting)
         {
-            settingBLL.SetOthersSetting(setting.OthersSettingView);
+            if(settingBLL.SetOthersSetting(setting))
+                TempData["ModelState"] = ModelState;
             return Redirect("Index");
         }
         public ActionResult MailSetting(SettingView setting)
         {
-            settingBLL.SetMailSetting(setting.MailSettingView);
+            if(settingBLL.SetMailSetting(setting))
+                TempData["ModelState"] = ModelState;    
             return Redirect("Index");
         }
         [HttpPost]

@@ -81,9 +81,9 @@
       <Project>{e4bac5cb-cab0-4c7e-928c-946302926b65}</Project>
       <Name>MobileHis.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ValidationDictionary\ValidationDictionary.csproj">
+    <ProjectReference Include="..\ValidationDictionary\Common.csproj">
       <Project>{0aafa14b-2afb-48e6-a6bb-4697fa13f627}</Project>
-      <Name>ValidationDictionary</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -22,22 +22,15 @@ namespace MobileHis_2019.Controllers
             {
                 modelState.AddModelError(string.Empty, errorMessage);
             }
-            //public void AddPropertyError(string key, string errorMessage)
-            //{
-            //    modelState.AddModelError(key, errorMessage);
-            //}
             public void AddPropertyError<TModel>(
-                Expression<Func<TModel, object>> method, 
-                string message)
+                Expression<Func<TModel, object>> expression, 
+                string errorMessage)
             {
-                if (method == null)
+                if (expression == null)
                 {
                     throw new ArgumentNullException("method");
                 }
-             
-                MemberExpression mce = method.Body as MemberExpression;
-                string property = mce.Member.Name;
-                modelState.AddModelError(property, message);
+                modelState.AddModelError(ExpressionHelper.GetExpressionText(expression), errorMessage);
             }
 
             public bool Any()

@@ -11,9 +11,11 @@ namespace BLL
     public class BaseBLL<T> : IBLL<T> where T : class
     {
         public ValidationDictionary.IValidationDictionary ValidationDictionary { get; private set; }
-        public void InitialiseIValidationDictionary(ValidationDictionary.IValidationDictionary iValidationDictionary)
+        public void InitialiseIValidationDictionary(
+            ValidationDictionary.IValidationDictionary iValidationDictionary)
         {
             ValidationDictionary = iValidationDictionary;
         }
+
     }
 }

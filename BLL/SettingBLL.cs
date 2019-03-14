@@ -22,65 +22,71 @@ namespace BLL
         }
         //private SettingDAL settingDAL = new SettingDAL();
 
-        public bool SetGeneralSetting(SystemSettingView settings)
+        public bool SetGeneralSetting(SettingView viewModel)
         {
             DefaultSettings generalSettings = new DefaultSettings();
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<SystemSettingView, DefaultSettings>());
             var mapper = config.CreateMapper();
-            generalSettings = mapper.Map<DefaultSettings>(settings);
+            generalSettings = mapper.Map<DefaultSettings>(viewModel.SystemSettingView);
 
-            if(!TestTimeValid(settings.Opd_Shift_Morning_Start))
+            if(!TestTimeValid(viewModel.SystemSettingView.Opd_Shift_Morning_Start))
             {
-                //ValidationDictionary.AddPropertyError("SystemSettingView.Opd_Shift_Morning_Start", "Wrong Format");
-                ValidationDictionary.AddPropertyError<SystemSettingView>(s => s.Opd_Shift_Morning_Start, "Wrong Format");
-                return false;
+                ValidationDictionary.AddPropertyError<SettingView>(
+                    s => s.SystemSettingView.Opd_Shift_Morning_Start, "Wrong Format");
             }
-            if (!TestTimeValid(settings.Opd_Shift_Morning_Start))
+            if (!TestTimeValid(viewModel.SystemSettingView.Opd_Shift_Morning_End))
             {
-                //ValidationDictionary.AddPropertyError(settings.GetType().Name+"."+nameof(settings.Opd_Shift_Morning_End), "Wrong Format");
-                return false;
+                ValidationDictionary.AddPropertyError<SettingView>(
+                    s => s.SystemSettingView.Opd_Shift_Morning_End, "Wrong Format");
             }
-            if (!TestTimeValid(settings.Opd_Shift_Afternoon_Start))
+            if (!TestTimeValid(viewModel.SystemSettingView.Opd_Shift_Afternoon_Start))
             {
-                return false;
+                ValidationDictionary.AddPropertyError<SettingView>(
+                    s => s.SystemSettingView.Opd_Shift_Afternoon_Start, "Wrong Format");
             }
-            if (!TestTimeValid(settings.Opd_Shift_Afternoon_End))
+            if (!TestTimeValid(viewModel.SystemSettingView.Opd_Shift_Afternoon_End))
             {
-                return false;
+                ValidationDictionary.AddPropertyError<SettingView>(
+                    s => s.SystemSettingView.Opd_Shift_Afternoon_End, "Wrong Format");
             }
-            if (!TestTimeValid(settings.Opd_Shift_Night_Start))
+            if (!TestTimeValid(viewModel.SystemSettingView.Opd_Shift_Night_Start))
             {
-                return false;
+                ValidationDictionary.AddPropertyError<SettingView>(
+                    s => s.SystemSettingView.Opd_Shift_Night_Start, "Wrong Format");
             }
-            if (!TestTimeValid(settings.Opd_Shift_Night_End))
+            if (!TestTimeValid(viewModel.SystemSettingView.Opd_Shift_Night_End))
             {
-                return false;
+                ValidationDictionary.AddPropertyError<SettingView>(
+                    s => s.SystemSettingView.Opd_Shift_Night_End, "Wrong Format");
             }
-            if (settings.BK_img_file != null)
+            if (viewModel.SystemSettingView.BK_img_file != null)
             {
                 var s = MobileHis.Misc.Storage.GetStorage(StorageScope.backgroundImg);
-                generalSettings.BK_img = s.Write(settings.BK_img_file.FileName, settings.BK_img_file);
+                generalSettings.BK_img = s.Write(
+                    viewModel.SystemSettingView.BK_img_file.FileName, viewModel.SystemSettingView.BK_img_file);
             }
-            if (settings.Official_Banner_Img_file != null)
+            if (viewModel.SystemSettingView.Official_Banner_Img_file != null)
             {
                 var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
                 generalSettings.Official_Banner_Img = s.Write(
-                    settings.Official_Banner_Img_file.FileName, settings.Official_Banner_Img_file);
+                    viewModel.SystemSettingView.Official_Banner_Img_file.FileName, 
+                    viewModel.SystemSettingView.Official_Banner_Img_file);
             }
-            if (settings.Official_Logo_Img_file != null)
+            if (viewModel.SystemSettingView.Official_Logo_Img_file != null)
             {
                 var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
                 generalSettings.Official_Logo_Img = s.Write(
-                    settings.Official_Logo_Img_file.FileName, settings.Official_Logo_Img_file);
+                    viewModel.SystemSettingView.Official_Logo_Img_file.FileName, 
+                    viewModel.SystemSettingView.Official_Logo_Img_file);
             }
-            if (settings.PartnerFile != null)
+            if (viewModel.SystemSettingView.PartnerFile != null)
             {
                 using (SettingDAL settingDAL = new SettingDAL())
                 {
                     var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
                     var cnt = 0;
-                    foreach (var file in settings.PartnerFile)
+                    foreach (var file in viewModel.SystemSettingView.PartnerFile)
                     {
                         if (file != null)
                         {
@@ -96,33 +102,36 @@ namespace BLL
                     settingDAL.Save();
                 }
             }
+            if (ValidationDictionary.Any())
+                return false;
             using (SettingDAL dal = new SettingDAL())
             {
                 dal.SetGroupSetting(SettingTypes.Default, generalSettings);
             }
-                return true;
+            return true;
         }
         public bool TestTimeValid(string testTime)
         {
             string format = "HH:mm";
             DateTime dateTime;
-            if (!DateTime.TryParseExact(testTime, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
+            if (!DateTime.TryParseExact(
+                testTime, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
             {
                 return false;
             }
             return true;
         }
 
-        public void SetInfoSetting(InfoSettingView settings)
+        public bool SetInfoSetting(SettingView viewModel)
         {
             InfoSettings infoSettings = new InfoSettings();
             var config = new MapperConfiguration(cfg => cfg.CreateMap<InfoSettingView, InfoSettings>());
             var mapper = config.CreateMapper();
-            infoSettings = mapper.Map<InfoSettings>(settings);
-            if (settings.EnvironmentFile.Files["Environment_file"] != null 
-                && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
+            infoSettings = mapper.Map<InfoSettings>(viewModel);
+            if (viewModel.InfoSettingView.EnvironmentFile.Files["Environment_file"] != null 
+                && viewModel.InfoSettingView.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
             {
-                var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
+                var files = viewModel.InfoSettingView.EnvironmentFile.Files.GetMultiple("Environment_file");
                 foreach (var file in files)
                 {
                     if (file != null)
@@ -138,32 +147,41 @@ namespace BLL
                     }
                 }
             }
+            if (ValidationDictionary.Any())
+                return false;
             using (SettingDAL dal = new SettingDAL())
             {
                 dal.SetGroupSetting(SettingTypes.Info, infoSettings);
             }
+            return true;
         }
-        public void SetOthersSetting(OthersSettingView settings)
+        public bool SetOthersSetting(SettingView viewModel)
         {
             OtherSettings otherSettings = new OtherSettings();
             var config = new MapperConfiguration(cfg => cfg.CreateMap<OthersSettingView, OtherSettings>());
             var mapper = config.CreateMapper();
-            otherSettings = mapper.Map<OtherSettings>(settings);
+            otherSettings = mapper.Map<OtherSettings>(viewModel.OthersSettingView);
+            if (ValidationDictionary.Any())
+                return false;
             using (SettingDAL dal = new SettingDAL())
             {
-                dal.SetGroupSetting(SettingTypes.Other, settings);
+                dal.SetGroupSetting(SettingTypes.Other, viewModel.OthersSettingView);
             }
+            return true;
         }
-        public void SetMailSetting(MailSettingView settings)
+        public bool SetMailSetting(SettingView viewModel)
         {
             MailSettings mailSettings = new MailSettings();
             var config = new MapperConfiguration(cfg => cfg.CreateMap<MailSettingView, MailSettings>());
             var mapper = config.CreateMapper();
-            mailSettings = mapper.Map<MailSettings>(settings);
+            mailSettings = mapper.Map<MailSettings>(viewModel.MailSettingView);
+            if (ValidationDictionary.Any())
+                return false;
             using (SettingDAL dal = new SettingDAL())
             {
-                dal.SetGroupSetting(SettingTypes.Mail, settings);
+                dal.SetGroupSetting(SettingTypes.Mail, viewModel.MailSettingView);
             }
+            return true;
         }
 
         //void Update(SettingTypes type, object data)

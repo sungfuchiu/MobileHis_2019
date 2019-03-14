@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileHis.Models", "MobileH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileHis.Resources", "MobileHis.Resources\MobileHis.Resources.csproj", "{19EAAA67-6B03-4C46-B38B-3C062394AE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationDictionary", "ValidationDictionary\ValidationDictionary.csproj", "{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "ValidationDictionary\Common.csproj", "{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
