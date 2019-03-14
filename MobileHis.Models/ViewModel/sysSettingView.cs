@@ -17,7 +17,29 @@ namespace MobileHis.Models.ViewModel
     }
     public class SystemSettingView
     {
+        public bool CheckFingerPrint
+        {
+            get => FingerPrint == "Y";
+            set
+            {
+                if (value)
+                    FingerPrint = "Y";
+                else
+                    FingerPrint = "N";
+            }
+        }
         public string FingerPrint { get; set; }
+        public bool CheckPacs
+        {
+            get => Pacs == "Y";
+            set
+            {
+                if (value)
+                    Pacs = "Y";
+                else
+                    Pacs = "N";
+            }
+        }
         public string Pacs { get; set; }
         public string ConsultationFee { get; set; }
         public HttpPostedFileBase BK_img_file { get; set; }
@@ -43,7 +65,13 @@ namespace MobileHis.Models.ViewModel
                     && !string.IsNullOrEmpty(Opd_Shift_Morning_End))
                     return Opd_Shift_Morning_Start + "-" + Opd_Shift_Morning_End;
                 else
-                    return "";
+                    return "8:00-12:00";
+            }
+            set
+            {
+                string[] partition = value.Split('-');
+                Opd_Shift_Morning_Start = partition[0];
+                Opd_Shift_Morning_End = partition[1];
             }
         }
         [Display(Name = "Afternoon")]
@@ -55,7 +83,13 @@ namespace MobileHis.Models.ViewModel
                     && !string.IsNullOrEmpty(Opd_Shift_Afternoon_End))
                     return Opd_Shift_Afternoon_Start + "-" + Opd_Shift_Afternoon_End;
                 else
-                    return "";
+                    return "13:00-17:00";
+            }
+            set
+            {
+                string[] partition = value.Split('-');
+                Opd_Shift_Afternoon_Start = partition[0];
+                Opd_Shift_Afternoon_End = partition[1];
             }
         }
         [Display(Name = "Night")]
@@ -67,7 +101,13 @@ namespace MobileHis.Models.ViewModel
                     && !string.IsNullOrEmpty(Opd_Shift_Night_End))
                     return Opd_Shift_Night_Start + "-" + Opd_Shift_Night_End;
                 else
-                    return "";
+                    return "19:00-22:00";
+            }
+            set
+            {
+                string[] partition = value.Split('-');
+                Opd_Shift_Night_Start = partition[0];
+                Opd_Shift_Night_End = partition[1];
             }
         }
         public string ApiKey { get; set; }
@@ -77,6 +117,17 @@ namespace MobileHis.Models.ViewModel
     {
         public string UPIS_IP { get; set; }
         public string UPIS_APIKEY { get; set; }
+        public bool CheckSymptomShot
+        {
+            get => SymptomShot == "Y";
+            set
+            {
+                if (value)
+                    SymptomShot = "Y";
+                else
+                    SymptomShot = "N";
+            }
+        }
         public string SymptomShot { get; set; }
         public string SymptomShotIP { get; set; }
         public string SymptomShot_3DesKey { get; set; }
@@ -108,7 +159,7 @@ namespace MobileHis.Models.ViewModel
         public string Hospital_lng { get; set; }
         public string Hospital_Environment { get; set; }
         public string Hospital_Slogan { get; set; }
-        public HttpRequestBase EnvironmentFile { get; set; }
+        public HttpPostedFileBase[] EnvironmentFile { get; set; }
 
     }
 

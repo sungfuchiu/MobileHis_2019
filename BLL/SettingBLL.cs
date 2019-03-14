@@ -102,7 +102,7 @@ namespace BLL
                     settingDAL.Save();
                 }
             }
-            if (ValidationDictionary.Any())
+            if (!ValidationDictionary.IsValid())
                 return false;
             using (SettingDAL dal = new SettingDAL())
             {
@@ -127,12 +127,10 @@ namespace BLL
             InfoSettings infoSettings = new InfoSettings();
             var config = new MapperConfiguration(cfg => cfg.CreateMap<InfoSettingView, InfoSettings>());
             var mapper = config.CreateMapper();
-            infoSettings = mapper.Map<InfoSettings>(viewModel);
-            if (viewModel.InfoSettingView.EnvironmentFile.Files["Environment_file"] != null 
-                && viewModel.InfoSettingView.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
+            infoSettings = mapper.Map<InfoSettings>(viewModel.InfoSettingView);
+            if (viewModel.InfoSettingView.EnvironmentFile != null)
             {
-                var files = viewModel.InfoSettingView.EnvironmentFile.Files.GetMultiple("Environment_file");
-                foreach (var file in files)
+                foreach (var file in viewModel.InfoSettingView.EnvironmentFile)
                 {
                     if (file != null)
                     {
@@ -147,7 +145,7 @@ namespace BLL
                     }
                 }
             }
-            if (ValidationDictionary.Any())
+            if (!ValidationDictionary.IsValid())
                 return false;
             using (SettingDAL dal = new SettingDAL())
             {
@@ -161,11 +159,11 @@ namespace BLL
             var config = new MapperConfiguration(cfg => cfg.CreateMap<OthersSettingView, OtherSettings>());
             var mapper = config.CreateMapper();
             otherSettings = mapper.Map<OtherSettings>(viewModel.OthersSettingView);
-            if (ValidationDictionary.Any())
+            if (!ValidationDictionary.IsValid())
                 return false;
             using (SettingDAL dal = new SettingDAL())
             {
-                dal.SetGroupSetting(SettingTypes.Other, viewModel.OthersSettingView);
+                dal.SetGroupSetting(SettingTypes.Other, otherSettings);
             }
             return true;
         }
@@ -175,11 +173,11 @@ namespace BLL
             var config = new MapperConfiguration(cfg => cfg.CreateMap<MailSettingView, MailSettings>());
             var mapper = config.CreateMapper();
             mailSettings = mapper.Map<MailSettings>(viewModel.MailSettingView);
-            if (ValidationDictionary.Any())
+            if (!ValidationDictionary.IsValid())
                 return false;
             using (SettingDAL dal = new SettingDAL())
             {
-                dal.SetGroupSetting(SettingTypes.Mail, viewModel.MailSettingView);
+                dal.SetGroupSetting(SettingTypes.Mail, mailSettings);
             }
             return true;
         }
