@@ -36,8 +36,14 @@
         <h3>System</h3>
         @using (Html.BeginForm("DefaultSetting", "Setting", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @CustomTextBoxFor(Model => Model.SystemSettingView.FingerPrint)
-            @CustomTextBoxFor(Model => Model.SystemSettingView.Pacs)
+        <div >
+            @Html.LabelFor(Model => Model.SystemSettingView.CheckFingerPrint)
+            @Html.CheckBoxFor(Model => Model.SystemSettingView.CheckFingerPrint)
+        </div>
+        <div>
+            @Html.LabelFor(Model => Model.SystemSettingView.CheckPacs)
+            @Html.CheckBoxFor(Model => Model.SystemSettingView.CheckPacs)
+        </div>
             @CustomTextBoxFor(Model => Model.SystemSettingView.ConsultationFee)
             @CustomTextBoxFor(Model => Model.SystemSettingView.ApiKey)
             @FileTextBoxFor(Model => Model.SystemSettingView.BK_img_file)
@@ -103,7 +109,10 @@
             @CustomTextBoxFor(Model => Model.OthersSettingView.SmartHealth_APIKEY)
             @CustomTextBoxFor(Model => Model.OthersSettingView.SmartHealth_IP)
             @CustomTextBoxFor(Model => Model.OthersSettingView.SmartHealth_Register_IP)
-            @CustomTextBoxFor(Model => Model.OthersSettingView.SymptomShot)
+        <div>
+            @Html.LabelFor(Model => Model.OthersSettingView.CheckSymptomShot)
+            @Html.CheckBoxFor(Model => Model.OthersSettingView.CheckSymptomShot)
+        </div>
             @CustomTextBoxFor(Model => Model.OthersSettingView.SymptomShotIP)
             @CustomTextBoxFor(Model => Model.OthersSettingView.SymptomShot_3DesIv)
             @CustomTextBoxFor(Model => Model.OthersSettingView.SymptomShot_3DesKey)

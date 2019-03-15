@@ -84,10 +84,9 @@ namespace BLL
 
         public bool SetInfoSetting(InfoSettingView settings)
         {
-            if (settings.EnvironmentFile.Files["Environment_file"] != null && settings.EnvironmentFile.Files["Environment_file"].ContentLength > 0)
+            if (settings.EnvironmentFile != null)
             {
-                var files = settings.EnvironmentFile.Files.GetMultiple("Environment_file");
-                foreach (var file in files)
+                foreach (var file in settings.EnvironmentFile)
                 {
                     if (file != null)
                     {
