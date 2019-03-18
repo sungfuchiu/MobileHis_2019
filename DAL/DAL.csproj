@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="DALBase.cs" />
     <Compile Include="DoctorScheduleDAL.cs" />
-    <Compile Include="ICD10DAL.cs" />
     <Compile Include="Setting\GeneralSettingRepo.cs" />
     <Compile Include="RepositoryBase\EFGenericRepository.cs" />
     <Compile Include="RepositoryBase\IRepository.cs" />
