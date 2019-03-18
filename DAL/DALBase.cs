@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using MobileHis.Data;
+using System.Linq.Expressions;
 
 namespace DAL
 {
@@ -12,7 +13,7 @@ namespace DAL
     //{
     //    public DatabaseValidationErrors()
     //}
-    public class DALBase<T> : IDisposable where T : class
+    public class DALBase<TEntity> : IDisposable where TEntity : class
     {
         protected MobileHISEntities Entities;
         DbContextTransaction Trans;
@@ -23,9 +24,9 @@ namespace DAL
         public DALBase(MobileHISEntities entities) { Entities = entities; }
 
 
-        public virtual IQueryable<T> Filter(IQueryable<T> query, T filter)
+        public virtual IQueryable<TEntity> Filter(IQueryable<TEntity> query, TEntity filter)
         {
-            IQueryable<T> Querydata = null;
+            IQueryable<TEntity> Querydata = null;
             if (filter != null)
             {
                 // Querydata = this.filter.Filter(query);
@@ -36,9 +37,9 @@ namespace DAL
             }
             return Querydata;
         }
-        public virtual IQueryable<T> Sort(IQueryable<T> query, string orderby, bool asc = true)
+        public virtual IQueryable<TEntity> Sort(IQueryable<TEntity> query, string orderby, bool asc = true)
         {
-            IQueryable<T> Querydata = null;
+            IQueryable<TEntity> Querydata = null;
             if (!string.IsNullOrEmpty(orderby))
             {
                 foreach (var p in query.FirstOrDefault().GetType().GetProperties())
@@ -49,25 +50,47 @@ namespace DAL
             }
             return Querydata;
         }
-        protected virtual IQueryable<T> GetAll()
+        protected virtual IQueryable<TEntity> GetAll()
         {
-            IQueryable<T> query = Entities.Set<T>();
+            IQueryable<TEntity> query = Entities.Set<TEntity>();
             return query;
         }
-        public virtual IQueryable<T> GetAllWithNoTracking()
+        public virtual IQueryable<TEntity> GetAllWithNoTracking()
         {
-            IQueryable<T> query = Entities.Set<T>().AsNoTracking();
+            IQueryable<TEntity> query = Entities.Set<TEntity>().AsNoTracking();
             return query;
         }
-        public virtual void Add(T entity)
+        public TEntity Read(Expression<Func<TEntity, bool>> predicate)
         {
-            Entities.Set<T>().Add(entity);
+            return Entities.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
-        public virtual void Edit(T entity)
+        public IQueryable<TEntity> Reads()
+        {
+            return Entities.Set<TEntity>().AsQueryable();
+        }
+        public void Add(TEntity entity)
+        {
+            Entities.Set<TEntity>().Add(entity);
+        }
+        public void Edit(TEntity entity)
         {
             Entities.Entry(entity).State = EntityState.Modified;
         }
-        public virtual void Delete(IQueryable<T> deleteRange)
+        public void Edit(TEntity entity, Expression<Func<TEntity, object>>[] updateProperties)
+        {
+            Entities.Configuration.ValidateOnSaveEnabled = false;
+
+            Entities.Entry<TEntity>(entity).State = EntityState.Unchanged;
+
+            if (updateProperties != null)
+            {
+                foreach (var property in updateProperties)
+                {
+                    Entities.Entry<TEntity>(entity).Property(property).IsModified = true;
+                }
+            }
+        }
+        public void Delete(IQueryable<TEntity> deleteRange)
         {
             foreach (var o in deleteRange)
             {
@@ -75,18 +98,19 @@ namespace DAL
             }
             Entities.SaveChanges();
         }
-        public virtual void Delete(T entity)
+        public void Delete(TEntity entity)
         {
-            Entities.Set<T>().Remove(entity);
-            Entities.SaveChanges();
+            Entities.Set<TEntity>().Remove(entity);
         }
 
-        public virtual void Save()
+        public void Save()
         {
             var errors = Entities.GetValidationErrors();
             if (!errors.Any())
             {
                 Entities.SaveChanges();
+                if(Entities.Configuration.ValidateOnSaveEnabled == false)
+                    Entities.Configuration.ValidateOnSaveEnabled = true;
             }
             else
             {
@@ -94,13 +118,13 @@ namespace DAL
                 throw new Exception("DBError");
             }
         }
-        public virtual void Dispose()
+        public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (Disposed) return;
             if (disposing)

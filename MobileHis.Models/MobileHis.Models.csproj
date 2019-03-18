@@ -156,6 +156,7 @@
     <Compile Include="Areas\Report\GeneralReportModels.cs" />
     <Compile Include="Areas\Report\ReceiptModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\DoctorSchModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\ICD10ViewModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\SettingViewModel.cs" />
     <Compile Include="MobileHisModel\ExcelUploadModel.cs" />
     <Compile Include="MobileHisModel\JwtModel.cs" />
