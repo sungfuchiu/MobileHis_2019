@@ -1,0 +1,23 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@model IPagedList<MobileHis.Models.Areas.Sys.ViewModels.ICD10ViewModel>
+@{
+    ViewBag.Title = @LocalRes.Resource.Map_Sys_Department;
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "ICD10", new { area = "Settings" }))
+{
+    @Html.TextBox("Keyword")
+    @Html.DropDownList("Type")
+    <button>search</button>
+}
+<a href="~/Areas/Settings/ICD10">新增</a>
+<table>
+    <tr>
+        <th></th>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>

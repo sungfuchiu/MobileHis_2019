@@ -184,6 +184,7 @@
     <Content Include="Areas\Settings\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Settings\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Settings\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\ICD10\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -216,7 +217,6 @@
     <Folder Include="Areas\Backend\Models\" />
     <Folder Include="Areas\Backend\Views\Shared\" />
     <Folder Include="Areas\Settings\Models\" />
-    <Folder Include="Areas\Settings\Views\ICD10\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
