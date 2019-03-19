@@ -14,10 +14,33 @@
 }
 <a href="~/Areas/Settings/ICD10">新增</a>
 <table>
-    <tr>
-        <th></th>
-    </tr>
-    <tr>
-        <td></td>
-    </tr>
+    <thead>
+        <tr>
+            <th class="hidden-480">@LocalRes.Resource.ICD10Code</th>
+            <th class="hidden-480">@LocalRes.Resource.ICD10Name</th>
+            <th class="hidden-480">@LocalRes.Resource.ICD10Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ICD10Code</td>
+                <td>@item.StdName</td>
+                <td>@item.Type</td>
+                <td>
+                    <div class="hidden-sm hidden-xs btn-group">
+                        @if (_Update)
+                        {
+                            <a href="#" class='btn btn-sm btn-info invokeUpdate' data-toggle="modal" data-target="#updModal" data-key="@item.ICD10Code" , data-name="@item.StdName" , data-type="@item.Type">
+                                <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
+                            </a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    }
 </table>
