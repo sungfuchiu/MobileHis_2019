@@ -13,14 +13,14 @@ namespace MobileHis.Data
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        public int MedicalRecordID { get; set; }
+        public int OpdRecordID { get; set; }
         public string ItemName { get; set; }
         public double? InitialFee { get; set; }
         public double? DailyFee { get; set; }
         public DateTime CreateAt { get; set; }
         public string CreatedBy { get; set; }
 
-        [ForeignKey("MedicalRecordID")]
+        [ForeignKey("OpdRecordID")]
         public Billing Billing { get; set; }
     }
 }

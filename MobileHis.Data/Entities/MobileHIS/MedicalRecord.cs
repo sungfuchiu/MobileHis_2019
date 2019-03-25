@@ -61,7 +61,6 @@ namespace MobileHis.Data
         #region ForeignKey
         [ForeignKey("PatientID")]
         public virtual Patient Patient { get; set; }
-        public virtual Billing Billing { get; set; }
         #endregion
 
         #region Icollection

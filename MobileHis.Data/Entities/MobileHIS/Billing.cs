@@ -11,8 +11,8 @@ namespace MobileHis.Data
     {
         public Billing() { }
 
-        [Key, ForeignKey("MedicalRecord")]
-        public int MedicalRecordID { get; set; }
+        [Key, ForeignKey("OpdRecord")]
+        public int OpdRecordID { get; set; }
 
 
         [DataType("decimal(8,2)")]
@@ -31,7 +31,7 @@ namespace MobileHis.Data
         #region ForeignKey
 
 
-        public virtual MedicalRecord MedicalRecord { get; set; }
+        public virtual OpdRecord OpdRecord{ get; set; }
         [ForeignKey("InsuranceId")]
         public virtual CodeFile Insurance { get; set; }
         #endregion

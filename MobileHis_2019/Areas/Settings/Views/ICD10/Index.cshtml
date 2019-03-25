@@ -5,42 +5,139 @@
     ViewBag.Title = @LocalRes.Resource.Map_Sys_Department;
 }
 
-<h2>Index</h2>
-@using (Html.BeginForm("Index", "ICD10", new { area = "Settings" }))
-{
-    @Html.TextBox("Keyword")
-    @Html.DropDownList("Type")
-    <button>search</button>
-}
-<a href="~/Areas/Settings/ICD10">新增</a>
-<table>
-    <thead>
-        <tr>
-            <th class="hidden-480">@LocalRes.Resource.ICD10Code</th>
-            <th class="hidden-480">@LocalRes.Resource.ICD10Name</th>
-            <th class="hidden-480">@LocalRes.Resource.ICD10Type</th>
-            <th></th>
-        </tr>
-    </thead>
-    @if (Model != null)
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">@LocalRes.Resource.Comm_Create</h4>
+            </div>
+            <div class="modal-body form-group">
+                <div style="margin-bottom: 5px" class="input-group">
+                    <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+                        <tr>
+                            <td style="text-align:right">
+                                @LocalRes.Resource.ICD10Code
+                            </td>
+                            <td>@Html.TextBox("code", "", new { @class = "input-sm", size = "10", maxlength = "10" })</td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align:right">
+                                @LocalRes.Resource.ICD10Name
+                            </td>
+                            <td>@Html.TextBox("name", "", new { @class = "input-sm", size = "60", maxlength = "500" })</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right">@LocalRes.Resource.ICD10Type</td>
+                            <td style="text-align:left">@DropDownHelper.CodeFileDropDownByText("type", "", "CD", false, false)</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSubmit" class="btn btn-primary">@LocalRes.Resource.Comm_Create</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@LocalRes.Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("Index", "icd10", FormMethod.Get, new { area = "settings" }))
     {
-        foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.ICD10Code</td>
-                <td>@item.StdName</td>
-                <td>@item.Type</td>
-                <td>
-                    <div class="hidden-sm hidden-xs btn-group">
-                        @if (_Update)
-                        {
-                            <a href="#" class='btn btn-sm btn-info invokeUpdate' data-toggle="modal" data-target="#updModal" data-key="@item.ICD10Code" , data-name="@item.StdName" , data-type="@item.Type">
-                                <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
-                            </a>
-                        }
-                    </div>
-                </td>
-            </tr>
-        }
+        @Html.TextBox("Keyword")
+        @DropDownHelper.CodeFileDropDownByText("type", "", "CD", true, false)
+        @*@Html.Hidden("type", (string)ViewBag.type)*@
+        <button>search</button>
     }
-</table>
+</div>
+<div class="row">
+    <button class="btn btn-info" id="btnCreate" data-toggle="modal" data-target="#Modal">新增</button>
+    <table>
+        <thead>
+            <tr>
+                <th class="hidden-480">@LocalRes.Resource.ICD10Code</th>
+                <th class="hidden-480">@LocalRes.Resource.ICD10Name</th>
+                <th class="hidden-480">@LocalRes.Resource.ICD10Type</th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ICD10Code</td>
+                    <td>@item.StdName</td>
+                    <td>@item.Type</td>
+                    <td>
+                        <div class="hidden-sm hidden-xs btn-group">
+                            @if (_Update)
+                            {
+                                <a href="#" class='btn btn-sm btn-info btnUpdate' data-toggle="modal" data-target="#Modal" data-key="@item.ICD10Code" , data-name="@item.StdName" , data-type="@item.Type">
+                                    <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @if (Model != null)
+        {
+            <div class="pager">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { keyword = ViewBag.keyword, page = page, type = ViewBag.type }))
+                Displaying @Model.FirstItemOnPage - @Model.LastItemOnPage of @Model.TotalItemCount item(s)
+            </div>
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/AjaxEncapsulation.js"></script>
+<script>
+    $(".btnUpdate").click(function () {
+        var key = $(this).data('key');
+        var name = $(this).data('name');
+        var type = $(this).data('type');
+        $("#code").val(key);
+        $('#code').attr('disabled', true);
+        $("#name").val(name);
+        $("#type option").filter(function () {
+            return $(this).text() == type;
+        }).prop('selected', true);
+    });
+    $("#btnCreate").click(function () {
+        $("#code").val('');
+        $('#code').attr('disabled', false);
+        $("#name").val(name);
+        $("#type").val('');
+    });
+    $('#btnSubmit').click(function () {
+        callAjax();
+    });
+    function callAjax() {
+        let code = $('#code').val();
+        let name = $('#name').val();
+        let type = $('#type').val();
+        let icd10 = new {
+            code: code,
+            name: name,
+            type: type
+        };
+        doAjax('@Url.Action("Create")', icd10, callback);
+    }
+    function callback(result) {
+        if (result.success)
+            window.alert('success');
+        else
+            window.alert(result.message);
+    }
+
+</script>

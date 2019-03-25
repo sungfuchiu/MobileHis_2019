@@ -36,6 +36,10 @@ namespace MobileHis.Data
         [MaxLength]
         public string ExamResult { get; set; }
         public bool? IsCheckin { get; set; }
+        [Required]
+        public decimal Price { get; set; }
+        [Required]
+        public decimal OverridePrice { get; set; }
 
 
         [ForeignKey("DrugID")]

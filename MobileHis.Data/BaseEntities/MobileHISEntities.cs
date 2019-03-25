@@ -124,6 +124,7 @@ namespace MobileHis.Data
         public virtual DbSet<DrugRestriction> DrugRestriction { get; set; }
         public virtual DbSet<DrugSetting> DrugSetting { get; set; }
         public virtual DbSet<DrugVendor> DrugVendor { get; set; }
+        public virtual DbSet<DrugStock> DrugStock { get; set; }
         public virtual DbSet<ExamReport> ExamReport { get; set; }
         public virtual DbSet<ICD10> ICD10 { get; set; }
         public virtual DbSet<Kit> Kit { get; set; }

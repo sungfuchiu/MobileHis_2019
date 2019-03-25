@@ -1,0 +1,31 @@
+﻿
+@helper CodeFileDropDownByValue(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
+{
+    string requriedStr = "";
+    requriedStr = hasRequired ? "data-val=true data-val-required=<br>" + LocalRes.Resource.Required : "";
+    <select name="@name" id="@name" @(functions ?? "") @requriedStr @(elementStr == null ? "" : elementStr)>
+        @{
+            BLL.CodeFileBLL resp = new BLL.CodeFileBLL();
+            List<System.Web.Mvc.SelectListItem> list = resp.GetDropDownList(itemType, hasEmpty: hasEmpty);
+            foreach (var item in list)
+            {
+                <option value="@item.Value" @(item.Value == val ? "selected" : "")>@item.Text</option>
+            }
+        }
+    </select>
+}
+@helper CodeFileDropDownByText(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
+{
+    string requriedStr = "";
+    requriedStr = hasRequired ? "data-val=true data-val-required=<br>" + LocalRes.Resource.Required : "";
+    <select name="@name" id="@name" @(functions ?? "") @requriedStr @(elementStr == null ? "" : elementStr)>
+        @{
+            BLL.CodeFileBLL resp = new BLL.CodeFileBLL();
+            List<System.Web.Mvc.SelectListItem> list = resp.GetDropDownList(itemType, hasEmpty: hasEmpty);
+            foreach (var item in list)
+            {
+                <option value="@(string.IsNullOrEmpty(item.Value) ? "" : @item.Text)" @(item.Text == val ? "selected" : "")>@item.Text</option>
+            }
+        }
+    </select>
+}

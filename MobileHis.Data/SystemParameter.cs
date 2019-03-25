@@ -57,12 +57,6 @@ namespace MobileHis.Data
         Local, // 當地
         Visitor, // 外來者
     }
-    public enum PatientPaternity
-    {
-        Natural,
-        Foster
-
-    }
     public enum PatientMarried
     {
         Single,
@@ -148,11 +142,16 @@ namespace MobileHis.Data
         public static string category = "category";
         public static string mail = "mail";
     };
+    public enum PatientPaternity
+    {
+        Natural,
+        Foster
 
+    }
     public enum SettingTypes
     {
         Default,
-        Info, 
+        Info,
         Other,
         Category,
         Mail

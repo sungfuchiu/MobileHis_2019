@@ -15,7 +15,7 @@ namespace MobileHis.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }      
         [Required]
-         public int MedicalRecordID { get; set; }
+         public int OpdRecordID { get; set; }
 
         [DataType("decimal(8,2)")]
         public decimal amt_price { get; set; }
@@ -33,7 +33,7 @@ namespace MobileHis.Data
         public string UpdatedBy { get; set; }
 
         #region ForeignKey
-        [ForeignKey("MedicalRecordID")]
+        [ForeignKey("OpdRecordID")]
         public virtual Billing Billing { get; set; }       
         #endregion
 

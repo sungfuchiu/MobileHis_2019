@@ -30,6 +30,10 @@ namespace MobileHis.Data
         public string LaboratoryStatus { get; set; }
         [MaxLength(1000)]
         public byte?[] LaboratoryResult { get; set; }
+        [Required]
+        public decimal Price { get; set; }
+        [Required]
+        public decimal OverridePrice { get; set; }
 
         [ForeignKey("DrugID")]
         public virtual Drug Drug { get; set; }

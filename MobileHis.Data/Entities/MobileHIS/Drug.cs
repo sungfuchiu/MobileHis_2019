@@ -38,8 +38,10 @@ namespace MobileHis.Data
         public bool IsHighRisk { get; set; }
         [Required]
         public bool IsPediatrics { get; set; }
-        //   [MaxLength(18)]
-        public decimal StockAmount { get; set; }
+        [MaxLength(500)]
+        public string Allergy { get; set; }
+        [MaxLength(500)]
+        public string Direction { get; set; }
         public int? Unit { get; set; }
         /// <summary>
         /// 劑型
@@ -67,6 +69,7 @@ namespace MobileHis.Data
         public virtual ICollection<DrugVendor> DrugVendor { get; set; }
         public virtual ICollection<PurchaseD> PurchaseD { get; set; }
         public virtual ICollection<OrderKit> OrderKit { get; set; }
+        public virtual ICollection<DrugStock> DrugStock { get; set; }
         #endregion
 
 

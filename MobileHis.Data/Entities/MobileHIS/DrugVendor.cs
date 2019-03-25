@@ -23,8 +23,8 @@ namespace MobileHis.Data
         public decimal Price { get; set; }
 
         public int? Unit { get; set; }
-        public int PurchaseRate { get; set; }
-        public int StockUsingRate { get; set; }
+        public string PurchaseStockRate { get; set; }
+        public string StockUsingRate { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

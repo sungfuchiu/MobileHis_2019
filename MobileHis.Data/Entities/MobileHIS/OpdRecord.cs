@@ -63,6 +63,8 @@ namespace MobileHis.Data
         [ForeignKey("DoctorID")]
         public virtual Account Doctor { get; set; }
 
+        public virtual Billing Billing { get; set; }
+
         #endregion
 
         #region ICollection

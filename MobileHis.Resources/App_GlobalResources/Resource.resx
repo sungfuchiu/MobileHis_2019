@@ -2382,4 +2382,40 @@
   <data name="Drug_Total_Price" xml:space="preserve">
     <value>總價格</value>
   </data>
+  <data name="Patient_Eng" xml:space="preserve">
+    <value>Eng</value>
+  </data>
+  <data name="Patient_HnOther" xml:space="preserve">
+    <value>HnOther</value>
+  </data>
+  <data name="Patient_Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="Patient_MRDTYPE" xml:space="preserve">
+    <value>MRDTYPE</value>
+  </data>
+  <data name="Patient_PassportID" xml:space="preserve">
+    <value>PassportID</value>
+  </data>
+  <data name="Patient_ReceiveHospitalNews" xml:space="preserve">
+    <value>ReceiveHospitalNews</value>
+  </data>
+  <data name="Patient_ResdentialType" xml:space="preserve">
+    <value>ResdentialType</value>
+  </data>
+  <data name="Patient_Residential" xml:space="preserve">
+    <value>Residential</value>
+  </data>
+  <data name="Patient_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Allergy_Information" xml:space="preserve">
+    <value>過敏資訊</value>
+  </data>
+  <data name="Drug_Direction" xml:space="preserve">
+    <value>使用資訊</value>
+  </data>
+  <data name="No_Direction" xml:space="preserve">
+    <value>無使用說明</value>
+  </data>
 </root>

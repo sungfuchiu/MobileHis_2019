@@ -22,6 +22,8 @@ namespace MobileHis.Data
         public decimal Amount { get; set; }
        // [MaxLength(18)]
         public decimal Price { get; set; }
+        [MaxLength(20)]
+        public string Lot { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

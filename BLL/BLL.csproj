@@ -48,6 +48,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBLL.cs" />
+    <Compile Include="CodeFileBLL.cs" />
     <Compile Include="IBLL.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="ICD10BLL.cs" />
@@ -81,6 +83,10 @@
     <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
       <Project>{e4bac5cb-cab0-4c7e-928c-946302926b65}</Project>
       <Name>MobileHis.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobileHis.Resources\MobileHis.Resources.csproj">
+      <Project>{19eaaa67-6b03-4c46-b38b-3c062394ae20}</Project>
+      <Name>MobileHis.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\ValidationDictionary\Common.csproj">
       <Project>{0aafa14b-2afb-48e6-a6bb-4697fa13f627}</Project>

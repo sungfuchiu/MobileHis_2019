@@ -26,6 +26,10 @@ namespace MobileHis.Data
         public int Days { get; set; }
         [Required]
         public double Quantity { get; set; }
+        [Required]
+        public decimal UnitPrice { get; set; }
+        [Required]
+        public decimal OverridePrice { get; set; }
         [MaxLength]
         public string Remark { get; set; }        
         public Guid DrugID { get; set; }

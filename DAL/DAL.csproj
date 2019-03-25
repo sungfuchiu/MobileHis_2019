@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeFileDAL.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="DoctorScheduleDAL.cs" />
     <Compile Include="Setting\GeneralSettingRepo.cs" />

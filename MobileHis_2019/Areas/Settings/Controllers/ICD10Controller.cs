@@ -25,6 +25,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             ViewBag.type = type;
             IEnumerable<ICD10ViewModel> model = icd10BLL.GetList(keyword, type)
                             .ToPagedList(currentPageIndex + 1, GlobalVariable.PageSize);
+            ViewBag._Update = true;
             return View(model);
         }
         [HttpPost]

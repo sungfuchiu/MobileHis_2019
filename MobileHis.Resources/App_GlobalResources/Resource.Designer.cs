@@ -268,6 +268,15 @@ namespace LocalRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 過敏資訊.
+        /// </summary>
+        public static string Allergy_Information {
+            get {
+                return ResourceManager.GetString("Allergy_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 答案為必填.
         /// </summary>
         public static string Answer_Required {
@@ -2487,6 +2496,15 @@ namespace LocalRes {
         public static string Drug_Days {
             get {
                 return ResourceManager.GetString("Drug_Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 使用資訊.
+        /// </summary>
+        public static string Drug_Direction {
+            get {
+                return ResourceManager.GetString("Drug_Direction", resourceCulture);
             }
         }
         
@@ -4714,6 +4732,15 @@ namespace LocalRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 無使用說明.
+        /// </summary>
+        public static string No_Direction {
+            get {
+                return ResourceManager.GetString("No_Direction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 注意.
         /// </summary>
         public static string Notice {
@@ -5299,6 +5326,15 @@ namespace LocalRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eng.
+        /// </summary>
+        public static string Patient_Eng {
+            get {
+                return ResourceManager.GetString("Patient_Eng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 種族.
         /// </summary>
         public static string Patient_Ethnicity {
@@ -5430,6 +5466,15 @@ namespace LocalRes {
         public static string Patient_HIV {
             get {
                 return ResourceManager.GetString("Patient_HIV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HnOther.
+        /// </summary>
+        public static string Patient_HnOther {
+            get {
+                return ResourceManager.GetString("Patient_HnOther", resourceCulture);
             }
         }
         
@@ -5704,6 +5749,15 @@ namespace LocalRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Material.
+        /// </summary>
+        public static string Patient_Material {
+            get {
+                return ResourceManager.GetString("Patient_Material", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 中間名.
         /// </summary>
         public static string Patient_Mid_Name {
@@ -5745,6 +5799,15 @@ namespace LocalRes {
         public static string Patient_MotherMName {
             get {
                 return ResourceManager.GetString("Patient_MotherMName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MRDTYPE.
+        /// </summary>
+        public static string Patient_MRDTYPE {
+            get {
+                return ResourceManager.GetString("Patient_MRDTYPE", resourceCulture);
             }
         }
         
@@ -5808,6 +5871,15 @@ namespace LocalRes {
         public static string Patient_PassportExpiredDate {
             get {
                 return ResourceManager.GetString("Patient_PassportExpiredDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PassportID.
+        /// </summary>
+        public static string Patient_PassportID {
+            get {
+                return ResourceManager.GetString("Patient_PassportID", resourceCulture);
             }
         }
         
@@ -5893,6 +5965,15 @@ namespace LocalRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ReceiveHospitalNews.
+        /// </summary>
+        public static string Patient_ReceiveHospitalNews {
+            get {
+                return ResourceManager.GetString("Patient_ReceiveHospitalNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 註冊環礁.
         /// </summary>
         public static string Patient_RegAtoll {
@@ -5934,6 +6015,24 @@ namespace LocalRes {
         public static string Patient_ReprintBarcode {
             get {
                 return ResourceManager.GetString("Patient_ReprintBarcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResdentialType.
+        /// </summary>
+        public static string Patient_ResdentialType {
+            get {
+                return ResourceManager.GetString("Patient_ResdentialType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Residential.
+        /// </summary>
+        public static string Patient_Residential {
+            get {
+                return ResourceManager.GetString("Patient_Residential", resourceCulture);
             }
         }
         
@@ -6015,6 +6114,15 @@ namespace LocalRes {
         public static string Patient_TB {
             get {
                 return ResourceManager.GetString("Patient_TB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Patient_Title {
+            get {
+                return ResourceManager.GetString("Patient_Title", resourceCulture);
             }
         }
         
