@@ -38,5 +38,10 @@ namespace MobileHis.Models.ViewModels
         }
         public DateTime Created { get; set; }
     }
+    public class JsonBoolResultModel
+    {
+        public bool isSuccess { get; set; }
+        public string errorMessage { get; set; }
+    }
 
 }

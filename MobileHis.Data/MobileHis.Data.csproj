@@ -167,6 +167,10 @@
     <Compile Include="Migrations\201903060254316_AddDirectionAndAllergyInDrug.Designer.cs">
       <DependentUpon>201903060254316_AddDirectionAndAllergyInDrug.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903290907553_AddFavoriteICD10.cs" />
+    <Compile Include="Migrations\201903290907553_AddFavoriteICD10.Designer.cs">
+      <DependentUpon>201903290907553_AddFavoriteICD10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameter.cs" />
@@ -198,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903060254316_AddDirectionAndAllergyInDrug.resx">
       <DependentUpon>201903060254316_AddDirectionAndAllergyInDrug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903290907553_AddFavoriteICD10.resx">
+      <DependentUpon>201903290907553_AddFavoriteICD10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

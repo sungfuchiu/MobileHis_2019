@@ -102,6 +102,7 @@
 
 <script src="~/Scripts/AjaxEncapsulation.js"></script>
 <script>
+    let actionUrl= "";
     $(".btnUpdate").click(function () {
         var key = $(this).data('key');
         var name = $(this).data('name');
@@ -112,12 +113,14 @@
         $("#type option").filter(function () {
             return $(this).text() == type;
         }).prop('selected', true);
+        actionUrl = '@Url.Action("Edit")';
     });
     $("#btnCreate").click(function () {
         $("#code").val('');
         $('#code').attr('disabled', false);
         $("#name").val(name);
         $("#type").val('');
+        actionUrl = '@Url.Action("Create")';
     });
     $('#btnSubmit').click(function () {
         callAjax();
@@ -126,18 +129,19 @@
         let code = $('#code').val();
         let name = $('#name').val();
         let type = $('#type').val();
-        let icd10 = new {
+        let icd10 = {
             code: code,
             name: name,
             type: type
         };
-        doAjax('@Url.Action("Create")', icd10, callback);
+        doAjax(actionUrl, icd10, callback);
     }
     function callback(result) {
-        if (result.success)
+        if (result.isSuccess)
             window.alert('success');
         else
-            window.alert(result.message);
+            window.alert(result.errorMessage);
+        $('#Modal').modal('hide');
     }
 
 </script>

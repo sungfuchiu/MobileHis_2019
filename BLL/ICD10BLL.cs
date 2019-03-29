@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using AutoMapper;
+using ValidationDictionary;
 
 namespace BLL
 {
-    public class ICD10BLL
+    public class ICD10BLL : BaseBLL<ICD10>
     {
+        public ICD10BLL(IValidationDictionary validationDictionary)
+        {
+            InitialiseIValidationDictionary(validationDictionary);
+        }
 
         public List<JsonSearchModel> Search(string search, string exclude, int recordCnt)
         {
@@ -55,13 +60,17 @@ namespace BLL
                 return DAL.Read(o => o.ICD10Code == code);
         }
 
-        public int Add(string code, string name, string type)
+        public bool Add(string code, string name, string type)
         {
             try
             {
                 using (DALBase<ICD10> DAL = new DALBase<ICD10>())
                 {
-                    if (DAL.GetAllWithNoTracking().Any(a => a.ICD10Code == code)) return 1;
+                    if (DAL.GetAllWithNoTracking().Any(a => a.ICD10Code == code))
+                    {
+                        ValidationDictionary.AddGeneralError("Duplicated");
+                        return false;
+                    }
                     DAL.Add(new ICD10
                     {
                         ICD10Code = code,
@@ -69,13 +78,15 @@ namespace BLL
                         Type = type
                     });
                     DAL.Save();
-                    return 0;
+                    return true;
 
                 }
             }
             catch (Exception ex)
             {
-                return -1;
+                ValidationDictionary.AddPropertyError<ICD10ViewModel>(
+                    i => i.ICD10Code, ex.Message);
+                return false;
             }
         }
         public bool Edit(string code, string name, string type)
@@ -93,6 +104,8 @@ namespace BLL
             }
             catch (Exception ex)
             {
+                ValidationDictionary.AddPropertyError<ICD10ViewModel>(
+                    i => i.ICD10Code, ex.Message);
                 return false;
             }
         }
