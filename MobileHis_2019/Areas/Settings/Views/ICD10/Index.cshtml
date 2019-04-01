@@ -57,14 +57,11 @@
 <div class="row">
     <button class="btn btn-info" id="btnCreate" data-toggle="modal" data-target="#Modal">新增</button>
     <table>
-        <thead>
-            <tr>
-                <th class="hidden-480">@LocalRes.Resource.ICD10Code</th>
-                <th class="hidden-480">@LocalRes.Resource.ICD10Name</th>
-                <th class="hidden-480">@LocalRes.Resource.ICD10Type</th>
-                <th></th>
-            </tr>
-        </thead>
+        @TableHelper.TableHeader(
+            @LocalRes.Resource.ICD10Code,
+            @LocalRes.Resource.ICD10Name,
+            @LocalRes.Resource.ICD10Type
+            )
         @if (Model != null)
         {
             foreach (var item in Model)
@@ -86,6 +83,7 @@
                 </tr>
             }
         }
+        
     </table>
 </div>
 <div class="row">
@@ -138,7 +136,10 @@
     }
     function callback(result) {
         if (result.isSuccess)
+        {
             window.alert('success');
+            location.reload();
+        }
         else
             window.alert(result.errorMessage);
         $('#Modal').modal('hide');

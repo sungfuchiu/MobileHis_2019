@@ -54,6 +54,7 @@
     <Compile Include="CodeFileDAL.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="DoctorScheduleDAL.cs" />
+    <Compile Include="DrugDAL.cs" />
     <Compile Include="Setting\GeneralSettingRepo.cs" />
     <Compile Include="RepositoryBase\EFGenericRepository.cs" />
     <Compile Include="RepositoryBase\IRepository.cs" />
@@ -78,6 +79,10 @@
     <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
       <Project>{E4BAC5CB-CAB0-4C7E-928C-946302926B65}</Project>
       <Name>MobileHis.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ValidationDictionary\Common.csproj">
+      <Project>{0aafa14b-2afb-48e6-a6bb-4697fa13f627}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

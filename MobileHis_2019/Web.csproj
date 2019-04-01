@@ -154,6 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
+    <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Views\SettingHtmlHelper.cs" />
@@ -190,6 +191,8 @@
     <Content Include="Areas\Settings\Views\Setting\Index.cshtml" />
     <Content Include="Areas\Settings\Views\ICD10\Index.cshtml" />
     <Content Include="App_Code\DropDownHelper.cshtml" />
+    <Content Include="Areas\Settings\Views\Item\Index.cshtml" />
+    <Content Include="App_Code\TableHelper.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

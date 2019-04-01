@@ -7,6 +7,14 @@ using System.Web;
 namespace MobileHis.Data
 {
 
+    public enum DiagnosisTypes
+    {
+        Principle = 0,
+        Comorbidity = 1,
+        Complication = 2,
+        Other_Classification = 3,
+        External_Cause = 4
+    }
     public enum BI_Function
     {       
         PatientRegister,

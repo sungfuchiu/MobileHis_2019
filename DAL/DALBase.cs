@@ -19,6 +19,7 @@ namespace DAL
         DbContextTransaction Trans;
         bool Disposed = false;
         Validation.ValidationImplement validation = new Validation.ValidationImplement(new Dictionary<string, string>());
+        public IQueryable<TEntity> Entity;
 
         public DALBase() { Entities = new MobileHISEntities(); }
         public DALBase(MobileHISEntities entities) { Entities = entities; }
@@ -64,9 +65,13 @@ namespace DAL
         {
             return Entities.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
-        public IQueryable<TEntity> Reads()
+        public void Reads(params System.Linq.Expressions.Expression<Func<TEntity, object>>[] includes)
         {
-            return Entities.Set<TEntity>().AsQueryable();
+            Entity = Entities.Set<TEntity>().AsQueryable();
+            foreach(var item in includes)
+            {
+                Entity.Include(item);
+            }
         }
         public void Add(TEntity entity)
         {

@@ -10,7 +10,7 @@ using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.ViewModel;
 using AutoMapper;
-using ValidationDictionary;
+using Common;
 
 namespace BLL 
 {

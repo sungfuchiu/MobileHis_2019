@@ -1,0 +1,13 @@
+﻿@helper TableHeader(params string[] headers)
+{
+    <thead>
+        <tr>
+        @foreach(var header in headers)
+        {
+            <th class="hidden-480">
+                @header
+            </th>
+        }
+        </tr>
+    </thead>
+}

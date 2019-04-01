@@ -127,6 +127,7 @@ namespace MobileHis.Data
         public virtual DbSet<DrugStock> DrugStock { get; set; }
         public virtual DbSet<ExamReport> ExamReport { get; set; }
         public virtual DbSet<ICD10> ICD10 { get; set; }
+        public virtual DbSet<ICD10Favorites> ICD10Favorites { get; set; }
         public virtual DbSet<Kit> Kit { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NotifyMessage> NotifyMessage { get; set; }

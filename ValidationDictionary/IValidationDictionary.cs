@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ValidationDictionary
+namespace Common
 {
     public interface IValidationDictionary
     {

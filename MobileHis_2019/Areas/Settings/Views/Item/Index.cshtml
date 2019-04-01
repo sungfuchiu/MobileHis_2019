@@ -1,0 +1,41 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@model  Tuple<IPagedList<MobileHis.Data.Drug>, MobileHis.Models.Areas.Drug.ViewModels.DrugsFilter>
+@{
+    ViewBag.Title = LocalRes.Resource.Map_Drug_Drugs;
+}
+
+<h2>Index</h2>
+
+<table>
+    @TableHelper.TableHeader(
+        @LocalRes.Resource.Comm_Photo,
+        @LocalRes.Resource.Drug_Item_Name,
+        @LocalRes.Resource.Drug_Code,
+        @LocalRes.Resource.Drug_Barcode,
+        @LocalRes.Resource.Comm_StockAmount,
+        @LocalRes.Resource.Comm_Action
+        )
+    @(Model!=null){
+        @foreach (var item in Model.Item1)
+        {
+            <tr>
+                <td>
+                    <img class="img-responsive img-thumbnail" 
+                         src="@Url.Action("Photo","Drug", new { area = "Drug", id = item.GID })"/>
+                </td>
+                <td>"[@item.OrderCode]@item.Title"</td>
+                <td>
+                    <img class="img-responsive img-thumbnail" 
+                         src="@Url.Action("DrugBarCode","Drug", new { area = "Drug", DrugCode = item.DrugCode })" />
+                </td>
+                <td>
+                    @item.DrugStock.Sum(o => o.CurrentStock)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    }
+</table>

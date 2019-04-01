@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
-using ValidationDictionary;
+using Common;
 
 namespace MobileHis_2019.Controllers
 {

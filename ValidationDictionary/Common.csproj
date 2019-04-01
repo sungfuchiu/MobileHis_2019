@@ -7,8 +7,8 @@
     <ProjectGuid>{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ValidationDictionary</RootNamespace>
-    <AssemblyName>ValidationDictionary</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatebaseValidationErrros.cs" />
+    <Compile Include="ExtensionMethod.cs" />
     <Compile Include="IValidationDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using AutoMapper;
-using ValidationDictionary;
+using Common;
 
 namespace BLL
 {
