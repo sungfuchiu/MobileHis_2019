@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="DatebaseValidationErrros.cs" />
     <Compile Include="ExtensionMethod.cs" />
     <Compile Include="IValidationDictionary.cs" />

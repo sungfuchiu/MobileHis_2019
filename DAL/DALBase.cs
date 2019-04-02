@@ -20,6 +20,7 @@ namespace DAL
         bool Disposed = false;
         Validation.ValidationImplement validation = new Validation.ValidationImplement(new Dictionary<string, string>());
         public IQueryable<TEntity> Entity;
+        public IQueryable<string> Data;
 
         public DALBase() { Entities = new MobileHISEntities(); }
         public DALBase(MobileHISEntities entities) { Entities = entities; }
@@ -65,13 +66,29 @@ namespace DAL
         {
             return Entities.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
-        public void Reads(params System.Linq.Expressions.Expression<Func<TEntity, object>>[] includes)
+        public void Reads(params Expression<Func<TEntity, object>>[] includes)
         {
             Entity = Entities.Set<TEntity>().AsQueryable();
             foreach(var item in includes)
             {
                 Entity.Include(item);
             }
+        }
+        public IQueryable<T> Select<T>(Expression<Func<TEntity, T>> select)
+        {
+            return Entity.Select(select);
+        }
+        public IQueryable<T> Distinct<T>(IQueryable<T> source)
+        {
+            return source.Distinct();
+        }
+        public IEnumerable<TEntity> ReadsResult()
+        {
+            return Entity.ToList();
+        }
+        public IEnumerable<T> ReadsResult<T>(IQueryable<T> source)
+        {
+            return source.ToList();
         }
         public void Add(TEntity entity)
         {

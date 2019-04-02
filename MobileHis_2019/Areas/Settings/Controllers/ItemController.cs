@@ -1,16 +1,19 @@
 ﻿using BLL;
+using Common;
 using MobileHis.Models.Areas.Drug.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using X.PagedList;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class ItemController : MobileHis_2019.Controllers.BaseController
     {
         private DrugBLL drugBLL;
+        private DrugAppearanceBLL drugAppearanceBLL = new DrugAppearanceBLL();
         private ModelStateWrapper modelState;
         public ItemController()
         {
@@ -21,17 +24,11 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter, int? page)
         {
             int current_page = 0;
-            using (DrugAppearanceDal dal = new DrugAppearanceDal())
-            {
-                filter = filter ?? dal.NewFilter();
-                current_page = (page ?? filter.page ?? 1) - 1;
-            }
+            filter = filter ?? drugAppearanceBLL.NewFilter();
+            current_page = (page ?? filter.page ?? 1) - 1;
 
-            //filter.AddFilerCodit();           
-            
             var entity = drugBLL.Filter(filter);
-            entity = dal.Sort(entity);
-            var model = new Tuple<IPagedList<MobileHis.Data.Drug>, DrugsFilter>(entity.ToPagedList(current_page + 1, Config.PageSize), filter);
+            var model = new Tuple<IPagedList<DrugViewModel>, DrugsFilter>(entity.ToPagedList(current_page + 1, Config.PageSize), filter);
             return View(model);
             
         }

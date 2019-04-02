@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="BaseBLL.cs" />
     <Compile Include="CodeFileBLL.cs" />
+    <Compile Include="DrugAppearanceBLL.cs" />
     <Compile Include="DrugBLL.cs" />
     <Compile Include="IBLL.cs" />
     <Compile Include="GenericService.cs" />

@@ -16,7 +16,7 @@ namespace BLL
         {
             InitialiseIValidationDictionary(validationDictionary);
         }
-        public List<Drug> Filter(DrugsFilter filter)
+        public List<DrugViewModel> Filter(DrugsFilter filter)
         {
             using (DrugDAL dal = new DrugDAL())
             {
@@ -29,7 +29,7 @@ namespace BLL
                     dal.DrugMajorTypeContains(filter.DrugMajorType.Where(a => a.IsSelected).Select(a => a.ID));
                     dal.DrugShapeContains(filter.DrugShape.Where(a => a.IsSelected).Select(a => a.ID));
                 }
-                return dal.Entity.ToList();
+                return dal.ReadsResult().ToList().OrderBy(a => a.Title).Select(a => DrugViewModel.Load(a, null)).ToList();
             }
         }
         private bool IsDrugHasAppearance(DrugsFilter filter)

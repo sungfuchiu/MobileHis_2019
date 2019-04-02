@@ -1,0 +1,112 @@
+.patient-profile{ 
+	background: rgba(217,238,248,0.5);
+	padding:20px;
+	border:1px solid  rgba(0,145,255,0.2);
+}
+.patient-profile img{ 
+	border:rgba(253,253,253,1.00) 4px solid;
+}
+.patient-reportlist{
+	list-style-type:none;
+	padding:3px;
+	margin:0;
+}
+.patient-reportlist li{
+	padding:8px;
+	border-bottom:1px dashed #DDD;
+	line-height:2.5;
+}
+.patient-reportlist li:hover{
+	background: #F4FFF3;
+}
+.patient-reportlist li a{
+	display:block;
+	color:#5E6678;
+}
+.patient-reportlist li a:hover{
+	text-decoration:none;
+}
+
+.patient-history {
+  padding: 10px 4px;
+  position: relative;/*
+  border-bottom: 1px dotted #fff;
+  border-left: 1px dotted #FFF;
+  border-right: 1px dotted #FFF;*/
+  background:url(../images/p_h_bg.gif) no-repeat 4px 0px;
+}
+/*.patient-history:first-child {
+  border-top: 1px dotted transparent;
+}
+.patient-history:first-child:hover {
+  border-top-color: #D0D8E0;
+}
+.patient-history:hover {
+  background-color: #F4F9FD;
+  border-left: 1px dotted #D0D8E0;
+  border-right: 1px dotted #D0D8E0;
+}
+.patient-history img {
+  border: 2px solid #C9D6E5;
+  border-radius: 100%;
+  max-width: 36px;
+  margin-right: 10px;
+  margin-left: 0px;
+  box-shadow: none;
+}*/
+.patient-history .p-h-content {
+  background-color: #f3f8f9;
+  border: 1px solid #D0D8E0;
+  box-sizing:border-box;
+  padding:5px 10px;
+  border-radius:0 5px 5px 5px;
+  line-height:2;
+}
+.patient-history .p-h-icon {
+}
+.patient-history .thumbicon {
+  background-color: #B4E0EB;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  color: #FFF;
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom:5px;
+  text-shadow: none !important;
+}
+.patient-history .time {
+  display: block;
+  margin-top: 4px;
+  color: #777;
+  border-top: 1px dotted #D0D8E0;
+}
+.patient-history .date {
+  margin-left: 10px;
+}
+.patient-history a.user {
+  font-weight: bold;
+  color: #57A514;
+}
+.patient-history .tools {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  display: none;
+}
+.patient-history:hover .tools {
+  display: block;
+}
+.rtl .patient-history img,
+.rtl .patient-history .thumbicon {
+  margin-right: 0;
+  margin-left: 10px;
+}
+.rtl .patient-history .tools {
+  left: 12px;
+  right: auto;
+}

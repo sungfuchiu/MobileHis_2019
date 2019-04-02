@@ -3,6 +3,7 @@ using MobileHis.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Transactions;
 
 namespace MobileHis.Models.Areas.Drug.ViewModels
@@ -35,6 +36,7 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
             v.PatientFrom = drug.PatientFromType;
             v.Formulation = drug.Formulation;
             v.SubCategory = drug.SubCategory;
+            v.DrugStockAmount = drug.DrugStock.Sum(a => a.CurrentStock);
             return v;
         }
 
@@ -78,6 +80,7 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
         public double? InitialFee { get; set; }
 
         public double? DailyFee { get; set; }
+        public decimal DrugStockAmount { get; set; }
 
     }
 }

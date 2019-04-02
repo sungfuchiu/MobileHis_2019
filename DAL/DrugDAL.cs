@@ -22,7 +22,7 @@ namespace DAL
             }
             else
             {
-                Entity = Entity.Where(a => a.DrugType.IsNullOrEmpty());
+                Entity = Entity.Where(a => string.IsNullOrEmpty(a.DrugType));
             }
         }
         public void DrugHasAppearance()

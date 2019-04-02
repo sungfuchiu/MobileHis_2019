@@ -143,6 +143,7 @@
     <Compile Include="Areas\Clinical\HistoryCalendar.cs" />
     <Compile Include="Areas\Drug\DrugDecorator.cs" />
     <Compile Include="Areas\Drug\ViewModels\DrugSearchByCaseViewModel.cs" />
+    <Compile Include="Areas\Drug\ViewModels\DrugStockViewModel.cs" />
     <Compile Include="Areas\Drug\ViewModels\OrderDrugView.cs" />
     <Compile Include="Areas\MedicalRecord\ReceptionListModel.cs" />
     <Compile Include="Areas\OPD\ViewModels\OpdRegisterUndoneFilter.cs" />

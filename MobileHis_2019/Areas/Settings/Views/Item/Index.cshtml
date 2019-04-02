@@ -1,6 +1,6 @@
 ﻿@using X.PagedList;
 @using X.PagedList.Mvc;
-@model  Tuple<IPagedList<MobileHis.Data.Drug>, MobileHis.Models.Areas.Drug.ViewModels.DrugsFilter>
+@model  Tuple<IPagedList<MobileHis.Models.Areas.Drug.ViewModels.DrugViewModel>, MobileHis.Models.Areas.Drug.ViewModels.DrugsFilter>
 @{
     ViewBag.Title = LocalRes.Resource.Map_Drug_Drugs;
 }
@@ -25,15 +25,56 @@
                          src="@Url.Action("Photo","Drug", new { area = "Drug", id = item.GID })"/>
                 </td>
                 <td>"[@item.OrderCode]@item.Title"</td>
+                <td>@item.DrugCode</td>
                 <td>
                     <img class="img-responsive img-thumbnail" 
                          src="@Url.Action("DrugBarCode","Drug", new { area = "Drug", DrugCode = item.DrugCode })" />
                 </td>
                 <td>
-                    @item.DrugStock.Sum(o => o.CurrentStock)
+                    @item.DrugStockAmount
                 </td>
                 <td>
-
+                    <div class="hidden-sm hidden-xs">
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Edit", new { @id= item.GID})"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
+                        <a class="delete btn btn-danger btn-sm" href="#" data-id="@item.GID"><i class="fa fa-lg fa-trash-o"></i> @LocalRes.Resource.Comm_Del</a>
+                        @if (string.IsNullOrWhiteSpace(item.DrugType))
+                        {
+                            <a class="btn btn-sm btn-warning" href="@Url.Action("Setting", new { @id = item.GID })"><i class="fa fa-cog"></i>@LocalRes.Resource.Comm_Setting</a>
+                        }
+                    </div>
+                    <div class="hidden-lg hidden-md">
+                        <div class="inline position-relative">
+                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="@Url.Action("Edit", new { @id= item.GID})" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit" onclick="doEdit();">
+                                        <span class="green">
+                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="delete tooltip-error" data-id="@item.GID" data-rel="tooltip" title="" data-original-title="Delete">
+                                        <span class="red">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                @if (string.IsNullOrWhiteSpace(item.DrugType))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Setting", new { @id= item.GID})" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit" onclick="doEdit();">
+                                            <span class="blue">
+                                                <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 </td>
             </tr>
         }

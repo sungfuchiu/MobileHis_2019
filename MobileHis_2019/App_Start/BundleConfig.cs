@@ -25,6 +25,20 @@ namespace MobileHis_2019
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/JSForAce").Include(
+                "~/Content/assets/js/ace-elements.min.js",
+                "~/Content/assets/js/ace.min.js",
+                "~/Content/assets/js/date-time/moment.min.js",
+                "~/Content/assets/js/date-time/bootstrap-datetimepicker.min.js",
+                "~/Content/assets/js/chosen.jquery.min.js"
+            ));
+
+            bundles.Add(new StyleBundle("~/Content/cssForAce").Include(
+                "~/Content/assets/css/bootstrap.min.css",
+                "~/Content/assets/css/chosen.css",
+                "~/Content/assets/css/ace.css",
+                "~/Content/assets/css/bootstrap-datetimepicker.css"
+                ));
         }
     }
 }
