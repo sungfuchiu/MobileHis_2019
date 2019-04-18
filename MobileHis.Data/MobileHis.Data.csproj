@@ -168,6 +168,18 @@
     <Compile Include="Migrations\201903060254316_AddDirectionAndAllergyInDrug.Designer.cs">
       <DependentUpon>201903060254316_AddDirectionAndAllergyInDrug.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903150929313_Add_Diagnosis_Type.cs" />
+    <Compile Include="Migrations\201903150929313_Add_Diagnosis_Type.Designer.cs">
+      <DependentUpon>201903150929313_Add_Diagnosis_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903200957171_AddICD10FavoritesTable.cs" />
+    <Compile Include="Migrations\201903200957171_AddICD10FavoritesTable.Designer.cs">
+      <DependentUpon>201903200957171_AddICD10FavoritesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904180300435_AddRecordTypeInOpdRecord.cs" />
+    <Compile Include="Migrations\201904180300435_AddRecordTypeInOpdRecord.Designer.cs">
+      <DependentUpon>201904180300435_AddRecordTypeInOpdRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameter.cs" />
@@ -199,6 +211,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903060254316_AddDirectionAndAllergyInDrug.resx">
       <DependentUpon>201903060254316_AddDirectionAndAllergyInDrug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903150929313_Add_Diagnosis_Type.resx">
+      <DependentUpon>201903150929313_Add_Diagnosis_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903200957171_AddICD10FavoritesTable.resx">
+      <DependentUpon>201903200957171_AddICD10FavoritesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904180300435_AddRecordTypeInOpdRecord.resx">
+      <DependentUpon>201904180300435_AddRecordTypeInOpdRecord.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

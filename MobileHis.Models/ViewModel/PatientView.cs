@@ -234,8 +234,6 @@ namespace MobileHis.Models.ViewModel
         public bool Diabetes { get; set; }
         [Display(ResourceType = typeof(Resource), Name = "Patient_Alcohol")]
         public bool Alcohol { get; set; }
-        [Display(ResourceType = typeof(Resource), Name = "Patient_Paternity")]
-        public MobileHis.Data.PatientPaternity Paternity { get; set; }
 
         [Display(ResourceType = typeof(Resource), Name = "Patient_Pobox")]
         public string POBOXNo { get; set; }

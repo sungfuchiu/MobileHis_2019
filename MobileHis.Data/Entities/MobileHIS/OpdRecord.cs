@@ -52,6 +52,7 @@ namespace MobileHis.Data
         public string LabIssueNo { get; set; }
         [MaxLength(50)]
         public string UpdatedBy { get; set; }
+        public RecordTypes RecordType { get; set; }
 
         #region ForeignKey
         [ForeignKey("OpdRegisterId")]

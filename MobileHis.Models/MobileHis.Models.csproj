@@ -249,10 +249,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MobileHis.Comm\MobileHis.Comm.csproj">
-      <Project>{2d5966be-7305-4db0-b71f-33ea5c3ba1f4}</Project>
-      <Name>MobileHis.Comm</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
       <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
       <Name>MobileHis.Data</Name>

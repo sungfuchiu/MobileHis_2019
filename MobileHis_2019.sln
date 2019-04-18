@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "MobileHis_2019\Web.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{93DD37EA-7A5C-48DC-8E39-01AEA9D4F273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileHis.Data", "MobileHis.Data\MobileHis.Data.csproj", "{FB01A196-011A-454A-B16D-C5F7AD076E2F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{0F57CCCA-131B-4817-A22B-2B23B7BC600C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileHis.Misc.Storage", "MobileHis.Misc.Storage\MobileHis.Misc.Storage.csproj", "{F61A86ED-DD00-4951-8193-F2C58BC1CF9D}"
@@ -18,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileHis.Resources", "MobileHis.Resources\MobileHis.Resources.csproj", "{19EAAA67-6B03-4C46-B38B-3C062394AE20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "ValidationDictionary\Common.csproj", "{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileHis.Data", "MobileHis.Data\MobileHis.Data.csproj", "{FB01A196-011A-454A-B16D-C5F7AD076E2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,12 +38,6 @@ Global
 		{93DD37EA-7A5C-48DC-8E39-01AEA9D4F273}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93DD37EA-7A5C-48DC-8E39-01AEA9D4F273}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{93DD37EA-7A5C-48DC-8E39-01AEA9D4F273}.Staging|Any CPU.Build.0 = Release|Any CPU
-		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
-		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{0F57CCCA-131B-4817-A22B-2B23B7BC600C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F57CCCA-131B-4817-A22B-2B23B7BC600C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F57CCCA-131B-4817-A22B-2B23B7BC600C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,6 +68,12 @@ Global
 		{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{FB01A196-011A-454A-B16D-C5F7AD076E2F}.Staging|Any CPU.Build.0 = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,14 +7,6 @@ using System.Web;
 namespace MobileHis.Data
 {
 
-    public enum DiagnosisTypes
-    {
-        Principle = 0,
-        Comorbidity = 1,
-        Complication = 2,
-        Other_Classification = 3,
-        External_Cause = 4
-    }
     public enum BI_Function
     {       
         PatientRegister,
@@ -77,6 +69,19 @@ namespace MobileHis.Data
         All, // 全部
         PulledOut, // 已經被拿出的
         NeedPullOut//需要被拿出
+    }
+    public enum DiagnosisTypes
+    {
+        Principle = 0,
+        Comorbidity = 1,
+        Complication = 2,
+        Other_Classification = 3,
+        External_Cause = 4
+    }
+    public enum RecordTypes
+    {
+        OPD,
+        ER
     }
 
     public class Enums
@@ -150,12 +155,6 @@ namespace MobileHis.Data
         public static string category = "category";
         public static string mail = "mail";
     };
-    public enum PatientPaternity
-    {
-        Natural,
-        Foster
-
-    }
     public enum SettingTypes
     {
         Default,

@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB01A196-011A-454A-B16D-C5F7AD076E2F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MobileHis.Data</RootNamespace>
+    <AssemblyName>MobileHis.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseEntities\MobileHISEntities.cs" />
+    <Compile Include="Entities\MobileHIS\Account2Dept.cs" />
+    <Compile Include="Entities\MobileHIS\Account.cs" />
+    <Compile Include="Entities\MobileHIS\Account2Role.cs" />
+    <Compile Include="Entities\MobileHIS\Ap2Role.cs" />
+    <Compile Include="Entities\MobileHIS\BillingItemLog.cs" />
+    <Compile Include="Entities\MobileHIS\DrugStock.cs" />
+    <Compile Include="Entities\MobileHIS\ICD10Favorites.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecordHistory.cs" />
+    <Compile Include="Entities\MobileHIS\PatientAdmissionForm.cs" />
+    <Compile Include="Entities\MobileHIS\PatientFinalDiagnosis.cs" />
+    <Compile Include="Entities\MobileHIS\PatientLog.cs" />
+    <Compile Include="Entities\MobileHIS\PatientOperativeProcedure.cs" />
+    <Compile Include="Entities\MobileHIS\SystemLog.cs" />
+    <Compile Include="Entities\MobileHIS\MedicalRecord.cs" />
+    <Compile Include="Entities\MobileHIS\BillingLog.cs" />
+    <Compile Include="Entities\MobileHIS\CodeFile.cs" />
+    <Compile Include="Entities\MobileHIS\Course.cs" />
+    <Compile Include="Entities\MobileHIS\CourseAttachment.cs" />
+    <Compile Include="Entities\MobileHIS\CourseDateTime.cs" />
+    <Compile Include="Entities\MobileHIS\CourseLog.cs" />
+    <Compile Include="Entities\MobileHIS\CourseMember.cs" />
+    <Compile Include="Entities\MobileHIS\CourseRegistration.cs" />
+    <Compile Include="Entities\MobileHIS\CourseSetting.cs" />
+    <Compile Include="Entities\MobileHIS\CourseSignUp.cs" />
+    <Compile Include="Entities\MobileHIS\CourseTested.cs" />
+    <Compile Include="Entities\MobileHIS\CourseTestPaper.cs" />
+    <Compile Include="Entities\MobileHIS\CourseYoutube.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_Answer.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_AnswerImage.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_Question.cs" />
+    <Compile Include="Entities\MobileHIS\Course_Exam_QuestionImage.cs" />
+    <Compile Include="Entities\MobileHIS\Dept.cs" />
+    <Compile Include="Entities\MobileHIS\Dept2Room.cs" />
+    <Compile Include="Entities\MobileHIS\DialysisBeds.cs" />
+    <Compile Include="Entities\MobileHIS\DorSchedule.cs" />
+    <Compile Include="Entities\MobileHIS\Drug.cs" />
+    <Compile Include="Entities\MobileHIS\DrugAppearance.cs" />
+    <Compile Include="Entities\MobileHIS\DrugCost.cs" />
+    <Compile Include="Entities\MobileHIS\DrugOrderRestriction.cs" />
+    <Compile Include="Entities\MobileHIS\DrugRestriction.cs" />
+    <Compile Include="Entities\MobileHIS\DrugSetting.cs" />
+    <Compile Include="Entities\MobileHIS\DrugVendor.cs" />
+    <Compile Include="Entities\MobileHIS\ExamReport.cs" />
+    <Compile Include="Entities\MobileHIS\Guardian.cs" />
+    <Compile Include="Entities\MobileHIS\Guardian_File.cs" />
+    <Compile Include="Entities\MobileHIS\ICD10.cs" />
+    <Compile Include="Entities\MobileHIS\Kit.cs" />
+    <Compile Include="Entities\MobileHIS\PrintPool.cs" />
+    <Compile Include="Entities\MobileHIS\News.cs" />
+    <Compile Include="Entities\MobileHIS\NotifyMessage.cs" />
+    <Compile Include="Entities\MobileHIS\Billing.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecord.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecord2ICD10.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRecordAttachment.cs" />
+    <Compile Include="Entities\MobileHIS\OpdRegister.cs" />
+    <Compile Include="Entities\MobileHIS\OrderDrug.cs" />
+    <Compile Include="Entities\MobileHIS\OrderExam.cs" />
+    <Compile Include="Entities\MobileHIS\OrderKit.cs" />
+    <Compile Include="Entities\MobileHIS\OrderLaboratory.cs" />
+    <Compile Include="Entities\MobileHIS\Partail\DorSchedule.cs" />
+    <Compile Include="Entities\MobileHIS\Partail\ICD10.cs" />
+    <Compile Include="Entities\MobileHIS\Partail\OpdRegister.cs" />
+    <Compile Include="Entities\MobileHIS\Patient.cs" />
+    <Compile Include="Entities\MobileHIS\Phrase.cs" />
+    <Compile Include="Entities\MobileHIS\PosTransactionD.cs" />
+    <Compile Include="Entities\MobileHIS\PosTransactionM.cs" />
+    <Compile Include="Entities\MobileHIS\PurchaseD.cs" />
+    <Compile Include="Entities\MobileHIS\PurchaseM.cs" />
+    <Compile Include="Entities\MobileHIS\Role.cs" />
+    <Compile Include="Entities\MobileHIS\Room.cs" />
+    <Compile Include="Entities\MobileHIS\Setting.cs" />
+    <Compile Include="Entities\MobileHIS\TestAnswer.cs" />
+    <Compile Include="Entities\MobileHIS\TestAnswerImage.cs" />
+    <Compile Include="Entities\MobileHIS\TestPaper.cs" />
+    <Compile Include="Entities\MobileHIS\TestQuestion.cs" />
+    <Compile Include="Entities\MobileHIS\TestQuestionImage.cs" />
+    <Compile Include="Entities\MobileHIS\Vendor.cs" />
+    <Compile Include="Entities\MobileHIS\VitalSign.cs" />
+    <Compile Include="Entities\MobileHIS\Ward.cs" />
+    <Compile Include="Entities\MobileHIS\Ward2Room.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemParameter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sql\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

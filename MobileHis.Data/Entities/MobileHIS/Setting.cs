@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
-//using MobileHis.Misc;
 
 namespace MobileHis.Data
 {
@@ -126,7 +128,7 @@ namespace MobileHis.Data
         public string ApiKey { get; set; }
         public HttpRequestBase PartnerFile
         {
-            get;set;
+            get; set;
             //get
             //{
             //    return partnerFile;
@@ -222,7 +224,8 @@ namespace MobileHis.Data
         }
         public ShiftTime NightShift
         {
-            get {
+            get
+            {
                 nightShift.ColumnName = "Opd_Shift_Night";
                 return nightShift;
             }
@@ -294,7 +297,7 @@ namespace MobileHis.Data
                 return ((time >= BeginTime && time <= EndTime) || time < BeginTime);
             }
 
-            public string ColumnName{ get; set; }
+            public string ColumnName { get; set; }
 
             public string ColumnValue()
             {

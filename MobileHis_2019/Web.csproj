@@ -667,6 +667,10 @@
       <Project>{0f57ccca-131b-4817-a22b-2b23b7bc600c}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
+      <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
+      <Name>MobileHis.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
       <Project>{e4bac5cb-cab0-4c7e-928c-946302926b65}</Project>
       <Name>MobileHis.Models</Name>
