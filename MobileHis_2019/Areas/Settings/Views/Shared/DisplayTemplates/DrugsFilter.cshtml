@@ -1,0 +1,36 @@
+﻿@model  MobileHis.Models.Areas.Drug.ViewModels.DrugsFilter
+<style>
+    .space {
+        padding-top: 10px;
+    }
+</style>
+<form class="form-inline" data-form="filters">
+    @Html.HiddenFor(m => m.page, new { id = "hidPage" })
+    <div class="profile-contact-links">
+        <div class="row form-inline">
+            <div class="col-sm-8">
+                <label>@LocalRes.Resource.Comm_Type: </label>
+                @*@ucDropDown.getDrugTypeDll("Item2.DrugType", Model.DrugType)*@
+                <label>@LocalRes.Resource.Drug_Item_Name: </label>
+                @Html.TextBoxFor(m => m.DrugTitle, new { @class = "form-control" })
+                <br />
+            </div>
+
+            <div class="col-sm-6 align-right pull-right">
+                <button id="search" type="submit" class="btn btn-sm btn-success">
+                    <i class="fa fa-search"></i>
+                    @LocalRes.Resource.Comm_Search
+                </button>
+                @if (_Add)
+                {
+                    <a href="@Url.Action("Edit")" class="btn btn-primary btn-sm">
+                        <i class="fa fa-plus"></i>
+                        @LocalRes.Resource.Comm_Create
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+
+</form>

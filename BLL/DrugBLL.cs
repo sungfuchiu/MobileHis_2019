@@ -21,6 +21,7 @@ namespace BLL
             using (DrugDAL dal = new DrugDAL())
             {
                 dal.Reads(x => x.DrugStock);
+                dal.TitleContains(filter.DrugTitle);
                 dal.DrugTypeIs(filter.DrugType);
                 if(IsDrugHasAppearance(filter))
                 {

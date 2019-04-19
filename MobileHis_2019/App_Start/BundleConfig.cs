@@ -39,6 +39,10 @@ namespace MobileHis_2019
                 "~/Content/assets/css/ace.css",
                 "~/Content/assets/css/bootstrap-datetimepicker.css"
                 ));
+            bundles.Add(new StyleBundle("~/Content/Font-Awesome").Include(
+                "~/Content/assets/css/font-awesome.min.css",
+                "~/Content/assets/css/ace-fonts.css"
+                ));
         }
     }
 }

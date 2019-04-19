@@ -5,7 +5,8 @@
     ViewBag.Title = LocalRes.Resource.Map_Drug_Drugs;
 }
 
-<h2>Index</h2>
+<h2>@LocalRes.Resource.Drug_Manager</h2>
+@Html.DisplayFor(m => m.Item2)
 
 <table>
     @TableHelper.TableHeader(
@@ -16,8 +17,8 @@
         @LocalRes.Resource.Comm_StockAmount,
         @LocalRes.Resource.Comm_Action
         )
-    @(Model!=null){
-        @foreach (var item in Model.Item1)
+    @if(Model!=null){
+        foreach (var item in Model.Item1)
         {
             <tr>
                 <td>

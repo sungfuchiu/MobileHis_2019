@@ -16,13 +16,13 @@ namespace DAL
         }
         public void DrugTypeIs(string drugType)
         {
-            if (!drugType.IsNullOrEmpty())
+            if (drugType.IsNullOrEmpty())
             {
-                Entity = Entity.Where(a => a.DrugType == drugType);
+                Entity = Entity.Where(a => string.IsNullOrEmpty(a.DrugType));
             }
             else
             {
-                Entity = Entity.Where(a => string.IsNullOrEmpty(a.DrugType));
+                Entity = Entity.Where(a => a.DrugType == drugType);
             }
         }
         public void DrugHasAppearance()

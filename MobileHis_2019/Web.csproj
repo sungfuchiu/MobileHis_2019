@@ -612,6 +612,7 @@
     <Content Include="Content\assets\js\ace\readme" />
     <Content Include="Content\assets\js\ace\scripts.json" />
     <Content Include="Content\assets\js\uncompressed\x-editable\bootstrap-editable.min.js.map" />
+    <Content Include="Areas\Settings\Views\Shared\DisplayTemplates\DrugsFilter.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
