@@ -4,6 +4,7 @@ using System.Linq;
 using MobileHis.Data;
 using System.Data.Entity;
 using System.Globalization;
+using Common;
 
 namespace DAL
 {
@@ -11,11 +12,9 @@ namespace DAL
     {
         public Setting GetSetting(string settingName, SettingTypes settingType)
         {
-            return GetAll()
-                .Include(a => a.ParentSetting)
-                .FirstOrDefault(
-                    a => a.SettingName == settingName 
-                    && a.ParentSetting.SettingName == settingType.ToString());
+            return Read(a => a.SettingName == settingName
+                && a.ParentSetting.SettingName == settingType.ToString(),
+                a => a.ParentSetting);
         }
         //public GeneralSettings GetGeneralSettings()
         //{
@@ -75,14 +74,12 @@ namespace DAL
         //}
         public List<Setting> GetEmptyPartnerImgSetting()
         {
-            return GetAll()
-                .Include(a => a.ParentSetting)
-                .Where(a => 
-                    a.SettingName.Contains("Partner") 
-                    && a.ParentSetting.SettingName == SettingTypes.Default.ToString() 
-                    && string.IsNullOrEmpty(a.Value))
-                .OrderBy(a => a.SettingName)
-                .ToList();
+            Reads(a => a.ParentSetting);
+            Entity = Entity.Where(a => a.SettingName.Contains("Partner")
+                && a.ParentSetting.SettingName == SettingTypes.Default.ToString()
+                && string.IsNullOrEmpty(a.Value))
+                .OrderBy(a => a.SettingName);
+            return Entity.ToList();
         }
         public List<string> GetPartnerImagePath()
         {
@@ -220,13 +217,12 @@ namespace DAL
 
         public void Update(string settingName, SettingTypes parentName, string newValue)
         {
-            Setting update = GetAll()
-                .Include(a => a.ParentSetting)
-                .FirstOrDefault(a => 
-                    a.ParentSetting.SettingName == parentName.ToString() 
-                    && a.SettingName == settingName);
-            update.Value = newValue;
-            Edit(update);
+            Setting updatedItem = Read(a =>
+                    a.ParentSetting.SettingName == parentName.ToString()
+                    && a.SettingName == settingName,
+                    a => a.ParentSetting);
+            updatedItem.Value = newValue;
+            Edit(updatedItem);
         }
     }
 }

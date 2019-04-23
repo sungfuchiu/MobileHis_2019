@@ -10,7 +10,16 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
 {
     public class DrugViewModel //: absDrugComponent
     {
+        public DrugViewModel() { }
+        public DrugViewModel(Data.Drug drug)
+        {
+            GID = drug.GID;
+            DrugCode = drug.DrugCode;
+            OrderCode = drug.OrderCode;
+            Title = drug.Title;
+            DrugStockAmount = drug.DrugStock.Sum(a => a.CurrentStock);
 
+        }
         public static DrugViewModel Load(MobileHis.Data.Drug drug, DrugCost cost)
         {
             var v = new DrugViewModel();
@@ -40,7 +49,7 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
             return v;
         }
 
-        public Guid GID { get; set; }
+        public Guid? GID { get; set; }
 
         [Required(ErrorMessage = "Brand name is required")]
         public string Title { get; set; }
@@ -81,6 +90,19 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
 
         public double? DailyFee { get; set; }
         public decimal DrugStockAmount { get; set; }
-
+        public bool IsDefaultType
+        {
+            get
+            {
+                return DrugType == "Default";
+            }
+        }
+        public bool HasAppearance
+        {
+            get
+            {
+                return Color != null || MajorType != null || Shape != null;
+            }
+        }
     }
 }

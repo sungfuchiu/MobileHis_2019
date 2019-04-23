@@ -13,7 +13,7 @@ namespace DAL
     //{
     //    public DatabaseValidationErrors()
     //}
-    public class DALBase<TEntity> : IDisposable where TEntity : class
+    public class DALBase<TEntity> : IDAL<TEntity>, IDisposable where TEntity : class
     {
         protected MobileHISEntities Entities;
         DbContextTransaction Trans;
@@ -39,22 +39,26 @@ namespace DAL
             }
             return Querydata;
         }
-        public virtual IQueryable<TEntity> Sort(IQueryable<TEntity> query, string orderby, bool asc = true)
+        public virtual void Sort<TKey>(IQueryable<TEntity> query, bool asc = true, params Expression<Func<TEntity, TKey>>[] ordersBy)
         {
-            IQueryable<TEntity> Querydata = null;
-            if (!string.IsNullOrEmpty(orderby))
+            //IQueryable<TEntity> Querydata = null;
+            foreach(var orderBy in ordersBy)
             {
-                foreach (var p in query.FirstOrDefault().GetType().GetProperties())
-                {
-                    //if (p.Name==orderby)
-                    //    Querydata=query.OrderBy(a=>a[])
-                }
+                Entity.OrderBy(orderBy);
             }
-            return Querydata;
+            //if (!string.IsNullOrEmpty(orderby))
+            //{
+            //    foreach (var p in query.FirstOrDefault().GetType().GetProperties())
+            //    {
+            //        //if (p.Name==orderby)
+            //        //    Querydata=query.OrderBy(a=>a[])
+            //    }
+            //}
+            //return Querydata;
         }
-        protected virtual IQueryable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> ReadAll(params Expression<Func<TEntity, object>>[] includes)
         {
-            IQueryable<TEntity> query = Entities.Set<TEntity>();
+            IEnumerable<TEntity> query = Entities.Set<TEntity>();
             return query;
         }
         public virtual IQueryable<TEntity> GetAllWithNoTracking()
@@ -62,7 +66,7 @@ namespace DAL
             IQueryable<TEntity> query = Entities.Set<TEntity>().AsNoTracking();
             return query;
         }
-        public TEntity Read(Expression<Func<TEntity, bool>> predicate)
+        public TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
         {
             return Entities.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
@@ -93,6 +97,13 @@ namespace DAL
         public void Add(TEntity entity)
         {
             Entities.Set<TEntity>().Add(entity);
+        }
+        public void Add(IList<TEntity> entities)
+        {
+            foreach(var entity in entities)
+            {
+                Entities.Set<TEntity>().Add(entity);
+            }
         }
         public void Edit(TEntity entity)
         {

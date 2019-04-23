@@ -10,6 +10,10 @@ namespace MobileHis.Data
     public class DrugAppearance
     {
         public DrugAppearance() { }
+        public DrugAppearance(Guid drugID)
+        {
+            DrugID = drugID;
+        }
 
         [Key, ForeignKey("Drug")]
        

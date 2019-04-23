@@ -10,6 +10,11 @@ namespace MobileHis.Data
     public class DrugCost
     {
         public DrugCost() { }
+        public DrugCost( Guid drugID)
+        {
+            GID = drugID;
+            CreateAt = DateTime.Now;
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

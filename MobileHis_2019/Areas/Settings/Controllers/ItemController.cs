@@ -13,6 +13,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
     public class ItemController : MobileHis_2019.Controllers.BaseController
     {
         private DrugBLL drugBLL;
+        private DrugCostBLL drugCostBLL;
         private DrugAppearanceBLL drugAppearanceBLL = new DrugAppearanceBLL();
         private ModelStateWrapper modelState;
         public ItemController()
@@ -32,18 +33,45 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             return View(model);
             
         }
-        public ActionResult Create()
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Create(DrugSettingModelView model)
+        //{
+        //    return View();
+        //}
+        public ActionResult Edit(Guid? id)
         {
-            return View();
+            if (id.HasValue)
+            {
+                var drug = drugBLL.GetDrugByID(id.Value);
+                if (drug == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                var cost = drugCostBLL.GetByDrugID(id.Value);
+                return View(DrugViewModel.Load(drug, cost));
+            }
+            else
+            {
+                return View(new DrugViewModel());
+            }
         }
         [HttpPost]
-        public ActionResult Create(DrugSettingModelView model)
+        public ActionResult Edit(DrugViewModel model)
         {
-            return View();
-        }
-        public ActionResult Edit()
-        {
-            return View();
+            if (ModelState.IsValid)
+            {
+                drugBLL.CreateOrUpdate(model);
+
+                if (ModelState.Any())
+                    return View(model);
+
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         [HttpPost]
         public ActionResult Edit(DrugSettingModelView model)

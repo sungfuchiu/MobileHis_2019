@@ -55,7 +55,9 @@
     <Compile Include="DALBase.cs" />
     <Compile Include="DoctorScheduleDAL.cs" />
     <Compile Include="DrugAppearanceDAL.cs" />
+    <Compile Include="DrugCostDAL.cs" />
     <Compile Include="DrugDAL.cs" />
+    <Compile Include="IDAL.cs" />
     <Compile Include="Setting\GeneralSettingRepo.cs" />
     <Compile Include="RepositoryBase\EFGenericRepository.cs" />
     <Compile Include="RepositoryBase\IRepository.cs" />
