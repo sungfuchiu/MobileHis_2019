@@ -20,7 +20,8 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
         //{
         //    AddFilerCodit();
         //}
-        public string DrugTitle { get; set; }
+        string drugTitle = string.Empty;
+        public string DrugTitle { get { if (drugTitle == null) return null; else return drugTitle; } set { value = drugTitle; } }
         public string DrugType { get; set; }
         public string DrugCode { get; set; }
         public List<SelectDrugColor> DrugColor { get { return _drugColor; } set { _drugColor = value; } }

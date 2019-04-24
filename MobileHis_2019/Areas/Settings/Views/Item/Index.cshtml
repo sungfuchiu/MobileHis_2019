@@ -17,18 +17,19 @@
         @LocalRes.Resource.Comm_StockAmount,
         @LocalRes.Resource.Comm_Action
         )
-    @if(Model!=null){
+    @if (Model != null)
+    {
         foreach (var item in Model.Item1)
         {
             <tr>
                 <td>
-                    <img class="img-responsive img-thumbnail" 
-                         src="@Url.Action("Photo","Drug", new { area = "Drug", id = item.GID })"/>
+                    <img class="img-responsive img-thumbnail"
+                         src="@Url.Action("Photo","Drug", new { area = "Drug", id = item.GID })" />
                 </td>
                 <td>"[@item.OrderCode]@item.Title"</td>
                 <td>@item.DrugCode</td>
                 <td>
-                    <img class="img-responsive img-thumbnail" 
+                    <img class="img-responsive img-thumbnail"
                          src="@Url.Action("DrugBarCode","Drug", new { area = "Drug", DrugCode = item.DrugCode })" />
                 </td>
                 <td>
@@ -81,3 +82,21 @@
         }
     }
 </table>
+<div class="row">
+    <div class="col-xs-12">
+        @functions {
+            public RouteValueDictionary RouteFind(int num){
+                RouteValueDictionary rvd = new RouteValueDictionary();
+                rvd.Add("Item2.page", num);
+                return rvd;
+            }
+        }
+        @if (Model != null)
+        {
+            <div class="pager">
+                
+                @Html.PagedListPager(Model.Item1, page => Url.Action("Index", RouteFind(page) @*new { Item2 = page }*@))
+            </div>
+        }
+    </div>
+</div>

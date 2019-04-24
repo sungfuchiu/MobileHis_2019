@@ -22,15 +22,17 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             drugBLL = new DrugBLL(modelState);
         }
         // GET: Settings/Item
-        public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter, int? page)
+        public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter)//, int? page)
         {
-            int current_page = 0;
-            filter = filter ?? drugAppearanceBLL.NewFilter();
-            current_page = (page ?? filter.page ?? 1) - 1;
+            //int current_page = 0;
+            //filter = filter ?? drugAppearanceBLL.NewFilter();
+            //current_page = (page ?? filter.page ?? 1) - 1;
 
-            var entity = drugBLL.Filter(filter);
-            var model = new Tuple<IPagedList<DrugViewModel>, DrugsFilter>(entity.ToPagedList(current_page + 1, Config.PageSize), filter);
-            return View(model);
+            //var entity = drugBLL.Filter(filter);
+            return View(new 
+                Tuple<IPagedList<DrugViewModel>, DrugsFilter>(
+                drugBLL.Filter(filter), 
+                filter));
             
         }
         //public ActionResult Create()

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using X.PagedList;
 
 namespace BLL
 {
@@ -18,16 +19,21 @@ namespace BLL
         DrugAppearanceDAL _drugAppearanceDAL;
         DrugCostDAL _drugCostDAL;
         DrugDAL _drugDAL;
+        DrugAppearanceBLL _drugAppearanceBLL;
         public DrugBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _drugAppearanceDAL = new DrugAppearanceDAL();
             _drugCostDAL = new DrugCostDAL();
             _drugDAL = new DrugDAL();
+            _drugAppearanceBLL = new DrugAppearanceBLL();
         }
-        public IEnumerable<DrugViewModel> Filter(DrugsFilter filter)
+        public IPagedList<DrugViewModel> Filter(DrugsFilter filter)
         {
-             _drugDAL.Reads(x => x.DrugStock);
+            filter = filter ?? _drugAppearanceBLL.NewFilter();
+            int currentPage = filter.page ?? 1;
+
+            _drugDAL.Reads(x => x.DrugStock);
              _drugDAL.TitleContains(filter.DrugTitle);
              _drugDAL.DrugTypeIs(filter.DrugType);
              if(IsDrugHasAppearance(filter))
@@ -37,8 +43,10 @@ namespace BLL
                  _drugDAL.DrugMajorTypeContains(filter.DrugMajorType.Where(a => a.IsSelected).Select(a => a.ID));
                  _drugDAL.DrugShapeContains(filter.DrugShape.Where(a => a.IsSelected).Select(a => a.ID));
              }
-            IEnumerable<Drug> drugs = _drugDAL.ReadsResult().OrderBy(a => a.Title).ToList();
-            return drugs.Select(a => new DrugViewModel(a)).ToList();
+            return _drugDAL.ReadsResult()
+                    .OrderBy(a => a.Title)
+                    .ToPagedList(currentPage, Config.PageSize)
+                    .Select(a => new DrugViewModel(a));
         }
         private bool IsDrugHasAppearance(DrugsFilter filter)
         {

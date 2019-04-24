@@ -92,7 +92,7 @@ namespace DAL
         }
         public IEnumerable<T> ReadsResult<T>(IQueryable<T> source)
         {
-            return source.ToList();
+            return source;
         }
         public void Add(TEntity entity)
         {
