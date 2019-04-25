@@ -85,17 +85,25 @@
 <div class="row">
     <div class="col-xs-12">
         @functions {
-            public RouteValueDictionary RouteFind(int num){
+            public RouteValueDictionary RouteFind(int num, string drugTitle)
+            {
                 RouteValueDictionary rvd = new RouteValueDictionary();
                 rvd.Add("Item2.page", num);
+                rvd.Add("Item2.DrugTitle", drugTitle);
                 return rvd;
             }
         }
         @if (Model != null)
         {
             <div class="pager">
-                
-                @Html.PagedListPager(Model.Item1, page => Url.Action("Index", RouteFind(page) @*new { Item2 = page }*@))
+                @Html.PagedListPager(
+                    Model.Item1, 
+                    page => Url.Action(
+                        "Index", 
+                        RouteFind(
+                            page, 
+                            Model.Item2.DrugTitle)
+                            @*new { Item2 = page }*@))
             </div>
         }
     </div>

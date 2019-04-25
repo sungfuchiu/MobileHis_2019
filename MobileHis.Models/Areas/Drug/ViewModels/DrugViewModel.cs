@@ -89,7 +89,7 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
         public double? InitialFee { get; set; }
 
         public double? DailyFee { get; set; }
-        public decimal DrugStockAmount { get; set; }
+        public decimal? DrugStockAmount { get; set; }
         public bool IsDefaultType
         {
             get

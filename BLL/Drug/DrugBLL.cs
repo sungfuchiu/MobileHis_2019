@@ -43,6 +43,7 @@ namespace BLL
                  _drugDAL.DrugMajorTypeContains(filter.DrugMajorType.Where(a => a.IsSelected).Select(a => a.ID));
                  _drugDAL.DrugShapeContains(filter.DrugShape.Where(a => a.IsSelected).Select(a => a.ID));
              }
+
             return _drugDAL.ReadsResult()
                     .OrderBy(a => a.Title)
                     .ToPagedList(currentPage, Config.PageSize)

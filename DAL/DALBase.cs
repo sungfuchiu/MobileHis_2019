@@ -86,9 +86,9 @@ namespace DAL
         {
             return source.Distinct();
         }
-        public IEnumerable<TEntity> ReadsResult()
+        public IQueryable<TEntity> ReadsResult()
         {
-            return Entity.ToList();
+            return Entity;
         }
         public IEnumerable<T> ReadsResult<T>(IQueryable<T> source)
         {
