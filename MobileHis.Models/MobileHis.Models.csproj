@@ -159,6 +159,8 @@
     <Compile Include="Areas\Sys\ViewModels\DoctorSchModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\ICD10ViewModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\SettingViewModel.cs" />
+    <Compile Include="Interface\IGetSelectList.cs" />
+    <Compile Include="Interface\IPageFilter.cs" />
     <Compile Include="MobileHisModel\ExcelUploadModel.cs" />
     <Compile Include="MobileHisModel\JwtModel.cs" />
     <Compile Include="ViewModel\AccountView.cs" />

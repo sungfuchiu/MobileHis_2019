@@ -1,4 +1,5 @@
 ﻿using LocalRes;
+using MobileHis.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,13 +8,24 @@ using System.Web;
 
 namespace MobileHis.Models.Areas.Drug.ViewModels
 {
-    public class DrugSettingModelView
+    public class DrugSettingModelView : IGetSelectList
     {
         private string _DrugName;
         private int _Days = 0;
         private double _Quantity = 0.0;
         private double _Dose = 0.0;
-        
+        //public delegate List<System.Web.Mvc.SelectListItem> _GetSelectList(string itemType, string selectedValue = "", bool hasEmpty = false);
+        public event GetSelectList SelectListEvent;
+
+        public DrugSettingModelView(GetSelectList selectListEvent)
+        {
+            SelectListEvent = selectListEvent;
+        }
+        public DrugSettingModelView()
+        {
+        }
+        public List<System.Web.Mvc.SelectListItem> FrequencyList { get => SelectListEvent("FQ"); }
+
         [Required]
         public Guid DrugID { get; set; }
         public string OrderCode { get; set; }
@@ -27,7 +39,7 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
             }
             set
             {
-                _DrugName = string.Format("[{0}]{1}", OrderCode, Title); 
+                _DrugName = string.Format("[{0}]{1}", OrderCode, Title);
             }
         }
 
@@ -50,19 +62,22 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
         [Display(ResourceType = typeof(Resource), Name = "Drug_Route")]
         public string Route { get; set; }
 
-       //[RegularExpression(@"[0-9]+", ErrorMessage = "Dose Days be number format.")]
+        //[RegularExpression(@"[0-9]+", ErrorMessage = "Dose Days be number format.")]
         [Display(ResourceType = typeof(Resource), Name = "Drug_Days")]
         public int? Days
         {
             get;
-            set;          
+            set;
         }
         [Display(ResourceType = typeof(Resource), Name = "Drug_Total")]
         //[RegularExpression(@"[0-9]+", ErrorMessage = "Quantity must be number format.")]       
         public double? Quantity
         {
-            get;set;
-         
+            get; set;
+
         }
+
+        public string Direction { get; set; }
+        public string AlertMessage { get; set; }
     }
 }

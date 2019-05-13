@@ -4,6 +4,8 @@ using DAL;
 using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.Areas.Drug.ViewModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +16,22 @@ using X.PagedList;
 
 namespace BLL
 {
-    public class DrugBLL : BaseBLL<Drug>
+    public class DrugBLL : GuidBLLBase<Drug>
     {
         DrugAppearanceDAL _drugAppearanceDAL;
         DrugCostDAL _drugCostDAL;
         DrugDAL _drugDAL;
         DrugAppearanceBLL _drugAppearanceBLL;
+        CodeFileDAL _codeFileDAL;
         public DrugBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _drugAppearanceDAL = new DrugAppearanceDAL();
             _drugCostDAL = new DrugCostDAL();
             _drugDAL = new DrugDAL();
+            _codeFileDAL = new CodeFileDAL();
             _drugAppearanceBLL = new DrugAppearanceBLL();
+            IDAL = _drugDAL;
         }
         public IPagedList<DrugViewModel> Filter(DrugsFilter filter)
         {
@@ -55,10 +60,10 @@ namespace BLL
                 filter.DrugColor.Any(a => a.IsSelected) || 
                 filter.DrugMajorType.Any(a => a.IsSelected);
         }
-        public Drug GetDrugByID(Guid drugID)
-        {
-            return IDAL.Read(a => a.GID == drugID);
-        }
+        //public Drug GetDrugByID(Guid drugID)
+        //{
+        //    return IDAL.Read(a => a.GID == drugID);
+        //}
         public void CreateOrUpdate(DrugViewModel viewModel)
         {
             bool isNewDrug = viewModel.GID == null;
@@ -122,6 +127,65 @@ namespace BLL
                 }
                 scope.Complete();
             }
+        }
+        public DrugSettingModelView GetSettingByDrugID(Guid drugID)
+        {
+            Drug drug = _drugDAL.Read(drugID);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Drug, DrugSettingModelView>());
+            var mapper = config.CreateMapper();
+            var model = mapper.Map<DrugSettingModelView>(drug);
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<DrugSetting, DrugSettingModelView>()
+                .ForMember(a => a.Days, opt => opt.MapFrom(s => s.Days))
+                .ForMember(a => a.Dose, opt => opt.MapFrom(s => s.Dose))
+                .ForMember(a => a.Route, opt => opt.MapFrom(s => s.Route))
+                .ForMember(a => a.Frequency, opt => opt.MapFrom(s => s.Frequency))
+                .ForMember(a => a.Quantity, opt => opt.MapFrom(s => s.Quantity)));
+            var settingMapper = config.CreateMapper();
+            settingMapper.Map(drug.DrugSetting, model);
+            model.Formulation = drug.Formulation.HasValue ? _codeFileDAL.Read(a => a.ID == drug.Formulation.Value)?.ItemDescription : "";
+            return model;
+
+            //using (DrugDal dal = new DrugDal())
+            //{
+            //    var SingleDrug = dal.GetOneDrugByID(DrugID);
+            //    //db.Drug.Include("DrugSetting")
+            //    //             .Where(x => x.GID == DrugID).FirstOrDefault();
+
+            //    if (SingleDrug == null)
+            //    {
+            //        return null;
+            //    }
+            //    var SettingModel = new DrugSettingModelView()
+            //    {
+            //        Title = SingleDrug.Title,
+            //        OrderCode = SingleDrug.OrderCode,
+            //        DrugID = DrugID,
+            //        Direction = SingleDrug.Direction,
+            //        AlertMessage = SingleDrug.AlertMessage
+            //    };
+            //    using (CodeFileDal dal_c = new CodeFileDal())
+            //    {
+            //        if (SingleDrug.DrugSetting != null)
+            //        {
+            //            SettingModel.Days = SingleDrug.DrugSetting.Days;
+            //            SettingModel.Dose = SingleDrug.DrugSetting.Dose;
+
+            //            SettingModel.Route = SingleDrug.DrugSetting.Route;
+            //            SettingModel.Frequency = SingleDrug.DrugSetting.Frequency;
+            //            SettingModel.Quantity = SingleDrug.DrugSetting.Quantity;
+            //        }
+            //        SettingModel.Formulation = dal_c.GetName(SingleDrug.Formulation);
+            //    }
+            //    return SettingModel;
+            //}
+        }
+
+        public JObject FrequencyPairs()
+        {
+            return new JObject(_codeFileDAL.GetListByItemType("FQ").Select(
+                        a => new JProperty(a.ItemDescription, a.Remark.TryFloat()))
+                    );
         }
     }
 }

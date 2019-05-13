@@ -8,7 +8,7 @@ using Common;
 
 namespace DAL
 {
-    public class DrugDAL : DALBase<Drug>
+    public class DrugDAL : GuidDALBase<Drug>
     {
         public void TitleContains(string words)
         {

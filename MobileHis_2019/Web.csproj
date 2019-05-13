@@ -46,7 +46,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -96,9 +103,6 @@
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
@@ -153,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
+    <Compile Include="Areas\Settings\Controllers\DrugController.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
@@ -582,7 +587,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\AjaxEncapsulation.js" />
+    <Content Include="Scripts\Custom\AjaxEncapsulation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -613,7 +618,10 @@
     <Content Include="Content\assets\js\ace\scripts.json" />
     <Content Include="Content\assets\js\uncompressed\x-editable\bootstrap-editable.min.js.map" />
     <Content Include="Areas\Settings\Views\Shared\DisplayTemplates\DrugsFilter.cshtml" />
+    <Content Include="Areas\Settings\Views\Item\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\Item\Setting.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -647,6 +655,8 @@
     <Folder Include="Areas\Backend\Models\" />
     <Folder Include="Areas\Backend\Views\Shared\" />
     <Folder Include="Areas\Settings\Models\" />
+    <Folder Include="Areas\Settings\Views\Drug\" />
+    <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -671,6 +681,10 @@
     <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
       <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
       <Name>MobileHis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobileHis.Misc.Storage\MobileHis.Misc.Storage.csproj">
+      <Project>{f61a86ed-dd00-4951-8193-f2c58bc1cf9d}</Project>
+      <Name>MobileHis.Misc.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\MobileHis.Models\MobileHis.Models.csproj">
       <Project>{e4bac5cb-cab0-4c7e-928c-946302926b65}</Project>

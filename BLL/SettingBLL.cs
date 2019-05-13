@@ -14,7 +14,7 @@ using Common;
 
 namespace BLL 
 {
-    public class SettingBLL : BaseBLL<Setting>
+    public class SettingBLL : BLLBase<Setting>
     {
         public SettingBLL(IValidationDictionary validationDictionary)
         {

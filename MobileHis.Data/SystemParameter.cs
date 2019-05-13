@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -82,6 +83,17 @@ namespace MobileHis.Data
     {
         OPD,
         ER
+    }
+    public enum ItemTypes
+    {
+        [Display(Name="")]
+        Drug,
+        [Display(Name = "Default")]
+        Default,
+        [Display(Name = "Laboratory")]
+        Laboratory,
+        [Display(Name = "Exam")]
+        Exam
     }
 
     public class Enums

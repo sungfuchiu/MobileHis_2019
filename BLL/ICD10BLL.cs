@@ -12,7 +12,7 @@ using Common;
 
 namespace BLL
 {
-    public class ICD10BLL : BaseBLL<ICD10>
+    public class ICD10BLL : BLLBase<ICD10>
     {
         public ICD10BLL(IValidationDictionary validationDictionary)
         {

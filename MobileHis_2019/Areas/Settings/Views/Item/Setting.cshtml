@@ -1,0 +1,111 @@
+﻿@model MobileHis.Models.Areas.Drug.ViewModels.DrugSettingModelView
+
+@{
+    ViewBag.Title = "Setting";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@helper  DisplayDrugName(string code, string title)
+{
+
+    @("[" + code + "]" + title)
+}
+<div class="page-header">
+    <h1>@LocalRes.Resource.Drug_Setting</h1>
+</div>
+<form action="@Url.Action("Edit", "Drugs", new { area = "Drug" })" method="post">
+    @Html.AntiForgeryToken()
+    <div class="page-content">
+        <div class="page-header"> <h1>@LocalRes.Resource.Comm_Setting</h1></div><!--/.page-header-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="widget-box">
+                    <div class="widget-header widget-header-blue">
+                        <h4 class="lighter">
+                            @LocalRes.Resource.Comm_Setting
+                            @Html.HiddenFor(x => x.DrugID)
+                        </h4>
+                    </div><!--/.widget-header-->
+                    @if (Model != null)
+                    {
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 col-md-3 align-right" for="date_of_birth">@LocalRes.Resource.Drug_Name:</label>
+                                    <div class="controls col-sm-8 col-md-8">
+                                        <div class="input-group col-sm-8 col-md-8">
+                                            <label>@DisplayDrugName(Model.OrderCode, Model.Title)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Days):</label>
+                                    <div class="control col-sm-2 col-md-2">
+                                        @Html.TextBoxFor(m => m.Days, new { @class = "form-control drugDays", @onchange = "UpdateTotal(this)", type = "number", min = "0", max = "99999999", step = "1" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Dose):</label>
+                                    <div class="control col-sm-2 col-md-2">
+                                        @Html.TextBoxFor(m => m.Dose, new { @class = "form-control col-md-4 drugDose", @onchange = "UpdateTotal(this)", type = "number", min = "0", max = "999999.0", step = "0.01" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Frequency):</label>
+                                    <div class="control col-sm-9 col-md-9">
+                                        @DropDownHelper.FromCodeFileValue("Frequency", "", "FQ", false, true, "data-value=${Frequency}", "onchange=UpdateTotal(this)")
+                                        @Html.ValidationMessageFor(m => m.Frequency)
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Route):</label>
+                                    <div class="control col-sm-9 col-md-9">
+                                        @DropDownHelper.FromCodeFileValue("Route", Model.Route, "RU", false, true)
+                                        @Html.ValidationMessageFor(m => m.Route)
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Quantity):</label>
+                                    <div class="control col-sm-2 col-md-2">
+                                        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control drugTotal", type = "number", min = "0", max = "999999.0", step = "0.01" })
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="clearfix align-right">
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        @LocalRes.Resource.Comm_Setting
+                                    </button>
+                                    <button class="btn btn-danger" onclick="javascript:history.go(-1)"><i class="ace-icon fa fa-undo bigger-110"></i>@LocalRes.Resource.Create_Return_btn</button>
+                                </div>
+
+                            </div><!--/.widget-main-->
+                        </div><!--/.widget-body-->
+                    }
+                </div><!--/.widget-box-->
+            </div><!--/.col-->
+        </div><!--/.row-->
+    </div>
+</form>
+<script src="~/Scripts/Custom/AjaxEncapsulation.js"></script>
+<script src="~/Scripts/Custom/Drug.js"></script>
+<script type="text/javascript">
+    let url = "@Url.Action("FrequencyPairs", "Drug")";
+    let frequencyResult = GetFrequencyPairs(url);
+    @*$(function () {
+        var url = "@Url.Action("FrequencyPairs", "Drug")";
+        doAjax(url,
+            function (result) {
+                frequencyResult = JSON.parse(result);
+            });
+        frequencyResult = GetFrequencyPairs(url);
+    });*@
+    function UpdateTotal(event) {
+        let mainDiv = $(event).parent().parent().parent();
+        let dose = Number(mainDiv.find("#Dose").val());
+        let days = Number(mainDiv.find("#Days").val());
+        let freq = mainDiv.find("[name$='Frequency'] option:selected").text();
+        let nFreq = frequencyResult[freq];
+        let total = (dose * days) * nFreq;
+        mainDiv.find(".drugTotal").val(total);
+    }
+</script>

@@ -1,5 +1,5 @@
 ﻿
-@helper CodeFileDropDownByValue(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
+@helper FromCodeFileValue(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
 {
     string requriedStr = "";
     requriedStr = hasRequired ? "data-val=true data-val-required=<br>" + LocalRes.Resource.Required : "";
@@ -14,7 +14,7 @@
         }
     </select>
 }
-@helper CodeFileDropDownByText(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
+@helper FromCodeFileText(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
 {
     string requriedStr = "";
     requriedStr = hasRequired ? "data-val=true data-val-required=<br>" + LocalRes.Resource.Required : "";
@@ -27,5 +27,17 @@
                 <option value="@(string.IsNullOrEmpty(item.Value) ? "" : @item.Text)" @(item.Text == val ? "selected" : "")>@item.Text</option>
             }
         }
+    </select>
+}
+//藥品類型下拉
+@helper getDrugTypeDll(string name, string val = null, bool hasEmpty = false, bool hasRequired = false)
+{
+    string requriedStr = "";
+    requriedStr = hasRequired ? "data-val=true data-val-required=<br>" + LocalRes.Resource.Required : "";
+    <select name="@name" id="@name" @requriedStr>
+        <option value="" @(string.Empty == val ? "selected" : "")>Drug</option>
+        <option value="Exam" @("Exam" == val ? "selected" : "")>Exam</option>
+        <option value="Laboratory" @("Laboratory" == val ? "selected" : "")>Laboratory</option>
+        <option value="Default" @("Default" == val ? "selected" : "")>Default</option>
     </select>
 }

@@ -19,8 +19,14 @@ namespace MobileHis.Models.ApiModel
     #region response
     public class BaseApiModel
     {
+        public BaseApiModel() { }
+        public BaseApiModel(bool success, string message)
+        {
+            this.success = success;
+            this.message = message;
+        }
         public bool success { get; set; }
-        public string msg { get; set; }
+        public string message { get; set; }
         public BaseApiDataModel data { get; set; }
     }
     public class BaseApiDataModel

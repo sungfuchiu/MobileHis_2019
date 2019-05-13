@@ -43,5 +43,9 @@ namespace MobileHis_2019.Controllers
                 return modelState.IsValid;
             }
         }
+        protected ActionResult ImageNotFound()
+        {
+            return File(Server.MapPath("~/Image/no_image_found.jpg"), "image/jpg");
+        }
     }
 }

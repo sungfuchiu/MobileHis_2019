@@ -23,7 +23,7 @@ namespace BLL
             }
             using (CodeFileDAL dal = new CodeFileDAL())
             {
-                var datalist = dal.GetListByitemType(itemType).Select(a => new SelectListItem
+                var datalist = dal.GetListByItemType(itemType).Select(a => new SelectListItem
                 {
                     Value = a.ID.ToString(),
                     Text = a.ItemDescription,

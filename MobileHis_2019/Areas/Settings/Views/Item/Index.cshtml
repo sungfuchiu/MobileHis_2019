@@ -108,3 +108,22 @@
         }
     </div>
 </div>
+<script>
+    
+    $(document).ready(function () {
+        $('table').delegate('.delete', 'click', function (e) {
+            var drugid = $(this).data('id'),
+                url = '@Url.Action("Delete")';
+
+            doAjax(url, { DrugID: drugid }, function (res) {
+                if (res.success === true) {
+                    bootbox.alert('@LocalRes.Resource.MSG_Success');
+                    location.reload();
+                }
+                else {
+                    bootbox.alert(res.message);
+                }
+            });
+        });
+    });
+</script>

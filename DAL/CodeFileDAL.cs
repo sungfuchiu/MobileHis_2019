@@ -10,7 +10,7 @@ namespace DAL
 {
     public class CodeFileDAL : DALBase<CodeFile>
     {
-        public IEnumerable<CodeFile> GetListByitemType(string itemType)
+        public IEnumerable<CodeFile> GetListByItemType(string itemType)
         {
             return base.GetAllWithNoTracking().Where(x => 
                 x.ItemType.Equals(itemType, StringComparison.InvariantCultureIgnoreCase) 

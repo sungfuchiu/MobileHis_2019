@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace BLL
 {
-    public class BaseBLL<TEntity> : IBLL<TEntity> where TEntity : class
+    public class BLLBase<TEntity> : IBLL<TEntity> where TEntity : class
     {
         public Common.IValidationDictionary ValidationDictionary { get; private set; }
         public void InitialiseIValidationDictionary(
@@ -41,7 +41,6 @@ namespace BLL
         {
             IDAL.Delete(entity);
         }
-
         public IEnumerable<TEntity> ReadAll()
         {
             return IDAL.ReadAll();

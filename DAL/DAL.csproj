@@ -54,10 +54,13 @@
     <Compile Include="CodeFileDAL.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="DoctorScheduleDAL.cs" />
-    <Compile Include="DrugAppearanceDAL.cs" />
-    <Compile Include="DrugCostDAL.cs" />
-    <Compile Include="DrugDAL.cs" />
-    <Compile Include="IDAL.cs" />
+    <Compile Include="Drug\DrugAppearanceDAL.cs" />
+    <Compile Include="Drug\DrugCostDAL.cs" />
+    <Compile Include="Drug\DrugDAL.cs" />
+    <Compile Include="Drug\DrugSettingDAL.cs" />
+    <Compile Include="GuidDALBase.cs" />
+    <Compile Include="Interface\IDAL.cs" />
+    <Compile Include="Interface\IGuidDAL.cs" />
     <Compile Include="Setting\GeneralSettingRepo.cs" />
     <Compile Include="RepositoryBase\EFGenericRepository.cs" />
     <Compile Include="RepositoryBase\IRepository.cs" />
