@@ -52,14 +52,14 @@
                                 <div class="form-group row">
                                     <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Frequency):</label>
                                     <div class="control col-sm-9 col-md-9">
-                                        @DropDownHelper.FromCodeFileValue("Frequency", "", "FQ", false, true, "data-value=${Frequency}", "onchange=UpdateTotal(this)")
+                                        @Html.DropDownListFor(m => m.Frequency, Model.FrequencyList, new { @onchange = "UpdateTotal(this)" })
                                         @Html.ValidationMessageFor(m => m.Frequency)
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Route):</label>
                                     <div class="control col-sm-9 col-md-9">
-                                        @DropDownHelper.FromCodeFileValue("Route", Model.Route, "RU", false, true)
+                                        @Html.DropDownListFor(m => m.Route, Model.RouteList)
                                         @Html.ValidationMessageFor(m => m.Route)
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                         @LocalRes.Resource.Comm_Setting
                                     </button>
-                                    <button class="btn btn-danger" onclick="javascript:history.go(-1)"><i class="ace-icon fa fa-undo bigger-110"></i>@LocalRes.Resource.Create_Return_btn</button>
+                                    <button class="btn btn-danger" onclick="history.go(-1); return false"><i class="ace-icon fa fa-undo bigger-110"></i>@LocalRes.Resource.Create_Return_btn</button>
                                 </div>
 
                             </div><!--/.widget-main-->

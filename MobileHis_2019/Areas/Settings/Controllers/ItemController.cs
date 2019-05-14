@@ -162,6 +162,13 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             //}
         }
         [HttpPost]
+        public ActionResult Setting(DrugSettingModelView model)
+        {
+            if (ModelState.IsValid)
+            {
+            }
+        }
+        [HttpPost]
         public ActionResult Delete(Guid drugID)
         {
             _drugBLL.Delete(drugID);

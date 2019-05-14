@@ -11,4 +11,12 @@ namespace MobileHis.Models.Interface
     {
         event GetSelectList SelectListEvent;
     }
+    //public abstract class SelectList : IGetSelectList
+    //{
+    //    public event GetSelectList SelectListEvent;
+    //    public SelectList(GetSelectList selectListEvent)
+    //    {
+    //        SelectListEvent = selectListEvent;
+    //    }
+    //}
 }

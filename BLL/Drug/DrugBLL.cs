@@ -23,6 +23,7 @@ namespace BLL
         DrugDAL _drugDAL;
         DrugAppearanceBLL _drugAppearanceBLL;
         CodeFileDAL _codeFileDAL;
+        CodeFileBLL _codeFileBLL;
         public DrugBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
@@ -31,6 +32,7 @@ namespace BLL
             _drugDAL = new DrugDAL();
             _codeFileDAL = new CodeFileDAL();
             _drugAppearanceBLL = new DrugAppearanceBLL();
+            _codeFileBLL = new CodeFileBLL();
             IDAL = _drugDAL;
         }
         public IPagedList<DrugViewModel> Filter(DrugsFilter filter)
@@ -131,7 +133,10 @@ namespace BLL
         public DrugSettingModelView GetSettingByDrugID(Guid drugID)
         {
             Drug drug = _drugDAL.Read(drugID);
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Drug, DrugSettingModelView>());
+            var config = new MapperConfiguration(cfg => 
+                    cfg.CreateMap<Drug, DrugSettingModelView>().ConstructUsing(a => 
+                        new DrugSettingModelView(_codeFileBLL.GetDropDownList)
+                        ));
             var mapper = config.CreateMapper();
             var model = mapper.Map<DrugSettingModelView>(drug);
             var settingConfig = new MapperConfiguration(
