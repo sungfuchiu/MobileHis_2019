@@ -12,7 +12,7 @@
 <div class="page-header">
     <h1>@LocalRes.Resource.Drug_Setting</h1>
 </div>
-<form action="@Url.Action("Edit", "Drugs", new { area = "Drug" })" method="post">
+<form action="@Url.Action("Setting", "item", new { area = "Settings" })" method="post">
     @Html.AntiForgeryToken()
     <div class="page-content">
         <div class="page-header"> <h1>@LocalRes.Resource.Comm_Setting</h1></div><!--/.page-header-->

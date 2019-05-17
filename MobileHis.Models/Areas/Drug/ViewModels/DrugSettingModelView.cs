@@ -21,9 +21,9 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
         {
             SelectListEvent = selectListEvent;
         }
-        //public DrugSettingModelView()
-        //{
-        //}
+        public DrugSettingModelView()
+        {
+        }
         public List<System.Web.Mvc.SelectListItem> FrequencyList { get => SelectListEvent("FQ"); }
         public List<System.Web.Mvc.SelectListItem> RouteList { get => SelectListEvent("RU"); }
 

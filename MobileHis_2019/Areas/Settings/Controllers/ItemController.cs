@@ -19,6 +19,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         private DrugBLL _drugBLL;
         private DrugCostBLL _drugCostBLL;
         private DrugAppearanceBLL _drugAppearanceBLL;
+        private DrugSettingBLL _drugSettingBLL;
         private CodeFileBLL _codeFileBLL;
         private ModelStateWrapper _modelState;
         DrugsFilter _drugsFilter;
@@ -44,6 +45,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             _modelState = new ModelStateWrapper(ModelState);
             _drugBLL = new DrugBLL(_modelState);
+            _drugSettingBLL = new DrugSettingBLL(_modelState);
             _drugCostBLL = new DrugCostBLL();
             _drugAppearanceBLL = new DrugAppearanceBLL();
             _codeFileBLL = new CodeFileBLL();
@@ -112,7 +114,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             if (id.HasValue)
             {
-                DrugSettingModelView model = _drugBLL.GetSettingByDrugID(id.Value);
+                DrugSettingModelView model = _drugSettingBLL.GetSettingByDrugID(id.Value);
                 model.SelectListEvent += _codeFileBLL.GetDropDownList;
                 if (Request.IsAjaxRequest())
                 {
@@ -166,7 +168,12 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             if (ModelState.IsValid)
             {
+                _drugSettingBLL.Update(model);
+                if (ModelState.Any())
+                    return View(model);
+                return RedirectToAction("Index");
             }
+            return View(model);
         }
         [HttpPost]
         public ActionResult Delete(Guid drugID)
