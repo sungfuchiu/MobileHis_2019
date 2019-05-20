@@ -51,7 +51,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             _codeFileBLL = new CodeFileBLL();
         }
         // GET: Settings/Item
-        public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter)//, int? page)
+        public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter)
         {
             DrugsFilter = filter;
             //int current_page = 0;
@@ -97,11 +97,8 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             if (ModelState.IsValid)
             {
                 _drugBLL.CreateOrUpdate(model);
-
-                if (ModelState.Any())
-                    return View(model);
-
-                return RedirectToAction("Index");
+                if(ModelState.IsValid)
+                    EditSuccessfully();
             }
             return View(model);
         }
@@ -164,14 +161,13 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             //}
         }
         [HttpPost]
-        public ActionResult Setting(DrugSettingModelView model)
+        public ActionResult Setting(DrugSettingModelView model) //todo: Inject contructor
         {
+            model.SelectListEvent += _codeFileBLL.GetDropDownList;
             if (ModelState.IsValid)
             {
-                _drugSettingBLL.Update(model);
-                if (ModelState.Any())
-                    return View(model);
-                return RedirectToAction("Index");
+                _drugSettingBLL.CreateOrUpdate(model);
+                EditSuccessfully();
             }
             return View(model);
         }

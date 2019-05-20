@@ -45,5 +45,9 @@ namespace BLL
         {
             return IDAL.ReadAll();
         }
+        public void Edit(TEntity entity)
+        {
+            IDAL.Edit(entity);
+        }
     }
 }

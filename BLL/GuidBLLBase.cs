@@ -9,6 +9,17 @@ namespace BLL
 {
     public class GuidBLLBase<TEntity> : BLLBase<TEntity> where TEntity : class, MobileHis.Data.Interface.IGuidEntity
     {
+        //protected IGuidDAL<TEntity> IDAL
+        //{
+        //    get
+        //    {
+        //        return (IGuidDAL<TEntity>)base.IDAL;
+        //    }
+        //    set
+        //    {
+        //        base.IDAL = value;
+        //    }
+        //}
         protected new IGuidDAL<TEntity> IDAL;
         public void Delete(Guid guid)
         {

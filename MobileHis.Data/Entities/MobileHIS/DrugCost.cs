@@ -12,7 +12,7 @@ namespace MobileHis.Data
         public DrugCost() { }
         public DrugCost( Guid drugID)
         {
-            GID = drugID;
+            DrugID = drugID;
             CreateAt = DateTime.Now;
         }
 

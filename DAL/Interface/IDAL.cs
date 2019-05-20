@@ -12,7 +12,8 @@ namespace DAL
         TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
         void Reads(params Expression<Func<TEntity, object>>[] includes);
         void Add(TEntity entity);
-        void Add(IList<TEntity> entites);
+        void Add(IList<TEntity> entities);
+        void Edit(TEntity entity);
         IEnumerable<TEntity> ReadAll(params Expression<Func<TEntity, object>>[] includes);
         void Delete(TEntity entity);
         void Save();

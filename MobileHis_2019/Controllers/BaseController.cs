@@ -47,5 +47,11 @@ namespace MobileHis_2019.Controllers
         {
             return File(Server.MapPath("~/Image/no_image_found.jpg"), "image/jpg");
         }
+
+        protected void EditSuccessfully()
+        {
+            ViewBag.Message = "Setting Successfully";
+            ViewBag.Redirect = Url.Action("Index");
+        }
     }
 }

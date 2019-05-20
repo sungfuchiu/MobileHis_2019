@@ -37,7 +37,7 @@
 </div><!-- /.page-header -->
 
 <div class="container-fluid">
-    <form action="@Url.Action("Update")" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form method="post" class="form-horizontal" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.GID)
         <h4>@LocalRes.Resource.Drug_Information</h4>

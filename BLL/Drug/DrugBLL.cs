@@ -75,37 +75,47 @@ namespace BLL
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<DrugViewModel, Drug>());
             var mapper = config.CreateMapper();
-            drug = mapper.Map<Drug>(viewModel);
+            mapper.Map(viewModel, drug);
 
             if(viewModel.IsDefaultType)
             {
                 drug.PatientFromType = viewModel.PatientFrom;
             }
-            using (var scope = new TransactionScope())
+            using (var scope = new TransactionScope()) //todo:Unit of work
             {
                 try
                 {
                     if (isNewDrug)
-                        Add(drug);
+                        IDAL.Add(drug);
+                    _drugDAL.Save();
 
                     if(viewModel.HasAppearance)
                     {
-                        DrugAppearance drugAppearance = isNewDrug
-                            ? new DrugAppearance(drug.GID)
-                            : _drugAppearanceDAL.Read(a => a.DrugID == drug.GID);
+                        bool isNewAppearance = false;
+                        DrugAppearance drugAppearance = _drugAppearanceDAL.Read(a => a.DrugID == drug.GID);
+
+                        if(drugAppearance == null)
+                        {
+                            drugAppearance = new DrugAppearance(drug.GID);
+                            isNewAppearance = true;
+                        }
 
                         drugAppearance.Color = viewModel.Color;
                         drugAppearance.MajorType = viewModel.MajorType;
                         drugAppearance.Shape = viewModel.Shape;
 
-                        if (isNewDrug)
+                        if (isNewAppearance)
                             _drugAppearanceDAL.Add(drugAppearance);
+                        _drugAppearanceDAL.Save();
                     }
 
-                    DrugCost drugCost = isNewDrug ?
-                        new DrugCost(drug.GID)
-                        : _drugCostDAL.Read(a => a.DrugID == drug.GID);
-
+                    bool isNewCost= false;
+                    DrugCost drugCost = _drugCostDAL.Read(a => a.DrugID == drug.GID);
+                    if (drugCost == null)
+                    {
+                        drugCost = drugCost ?? new DrugCost(drug.GID);
+                        isNewCost = true;
+                    }
                     if (viewModel.IsDefaultType)
                     {
                         viewModel.Price = 0;
@@ -114,8 +124,11 @@ namespace BLL
                     }
                     drugCost.Price = viewModel.Price;
 
-                    if (isNewDrug)
+                    if (isNewCost)
                         _drugCostDAL.Add(drugCost);
+                    else
+                        _drugCostDAL.Edit(drugCost);
+                    _drugCostDAL.Save();
 
                     if(viewModel.Photo != null)
                     {

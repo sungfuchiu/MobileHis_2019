@@ -33,11 +33,10 @@ namespace MobileHis_2019
                 "~/Content/assets/js/chosen.jquery.min.js"
             ));
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                "~/Content/assets/css/bootstrap.min.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/cssForAce").Include(
-                "~/Content/assets/css/bootstrap.min.css",
                 "~/Content/assets/css/chosen.css",
                 "~/Content/assets/css/ace.css",
                 "~/Content/assets/css/bootstrap-datetimepicker.css"

@@ -4,14 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/cssForAce")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/cssForAce")
     @Styles.Render("~/Content/Font-Awesome")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/JSForAce")
-    @Scripts.Render("~/bundles/base")
+    @if (!String.IsNullOrEmpty(ViewBag.Message))
+    {
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    bootbox.alert("@ViewBag.Message", function () {
+                        @if (!String.IsNullOrEmpty(ViewBag.Redirect))
+                            {
+                            @: location.href = '@(ViewBag.Redirect)';
+                        }
+                    });
+                });
+        </script>
+    }
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,8 +34,7 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
@@ -40,5 +48,9 @@
     </div>
 
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/JSForAce")
+    @Scripts.Render("~/bundles/base")
 </body>
 </html>

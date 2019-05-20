@@ -43,7 +43,7 @@ namespace BLL
                 .ForMember(a => a.Route, opt => opt.MapFrom(s => s.Route))
                 .ForMember(a => a.Frequency, opt => opt.MapFrom(s => s.Frequency))
                 .ForMember(a => a.Quantity, opt => opt.MapFrom(s => s.Quantity)));
-            var settingMapper = config.CreateMapper();
+            var settingMapper = settingConfig.CreateMapper();
             settingMapper.Map(drug.DrugSetting, model);
             model.Formulation = drug.Formulation.HasValue ? _codeFileDAL.Read(a => a.ID == drug.Formulation.Value)?.ItemDescription : "";
             return model;
@@ -61,9 +61,9 @@ namespace BLL
             }
             mapper.Map(model, settingModified);
             if (isNew)
-                _drugSettingDAL.Edit(settingModified);
-            else
                 _drugSettingDAL.Add(settingModified);
+            else
+                _drugSettingDAL.Edit(settingModified);
             _drugSettingDAL.Save();
         }
 
