@@ -11,14 +11,17 @@ using MobileHis.Misc;
 using MobileHis.Models.ViewModel;
 using AutoMapper;
 using Common;
+using System.Web.Mvc;
 
 namespace BLL 
 {
     public class SettingBLL : BLLBase<Setting>
     {
+        private SettingDAL _settingDAL;
         public SettingBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
+            _settingDAL = new SettingDAL();
         }
         //private SettingDAL settingDAL = new SettingDAL();
 
@@ -303,6 +306,7 @@ namespace BLL
             return settingView;
         }
 
+
         public bool DeleteImage(string category, string settingName, string fileName)
         {
             try
@@ -345,6 +349,35 @@ namespace BLL
                 return false;
             }
         }
+        protected override IEnumerable<SelectListItem> GetSelectList(string itemType, string selectedValue)
+        {
+            return _settingDAL.GetCategoryList().Select(item => new SelectListItem
+            {
+                Value = item,
+                Text = LocalRes.Resource.ResourceManager.GetString($"Category_{item}"),
+                Selected = string.IsNullOrEmpty(selectedValue) ? false : item == selectedValue
+            });
+        }
+        ///// <summary>
+        ///// 拿取下拉式選單
+        ///// </summary>
+        ///// <returns></returns>
+        //public List<System.Web.Mvc.SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false)
+        //{
+        //    var list = new List<System.Web.Mvc.SelectListItem>();
+        //    if (hasEmpty)
+        //    {
+        //        list.Add(new SelectListItem { Text = LocalRes.Resource.Comm_Select, Value = "" });
+        //    }
+        //    var datalist = _settingDAL.GetCategoryList().Select(item => new SelectListItem
+        //    {
+        //        Value = item,
+        //        Text = LocalRes.Resource.ResourceManager.GetString($"Category_{item}"),
+        //        Selected = string.IsNullOrEmpty(selectedValue) ? false : item == selectedValue
+        //    });
+        //    list.AddRange(datalist);
+        //    return list;
+        //}
 
     }
 }

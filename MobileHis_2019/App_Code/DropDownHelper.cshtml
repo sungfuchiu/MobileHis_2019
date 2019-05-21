@@ -1,5 +1,5 @@
 ﻿
-@helper FromCodeFileValue(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
+@*@helper FromCodeFileValue(string name, string val = null, string itemType = null, bool hasEmpty = false, bool hasRequired = false, string elementStr = null, string functions = null)
 {
     string requriedStr = "";
     requriedStr = hasRequired ? "data-val=true data-val-required=<br>" + LocalRes.Resource.Required : "";
@@ -40,4 +40,4 @@
         <option value="Laboratory" @("Laboratory" == val ? "selected" : "")>Laboratory</option>
         <option value="Default" @("Default" == val ? "selected" : "")>Default</option>
     </select>
-}
+}*@

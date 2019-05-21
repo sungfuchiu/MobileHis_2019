@@ -22,7 +22,7 @@ namespace BLL
         {
             InitialiseIValidationDictionary(validationDictionary);
             _drugDAL = new DrugDAL();
-            _codeFileBLL = new CodeFileBLL();
+            _codeFileBLL = new CodeFileBLL(validationDictionary);
             _codeFileDAL = new CodeFileDAL();
             _drugSettingDAL = new DrugSettingDAL();
             IDAL = _drugSettingDAL;

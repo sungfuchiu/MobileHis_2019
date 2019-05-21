@@ -48,7 +48,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             _drugSettingBLL = new DrugSettingBLL(_modelState);
             _drugCostBLL = new DrugCostBLL();
             _drugAppearanceBLL = new DrugAppearanceBLL();
-            _codeFileBLL = new CodeFileBLL();
+            _codeFileBLL = new CodeFileBLL(_modelState);
         }
         // GET: Settings/Item
         public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter)
@@ -112,7 +112,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             if (id.HasValue)
             {
                 DrugSettingModelView model = _drugSettingBLL.GetSettingByDrugID(id.Value);
-                model.SelectListEvent += _codeFileBLL.GetDropDownList;
+                //model.SelectListEvent += _codeFileBLL.GetDropDownList;
                 if (Request.IsAjaxRequest())
                 {
                     return Json(model);
@@ -192,6 +192,23 @@ namespace MobileHis_2019.Areas.Settings.Controllers
                     return File(file.Item3, file.Item2, file.Item1);
                 else
                     return File(file.Item3, file.Item2);
+            }
+            return ImageNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult DrugBarCode(string DrugCode)
+        {
+            if (!string.IsNullOrEmpty(DrugCode))
+            {
+                return File(
+                    ImageHelper.ImageToByte(
+                        ImageHelper.GetCode128(
+                            DrugCode,
+                            height:59,
+                            font:new System.Drawing.Font("Verdana", 6f)
+                            )
+                        ), "image/jpeg");
             }
             return ImageNotFound();
         }

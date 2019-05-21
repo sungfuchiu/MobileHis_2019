@@ -8,6 +8,7 @@ namespace MobileHis_2019
         // 如需統合的詳細資訊，請瀏覽 https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -22,7 +23,7 @@ namespace MobileHis_2019
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/base").Include(
-                      "~/Scripts/AjaxEncapsulation.js"));
+                      "~/Scripts/Custom/AjaxEncapsulation.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/JSForAce").Include(
                 "~/Content/assets/js/ace.min.js",

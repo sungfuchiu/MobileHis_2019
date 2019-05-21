@@ -32,7 +32,7 @@ namespace BLL
             _drugDAL = new DrugDAL();
             _codeFileDAL = new CodeFileDAL();
             _drugAppearanceBLL = new DrugAppearanceBLL();
-            _codeFileBLL = new CodeFileBLL();
+            _codeFileBLL = new CodeFileBLL(validationDictionary);
             IDAL = _drugDAL;
         }
         public IPagedList<DrugViewModel> Filter(DrugsFilter filter)

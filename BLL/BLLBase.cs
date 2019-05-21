@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using System.Linq.Expressions;
+using System.Web.Mvc;
 
 namespace BLL
 {
@@ -48,6 +49,30 @@ namespace BLL
         public void Edit(TEntity entity)
         {
             IDAL.Edit(entity);
+        }
+        public void Save()
+        {
+            IDAL.Save();
+        }
+
+        public List<SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false)
+        {
+            var list = new List<System.Web.Mvc.SelectListItem>();
+            if (hasEmpty)
+            {
+                list.Add(
+                    new SelectListItem {
+                        Text = LocalRes.Resource.Comm_Select,
+                        Value = ""
+                    });
+            }
+            var datalist = GetSelectList(itemType, selectedValue);
+            list.AddRange(datalist);
+            return list;
+        }
+        protected virtual IEnumerable<SelectListItem> GetSelectList(string itemType, string selectedValue = "")
+        {
+            return new List<SelectListItem>();
         }
     }
 }

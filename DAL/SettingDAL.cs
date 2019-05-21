@@ -95,17 +95,22 @@ namespace DAL
         }
         public List<string> GetCategoryList()
         {
+            Reads();
             var itemType = GetSetting("ItemType", SettingTypes.Category);
-            if (itemType != null)
-            {
-                var itemTypeId = itemType.ID;
-                var list = GetAllWithNoTracking()
-                    .Where(a => a.ParentId == itemTypeId)
-                    .Select(a => a.Value)
-                    .ToList();
-                return list;
-            }
-            return new List<string>();
+            return (itemType != null) 
+                    ? Entity.Where(a => a.ParentId == itemType.ID)
+                        .Select(a => a.Value)
+                        .ToList()
+                    : new List<string>();
+            //if (itemType != null)
+            //{
+            //    var list = GetAllWithNoTracking()
+            //        .Where(a => a.ParentId == itemType.ID)
+            //        .Select(a => a.Value)
+            //        .ToList();
+            //    return list;
+            //}
+            //return new List<string>();
         }
 
         public List<string> GetValidShift()

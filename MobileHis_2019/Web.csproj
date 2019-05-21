@@ -157,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
+    <Compile Include="Areas\Settings\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Settings\Controllers\DrugController.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
@@ -620,6 +621,7 @@
     <Content Include="Areas\Settings\Views\Shared\DisplayTemplates\DrugsFilter.cshtml" />
     <Content Include="Areas\Settings\Views\Item\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\Item\Setting.cshtml" />
+    <Content Include="Areas\Settings\Views\Category\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
