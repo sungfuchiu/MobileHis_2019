@@ -47,6 +47,5 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         [MaxLength(100)]
         public string ModUser { get; set; }
         public int? ParentCodeFile { get; set; }
-        public string UserName { get; set; }
     }
 }
