@@ -5,12 +5,14 @@ using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using Common;
+using MobileHis.Models.ApiModel;
+using BLL;
 
 namespace MobileHis_2019.Controllers
 {
-    public class BaseController : Controller
+    public class BaseController<TModel> : Controller
     {
-
+        IBLL<TModel> BLL;
         public class ModelStateWrapper : IValidationDictionary
         {
             public ModelStateWrapper(ModelStateDictionary modelStateDictionary)
@@ -52,6 +54,60 @@ namespace MobileHis_2019.Controllers
         {
             ViewBag.Message = "Setting Successfully";
             ViewBag.Redirect = Url.Action("Index");
+        }
+
+        // GET: Settings/Category
+        [HttpGet]
+        public ActionResult Index(/*string itemType, string keyword, int? page*//*CodeFileViewModel model*/TModel model)
+        {
+            //CategoryModel model = new CategoryModel(_codeFileBLL.GetDropDownList);
+            //model.ItemTypeSelected = itemType;
+            //model.Keyword = keyword;
+            model.SelectListEvent += _settingBLL.GetDropDownList;
+            model.CategoryPageList = _codeFileBLL
+                                    .GetList(model.ItemType, model.Keyword)
+                                    .ToPagedList(model.Page, Config.PageSize);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(TModel model/*int? parentId, string itemType, string itemCode, string itemDesc, string itemRemark*/)
+        {
+            if (ModelState.IsValid)
+            {
+                BLL.Create(model);
+            }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
+        }
+        [HttpPost]
+        public ActionResult Update(TModel model/*string ID, int? parentId, string itemDesc, string itemRemark*/)
+        {
+            if (ModelState.IsValid)
+            {
+                BLL.Update(model);
+            }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
+        }
+        [HttpPost]
+        public ActionResult ApiDel(int ID)
+        {
+            if (ModelState.IsValid)
+            {
+                BLL.Delete(ID);
+            }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
         }
     }
 }

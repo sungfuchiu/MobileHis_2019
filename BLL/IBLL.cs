@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    interface IBLL<TEntity>
+    public interface IBLL<TEntity>
     {
         TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
         IEnumerable<TEntity> ReadAll();
-        void Add(TEntity entity);
+        void Create(TEntity entity);
         void Add(IList<TEntity> entites);
+        void Update(TEntity entity);
         void Delete(TEntity entity);
     }
 }

@@ -15,11 +15,14 @@ namespace BLL
     public class CodeFileBLL : BLLBase<CodeFile>
     {
         private CodeFileDAL _codeFileDAL;
+        private IMapper _mapper;
         public CodeFileBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _codeFileDAL = new CodeFileDAL();
             IDAL = new CodeFileDAL();
+            var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<CodeFileViewModel, CodeFile>());
+            _mapper = mapperConfiguration.CreateMapper();
         }
         ///// <summary>
         ///// 拿取下拉式選單
@@ -69,21 +72,20 @@ namespace BLL
         /// 新增
         /// </summary>      
         /// <returns></returns>
-        public void Create(CodeFileViewModel model, string userName/*int? parentId, string itemType, string itemCode, string itemDesc, string itemRemark, CustomPrincipal User*/)
+        public void Create(CodeFileViewModel model/*int? parentId, string itemType, string itemCode, string itemDesc, string itemRemark, CustomPrincipal User*/)
         {
             //using (var trans = Entities.Database.BeginTransaction())
             //{
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<CodeFileViewModel, CodeFile>());
-            var mapper = config.CreateMapper();
                 try
                 {
                     var codeFile = Read(x => x.ItemType.Equals(model.ItemType) && x.ItemCode.Equals(model.ItemCode));
                     if (codeFile != null)
                     {
                         if (!IsDeleted(codeFile))
-                            ValidationDictionary.AddGeneralError("CodeFile is duplicated.");
-                        else
-                        {
+                            ValidationDictionary.AddGeneralError(@LocalRes.Resource.MSG_Duplidate);
+                            //ValidationDictionary.AddGeneralError("CodeFile is duplicated.");
+                    else
+                    {
                             //mapper.Map(model, codeFile);
                             //_obj.ParentCodeFile = parentId;
                             //codeFile.ModUser = User.Name;
@@ -96,7 +98,7 @@ namespace BLL
                     }
                     else
                     {
-                        codeFile = mapper.Map<CodeFile>(model);
+                        codeFile = _mapper.Map<CodeFile>(model);
                         //var newObj = new CodeFile()
                         //{
                         //    ParentCodeFile = parentId,
@@ -117,10 +119,77 @@ namespace BLL
                 {
                     //trans.Rollback();
                     //return Enums.DbStatus.Error;
-                    ValidationDictionary.AddGeneralError("CodeFile is duplicated.");
+                    ValidationDictionary.AddGeneralError(ex.Message);
                 }
             //}
 
+        }
+        /// <summary>
+        /// 修改
+        /// </summary>      
+        /// <returns></returns>
+        public void Update(CodeFileViewModel model/*string ID, int? parentId, string itemDesc, string itemRemark, CustomPrincipal User*/)
+        {
+            //using (var trans = db.Database.BeginTransaction())
+            //{
+                try
+                {
+                    //int _id = Convert.ToInt32(ID);
+                    //var _obj = GetAll().FirstOrDefault(x => x.ID == _id);
+                    var codeFile = Read(a => a.ID == model.ID);
+                    if (codeFile != null)
+                    {
+                        codeFile.ParentCodeFile = model.ParentCodeFile;
+                        codeFile.ItemDescription = model.ItemDescription;
+                        codeFile.Remark = model.Remark;
+                        //_obj.ParentCodeFile = parentId;
+                        //_obj.ItemDescription = itemDesc;
+                        //_obj.Remark = itemRemark;
+                        Edit(codeFile);
+                        Save();
+                        //trans.Commit();
+                    }
+                    //return Enums.DbStatus.OK;
+                }
+                catch (Exception ex)
+                {
+                    //trans.Rollback();
+                    //return Enums.DbStatus.Error;
+                    ValidationDictionary.AddGeneralError(ex.Message);
+                }
+            //}
+        }
+        /// <summary>
+        /// 刪除
+        /// </summary>       
+        /// <returns></returns>       
+        public void Delete(int ID)
+        {
+            //using (var trans = db.Database.BeginTransaction())
+            //{
+                try
+                {
+                    //int _id = Convert.ToInt32(ID);
+                    //var obj = GetAll().FirstOrDefault(x => x.ID == _id);
+                    var codeFile = Read(a => a.ID == ID);
+                    if (codeFile != null)
+                    {
+                        codeFile.CheckFlag = "D";
+                        Edit(codeFile);
+                        Save();
+                        //trans.Commit();
+                        //return Enums.DbStatus.OK;
+                    }
+                    //else
+                        //return Enums.DbStatus.Error;
+                }
+                catch (Exception ex)
+                {
+                    //trans.Rollback();
+                    //return Enums.DbStatus.Error;
+                    ValidationDictionary.AddGeneralError(ex.Message);
+                }
+            //}
         }
     }
 }

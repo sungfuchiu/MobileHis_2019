@@ -622,6 +622,7 @@
     <Content Include="Areas\Settings\Views\Item\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\Item\Setting.cshtml" />
     <Content Include="Areas\Settings\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Shared\_SettingLayout.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

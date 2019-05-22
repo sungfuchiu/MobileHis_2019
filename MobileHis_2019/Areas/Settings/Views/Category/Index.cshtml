@@ -2,392 +2,239 @@
 @using X.PagedList.Mvc;
 @using Common;
 @*@model IPagedList<MobileHis.Data.CodeFile>*@
-@model MobileHis.Models.Areas.Sys.ViewModels.CategoryModel
+@model MobileHis.Models.Areas.Sys.ViewModels.CodeFileViewModel
 @{
     ViewBag.Title = @LocalRes.Resource.Map_Category;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Settings/Views/Shared/_SettingLayout.cshtml";
 }
-<style>
-    .modal-header {
-        padding: 9px 15px;
-        border-bottom: 1px solid #eee;
-        background-color: #0480be;
-        color: #ffffff;
-    }
-
-    .modal-dialog {
-        width: 300px;
-    }
-</style>
-<div class="breadcrumbs" id="breadcrumbs">
-    <script type="text/javascript">
-        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
-    </script>
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="@Url.Content("~/")">@LocalRes.Resource.Map_Home</a>
-            <span class="divider">
-                <i class="icon-angle-right arrow-icon"></i>
-            </span>
-        </li>
-        <li>
-            @LocalRes.Resource.Map_Sys
-            <span class="divider">
-                <i class="icon-angle-right arrow-icon"></i>
-            </span>
-        </li>
-        <li>
-            @LocalRes.Resource.Map_Category
-            <span class="divider">
-                <i class="icon-angle-right arrow-icon"></i>
-            </span>
-        </li>
-    </ul>
-    @*@{Html.RenderPartial("_NavbarSearch");}*@
-</div>
-<form action="@Url.Action()" method="get" class="form-horizontal">
-    @Html.AntiForgeryToken()
-    <div class="page-content">
-        <div class="page-header"><h1>@LocalRes.Resource.Map_Category</h1></div>
-        <div id="alertBox" class="alert alert-block alert-info" style="display: none;">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
-            <p></p>
-        </div>
-        <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">@LocalRes.Resource.Comm_Create</h4>
-                    </div>
-                    <div class="modal-body form-group">
-                        <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">
-                            <label>@LocalRes.Resource.CodeFile_ItemType:</label><br />
-                            @Html.DropDownList("AddItmeType", Model.AddItemType)
-                            @*@ucDropDown.getCateInDll("add_itemType", "", false, false, null)*@
-                            <br /><br />
-                            <label>Parent Cat</label><br />
-                            @Html.DropDownList("AddItmeType", Model.AddParentType) ->
-                            @*@ucDropDown.getCateInDll("add_parentType", "", true, false, null) ->*@
-                            <select id="add_parentId"></select>
-                            <br /><br />
-                            <label>@LocalRes.Resource.CodeFile_ItemCode:</label><br />
-                            @Html.TextBox("add_itemCode", "", new { @class = "input-sm", size = "10", maxlength = "8" })
-                            <br /><br />
-                            <label>@LocalRes.Resource.CodeFile_ItemDesc:</label><br />
-                            @Html.TextBox("add_itemDesc", "", new { @class = "input-large", maxlength = "50" })
-                            <br /><br />
-                            <label>@LocalRes.Resource.CodeFile_Remark:</label><br />
-                            @Html.TextBox("add_itemRemark", "", new { @class = "input-large", maxlength = "50" })
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCreate" class="btn btn-primary">@LocalRes.Resource.Comm_Create</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">@LocalRes.Resource.close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="updModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">@LocalRes.Resource.Modify</h4>
-                    </div>
-                    <div class="modal-body form-group">
-                        <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">
-                            <input type="hidden" id="upd_ID" />
-                            <label>Parent Cat</label><br />
-                            @Html.DropDownList("AddItmeType", Model.UDPParentType) ->
-                            @*@ucDropDown.getCateInDll("upd_parentType", "", true, false, null) ->*@
-                            <select id="upd_parentId"></select>
-                            <br /><br />
-                            <label>@LocalRes.Resource.CodeFile_ItemDesc:</label><br />
-                            @Html.TextBox("upd_itemDesc", "", new { @class = "input-large", maxlength = "50" })
-                            <br /><br />
-                            <label>@LocalRes.Resource.CodeFile_Remark:</label><br />
-                            @Html.TextBox("upd_itemRemark", "", new { @class = "input-large", maxlength = "50" })
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnUpdate" class="btn btn-primary">@LocalRes.Resource.Modify</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">@LocalRes.Resource.close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-contact-links">
-            <div class="row form-group">
-                <div class="col-sm-2">
-                    <label class="control-label">@LocalRes.Resource.CodeFile_ItemType:</label>
-                    @Html.DropDownListFor(a => a.ItemType , Model.ItemTypes, new { @class="form-control" })
-                    @*@ucDropDown.getCateInDll("itemType", (string)ViewBag.itemType, true, false, "class=form-control")*@
-                </div>
-                <div class="col-sm-2">
-                    <label class="control-label">@LocalRes.Resource.Comm_Keyword:</label>
-                    @Html.TextBox("keyword", (string)ViewBag.keyword, new { @class = "form-control input-sm", size = "20" })
-                </div>
-                <div class="col-sm-offset-4 col-sm-4 align-right pull-right">
-                    <br />
-                    <button type="submit" class="btn btn-sm btn-success">
-                        <i class="fa fa-search"></i>
-                        @LocalRes.Resource.Comm_Search
-                    </button>
-                    
-                        <a href="#" id="btnCreateModal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CreateModal">
-                            <i class="fa fa-plus"></i>@LocalRes.Resource.Comm_Create
-                        </a>
-                    @*@if (_Add)
-                    {
-                        <a href="#" id="btnCreateModal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CreateModal">
-                            <i class="fa fa-plus"></i>@LocalRes.Resource.Comm_Create
-                        </a>
-                    }*@
-                </div>
-            </div><!--col-->
-        </div><!--row-->
-        <div class="row">
-            <div class="col-xs-12 col-lg-12 col-md-12">
-                <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
-                    <thead>
-                        <tr>
-                            <th>@LocalRes.Resource.CodeFile_ItemType</th>
-                            <th>@LocalRes.Resource.CodeFile_ItemCode</th>
-                            <th>@LocalRes.Resource.CodeFile_ItemDesc</th>
-                            <th class="hidden-480">@LocalRes.Resource.CodeFile_Remark</th>
-                            <th class="hidden-480">@LocalRes.Resource.ModDate</th>
-                            <th class="hidden-480">@LocalRes.Resource.ModUser</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model != null)
-                        {
-                            foreach (var item in Model.CategoryPageList)
-                            {
-                                <tr>
-                                    @*<td>@Html.Encode(LocalRes.Resource.ResourceManager.GetString("Category_" + item.ItemType))</td>
-                                        <td>@Html.Encode(item.ItemCode)</td>
-                                        <td>@Html.Encode(item.ItemDescription)</td>
-                                        <td class="hidden-480">@Html.Encode(item.Remark)</td>
-                                        <td class="hidden-480">@Html.Encode(Config.CultureDateTime(item.ModDate))</td>
-                                        <td class="hidden-480">@Html.Encode(item.ModUser)</td>*@
-                                    <td>@LocalRes.Resource.ResourceManager.GetString("Category_" + item.ItemType)</td>
-                                    <td>@item.ItemCode</td>
-                                    <td>@item.ItemDescription</td>
-                                    <td class="hidden-480">@item.Remark</td>
-                                    <td class="hidden-480">@item.ModDate.CultureDateTime()</td>
-                                    <td class="hidden-480">@item.ModUser</td>
-                                    <td>
-                                        <div class="hidden-sm hidden-xs btn-group">
-                                                <a href="#" id="invokeUpdate" class='btn btn-sm btn-info' data-toggle="modal" data-target="#updModal" data-id="@item.ID" data-itemtype="@item.ItemType" data-itemcode="@item.ItemCode" data-itemdescription="@item.ItemDescription" data-itemremark="@item.Remark" data-parent="@(item.ParentCodeFile.HasValue?item.ParentCodeFile.Value.ToString():"")" data-parenttype="@(item.ParentCodeFile.HasValue?item.Parent.ItemType:"")">
-                                                    <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
-                                                </a>
-                                            @*@if (_Update)
-                                            {
-                                                <a href="#" id="invokeUpdate" class='btn btn-sm btn-info' data-toggle="modal" data-target="#updModal" data-id="@item.ID" data-itemtype="@item.ItemType" data-itemcode="@item.ItemCode" data-itemdescription="@item.ItemDescription" data-itemremark="@item.Remark" data-parent="@(item.ParentCodeFile.HasValue?item.ParentCodeFile.Value.ToString():"")" data-parenttype="@(item.ParentCodeFile.HasValue?item.Parent.ItemType:"")">
-                                                    <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
-                                                </a>
-                                            }*@
-                                                <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')">
-                                                    <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
-                                                </a>
-                                            @*@if (_Delete)
-                                            {
-                                                <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')">
-                                                    <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
-                                                </a>
-                                            }*@
-                                        </div>
-                                        <div class="hidden-md hidden-lg">
-                                            <div class="inline position-relative">
-                                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                    <li>
-                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit" onclick="doEdit();">
-                                                            <span class="green">
-                                                                <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete" onclick="doDel('@(item.ID.ToString())')">
-                                                            <span class="red">
-                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-                <div class="row">
-                    <div class="col-xs-12">
-                        @if (Model != null)
-                        {
-                            <div class="pager">
-                                @*@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)*@
-                                @Html.PagedListPager(
-                               Model.CategoryPageList,
-                                page => Url.Action("Index", new {
-                                itemType = Model.ItemType,
-                                keyword = Model.Keyword,
-                                page = page }))
-                            </div>
-                        }
-                    </div>
-                </div>
-
-            </div>
-        </div>
+@section header{
+    @LocalRes.Resource.Map_Category
+}
+@section URL{
+    @Url.Action()
+}
+@section DropDownList{
+    <label class="control-label">@LocalRes.Resource.CodeFile_ItemType:</label>
+    @Html.DropDownListFor(a => a.ItemType, Model.ItemTypes, new { @class = "form-control" })
+}
+@section CreateModal{
+    <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">
+        <label>@LocalRes.Resource.CodeFile_ItemType:</label><br />
+        @Html.DropDownList("add_itemType", Model.AddItemType)
+        <br /><br />
+        <label>Parent Cat</label><br />
+        @Html.DropDownList("add_parentType", Model.AddParentType) ->
+        <select id="add_parentId"></select>
+        <br /><br />
+        <label>@LocalRes.Resource.CodeFile_ItemCode:</label><br />
+        @Html.TextBox("add_itemCode", "", new { @class = "input-sm addInputs", size = "10", maxlength = "8" })
+        <br /><br />
+        <label>@LocalRes.Resource.CodeFile_ItemDesc:</label><br />
+        @Html.TextBox("add_itemDesc", "", new { @class = "input-large addInputs", maxlength = "50" })
+        <br /><br />
+        <label>@LocalRes.Resource.CodeFile_Remark:</label><br />
+        @Html.TextBox("add_itemRemark", "", new { @class = "input-large addInputs", maxlength = "50" })
     </div>
-</form>
-<script type="text/javascript">
-    function doEdit() {
-        $("#invokeUpdate").trigger('click');
-    }
-
-    function doDel(ID) {
-        bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
-            if (result) {
-                $.ajax({
-                    type: "POST", cache: false,
-                    datatype: "json",
-                    url: '@Url.Action("Del")',
-                    data: AddAntiForgeryToken({ ID: ID })
-                }).done(function (msg) {
-                    if (msg == "Y") {
-                        bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw(@Url.Action("Index", new { itemType = ViewBag.itemType,keyword = ViewBag.keyword }))'; });
-                    }
-                    else
-                        bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
-                }).fail(function (jqXHR, textStatus) {
-                    alert("@LocalRes.Resource.MSG_Error");
-                });
+}
+@section UpdateModal{
+    <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">
+        <input type="hidden" id="upd_ID" />
+        <label>Parent Cat</label><br />
+        @Html.DropDownList("upd_parentType", Model.UDPParentType) ->
+        <select id="upd_parentId"></select>
+        <br /><br />
+        <label>@LocalRes.Resource.CodeFile_ItemDesc:</label><br />
+        @Html.TextBox("upd_itemDesc", "", new { @class = "input-large", maxlength = "50" })
+        <br /><br />
+        <label>@LocalRes.Resource.CodeFile_Remark:</label><br />
+        @Html.TextBox("upd_itemRemark", "", new { @class = "input-large", maxlength = "50" })
+    </div>
+}
+@section Table{
+    <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
+        <thead>
+            <tr>
+                <th>@LocalRes.Resource.CodeFile_ItemType</th>
+                <th>@LocalRes.Resource.CodeFile_ItemCode</th>
+                <th>@LocalRes.Resource.CodeFile_ItemDesc</th>
+                <th class="hidden-480">@LocalRes.Resource.CodeFile_Remark</th>
+                <th class="hidden-480">@LocalRes.Resource.ModDate</th>
+                <th class="hidden-480">@LocalRes.Resource.ModUser</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model.CategoryPageList)
+                {
+                    <tr>
+                        <td>@LocalRes.Resource.ResourceManager.GetString("Category_" + item.ItemType)</td>
+                        <td>@item.ItemCode</td>
+                        <td>@item.ItemDescription</td>
+                        <td class="hidden-480">@item.Remark</td>
+                        <td class="hidden-480">@item.ModDate.CultureDateTime()</td>
+                        <td class="hidden-480">@item.ModUser</td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <a href="#" id="invokeUpdate" class='btn btn-sm btn-info btnEdit' data-toggle="modal" data-target="#updModal" data-id="@item.ID" data-itemtype="@item.ItemType" data-itemcode="@item.ItemCode" data-itemdescription="@item.ItemDescription" data-itemremark="@item.Remark" data-parent="@(item.ParentCodeFile.HasValue?item.ParentCodeFile.Value.ToString():"")" data-parenttype="@(item.ParentCodeFile.HasValue?item.Parent.ItemType:"")">
+                                    <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
+                                </a>
+                                @*@if (_Update)
+                                    {
+                                        <a href="#" id="invokeUpdate" class='btn btn-sm btn-info' data-toggle="modal" data-target="#updModal" data-id="@item.ID" data-itemtype="@item.ItemType" data-itemcode="@item.ItemCode" data-itemdescription="@item.ItemDescription" data-itemremark="@item.Remark" data-parent="@(item.ParentCodeFile.HasValue?item.ParentCodeFile.Value.ToString():"")" data-parenttype="@(item.ParentCodeFile.HasValue?item.Parent.ItemType:"")">
+                                            <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
+                                        </a>
+                                    }*@
+                                <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@item.ID">
+                                    <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
+                                </a>
+                                @*@if (_Delete)
+                                    {
+                                        <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')">
+                                            <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
+                                        </a>
+                                    }*@
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline position-relative">
+                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                        <li>
+                                            <a href="#" class="tooltip-success btnEdit" data-rel="tooltip" title="" data-original-title="Edit">
+                                                <span class="green">
+                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tooltip-error btnDelete" data-rel="tooltip" title="" data-id="@item.ID" data-original-title="Delete">
+                                                <span class="red">
+                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
             }
-        });
+        </tbody>
+    </table>
+}
+@section Pager{
+    @if (Model != null)
+    {
+        <div class="pager">
+            @Html.PagedListPager(
+           Model.CategoryPageList,
+            page => Url.Action("Index", new {
+            itemType = Model.ItemType,
+            keyword = Model.Keyword,
+            page = page }))
+        </div>
     }
-
+}
+@section Javascript{
+<script type="text/javascript">
     $(document).ready(function () {
-
-        var UpdateParentDrp = function (parentDrp, drp, selected) {
-
-            var parentType = $("#" + parentDrp + " option:selected").val();
-            var url = "@Url.Action("GetListByItemType")?typeCode=" + parentType;
-
-
+        const UpdateParentDrp = function (parentType, drp, selected) {
+            const url = "@Url.Action("GetListByItemType")?typeCode=" + parentType;
             $.get(url, function (data) {
-                debugger;
-                $("#" + drp).empty();
-                var json = $.parseJSON(data);
-                $.each(json, function (k, v) {
+                drp.empty();
+                $.each($.parseJSON(data), function (k, v) {
                     var option = $('<option>', {
                         value: v.Value,
                         text: v.Text
                     });
                     if (v.Value == selected)
                         option.attr("selected", "selected");
-                    $("#" + drp).append(option);
+                    drp.append(option);
                 });
             });
         };
         $("#btnCreateModal").click(function () {
-            $("#add_itemCode").val("");
-            $("#add_itemDesc").val("");
-            $("#add_itemRemark").val("");
-            UpdateParentDrp("add_parentType", "add_parentId",0);
+            $('.addInputs').val('');
+            UpdateParentDrp($("#add_parentType option:selected").val(), $("#add_parentId"),0);
         });
         $("#add_parentType").change(function () {
-            UpdateParentDrp("add_parentType", "add_parentId",0);
+            UpdateParentDrp($("#add_parentType option:selected").val(), $("#add_parentId"),0);
         });
         $("#upd_parentType").change(function () {
-            UpdateParentDrp("upd_parentType", "upd_parentId",0);
+            UpdateParentDrp($("#upd_parentType option:selected").val(), $("#upd_parentId"),0);
         });
         $("#btnCreate").click(function () {
-            var parentId = $("#add_parentId option:selected").val();
-            var itemType = $("#add_itemType").val();
-            var itemCode = $("#add_itemCode").val();
-            var itemDesc = $("#add_itemDesc").val();
-            var itemRemark = $("#add_itemRemark").val();
-
-            $.ajax({
-                type: "POST", cache: false,
-                datatype: "json",
-                url: '@Url.Action("Create")',
-                data: AddAntiForgeryToken({ parentId: parentId, itemType: itemType, itemCode: itemCode, itemDesc: itemDesc, itemRemark: itemRemark })
-            }).done(function (msg) {
-                if (msg == "Y") {
-                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw(@Url.Action("Index", new { itemType = ViewBag.itemType, keyword = ViewBag.keyword }))'; });
-                    $('#CreateModal').modal('hide')
-                }
-                else if (msg == "D") {
-                    bootbox.alert("@LocalRes.Resource.MSG_Duplidate");
-                    $('#CreateModal').modal('hide')
-                }
-                else {
-                    bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
-                    $('#CreateModal').modal('hide')
-                }
-            }).fail(function (jqXHR, textStatus) {
-                alert("@LocalRes.Resource.MSG_Error");
-            });
+            callAjax(
+                '@Url.Action("Create")',
+                {
+                    ParentCodeFile: $("#add_parentId option:selected").val(),
+                    itemType: $("#add_itemType").val(),
+                    itemCode: $("#add_itemCode").val(),
+                    itemDescription: $("#add_itemDesc").val(),
+                    Remark: $("#add_itemRemark").val()
+                },
+                $('#CreateModal').modal('hide')
+            )
         });
-
         $("#btnUpdate").click(function () {
-            var ID = $("#upd_ID").val();
-            var parentId = $("#upd_parentId option:selected").val();
-            var itemDesc = $("#upd_itemDesc").val();
-            var itemRemark = $("#upd_itemRemark").val();
-
+            callAjax(
+                '@Url.Action("Update")'
+                , {
+                    ID: $("#upd_ID").val(),
+                    ParentCodeFile: $("#upd_parentId option:selected").val(),
+                    itemDescription: $("#upd_itemDesc").val(),
+                    Remark: $("#upd_itemRemark").val() }
+                ,$('#updModal').modal('hide')
+            )
+        });
+        function callAjax(url, data, modalAction) {
             $.ajax({
                 type: "POST", cache: false,
                 datatype: "json",
-                url: '@Url.Action("Update")',
-                data: AddAntiForgeryToken({ ID: ID, parentId: parentId, itemDesc: itemDesc, itemRemark: itemRemark })
-            }).done(function (msg) {
-                if (msg == "Y") {
-                    debugger;
-                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw( @Url.Action("Index", new { itemType = ViewBag.itemType, keyword = ViewBag.keyword }))'; });
-                    $('#updModal').modal('hide')
+                url: url,
+                data: AddAntiForgeryToken(data)
+            }).done(function (result) {
+                if (result.success) {
+                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () {
+                        location.href = '@Html.Raw(@Url.Action("Index"
+                                      , new {
+                                          itemType = Model.ItemType,
+                                          keyword = Model.Keyword }))';
+                    });
+                } else {
+                    bootbox.alert(result.message);
                 }
-                else {
-                    bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
-                    $('#updModal').modal('hide')
-                }
+                if(modalAction)
+                    modalAction();
             }).fail(function (jqXHR, textStatus) {
                 alert("@LocalRes.Resource.MSG_Error");
             });
+        }
+
+        $(document).on("click", ".btnEdit", function () {
+            $("#upd_ID").val($(this).data('id'));
+            $("#upd_itemDesc").val($(this).data('itemdescription'));
+            $("#upd_itemRemark").val($(this).data('itemremark'));
+            $("#upd_parentType").val($(this).data("parenttype"));
+            UpdateParentDrp($("#upd_parentType option:selected").val(), $("#upd_parentId"), $(this).data("parent"));
         });
 
-        $(document).on("click", "#invokeUpdate", function () {
-            debugger;
-            var ID = $(this).data('id');
-            var itemdescription = $(this).data('itemdescription');
-            var itemremark = $(this).data('itemremark');
-            var parentId = $(this).data("parent");
-            var parenttype = $(this).data("parenttype");
-            $("#upd_ID").val(ID);
-            $("#upd_itemDesc").val(itemdescription);
-            $("#upd_itemRemark").val(itemremark);
-            $("#upd_parentType").val(parenttype);
-            UpdateParentDrp("upd_parentType", "upd_parentId", parentId);
-
+        $(".btnDelete").click(function () {
+            const data = { ID: $(this).data('id') };
+        bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
+            if (result) {
+                callAjax(
+                    '@Url.Action("Del")',
+                    data
+                )
+            }
+            });
         });
 
     });
 </script>
+    }

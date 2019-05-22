@@ -20,11 +20,13 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         }
         public CodeFileViewModel() { }
         int? page;
+        DateTime? modifiedDate;
+        DateTime? createDate;
         public IPagedList<CodeFile> CategoryPageList { get; set; }
         public List<SelectListItem> AddItemType { get => SelectListEvent(); }
-        public List<SelectListItem> AddParentType { get => SelectListEvent(); }
-        public List<SelectListItem> UDPParentType { get => SelectListEvent(); }
-        public List<SelectListItem> ItemTypes { get => SelectListEvent(selectedValue:ItemType); }
+        public List<SelectListItem> AddParentType { get => SelectListEvent(hasEmpty: true); }
+        public List<SelectListItem> UDPParentType { get => SelectListEvent(hasEmpty:true); }
+        public List<SelectListItem> ItemTypes { get => SelectListEvent(selectedValue:ItemType, hasEmpty: true); }
         public string Keyword { get; set; }
         public int Page
         {   get => page ?? 1;
@@ -42,8 +44,14 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string Remark { get; set; }
         [MaxLength(1)]
         public string CheckFlag { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime? ModDate { get; set; }
+        public DateTime CreateDate {
+            get => createDate ?? DateTime.Now;
+            set => createDate = value;
+        }
+        public DateTime ModDate {
+            get => modifiedDate ?? DateTime.Now;
+            set => modifiedDate = value;
+        }
         [MaxLength(100)]
         public string ModUser { get; set; }
         public int? ParentCodeFile { get; set; }

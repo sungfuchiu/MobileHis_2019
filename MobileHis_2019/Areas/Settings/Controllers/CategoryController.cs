@@ -5,13 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using Common;
+using MobileHis.Models.ApiModel;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using Newtonsoft.Json;
 using X.PagedList;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class CategoryController : MobileHis_2019.Controllers.BaseController
+    public class CategoryController : MobileHis_2019.Controllers.BaseController<CodeFileViewModel>
     {
         private CodeFileBLL _codeFileBLL;
         private SettingBLL _settingBLL;
@@ -44,18 +45,27 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         [HttpPost]
         public ActionResult Create(CodeFileViewModel model/*int? parentId, string itemType, string itemCode, string itemDesc, string itemRemark*/)
         {
-            using (CodeFileDal dal = new CodeFileDal())
+            if (ModelState.IsValid)
             {
-                switch (dal.Create(parentId, itemType, itemCode, itemDesc, itemRemark, User))
-                {
-                    case Enums.DbStatus.OK: Response.Write("Y"); break;
-                    case Enums.DbStatus.Duplicate: Response.Write("D"); break;
-                    case Enums.DbStatus.Error: Response.Write(""); break;
-                }
-
+                _codeFileBLL.Create(model);
             }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
+            //using (CodeFileDal dal = new CodeFileDal())
+            //{
+            //    switch (dal.Create(parentId, itemType, itemCode, itemDesc, itemRemark, User))
+            //    {
+            //        case Enums.DbStatus.OK: Response.Write("Y"); break;
+            //        case Enums.DbStatus.Duplicate: Response.Write("D"); break;
+            //        case Enums.DbStatus.Error: Response.Write(""); break;
+            //    }
 
-            return null;
+            //}
+
+            //return null;
         }
 
         /// <summary>
@@ -64,20 +74,28 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Update(string ID, int? parentId, string itemDesc, string itemRemark)
+        public ActionResult Update(CodeFileViewModel model/*string ID, int? parentId, string itemDesc, string itemRemark*/)
         {
-
-            using (CodeFileDal dal = new CodeFileDal())
+            if (ModelState.IsValid)
             {
-                switch (dal.Update(ID, parentId, itemDesc, itemRemark, User))
-                {
-                    case Enums.DbStatus.OK: Response.Write("Y"); break;
-                    case Enums.DbStatus.Error: Response.Write(""); break;
-                }
-
+                _codeFileBLL.Update(model);
             }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
+            //using (CodeFileDal dal = new CodeFileDal())
+            //{
+            //    switch (dal.Update(ID, parentId, itemDesc, itemRemark, User))
+            //    {
+            //        case Enums.DbStatus.OK: Response.Write("Y"); break;
+            //        case Enums.DbStatus.Error: Response.Write(""); break;
+            //    }
 
-            return null;
+            //}
+
+            //return null;
         }
 
         /// <summary>
@@ -85,20 +103,29 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         /// </summary>     
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Del(string ID)
+        public ActionResult Del(int ID)
         {
-            using (CodeFileDal dal = new CodeFileDal())
+            if (ModelState.IsValid)
             {
-                switch (dal.Del(ID))
-                {
-                    case Enums.DbStatus.OK:
-                        Response.Write("Y"); break;
-                    case Enums.DbStatus.Error:
-                        Response.Write(""); break;
-                }
+                _codeFileBLL.Delete(ID);
             }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
+            //using (CodeFileDal dal = new CodeFileDal())
+            //{
+            //    switch (dal.Del(ID))
+            //    {
+            //        case Enums.DbStatus.OK:
+            //            Response.Write("Y"); break;
+            //        case Enums.DbStatus.Error:
+            //            Response.Write(""); break;
+            //    }
+            //}
 
-            return null;
+            //return null;
         }
         [HttpGet]
         public string GetListByItemType(string typeCode)

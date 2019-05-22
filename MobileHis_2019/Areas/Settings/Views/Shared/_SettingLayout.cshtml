@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+    var header = @RenderSection("header", required: true).ToHtmlString();
+}
+<style>
+    .modal-header {
+        padding: 9px 15px;
+        border-bottom: 1px solid #eee;
+        background-color: #0480be;
+        color: #ffffff;
+    }
+
+    .modal-dialog {
+        width: 300px;
+    }
+</style>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="@Url.Content("~/")">@LocalRes.Resource.Map_Home</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            @LocalRes.Resource.Map_Sys
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            @header
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+    </ul>
+</div>
+@Html.AntiForgeryToken()
+<div class="page-content">
+    <div class="page-header"><h1>@header</h1></div>
+    <div id="alertBox" class="alert alert-block alert-info" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
+        <p></p>
+    </div>
+    <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@LocalRes.Resource.Comm_Create</h4>
+                </div>
+                <div class="modal-body form-group">
+                    @RenderSection("createModal", required: true)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCreate" class="btn btn-primary">@LocalRes.Resource.Comm_Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@LocalRes.Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@LocalRes.Resource.Modify</h4>
+                </div>
+                <div class="modal-body form-group">
+                    @RenderSection("updateModal", required: true)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnUpdate" class="btn btn-primary">@LocalRes.Resource.Modify</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@LocalRes.Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="@RenderSection("URL", required:true)" method="get" class="form-horizontal">
+        <div class="profile-contact-links">
+            <div class="row form-group">
+                <div class="col-sm-2">
+                    @RenderSection("DropDownList", required: false)
+                </div>
+                <div class="col-sm-2">
+                    <label class="control-label">@LocalRes.Resource.Comm_Keyword:</label>
+                    @Html.TextBox("keyword", (string)ViewBag.keyword, new { @class = "form-control input-sm", size = "20" })
+                </div>
+                <div class="col-sm-offset-4 col-sm-4 align-right pull-right">
+                    <br />
+                    <button type="submit" class="btn btn-sm btn-success">
+                        <i class="fa fa-search"></i>
+                        @LocalRes.Resource.Comm_Search
+                    </button>
+
+                    <a href="#" id="btnCreateModal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CreateModal">
+                        <i class="fa fa-plus"></i>@LocalRes.Resource.Comm_Create
+                    </a>
+                    @*@if (_Add)
+                        {
+                            <a href="#" id="btnCreateModal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CreateModal">
+                                <i class="fa fa-plus"></i>@LocalRes.Resource.Comm_Create
+                            </a>
+                        }*@
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-xs-12 col-lg-12 col-md-12">
+            @RenderSection("Table", required: true)
+            <div class="row">
+                <div class="col-xs-12">
+                    @RenderSection("Pager", required: true)
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@RenderSection("Javascript", required: true)
