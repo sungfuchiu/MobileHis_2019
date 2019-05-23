@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class CodeFileViewModel : IGetSelectList
+    public class CodeFileViewModel : BaseSearchModel, IGetSelectList
     {
         public event GetSelectList SelectListEvent;
         public CodeFileViewModel(GetSelectList selectListEvent)
@@ -19,7 +19,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
             SelectListEvent = selectListEvent;
         }
         public CodeFileViewModel() { }
-        int? page;
         DateTime? modifiedDate;
         DateTime? createDate;
         public IPagedList<CodeFile> CategoryPageList { get; set; }
@@ -27,11 +26,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public List<SelectListItem> AddParentType { get => SelectListEvent(hasEmpty: true); }
         public List<SelectListItem> UDPParentType { get => SelectListEvent(hasEmpty:true); }
         public List<SelectListItem> ItemTypes { get => SelectListEvent(selectedValue:ItemType, hasEmpty: true); }
-        public string Keyword { get; set; }
-        public int Page
-        {   get => page ?? 1;
-            set => page = value;
-        }
 
         public int ID { get; set; }
         [MaxLength(2)]

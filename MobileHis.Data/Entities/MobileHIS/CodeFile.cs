@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHis.Data.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +7,7 @@ using System.Linq;
 
 namespace MobileHis.Data
 {
-    public class CodeFile
+    public class CodeFile : IIDEntity
     {
         public CodeFile() { }
 

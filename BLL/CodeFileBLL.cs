@@ -9,17 +9,21 @@ using MobileHis.Data;
 using Common;
 using AutoMapper;
 using MobileHis.Models.Areas.Sys.ViewModels;
+using BLL.Interface;
+using X.PagedList;
 
 namespace BLL
 {
-    public class CodeFileBLL : BLLBase<CodeFile>
+    public class CodeFileBLL : IDBLLBase<CodeFile>, IAPIBLL<CodeFileViewModel>
     {
         private CodeFileDAL _codeFileDAL;
+        private SettingBLL _settingBLL;
         private IMapper _mapper;
         public CodeFileBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _codeFileDAL = new CodeFileDAL();
+            _settingBLL = new SettingBLL(validationDictionary);
             IDAL = new CodeFileDAL();
             var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<CodeFileViewModel, CodeFile>());
             _mapper = mapperConfiguration.CreateMapper();
@@ -58,14 +62,22 @@ namespace BLL
             });
         }
 
+
         /// <summary>
         /// Get CodeFile List
         /// </summary>
         /// <param name="currentPageIndex"></param>
         /// <returns></returns>
-        public List<CodeFile> GetList(string itemType = "", string keyword = "")
+        //public List<CodeFile> GetList(string itemType = "", string keyword = "")
+        //{
+        //    return _codeFileDAL.GetList(itemType, keyword);
+        //}
+
+        public void Index(CodeFileViewModel model)
         {
-            return _codeFileDAL.GetList(itemType, keyword);
+            model.SelectListEvent += _settingBLL.GetDropDownList;
+            model.CategoryPageList = _codeFileDAL.GetList(model.ItemType, model.Keyword)
+                                    .ToPagedList(model.Page, Config.PageSize);
         }
 
         /// <summary>
@@ -163,7 +175,7 @@ namespace BLL
         /// 刪除
         /// </summary>       
         /// <returns></returns>       
-        public void Delete(int ID)
+        public override void Delete(int ID)
         {
             //using (var trans = db.Database.BeginTransaction())
             //{

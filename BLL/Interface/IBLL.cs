@@ -11,9 +11,7 @@ namespace BLL
     {
         TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
         IEnumerable<TEntity> ReadAll();
-        void Create(TEntity entity);
         void Add(IList<TEntity> entites);
-        void Update(TEntity entity);
         void Delete(TEntity entity);
     }
 }

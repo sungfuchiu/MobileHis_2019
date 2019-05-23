@@ -10,4 +10,8 @@ namespace MobileHis.Data.Interface
     {
         Guid GID { get; set; }
     }
+    public interface IIDEntity
+    {
+        int ID { get; set; }
+    }
 }

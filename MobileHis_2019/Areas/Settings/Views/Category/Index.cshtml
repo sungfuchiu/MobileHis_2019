@@ -10,10 +10,10 @@
 @section header{
     @LocalRes.Resource.Map_Category
 }
-@section URL{
+@section SearchURL{
     @Url.Action()
 }
-@section DropDownList{
+@section CategoryDropDownList{
     <label class="control-label">@LocalRes.Resource.CodeFile_ItemType:</label>
     @Html.DropDownListFor(a => a.ItemType, Model.ItemTypes, new { @class = "form-control" })
 }
@@ -140,7 +140,7 @@
     }
 }
 @section Javascript{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         const UpdateParentDrp = function (parentType, drp, selected) {
             const url = "@Url.Action("GetListByItemType")?typeCode=" + parentType;
@@ -228,7 +228,7 @@
         bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
             if (result) {
                 callAjax(
-                    '@Url.Action("Del")',
+                    '@Url.Action("Delete")',
                     data
                 )
             }
@@ -236,5 +236,5 @@
         });
 
     });
-</script>
-    }
+    </script>
+}

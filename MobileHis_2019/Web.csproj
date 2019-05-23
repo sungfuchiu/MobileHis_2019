@@ -158,12 +158,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Settings\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Settings\Controllers\DrugController.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Views\SettingHtmlHelper.cs" />
+    <Compile Include="Controllers\APIBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -623,6 +625,7 @@
     <Content Include="Areas\Settings\Views\Item\Setting.cshtml" />
     <Content Include="Areas\Settings\Views\Category\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Shared\_SettingLayout.cshtml" />
+    <Content Include="Areas\Settings\Views\Department\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -661,6 +664,7 @@
     <Folder Include="Areas\Settings\Views\Drug\" />
     <Folder Include="Image\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\API\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

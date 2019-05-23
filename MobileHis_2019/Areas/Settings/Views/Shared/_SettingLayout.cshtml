@@ -84,11 +84,11 @@
             </div>
         </div>
     </div>
-    <form action="@RenderSection("URL", required:true)" method="get" class="form-horizontal">
+    <form action="@RenderSection("SearchURL", required:true)" method="get" class="form-horizontal">
         <div class="profile-contact-links">
             <div class="row form-group">
                 <div class="col-sm-2">
-                    @RenderSection("DropDownList", required: false)
+                    @RenderSection("CategoryDropDownList", required: false)
                 </div>
                 <div class="col-sm-2">
                     <label class="control-label">@LocalRes.Resource.Comm_Keyword:</label>

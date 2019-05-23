@@ -1,0 +1,297 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@using Common;
+@model MobileHis.Models.Areas.Sys.ViewModels.DepartmentIndexModel
+@{
+    ViewBag.Title = @LocalRes.Resource.Map_Sys_Department;
+    Layout = "~/Areas/Settings/Views/Shared/_SettingLayout.cshtml";
+}
+@section header{
+    @LocalRes.Resource.Map_Sys_Department
+}
+@section SearchURL{
+    @Url.Action()
+}
+@section CreateModal{
+    <div style="margin-bottom: 5px" class="input-group">
+        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+            <tr>
+                <td style="text-align:right">@LocalRes.Resource.Department_Unit</td>
+                <td style="text-align:left">@Html.DropDownList("add_Unit", Model.AddUnit)</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_CategoryName
+                </td>
+                <td style="text-align:left">
+                    @Html.DropDownList("add_Category", Model.AddCategory)
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_DeptNo
+                </td>
+                <td>@Html.TextBox("add_DepNo", "", new { @class = "input-sm", size = "5", maxlength = "2" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_DeptName
+                </td>
+                <td>@Html.TextBox("add_DepName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_IsRegistered
+                <td>
+                    <label class="blue" style="float:left; margin-right:10px">
+                        <input type="checkbox" id="add_IsRegistered" name="add_IsRegistered" value="Y" class="ace" checked>
+                        <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
+                    </label>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+}
+@section UpdateModal{
+    <div style="margin-bottom: 5px" class="input-group">
+        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_Unit
+                </td>
+                <td>
+                    @Html.DropDownList("upd_Unit", Model.UDPUnit)
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_CategoryName
+                </td>
+                <td>
+                    <span id="upd_CategoryName" style="color:red"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_DeptNo
+                </td>
+                <td>
+
+                    <input type="hidden" id="upd_scDeptNo" />
+                    <span id="upd_DeptNo" style="color:red"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_DeptName
+                </td>
+                <td>@Html.TextBox("upd_DeptName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Department_IsRegistered
+                <td>
+                    <label class="blue" style="float:left; margin-right:10px">
+                        <input type="checkbox" id="upd_IsRegistered" name="upd_IsRegistered" value="Y" class="ace" checked>
+                        <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+@section Table{
+    <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
+        <thead>
+            <tr>
+                <th class="hidden-480">@LocalRes.Resource.Department_CategoryName</th>
+                <th class="hidden-480">@LocalRes.Resource.Department_Unit</th>
+                <th class="hidden-480">@LocalRes.Resource.Department_DeptNo</th>
+                <th>@LocalRes.Resource.Department_DeptName</th>
+                <th>@LocalRes.Resource.Department_IsRegistered</th>
+                <th class="hidden-480">@LocalRes.Resource.ModDate</th>
+                <th class="hidden-480">@LocalRes.Resource.ModUser</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model.DepartmentPageList)
+                {
+                    <tr>
+                        <td class="hidden-480">@item.CategoryName</td>
+                        <td class="hidden-480">@item.UnitName</td>
+                        <td class="hidden-480">@item.DepNo</td>
+                        <td>@item.DepName</td>
+                        <td>@item.IsRegistered</td>
+                        <td class="hidden-480">@item.ModDate.CultureDateTime()</td>
+                        <td class="hidden-480">@item.ModUser</td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <a href="#" id="invokeUpdate" class='btn btn-sm btn-info btnEdit' data-id="@item.ID" data-toggle="modal" data-target="#updModal">
+                                    <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
+                                </a>
+                                @*@if (_Update)
+                                    {
+                                        <a href="#" id="invokeUpdate" class='btn btn-sm btn-info' data-toggle="modal" data-target="#updModal" data-key="@(item.ID.ToString())">
+                                            <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
+                                        </a>
+                                    }*@
+                                <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@item.ID">
+                                    <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
+                                </a>
+                                <a href="#" class='btn btn-sm btn-info' onclick="Go_Queuing_System_Url('@(item.DepNo)')">
+                                    <i class="glyphicon glyphicon-list-alt"></i>@LocalRes.Resource.Lobby_And_Queuing_System
+                                </a>
+                                @*@if (_Delete)
+                                    {
+                                        <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')">
+                                            <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
+                                        </a>
+                                        <a href="#" class='btn btn-sm btn-info' onclick="Go_Queuing_System_Url('@(item.DepNo)')">
+                                            <i class="glyphicon glyphicon-list-alt"></i>@LocalRes.Resource.Lobby_And_Queuing_System
+                                        </a>
+                                    }*@
+                            </div>
+
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline position-relative">
+                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                        <li>
+                                            <a href="#" class="tooltip-success btnEdit" data-id="@item.ID" data-rel="tooltip" title="" data-original-title="Edit">
+                                                <span class="green">
+                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" class="tooltip-error btnDelete" data-rel="tooltip" title="" data-original-title="Delete" data-id="@item.ID">
+                                                <span class="red">
+                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="@LocalRes.Resource.Lobby_And_Queuing_System" onclick="Go_Queuing_System_Url('@(item.DepNo)')">
+                                                <span class="green">
+                                                    <i class="glyphicon glyphicon-list-alt bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+@section Pager{
+    @if (Model != null)
+    {
+        <div class="pager">
+            @Html.PagedListPager(
+           Model.DepartmentPageList,
+           page => Url.Action("Index", new {
+               keyword = ViewBag.keyword,
+               page = page }))
+            Displaying @Model.DepartmentPageList.FirstItemOnPage - @Model.DepartmentPageList.LastItemOnPage of @Model.DepartmentPageList.TotalItemCount item(s)
+        </div>
+    }
+}
+@section Javascript{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnCreateModal").click(function () {
+            $("#add_Category").val($("#add_Category option:first").val());
+            $("#add_DepNo").val("");
+            $("#add_DepName").val("");
+            $("#add_IsRegistered").checked;
+        });
+        $("#btnCreate").click(function () {
+            $("#btnCreateModal").validate();
+            callAjax(
+                '@Url.Action("Create")',
+                {
+                    Category: $("#add_Category").val(),
+                    Unit: $("#add_Unit").val(),
+                    DepNo: $("#add_DepNo").val(),
+                    DepName: $("#add_DepName").val(),
+                    IsRegistered: $("#add_IsRegistered").is(":checked") ? "Y" : ""
+                },
+                $('#CreateModal').modal('hide')
+            )
+        });
+        $("#btnUpdate").click(function () {
+            callAjax(
+                '@Url.Action("Update")'
+                , {
+                    key: $("#upd_scDeptNo").val(),
+                    Unit: $("#upd_Unit").val(),
+                    DeptName: $("#upd_DeptName").val(),
+                    IsRegistered: $("#upd_IsRegistered").is(":checked") ? "Y" : "" }
+                ,$('#updModal').modal('hide')
+            )
+        });
+        function callAjax(url, data, modalAction) {
+            $.ajax({
+                type: "POST", cache: false,
+                datatype: "json",
+                url: url,
+                data: AddAntiForgeryToken(data)
+            }).done(function (result) {
+                if (result.success) {
+                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () {
+                        location.href = '@Html.Raw(@Url.Action("Index"
+                                      , new {
+                                          keyword = Model.Keyword }))';
+                    });
+                } else {
+                    bootbox.alert(result.message);
+                }
+                if(modalAction)
+                    modalAction();
+            }).fail(function (jqXHR, textStatus) {
+                alert("@LocalRes.Resource.MSG_Error");
+            });
+        }
+
+        $(document).on("click", ".btnEdit", function () {
+            $("#upd_scDeptNo").val($(this).data('id'));
+            $("#upd_DeptName").val("");
+            $("#upd_IsRegistered").prop('checked', false);
+            const url = '@Url.Action("GetOneByJson")';
+            const data = { ID: $(this).data('id') };
+            doAjax(url, data, function (data) {
+                const _json = $.parseJSON(data);
+                $("#upd_CategoryName").text($("#add_Category").val(_json.result.Category).text()/*$("#add_Category option[value='" + _json.result.Category + "']").text()*/);
+                $("#upd_DeptNo").text(_json.result.DepNo);
+                $("#upd_DeptName").val(_json.result.DepName);
+                $("#upd_IsRegistered").prop('checked', _json.result.IsRegistered == "Y" ? true : false);
+                $("#upd_Unit").val(_json.result.Unit);
+            });
+        });
+
+        $(".btnDelete").click(function () {
+            const data = { ID: $(this).data('id') };
+        bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
+            if (result) {
+                callAjax(
+                    '@Url.Action("Delete")',
+                    data
+                )
+            }
+            });
+        });
+
+    });
+    </script>
+}
+

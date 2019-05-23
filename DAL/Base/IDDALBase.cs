@@ -20,4 +20,16 @@ namespace DAL
             return Entities.Set<TEntity>().Where(a => a.GID == guid).FirstOrDefault();
         }
     }
+    public class IDDALBase<TEntity> : DALBase<TEntity>, IIDDAL<TEntity> where TEntity : class, MobileHis.Data.Interface.IIDEntity
+    {
+        public void Delete(int ID)
+        {
+            var entity = Entities.Set<TEntity>().Where(a => a.ID == ID).FirstOrDefault();
+            Delete(entity);
+        }
+        public TEntity Read(int ID)
+        {
+            return Entities.Set<TEntity>().Where(a => a.ID == ID).FirstOrDefault();
+        }
+    }
 }

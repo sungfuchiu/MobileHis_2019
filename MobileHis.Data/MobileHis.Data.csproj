@@ -148,7 +148,7 @@
     <Compile Include="Entities\MobileHIS\VitalSign.cs" />
     <Compile Include="Entities\MobileHIS\Ward.cs" />
     <Compile Include="Entities\MobileHIS\Ward2Room.cs" />
-    <Compile Include="Interface\IGuidEntity.cs" />
+    <Compile Include="Interface\IIDEntity.cs" />
     <Compile Include="Migrations\201902260229559_init.cs" />
     <Compile Include="Migrations\201902260229559_init.Designer.cs">
       <DependentUpon>201902260229559_init.cs</DependentUpon>

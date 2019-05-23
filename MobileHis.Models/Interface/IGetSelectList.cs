@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MobileHis.Models.Interface
 {
-    public delegate List<System.Web.Mvc.SelectListItem> GetSelectList(string itemType = "", string selectedValue = "", bool hasEmpty = false);
+    public delegate List<System.Web.Mvc.SelectListItem> GetSelectList(string itemType = "", string selectedValue = "", bool hasEmpty = false, bool hasAll = false);
     interface IGetSelectList
     {
         event GetSelectList SelectListEvent;
