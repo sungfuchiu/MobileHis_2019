@@ -42,10 +42,8 @@ namespace MobileHis_2019.Controllers
         [HttpPost]
         public ActionResult Update(TModel model/*string ID, int? parentId, string itemDesc, string itemRemark*/)
         {
-            if (ModelState.IsValid)
-            {
-                IBLL.Update(model);
-            }
+            ModelState.Clear();
+            IBLL.Update(model);
             return Json(new BaseApiModel()
             {
                 success = ModelState.IsValid,
@@ -55,10 +53,8 @@ namespace MobileHis_2019.Controllers
         [HttpPost]
         public ActionResult Delete(int ID)
         {
-            if (ModelState.IsValid)
-            {
-                IBLL.Delete(ID);
-            }
+            ModelState.Clear();
+            IBLL.Delete(ID);
             return Json(new BaseApiModel()
             {
                 success = ModelState.IsValid,

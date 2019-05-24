@@ -13,31 +13,40 @@
     @Url.Action()
 }
 @section CreateModal{
-    <div style="margin-bottom: 5px" class="input-group">
-        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
-            <tr>
-                <td style="text-align:right">@LocalRes.Resource.Department_Unit</td>
-                <td style="text-align:left">@Html.DropDownList("add_Unit", Model.AddUnit)</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_CategoryName
+    <form id="createValidation">
+        <div style="margin-bottom: 5px" class="input-group">
+            <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+                <tr>
+                    <td style="text-align:right">@LocalRes.Resource.Department_Unit</td>
+                    <td style="text-align:left">@Html.DropDownList("add_Unit", Model.AddUnit)</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_CategoryName
+                    </td>
+                    <td style="text-align:left">
+                        @Html.DropDownList("add_Category", Model.AddCategory)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_DeptNo
+                    </td>
+                    @*<td>@Html.TextBox("add_DepNo", "", new { @class = "input-sm", size = "5", maxlength = "2", @required = "required" })</td>*@
+                    <td>
+                        @Html.TextBoxFor(a => a.DepNo, new { @id = "add_DepNo", @class = "input-sm", size = "5", maxlength = "2" })
+                        @Html.ValidationMessageFor(m => m.DepNo, "", new { @class = "text-danger " })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_DeptName
+                    </td>
+                    @*<td>@Html.TextBox("add_DepName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>*@
+                    <td>
+                        @Html.TextBoxFor(a => a.DepName, new { @id = "add_DepName", @class = "input-sm", size = "25", maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.DepName, "", new { @class = "text-danger " })
                 </td>
-                <td style="text-align:left">
-                    @Html.DropDownList("add_Category", Model.AddCategory)
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_DeptNo
-                </td>
-                <td>@Html.TextBox("add_DepNo", "", new { @class = "input-sm", size = "5", maxlength = "2" })</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_DeptName
-                </td>
-                <td>@Html.TextBox("add_DepName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>
             </tr>
             <tr>
                 <td style="text-align:right">
@@ -52,54 +61,61 @@
             </tr>
         </table>
     </div>
+</form>
 }
 @section UpdateModal{
-    <div style="margin-bottom: 5px" class="input-group">
-        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_Unit
-                </td>
-                <td>
-                    @Html.DropDownList("upd_Unit", Model.UDPUnit)
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_CategoryName
-                </td>
-                <td>
-                    <span id="upd_CategoryName" style="color:red"></span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_DeptNo
-                </td>
-                <td>
+    <form id="updateValidation">
+        <div style="margin-bottom: 5px" class="input-group">
+            <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_Unit
+                    </td>
+                    <td>
+                        @Html.DropDownList("upd_Unit", Model.UDPUnit)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_CategoryName
+                    </td>
+                    <td>
+                        <span id="upd_CategoryName" style="color:red"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_DeptNo
+                    </td>
+                    <td>
 
-                    <input type="hidden" id="upd_scDeptNo" />
-                    <span id="upd_DeptNo" style="color:red"></span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_DeptName
-                </td>
-                <td>@Html.TextBox("upd_DeptName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_IsRegistered
-                <td>
-                    <label class="blue" style="float:left; margin-right:10px">
-                        <input type="checkbox" id="upd_IsRegistered" name="upd_IsRegistered" value="Y" class="ace" checked>
-                        <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
-                    </label>
-                </td>
-            </tr>
-        </table>
-    </div>
+                        <input type="hidden" id="upd_scDeptNo" />
+                        <span id="upd_DeptNo" style="color:red"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_DeptName
+                    </td>
+                    @*<td>@Html.TextBox("upd_DeptName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>*@
+                    <td>
+                        @Html.TextBoxFor(a => a.DepName, new { @id = "upd_DeptName", @name="upd_DeptName", @class = "input-sm", size = "25", maxlength = "50", @required="required" })
+                        @*@Html.ValidationMessage("upd_DeptName", "", new { @class = "text-danger " })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_IsRegistered
+                    <td>
+                        <label class="blue" style="float:left; margin-right:10px">
+                            <input type="checkbox" id="upd_IsRegistered" name="upd_IsRegistered" value="Y" class="ace" checked>
+                            <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </form>
 }
 @section Table{
     <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
@@ -200,7 +216,7 @@
             @Html.PagedListPager(
            Model.DepartmentPageList,
            page => Url.Action("Index", new {
-               keyword = ViewBag.keyword,
+               keyword = Model.Keyword,
                page = page }))
             Displaying @Model.DepartmentPageList.FirstItemOnPage - @Model.DepartmentPageList.LastItemOnPage of @Model.DepartmentPageList.TotalItemCount item(s)
         </div>
@@ -214,14 +230,17 @@
             $("#add_DepNo").val("");
             $("#add_DepName").val("");
             $("#add_IsRegistered").checked;
+            $("#createValidation").find(".field-validation-error").empty();
         });
         $("#btnCreate").click(function () {
-            $("#btnCreateModal").validate();
+            if (!$("#createValidation").valid()) {
+                return;
+            }
             callAjax(
                 '@Url.Action("Create")',
                 {
                     Category: $("#add_Category").val(),
-                    Unit: $("#add_Unit").val(),
+                    UnitId: $("#add_Unit").val(),
                     DepNo: $("#add_DepNo").val(),
                     DepName: $("#add_DepName").val(),
                     IsRegistered: $("#add_IsRegistered").is(":checked") ? "Y" : ""
@@ -230,12 +249,15 @@
             )
         });
         $("#btnUpdate").click(function () {
+            if (!$("#updateValidation").valid()) {
+                return;
+            }
             callAjax(
                 '@Url.Action("Update")'
                 , {
-                    key: $("#upd_scDeptNo").val(),
-                    Unit: $("#upd_Unit").val(),
-                    DeptName: $("#upd_DeptName").val(),
+                    ID: $("#upd_scDeptNo").val(),
+                    UnitId: $("#upd_Unit").val(),
+                    DepName: $("#upd_DeptName").val(),
                     IsRegistered: $("#upd_IsRegistered").is(":checked") ? "Y" : "" }
                 ,$('#updModal').modal('hide')
             )
@@ -257,7 +279,7 @@
                     bootbox.alert(result.message);
                 }
                 if(modalAction)
-                    modalAction();
+                    modalAction;
             }).fail(function (jqXHR, textStatus) {
                 alert("@LocalRes.Resource.MSG_Error");
             });
@@ -267,15 +289,16 @@
             $("#upd_scDeptNo").val($(this).data('id'));
             $("#upd_DeptName").val("");
             $("#upd_IsRegistered").prop('checked', false);
+            $("#updateValidation").find(".field-validation-error").empty();
             const url = '@Url.Action("GetOneByJson")';
             const data = { ID: $(this).data('id') };
             doAjax(url, data, function (data) {
                 const _json = $.parseJSON(data);
-                $("#upd_CategoryName").text($("#add_Category").val(_json.result.Category).text()/*$("#add_Category option[value='" + _json.result.Category + "']").text()*/);
-                $("#upd_DeptNo").text(_json.result.DepNo);
-                $("#upd_DeptName").val(_json.result.DepName);
-                $("#upd_IsRegistered").prop('checked', _json.result.IsRegistered == "Y" ? true : false);
-                $("#upd_Unit").val(_json.result.Unit);
+                $("#upd_CategoryName").text($("#add_Category option[value='" + _json.Category + "']").text());//TO DO: figure out why I can't use find to get option value
+                $("#upd_DeptNo").text(_json.DepNo);
+                $("#upd_DeptName").val(_json.DepName);
+                $("#upd_IsRegistered").prop('checked', _json.IsRegistered == "Y" ? true : false);
+                $("#upd_Unit").val(_json.UnitId);
             });
         });
 
@@ -293,5 +316,6 @@
 
     });
     </script>
+    @Scripts.Render("~/bundles/jqueryval")
 }
 

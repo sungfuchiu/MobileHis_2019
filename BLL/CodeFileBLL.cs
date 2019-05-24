@@ -75,7 +75,7 @@ namespace BLL
 
         public void Index(CodeFileViewModel model)
         {
-            model.SelectListEvent += _settingBLL.GetDropDownList;
+            model.SelectListEvent += GetDropDownList;
             model.CategoryPageList = _codeFileDAL.GetList(model.ItemType, model.Keyword)
                                     .ToPagedList(model.Page, Config.PageSize);
         }

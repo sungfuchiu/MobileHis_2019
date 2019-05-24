@@ -1,4 +1,5 @@
 ﻿using MobileHis.Data.Interface;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,6 +36,7 @@ namespace MobileHis.Data
 
 
         #region ForeignKey
+        [JsonIgnore]
         [ForeignKey("Category")]
         public virtual CodeFile Category_CodeFile { get; set; }
         //[ForeignKey("UnitId")]
@@ -42,9 +44,13 @@ namespace MobileHis.Data
         #endregion
 
         #region ICollection
+        [JsonIgnore]
         public virtual ICollection<OpdRegister> OpdRegister { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Account> Account { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Dept2Room> Dept2Room { get; set; }
+        [JsonIgnore]
         public virtual ICollection<OpdRecord> OpdRecord { get; set; }
         #endregion
     }

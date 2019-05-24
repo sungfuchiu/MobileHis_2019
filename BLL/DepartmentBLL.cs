@@ -16,41 +16,68 @@ namespace BLL
     public class DepartmentBLL : IDBLLBase<Dept>, IAPIBLL<DepartmentIndexModel>
     {
         private DepartmentDAL _departmentDAL;
-        private SettingBLL _settingBLL;
+        private CodeFileBLL _codeFileBLL;
         private IMapper _mapper;
         public DepartmentBLL(IValidationDictionary validationDictionary)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _departmentDAL = new DepartmentDAL();
-            _settingBLL = new SettingBLL(validationDictionary);
+            _codeFileBLL = new CodeFileBLL(validationDictionary);
             IDAL = new DepartmentDAL();
             var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<DepartmentIndexModel, Dept>());
             _mapper = mapperConfiguration.CreateMapper();
         }
         public void Index(DepartmentIndexModel model)
         {
-            var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<Dept, DepartmentIndexModel>());
-            var mapper = mapperConfiguration.CreateMapper();
             model.DepartmentPageList = (from a in _departmentDAL.GetList(model.Keyword)
-                                       select mapper.Map<DepartmentModel>(a))
-                                       .ToPagedList(model.Page, Config.PageSize);
-            model.SelectListEvent += _settingBLL.GetDropDownList;
+                                       select a).ToPagedList(model.Page, Config.PageSize);
+            model.SelectListEvent += _codeFileBLL.GetDropDownList;
         }
 
         public void Create(DepartmentIndexModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var department = Read(a => a.DepNo.Equals(model.DepNo, StringComparison.CurrentCultureIgnoreCase));
+                if (department != null)
+                {
+                    ValidationDictionary.AddGeneralError(@LocalRes.Resource.MSG_Duplidate);
+                }
+                else
+                {
+                    department = _mapper.Map<Dept>(model);
+                    Add(department);
+                    Save();
+                }
+            }catch(Exception ex)
+            {
+                ValidationDictionary.AddGeneralError(ex.Message);
+            }
         }
-
-        public override void Delete(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
 
         public void Update(DepartmentIndexModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var department = Read(a => a.ID == model.ID);
+                if (department != null)
+                {
+                    department.DepName = model.DepName;
+                    department.IsRegistered = model.IsRegistered;
+                    department.UnitId = model.UnitId;
+                    department.ModDate = System.DateTime.Now;
+                    department.ModUser = "advmeds"; //to do user system
+                    Edit(department);
+                    Save();
+                }
+                else
+                {
+                    ValidationDictionary.AddGeneralError(LocalRes.Resource.MSG_Duplidate);
+                }
+            }catch(Exception ex)
+            {
+                ValidationDictionary.AddGeneralError(ex.Message);
+            }
         }
     }
 }

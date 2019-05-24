@@ -32,8 +32,10 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public int UnitId { get; set; }
         public string UnitName { get; set; }
         [MaxLength(2)]
+        [Required]
         public string DepNo { get; set; }
         [MaxLength(50)]
+        [Required]
         public string DepName { get; set; }
         [MaxLength(20)]
         public string Clinic { get; set; }
@@ -52,7 +54,7 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         [MaxLength(100)]
         public string ModUser { get; set; }
     }
-    public class DepartmentModel : BaseSearchModel
+    public class DepartmentModel
     {
         public int ID { get; set; }
         public int Category { get; set; }
