@@ -100,7 +100,6 @@
     <Compile Include="Drug\DrugBLL.cs" />
     <Compile Include="Drug\DrugCostBLL.cs" />
     <Compile Include="Drug\DrugSettingBLL.cs" />
-    <Compile Include="GuidBLLBase.cs" />
     <Compile Include="Interface\IAPIBLL.cs" />
     <Compile Include="Interface\IBLL.cs" />
     <Compile Include="GenericService.cs" />

@@ -13,7 +13,8 @@ namespace DAL
         public void Delete(Guid guid)
         {
             var entity = Entities.Set<TEntity>().Where(a => a.GID == guid).FirstOrDefault();
-            Delete(entity);
+            if (entity != null)
+                Delete(entity);
         }
         public TEntity Read(Guid guid)
         {
@@ -25,7 +26,8 @@ namespace DAL
         public void Delete(int ID)
         {
             var entity = Entities.Set<TEntity>().Where(a => a.ID == ID).FirstOrDefault();
-            Delete(entity);
+            if(entity != null)
+                Delete(entity);
         }
         public TEntity Read(int ID)
         {

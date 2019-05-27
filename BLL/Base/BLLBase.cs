@@ -83,5 +83,9 @@ namespace BLL
         {
             return new List<SelectListItem>();
         }
+        protected void DuplicatedError()
+        {
+            ValidationDictionary.AddGeneralError(@LocalRes.Resource.MSG_Duplidate);
+        }
     }
 }

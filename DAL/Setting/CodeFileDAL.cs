@@ -9,7 +9,7 @@ using MobileHis.Data;
 
 namespace DAL
 {
-    public class CodeFileDAL : DALBase<CodeFile>
+    public class CodeFileDAL : IDDALBase<CodeFile>
     {
         public IEnumerable<CodeFile> GetListByItemType(string itemType)
         {

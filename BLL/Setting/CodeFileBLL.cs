@@ -24,7 +24,7 @@ namespace BLL
             InitialiseIValidationDictionary(validationDictionary);
             _codeFileDAL = new CodeFileDAL();
             _settingBLL = new SettingBLL(validationDictionary);
-            IDAL = new CodeFileDAL();
+            IDAL = _codeFileDAL;
             var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<CodeFileViewModel, CodeFile>());
             _mapper = mapperConfiguration.CreateMapper();
         }

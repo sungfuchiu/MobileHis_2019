@@ -23,7 +23,7 @@ namespace BLL
             InitialiseIValidationDictionary(validationDictionary);
             _departmentDAL = new DepartmentDAL();
             _codeFileBLL = new CodeFileBLL(validationDictionary);
-            IDAL = new DepartmentDAL();
+            IDAL = _departmentDAL;
             var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<DepartmentIndexModel, Dept>());
             _mapper = mapperConfiguration.CreateMapper();
         }

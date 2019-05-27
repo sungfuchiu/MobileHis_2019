@@ -10,7 +10,7 @@ using MobileHis.Models.Areas.Sys.ViewModels;
 
 namespace DAL
 {
-    public class DepartmentDAL : DALBase<Dept>
+    public class DepartmentDAL : IDDALBase<Dept>
     {
         public IEnumerable<DepartmentModel> GetList(string keyword = "")
         {

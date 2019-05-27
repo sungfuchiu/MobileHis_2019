@@ -162,6 +162,7 @@
     <Compile Include="Areas\Settings\Controllers\DrugController.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
+    <Compile Include="Areas\Settings\Controllers\RoomController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Views\SettingHtmlHelper.cs" />
@@ -626,6 +627,7 @@
     <Content Include="Areas\Settings\Views\Category\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Shared\_SettingLayout.cshtml" />
     <Content Include="Areas\Settings\Views\Department\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Room\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

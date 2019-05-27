@@ -3,18 +3,14 @@
 @using Common;
 @model MobileHis.Models.Areas.Sys.ViewModels.CodeFileViewModel
 @{
-    ViewBag.Title = @LocalRes.Resource.Map_Category;
+    ViewBag.Title = @LocalRes.Resource.Map_Sys_Room;
     Layout = "~/Areas/Settings/Views/Shared/_SettingLayout.cshtml";
 }
 @section header{
-    @LocalRes.Resource.Map_Category
+    @LocalRes.Resource.Map_Sys_Room
 }
 @section SearchURL{
     @Url.Action()
-}
-@section CategoryDropDownList{
-    <label class="control-label">@LocalRes.Resource.CodeFile_ItemType:</label>
-    @Html.DropDownListFor(a => a.ItemType, Model.ItemTypes, new { @class = "form-control" })
 }
 @section CreateModal{
     <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">

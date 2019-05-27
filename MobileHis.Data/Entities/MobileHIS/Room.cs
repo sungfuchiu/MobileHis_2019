@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHis.Data.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class Room
+    public class Room : IIDEntity
     {
         public Room() { }
 
