@@ -163,7 +163,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         [HttpPost]
         public ActionResult Setting(DrugSettingModelView model) //todo: Inject contructor
         {
-            model.SelectListEvent += _codeFileBLL.GetDropDownList;
+            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
             if (ModelState.IsValid)
             {
                 _drugSettingBLL.CreateOrUpdate(model);

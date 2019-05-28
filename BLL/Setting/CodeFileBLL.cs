@@ -52,7 +52,11 @@ namespace BLL
         {
             return item.CheckFlag == "D";
         }
-        protected override IEnumerable<SelectListItem> GetSelectList(string itemType, string selectedValue)
+        protected override IEnumerable<SelectListItem> GetSelectList(
+            string itemType = "",
+            string selectedValue = "",
+            bool onlyRegistered = false,
+            int userID = 0)
         {
             return _codeFileDAL.GetListByItemType(itemType).Select(a => new SelectListItem
             {
@@ -75,7 +79,7 @@ namespace BLL
 
         public void Index(CodeFileViewModel model)
         {
-            model.SelectListEvent += GetDropDownList;
+            model.CodeFileSelectListEvent += GetDropDownList;
             model.CategoryPageList = _codeFileDAL.GetList(model.ItemType, model.Keyword)
                                     .ToPagedList(model.Page, Config.PageSize);
         }

@@ -12,18 +12,18 @@ using X.PagedList;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class DepartmentIndexModel : BaseSearchModel, IGetSelectList
+    public class DepartmentIndexModel : BaseSearchModel, IGetCodeFileSelectList
     {
-        public event GetSelectList SelectListEvent;
-        public DepartmentIndexModel(GetSelectList selectListEvent)
+        public event GetCodeFileSelectList CodeFileSelectListEvent;
+        public DepartmentIndexModel(GetCodeFileSelectList selectListEvent)
         {
-            SelectListEvent = selectListEvent;
+            CodeFileSelectListEvent = selectListEvent;
         }
         public DepartmentIndexModel() { }
         public IPagedList<DepartmentModel> DepartmentPageList { get; set; }
-        public List<SelectListItem> AddUnit{ get => SelectListEvent(itemType:"DU"); }
-        public List<SelectListItem> AddCategory { get => SelectListEvent(itemType: "DP"); }
-        public List<SelectListItem> UDPUnit { get => SelectListEvent(itemType: "DU"); }
+        public List<SelectListItem> AddUnit{ get => CodeFileSelectListEvent(itemType:"DU"); }
+        public List<SelectListItem> AddCategory { get => CodeFileSelectListEvent(itemType: "DP"); }
+        public List<SelectListItem> UDPUnit { get => CodeFileSelectListEvent(itemType: "DU"); }
         DateTime? modifiedDate;
         DateTime? createDate;
         public int ID { get; set; }

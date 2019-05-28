@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using X.PagedList;
 
 namespace BLL
@@ -27,11 +28,24 @@ namespace BLL
             var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<DepartmentIndexModel, Dept>());
             _mapper = mapperConfiguration.CreateMapper();
         }
+        protected override IEnumerable<SelectListItem> GetSelectList(
+            string itemType = "",
+            string selectedValue = "",
+            bool onlyRegistered = false,
+            int userID = 0)
+        {
+            return _departmentDAL.GetSelectList(onlyRegistered, userID).Select(a => new SelectListItem
+            {
+                Value = a.ID.ToString(),
+                Text = a.DepName,
+                Selected = string.IsNullOrEmpty(selectedValue) ? false : a.ID.ToString() == selectedValue
+            });
+        }
         public void Index(DepartmentIndexModel model)
         {
             model.DepartmentPageList = (from a in _departmentDAL.GetList(model.Keyword)
                                        select a).ToPagedList(model.Page, Config.PageSize);
-            model.SelectListEvent += _codeFileBLL.GetDropDownList;
+            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
         }
 
         public void Create(DepartmentIndexModel model)

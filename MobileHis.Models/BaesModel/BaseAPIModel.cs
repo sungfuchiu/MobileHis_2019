@@ -9,13 +9,8 @@ using X.PagedList;
 
 namespace MobileHis.Models
 {
-    public class BaseAPIModel<TEntity> : IGetSelectList
+    public class BaseAPIModel<TEntity>
     {
-        public event GetSelectList SelectListEvent;
-        public BaseAPIModel(GetSelectList selectListEvent)
-        {
-            SelectListEvent = selectListEvent;
-        }
         public BaseAPIModel() { }
         int? page;
         DateTime? modifiedDate;

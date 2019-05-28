@@ -1,7 +1,12 @@
 ﻿@using X.PagedList;
 @using X.PagedList.Mvc;
 @using Common;
-@model MobileHis.Models.Areas.Sys.ViewModels.CodeFileViewModel
+@model MobileHis.Models.Areas.Sys.ViewModels.RoomModel
+@section ModalWidth{
+    .modal-dialog {
+    width: 550px;
+    }
+}
 @{
     ViewBag.Title = @LocalRes.Resource.Map_Sys_Room;
     Layout = "~/Areas/Settings/Views/Shared/_SettingLayout.cshtml";
@@ -13,75 +18,130 @@
     @Url.Action()
 }
 @section CreateModal{
-    <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">
-        <label>@LocalRes.Resource.CodeFile_ItemType:</label><br />
-        @Html.DropDownList("add_itemType", Model.AddItemType)
-        <br /><br />
-        <label>Parent Cat</label><br />
-        @Html.DropDownList("add_parentType", Model.AddParentType) ->
-        <select id="add_parentId"></select>
-        <br /><br />
-        <label>@LocalRes.Resource.CodeFile_ItemCode:</label><br />
-        @Html.TextBox("add_itemCode", "", new { @class = "input-sm addInputs", size = "10", maxlength = "8" })
-        <br /><br />
-        <label>@LocalRes.Resource.CodeFile_ItemDesc:</label><br />
-        @Html.TextBox("add_itemDesc", "", new { @class = "input-large addInputs", maxlength = "50" })
-        <br /><br />
-        <label>@LocalRes.Resource.CodeFile_Remark:</label><br />
-        @Html.TextBox("add_itemRemark", "", new { @class = "input-large addInputs", maxlength = "50" })
+    <div style="margin-bottom: 5px" class="input-group">
+        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_No
+                </td>
+                <td>@Html.TextBox("add_Room_No", "", new { @class = "input-sm", size = "10", maxlength = "5" })</td>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_Name
+                </td>
+                <td>@Html.TextBox("add_Room_Name", "", new { @class = "input-sm", size = "15", maxlength = "50" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_Max
+                <td>@Html.TextBox("add_RoomMax", "", new { @class = "input-sm", @type = "number", min = "0", max = "999", size = "10" })</td>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Comm_Remark
+                </td>
+                <td>@Html.TextBox("add_Remark", "", new { @class = "input-large", size = "20", maxlength = "50" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_AllowDept
+                </td>
+                <td colspan="3">@Html.ListBox("add_AllowDept", Model.AddAllowDept)</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Map_Sys_Guardian
+                </td>
+                <td colspan="3">
+                    @Html.DropDownList("add_Guardian_Category", Model.AddGuardianCategory) ->
+                    @Html.DropDownList("add_Guardian", Model.AddGuardian)
+                </td>
+            </tr>
+
+        </table>
     </div>
 }
 @section UpdateModal{
-    <div style="margin-bottom: 5px;margin-left:15px;" class="input-group">
-        <input type="hidden" id="upd_ID" />
-        <label>Parent Cat</label><br />
-        @Html.DropDownList("upd_parentType", Model.UDPParentType) ->
-        <select id="upd_parentId"></select>
-        <br /><br />
-        <label>@LocalRes.Resource.CodeFile_ItemDesc:</label><br />
-        @Html.TextBox("upd_itemDesc", "", new { @class = "input-large", maxlength = "50" })
-        <br /><br />
-        <label>@LocalRes.Resource.CodeFile_Remark:</label><br />
-        @Html.TextBox("upd_itemRemark", "", new { @class = "input-large", maxlength = "50" })
+    <div style="margin-bottom: 5px" class="input-group">
+        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_No
+                </td>
+                <td>
+                    <input type="hidden" id="upd_Room_key" />
+                    <span id="upd_Room_No" style="color:red"></span>
+                </td>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_Name
+                </td>
+                <td>@Html.TextBox("upd_Room_Name", "", new { @class = "input-sm", size = "15", maxlength = "50" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_Max
+                <td>@Html.TextBox("upd_RoomMax", "", new { @class = "input-sm", @type = "number", min = "0", max = "999", size = "10" })</td>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Comm_Remark
+                </td>
+                <td>@Html.TextBox("upd_Remark", "", new { @class = "input-large", size = "20", maxlength = "50" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Room_AllowDept
+                </td>
+                <td colspan="3">@Html.ListBox("upd_AllowDept", Model.AddAllowDept)</td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    @LocalRes.Resource.Map_Sys_Guardian
+                </td>
+                <td colspan="3">
+                    @Html.DropDownList("upd_Guardian_Category", Model.UpdGuardianCategory) ->
+                    @Html.DropDownList("upd_Guardian", Model.UpdGuardian)
+                </td>
+            </tr>
+
+        </table>
     </div>
 }
 @section Table{
     <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
         <thead>
             <tr>
-                <th>@LocalRes.Resource.CodeFile_ItemType</th>
-                <th>@LocalRes.Resource.CodeFile_ItemCode</th>
-                <th>@LocalRes.Resource.CodeFile_ItemDesc</th>
-                <th class="hidden-480">@LocalRes.Resource.CodeFile_Remark</th>
+                <th>@LocalRes.Resource.Room_No</th>
+                <th>@LocalRes.Resource.Room_Name</th>
+                <th class="hidden-480">@LocalRes.Resource.Room_AllowDept</th>
+                <th>@LocalRes.Resource.Room_Max</th>
                 <th class="hidden-480">@LocalRes.Resource.ModDate</th>
                 <th class="hidden-480">@LocalRes.Resource.ModUser</th>
                 <th></th>
             </tr>
         </thead>
+
         <tbody>
             @if (Model != null)
             {
-                foreach (var item in Model.CategoryPageList)
+                foreach (var item in Model.RoomPageList)
                 {
                     <tr>
-                        <td>@LocalRes.Resource.ResourceManager.GetString("Category_" + item.ItemType)</td>
-                        <td>@item.ItemCode</td>
-                        <td>@item.ItemDescription</td>
-                        <td class="hidden-480">@item.Remark</td>
-                        <td class="hidden-480">@item.ModDate.CultureDateTime()</td>
-                        <td class="hidden-480">@item.ModUser</td>
+                        <td>@Html.Encode(item.RoomNo)</td>
+                        <td>@Html.Encode(item.RoomName)</td>
+                        <td class="hidden-480">
+                            @string.Join(",", item.Dept2Room.Select(x => x.Dept.DepName).ToList())
+                        </td>
+                        <td>@Html.Encode(item.RoomMax.HasValue ? item.RoomMax.Value : 0)</td>
+                        <td class="hidden-480">@Html.Encode(item.ModDate.CultureDateTime())</td>
+                        <td class="hidden-480">@Html.Encode(item.ModUser)</td>
                         <td>
                             <div class="hidden-sm hidden-xs btn-group">
-                                <a href="#" id="invokeUpdate" class='btn btn-sm btn-info btnEdit' data-toggle="modal" data-target="#updModal" data-id="@item.ID" data-itemtype="@item.ItemType" data-itemcode="@item.ItemCode" data-itemdescription="@item.ItemDescription" data-itemremark="@item.Remark" data-parent="@(item.ParentCodeFile.HasValue?item.ParentCodeFile.Value.ToString():"")" data-parenttype="@(item.ParentCodeFile.HasValue?item.Parent.ItemType:"")">
+                                <a href="#" id="invokeUpdate" class='btn btn-sm btn-info btnEdit' data-toggle="modal" data-target="#updModal" data-id="@(item.ID.ToString())">
                                     <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
                                 </a>
                                 @*@if (_Update)
                                     {
-                                        <a href="#" id="invokeUpdate" class='btn btn-sm btn-info' data-toggle="modal" data-target="#updModal" data-id="@item.ID" data-itemtype="@item.ItemType" data-itemcode="@item.ItemCode" data-itemdescription="@item.ItemDescription" data-itemremark="@item.Remark" data-parent="@(item.ParentCodeFile.HasValue?item.ParentCodeFile.Value.ToString():"")" data-parenttype="@(item.ParentCodeFile.HasValue?item.Parent.ItemType:"")">
+                                        <a href="#" id="invokeUpdate" class='btn btn-sm btn-info' data-toggle="modal" data-target="#updModal" data-key="@(item.ID.ToString())">
                                             <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
                                         </a>
                                     }*@
-                                <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@item.ID">
+                                <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@(item.ID.ToString())">
                                     <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
                                 </a>
                                 @*@if (_Delete)
@@ -90,7 +150,13 @@
                                             <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
                                         </a>
                                     }*@
+                                <a href="#" class='btn btn-sm btn-info' onclick="Go_Queuing_System_Url(@(item.ID.ToString()),'room')">
+                                    <i class="glyphicon glyphicon-list-alt"></i>@LocalRes.Resource.Clinic_And_Queuing_System
+                                </a>
+
                             </div>
+
+
                             <div class="hidden-md hidden-lg">
                                 <div class="inline position-relative">
                                     <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
@@ -98,16 +164,24 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                         <li>
-                                            <a href="#" class="tooltip-success btnEdit" data-rel="tooltip" title="" data-original-title="Edit">
-                                                <span class="green">
+                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit" onclick="doEdit();">
+                                                <span class=" green">
                                                     <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                 </span>
                                             </a>
                                         </li>
+
                                         <li>
-                                            <a href="#" class="tooltip-error btnDelete" data-rel="tooltip" title="" data-id="@item.ID" data-original-title="Delete">
+                                            <a href="#" class="tooltip-error btnDelete" data-rel="tooltip" title="" data-original-title="Delete" data-id="@(item.ID.ToString())">
                                                 <span class="red">
                                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="@LocalRes.Resource.Clinic_And_Queuing_System" onclick="Go_Queuing_System_Url(@(item.ID.ToString()),'room')">
+                                                <span class="green">
+                                                    <i class="glyphicon glyphicon-list-alt bigger-120"></i>
                                                 </span>
                                             </a>
                                         </li>
@@ -126,65 +200,152 @@
     {
         <div class="pager">
             @Html.PagedListPager(
-           Model.CategoryPageList,
-            page => Url.Action("Index", new {
-            itemType = Model.ItemType,
-            keyword = Model.Keyword,
-            page = page }))
+           Model.RoomPageList,
+           page =>
+           Url.Action("Index",
+           new { keyword = Model.Keyword,
+               page = page}))
         </div>
     }
 }
 @section Javascript{
     <script type="text/javascript">
+        var Get_Guardian_List_url = "../Guardian/GetGuardianList";
+        var Get_Display_And_Queuing_System_Dashboard_Default_url = "@Config.AppSetting("HostPath")";
+    function Go_Queuing_System_Url(key,itemID)
+    {
+        window.open(Get_Display_And_Queuing_System_Dashboard_Default_url + itemID+"?roomid=" + key, '_blank ');
+    }
+
+    $('#add_RoomMax,#upd_RoomMax').keyup(function () {
+        this.value = this.value.replace(/[^0-9\.]/g, '0');
+    });
+
     $(document).ready(function () {
-        const UpdateParentDrp = function (parentType, drp, selected) {
-            const url = "@Url.Action("GetListByItemType")?typeCode=" + parentType;
-            $.get(url, function (data) {
-                drp.empty();
-                $.each($.parseJSON(data), function (k, v) {
-                    var option = $('<option>', {
-                        value: v.Value,
-                        text: v.Text
-                    });
-                    if (v.Value == selected)
-                        option.attr("selected", "selected");
-                    drp.append(option);
-                });
-            });
-        };
         $("#btnCreateModal").click(function () {
-            $('.addInputs').val('');
-            UpdateParentDrp($("#add_parentType option:selected").val(), $("#add_parentId"),0);
+            $("#add_Room_No").val("");
+            $("#add_Room_Name").val("");
+            $("#add_RoomMax").val("0");
+            $("#add_Remark").val("");
+            $("#add_Guardian_Category").val("");
+            $("#add_Guardian").empty();
+            $("#add_AllowDept").val("");
+            $("#add_AllowDept").trigger('chosen:updated');
         });
-        $("#add_parentType").change(function () {
-            UpdateParentDrp($("#add_parentType option:selected").val(), $("#add_parentId"),0);
+
+        $('#add_AllowDept,#upd_AllowDept').chosen({ width: '100%', no_results_text: "Oops, nothing found!" });
+
+        $("#add_Guardian_Category").change(function () {
+            var GcID = $(this).val();
+            $.getJSON(Get_Guardian_List_url, { Guardian_Category_id: GcID },
+                   function (data) {
+                       var select = $("#add_Guardian");
+                       select.empty();
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option>', {
+                               value: itemData.Value,
+                               text: itemData.Text
+                           }));
+                       });
+                   });
         });
-        $("#upd_parentType").change(function () {
-            UpdateParentDrp($("#upd_parentType option:selected").val(), $("#upd_parentId"),0);
-        });
+
+
         $("#btnCreate").click(function () {
+            var AllowDeptData = "";
+            if (AllowDept != null)
+                AllowDeptData = $("#add_AllowDept").val().join(',');
+
+            if (Room_No == "") { alert("@LocalRes.Resource.Required"); $("#add_Room_No").focus(); return false; }
+            if (Room_Name == "") { alert("@LocalRes.Resource.Required"); $("#add_Room_Name").focus(); return false; }
+            
             callAjax(
                 '@Url.Action("Create")',
                 {
-                    ParentCodeFile: $("#add_parentId option:selected").val(),
-                    itemType: $("#add_itemType").val(),
-                    itemCode: $("#add_itemCode").val(),
-                    itemDescription: $("#add_itemDesc").val(),
-                    Remark: $("#add_itemRemark").val()
+                    Room_No : $("#add_Room_No").val(),
+                    Room_Name : $("#add_Room_Name").val(),
+                    RoomMax : $("#add_RoomMax").val(),
+                    Remark : $("#add_Remark").val(),
+                    Guardian: $("#add_Guardian").val(),
+                    AllowDept: $("#add_AllowDept").val(),
+                    AllowDeptData: AllowDeptData
                 },
                 $('#CreateModal').modal('hide')
             )
         });
+
         $("#btnUpdate").click(function () {
+            var AllowDeptData = "";
+            if (AllowDept != null)
+                AllowDeptData = $("#upd_AllowDept").val().join(',');
+            if (Room_Name == "") { alert("@LocalRes.Resource.Required"); $("#upd_Room_Name").focus(); return false; }
+            
             callAjax(
                 '@Url.Action("Update")'
                 , {
-                    ID: $("#upd_ID").val(),
-                    ParentCodeFile: $("#upd_parentId option:selected").val(),
-                    itemDescription: $("#upd_itemDesc").val(),
-                    Remark: $("#upd_itemRemark").val() }
+                    key: $("#upd_Room_key").val(),
+                    Room_Name: $("#upd_Room_Name").val(),
+                    RoomMax: $("#upd_RoomMax").val(),
+                    Remark: $("#upd_Remark").val(),
+                    AllowDept: $("#upd_AllowDept").val(),
+                    AllowDeptData: AllowDeptData,
+                    GuardianID : $("#upd_Guardian").val()
+                }
                 ,$('#updModal').modal('hide')
             )
+        });
+
+        $("#upd_Guardian_Category").change(function () {
+            var GcID = $(this).val();
+            $.getJSON(Get_Guardian_List_url, { Guardian_Category_id: GcID },
+                   function (data) {
+                       var select = $("#upd_Guardian");
+                       select.empty();
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option>', {
+                               value: itemData.Value,
+                               text: itemData.Text
+                           }));
+                       });
+                   });
+        });
+
+        $(document).on("click", ".btnEdit", function () {
+            const id = $(this).data('id');
+            $("#upd_Room_key").val(id);
+            $("#upd_AllowDept").val("");
+            $("#upd_AllowDept").trigger('chosen:updated');
+            $("#upd_Guardian_Category").val("");
+            $("#upd_Guardian").empty();
+            const url = '@Url.Action("GetOneByJson")';
+            const data = { ID: id };
+            doAjax(url, data, function (data) {
+                const _json = jQuery.parseJSON(data);
+                $("#upd_Room_No").text(_json.RoomNo);
+                $("#upd_Room_Name").val(_json.RoomName);
+                $("#upd_RoomMax").val(_json.RoomMax);
+                $("#upd_Remark").val(_json.Remark);
+                if (_json.AllowDept != null && _json.AllowDept != "") {
+                    $("#upd_AllowDept").val(_json.AllowDept.split(','));
+                    $("#upd_AllowDept").trigger('chosen:updated');
+                }
+                if (_json.GuardianID != null && _json.GuardianID != "") {
+                    var Guardian_Category_id = _json.GuardianCategoryID;
+                    $("#upd_Guardian_Category").val(Guardian_Category_id);
+                    $.getJSON(Get_Guardian_List_url, { Guardian_Category_id: Guardian_Category_id },
+                        function (data) {
+                            var select = $("#upd_Guardian");
+                            select.empty();
+                            $.each(data, function (index, itemData) {
+                                select.append($('<option>', {
+                                    value: itemData.Value,
+                                    text: itemData.Text
+                                }));
+                            });
+                            select.val(_json.GuardianID);
+                        });
+                }
+            });
         });
         function callAjax(url, data, modalAction) {
             $.ajax({
@@ -197,7 +358,6 @@
                     bootbox.alert("@LocalRes.Resource.MSG_Success", function () {
                         location.href = '@Html.Raw(@Url.Action("Index"
                                       , new {
-                                          itemType = Model.ItemType,
                                           keyword = Model.Keyword }))';
                     });
                 } else {
@@ -209,15 +369,6 @@
                 alert("@LocalRes.Resource.MSG_Error");
             });
         }
-
-        $(document).on("click", ".btnEdit", function () {
-            $("#upd_ID").val($(this).data('id'));
-            $("#upd_itemDesc").val($(this).data('itemdescription'));
-            $("#upd_itemRemark").val($(this).data('itemremark'));
-            $("#upd_parentType").val($(this).data("parenttype"));
-            UpdateParentDrp($("#upd_parentType option:selected").val(), $("#upd_parentId"), $(this).data("parent"));
-        });
-
         $(".btnDelete").click(function () {
             const data = { ID: $(this).data('id') };
         bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {

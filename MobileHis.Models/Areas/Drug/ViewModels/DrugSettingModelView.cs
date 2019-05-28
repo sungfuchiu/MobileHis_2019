@@ -8,24 +8,24 @@ using System.Web;
 
 namespace MobileHis.Models.Areas.Drug.ViewModels
 {
-    public class DrugSettingModelView : IGetSelectList
+    public class DrugSettingModelView : IGetCodeFileSelectList
     {
         private string _DrugName;
         private int _Days = 0;
         private double _Quantity = 0.0;
         private double _Dose = 0.0;
         //public delegate List<System.Web.Mvc.SelectListItem> _GetSelectList(string itemType, string selectedValue = "", bool hasEmpty = false);
-        public event GetSelectList SelectListEvent;
+        public event GetCodeFileSelectList CodeFileSelectListEvent;
 
-        public DrugSettingModelView(GetSelectList selectListEvent)
+        public DrugSettingModelView(GetCodeFileSelectList selectListEvent)
         {
-            SelectListEvent = selectListEvent;
+            CodeFileSelectListEvent = selectListEvent;
         }
         public DrugSettingModelView()
         {
         }
-        public List<System.Web.Mvc.SelectListItem> FrequencyList { get => SelectListEvent("FQ"); }
-        public List<System.Web.Mvc.SelectListItem> RouteList { get => SelectListEvent("RU"); }
+        public List<System.Web.Mvc.SelectListItem> FrequencyList { get => CodeFileSelectListEvent("FQ"); }
+        public List<System.Web.Mvc.SelectListItem> RouteList { get => CodeFileSelectListEvent("RU"); }
 
         [Required]
         public Guid DrugID { get; set; }

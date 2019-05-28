@@ -45,23 +45,23 @@
                     @*<td>@Html.TextBox("add_DepName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>*@
                     <td>
                         @Html.TextBoxFor(a => a.DepName, new { @id = "add_DepName", @class = "input-sm", size = "25", maxlength = "50" })
-                    @Html.ValidationMessageFor(m => m.DepName, "", new { @class = "text-danger " })
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Department_IsRegistered
-                <td>
-                    <label class="blue" style="float:left; margin-right:10px">
-                        <input type="checkbox" id="add_IsRegistered" name="add_IsRegistered" value="Y" class="ace" checked>
-                        <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
-                    </label>
-                </td>
+                        @Html.ValidationMessageFor(m => m.DepName, "", new { @class = "text-danger " })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Department_IsRegistered
+                    <td>
+                        <label class="blue" style="float:left; margin-right:10px">
+                            <input type="checkbox" id="add_IsRegistered" name="add_IsRegistered" value="Y" class="ace" checked>
+                            <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
+                        </label>
+                    </td>
 
-            </tr>
-        </table>
-    </div>
-</form>
+                </tr>
+            </table>
+        </div>
+    </form>
 }
 @section UpdateModal{
     <form id="updateValidation">
@@ -99,7 +99,7 @@
                     </td>
                     @*<td>@Html.TextBox("upd_DeptName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>*@
                     <td>
-                        @Html.TextBoxFor(a => a.DepName, new { @id = "upd_DeptName", @name="upd_DeptName", @class = "input-sm", size = "25", maxlength = "50", @required="required" })
+                        @Html.TextBoxFor(a => a.DepName, new { @id = "upd_DeptName", @name = "upd_DeptName", @class = "input-sm", size = "25", maxlength = "50", @required = "required" })
                         @*@Html.ValidationMessage("upd_DeptName", "", new { @class = "text-danger " })*@
                     </td>
                 </tr>
@@ -115,7 +115,7 @@
                 </tr>
             </table>
         </div>
-        </form>
+    </form>
 }
 @section Table{
     <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">

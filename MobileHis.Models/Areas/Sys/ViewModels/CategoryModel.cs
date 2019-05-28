@@ -11,21 +11,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class CodeFileViewModel : BaseSearchModel, IGetSelectList
+    public class CodeFileViewModel : BaseSearchModel, IGetCodeFileSelectList
     {
-        public event GetSelectList SelectListEvent;
-        public CodeFileViewModel(GetSelectList selectListEvent)
+        public event GetCodeFileSelectList CodeFileSelectListEvent;
+        public CodeFileViewModel(GetCodeFileSelectList selectListEvent)
         {
-            SelectListEvent = selectListEvent;
+            CodeFileSelectListEvent = selectListEvent;
         }
         public CodeFileViewModel() { }
         DateTime? modifiedDate;
         DateTime? createDate;
         public IPagedList<CodeFile> CategoryPageList { get; set; }
-        public List<SelectListItem> AddItemType { get => SelectListEvent(); }
-        public List<SelectListItem> AddParentType { get => SelectListEvent(hasEmpty: true); }
-        public List<SelectListItem> UDPParentType { get => SelectListEvent(hasEmpty:true); }
-        public List<SelectListItem> ItemTypes { get => SelectListEvent(selectedValue:ItemType, hasEmpty: true); }
+        public List<SelectListItem> AddItemType { get => CodeFileSelectListEvent(); }
+        public List<SelectListItem> AddParentType { get => CodeFileSelectListEvent(hasEmpty: true); }
+        public List<SelectListItem> UDPParentType { get => CodeFileSelectListEvent(hasEmpty:true); }
+        public List<SelectListItem> ItemTypes { get => CodeFileSelectListEvent(selectedValue:ItemType, hasEmpty: true); }
 
         public int ID { get; set; }
         [MaxLength(2)]

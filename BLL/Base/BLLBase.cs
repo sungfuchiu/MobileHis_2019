@@ -13,7 +13,6 @@ namespace BLL
     public class BLLBase<TEntity> : IBLL<TEntity> where TEntity : class
     {
         public Common.IValidationDictionary ValidationDictionary { get; private set; }
-        protected IEnumerable<SelectListItem> SelectList { get; set; }
         public void InitialiseIValidationDictionary(
             Common.IValidationDictionary iValidationDictionary)
         {
@@ -56,7 +55,13 @@ namespace BLL
             IDAL.Save();
         }
 
-        public List<SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false, bool hasAll = false)
+        public List<SelectListItem> GetDropDownList(
+            string itemType, 
+            string selectedValue = "", 
+            bool hasEmpty = false, 
+            bool hasAll = false, 
+            bool onlyRegistered = false, 
+            int userID = 0)
         {
             var list = new List<System.Web.Mvc.SelectListItem>();
             if (hasEmpty)
@@ -75,11 +80,15 @@ namespace BLL
                         Value = "0"
                     });
             }
-            var datalist = SelectList ?? GetSelectList(itemType, selectedValue);
+            var datalist = GetSelectList(itemType, selectedValue, onlyRegistered, userID);
             list.AddRange(datalist);
             return list;
         }
-        protected virtual IEnumerable<SelectListItem> GetSelectList(string itemType, string selectedValue = "")
+        protected virtual IEnumerable<SelectListItem> GetSelectList(
+            string itemType = "", 
+            string selectedValue = "", 
+            bool onlyRegistered = false, 
+            int userID = 0)
         {
             return new List<SelectListItem>();
         }

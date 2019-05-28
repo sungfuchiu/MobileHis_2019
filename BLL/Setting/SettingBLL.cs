@@ -349,7 +349,11 @@ namespace BLL
                 return false;
             }
         }
-        protected override IEnumerable<SelectListItem> GetSelectList(string itemType, string selectedValue)
+        protected override IEnumerable<SelectListItem> GetSelectList(
+            string itemType = "",
+            string selectedValue = "",
+            bool onlyRegistered = false,
+            int userID = 0)
         {
             return _settingDAL.GetCategoryList().Select(item => new SelectListItem
             {

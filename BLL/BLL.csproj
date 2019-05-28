@@ -94,8 +94,8 @@
   <ItemGroup>
     <Compile Include="Base\BLLBase.cs" />
     <Compile Include="Base\IDBLLBase.cs" />
-    <Compile Include="CodeFileBLL.cs" />
-    <Compile Include="DepartmentBLL.cs" />
+    <Compile Include="Setting\CodeFileBLL.cs" />
+    <Compile Include="Setting\DepartmentBLL.cs" />
     <Compile Include="Drug\DrugAppearanceBLL.cs" />
     <Compile Include="Drug\DrugBLL.cs" />
     <Compile Include="Drug\DrugCostBLL.cs" />
@@ -103,10 +103,11 @@
     <Compile Include="Interface\IAPIBLL.cs" />
     <Compile Include="Interface\IBLL.cs" />
     <Compile Include="GenericService.cs" />
-    <Compile Include="ICD10BLL.cs" />
+    <Compile Include="Setting\ICD10BLL.cs" />
     <Compile Include="Interface\IIDBLL.cs" />
     <Compile Include="IService.cs" />
-    <Compile Include="SettingBLL.cs" />
+    <Compile Include="Setting\RoomBLL.cs" />
+    <Compile Include="Setting\SettingBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingService.cs" />
   </ItemGroup>

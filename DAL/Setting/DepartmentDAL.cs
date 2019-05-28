@@ -12,6 +12,38 @@ namespace DAL
 {
     public class DepartmentDAL : IDDALBase<Dept>
     {
+        private AccountDAL _accountDAL;
+        public DepartmentDAL()
+        {
+            _accountDAL = new AccountDAL();
+        }
+        private enum _role
+        {
+            admin = 1,
+            triage = 6
+        }
+        public IEnumerable<Dept> GetSelectList(bool onlyRegistered = false, int userID = 0)
+        {
+            Reads(a => a.Account);
+            Entity = Entity.Where(a => onlyRegistered && a.IsRegistered == "Y");
+            //var obj = base.GetAllWithNoTracking().Include(a => a.Account).ToList();
+            //if (onlyReg)
+            //    obj = obj.Where(x => x.IsRegistered == "Y").ToList();
+            if (userID > 0)
+            {
+                var acc = _accountDAL.Read(a => a.ID == userID, a => a.Account2Role);
+                //如果今天是admin or triage 可以看全部
+                if (!acc.Account2Role.Any(a => a.Role_id == (int)_role.admin || a.Role_id == (int)_role.triage)) //todo:Change user setting later
+                {
+                    var deptIds = acc.Account2Dept.Select(a => a.DeptId).ToList();
+                    Entity = Entity.Where(a => deptIds.Contains(a.ID));
+                }
+            }
+            foreach(var item in Entity)
+            {
+                yield return item;
+            }
+        }
         public IEnumerable<DepartmentModel> GetList(string keyword = "")
         {
             Reads(a => a.Category_CodeFile);
