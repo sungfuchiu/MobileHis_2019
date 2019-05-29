@@ -37,7 +37,7 @@ namespace MobileHis.Data
         //public virtual ICollection<Account> Account { get; set; }
         public virtual ICollection<Patient> Patient { get; set; }
         public virtual ICollection<Dept> Dept { get; set; }
-        public virtual ICollection<Guardian> Guardian { get; set; }
+        public virtual ICollection<HealthEdu> Guardian { get; set; }
         public virtual ICollection<DorSchedule> DorSchedule { get; set; }
 
         #endregion

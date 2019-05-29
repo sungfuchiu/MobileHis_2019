@@ -19,6 +19,6 @@ namespace MobileHis.Models.ViewModel
         public string UseInLobby { get; set; }
         public DateTime? ModDate { get; set; }
         public string ModUser { get; set; }
-        public List<Guardian_File> files_list { get; set; }
+        public List<HealthEdu_File> files_list { get; set; }
     }
 }

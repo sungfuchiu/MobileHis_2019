@@ -1,5 +1,5 @@
 ﻿using BLL.Interface;
-using DAL.Interface;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,16 @@ namespace BLL
 {
     public class GuidBLLBase<TEntity> : BLLBase<TEntity>, IGuidBLL<TEntity> where TEntity : class, MobileHis.Data.Interface.IGuidEntity
     {
-        protected new IGuidDAL<TEntity> IDAL;
+        private IGuidDAL<TEntity> _IDAL;
+        protected new IGuidDAL<TEntity> IDAL
+        {
+            get => _IDAL;
+            set
+            {
+                base.IDAL = value;
+                _IDAL = value;
+            }
+        }
         public void Delete(Guid guid)
         {
             IDAL.Delete(guid);
@@ -23,13 +32,22 @@ namespace BLL
     }
     public class IDBLLBase<TEntity> : BLLBase<TEntity>, IIDBLL<TEntity> where TEntity : class, MobileHis.Data.Interface.IIDEntity
     {
-        protected new IIDDAL<TEntity> IDAL;
+        private IIDDAL<TEntity> _IDAL;
+        protected new IIDDAL<TEntity> IDAL
+        {
+            get => _IDAL;
+            set
+            {
+                base.IDAL = value;
+                _IDAL = value;
+            }
+        }
         public virtual void Delete(int ID)
         {
             IDAL.Delete(ID);
             IDAL.Save();
         }
-        public TEntity Read(int ID)
+        public virtual TEntity Read(int ID)
         {
             return IDAL.Read(ID);
         }

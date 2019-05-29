@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MobileHis.Data.Interface;
 
-namespace DAL.Interface
+namespace DAL
 {
     public interface IGuidDAL<TEntity> :IDAL<TEntity> where TEntity : IGuidEntity
     {

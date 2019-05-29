@@ -159,6 +159,7 @@
     <Compile Include="Areas\Sys\ViewModels\CategoryModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\DepartmentModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\DoctorSchModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\EducationModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\ICD10ViewModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\RoomModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\SettingViewModel.cs" />

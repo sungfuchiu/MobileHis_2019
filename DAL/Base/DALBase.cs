@@ -131,7 +131,7 @@ namespace DAL
             }
             Entities.SaveChanges();
         }
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             Entities.Set<TEntity>().Remove(entity);
         }

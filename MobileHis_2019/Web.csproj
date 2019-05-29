@@ -160,6 +160,7 @@
     <Compile Include="Areas\Settings\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Settings\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Settings\Controllers\DrugController.cs" />
+    <Compile Include="Areas\Settings\Controllers\EducationController.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
     <Compile Include="Areas\Settings\Controllers\RoomController.cs" />
@@ -664,6 +665,7 @@
     <Folder Include="Areas\Backend\Views\Shared\" />
     <Folder Include="Areas\Settings\Models\" />
     <Folder Include="Areas\Settings\Views\Drug\" />
+    <Folder Include="Areas\Settings\Views\Education\" />
     <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\API\" />

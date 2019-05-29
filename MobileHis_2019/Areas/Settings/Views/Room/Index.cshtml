@@ -18,89 +18,93 @@
     @Url.Action()
 }
 @section CreateModal{
-    <div style="margin-bottom: 5px" class="input-group">
-        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_No
-                </td>
-                <td>@Html.TextBox("add_Room_No", "", new { @class = "input-sm", size = "10", maxlength = "5" })</td>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_Name
-                </td>
-                <td>@Html.TextBox("add_Room_Name", "", new { @class = "input-sm", size = "15", maxlength = "50" })</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_Max
-                <td>@Html.TextBox("add_RoomMax", "", new { @class = "input-sm", @type = "number", min = "0", max = "999", size = "10" })</td>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Comm_Remark
-                </td>
-                <td>@Html.TextBox("add_Remark", "", new { @class = "input-large", size = "20", maxlength = "50" })</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_AllowDept
-                </td>
-                <td colspan="3">@Html.ListBox("add_AllowDept", Model.AddAllowDept)</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Map_Sys_Guardian
-                </td>
-                <td colspan="3">
-                    @Html.DropDownList("add_Guardian_Category", Model.AddGuardianCategory) ->
-                    @Html.DropDownList("add_Guardian", Model.AddGuardian)
-                </td>
-            </tr>
+    <form id="createValidation">
+        <div style="margin-bottom: 5px" class="input-group">
+            <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_No
+                    </td>
+                    <td>@Html.TextBox("add_Room_No", "", new { @class = "input-sm", size = "10", maxlength = "5", @required = "required" })</td>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_Name
+                    </td>
+                    <td>@Html.TextBox("add_Room_Name", "", new { @class = "input-sm", size = "15", maxlength = "50", @required = "required" })</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_Max
+                    <td>@Html.TextBox("add_RoomMax", "", new { @class = "input-sm", @type = "number", min = "0", max = "999", size = "10" })</td>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Comm_Remark
+                    </td>
+                    <td>@Html.TextBox("add_Remark", "", new { @class = "input-large", size = "20", maxlength = "50" })</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_AllowDept
+                    </td>
+                    <td colspan="3">@Html.ListBox("add_AllowDept", Model.AddAllowDept)</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Map_Sys_Guardian
+                    </td>
+                    <td colspan="3">
+                        @Html.DropDownList("add_Guardian_Category", Model.AddGuardianCategory) ->
+                        @Html.DropDownList("add_Guardian", Model.AddGuardian)
+                    </td>
+                </tr>
 
-        </table>
-    </div>
+            </table>
+        </div>
+    </form>
 }
 @section UpdateModal{
-    <div style="margin-bottom: 5px" class="input-group">
-        <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_No
-                </td>
-                <td>
-                    <input type="hidden" id="upd_Room_key" />
-                    <span id="upd_Room_No" style="color:red"></span>
-                </td>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_Name
-                </td>
-                <td>@Html.TextBox("upd_Room_Name", "", new { @class = "input-sm", size = "15", maxlength = "50" })</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_Max
-                <td>@Html.TextBox("upd_RoomMax", "", new { @class = "input-sm", @type = "number", min = "0", max = "999", size = "10" })</td>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Comm_Remark
-                </td>
-                <td>@Html.TextBox("upd_Remark", "", new { @class = "input-large", size = "20", maxlength = "50" })</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Room_AllowDept
-                </td>
-                <td colspan="3">@Html.ListBox("upd_AllowDept", Model.AddAllowDept)</td>
-            </tr>
-            <tr>
-                <td style="text-align:right">
-                    @LocalRes.Resource.Map_Sys_Guardian
-                </td>
-                <td colspan="3">
-                    @Html.DropDownList("upd_Guardian_Category", Model.UpdGuardianCategory) ->
-                    @Html.DropDownList("upd_Guardian", Model.UpdGuardian)
-                </td>
-            </tr>
+    <form id="updateValidation">
+        <div style="margin-bottom: 5px" class="input-group">
+            <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_No
+                    </td>
+                    <td>
+                        <input type="hidden" id="upd_Room_key" />
+                        <span id="upd_Room_No" style="color:red"></span>
+                    </td>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_Name
+                    </td>
+                    <td>@Html.TextBox("upd_Room_Name", "", new { @class = "input-sm", size = "15", maxlength = "50", @required = "required" })</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_Max
+                    <td>@Html.TextBox("upd_RoomMax", "", new { @class = "input-sm", @type = "number", min = "0", max = "999", size = "10" })</td>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Comm_Remark
+                    </td>
+                    <td>@Html.TextBox("upd_Remark", "", new { @class = "input-large", size = "20", maxlength = "50" })</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Room_AllowDept
+                    </td>
+                    <td colspan="3">@Html.ListBox("upd_AllowDept", Model.AddAllowDept)</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Map_Sys_Guardian
+                    </td>
+                    <td colspan="3">
+                        @Html.DropDownList("upd_Guardian_Category", Model.UpdGuardianCategory) ->
+                        @Html.DropDownList("upd_Guardian", Model.UpdGuardian)
+                    </td>
+                </tr>
 
-        </table>
-    </div>
+            </table>
+        </div>
+    </form>
 }
 @section Table{
     <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
@@ -252,43 +256,44 @@
 
 
         $("#btnCreate").click(function () {
-            var AllowDeptData = "";
-            if (AllowDept != null)
+            if (!$("#createValidation").valid()) {
+                return;
+            }
+            let AllowDeptData = "";
+            if ($("#add_AllowDept").val() != null)
                 AllowDeptData = $("#add_AllowDept").val().join(',');
 
-            if (Room_No == "") { alert("@LocalRes.Resource.Required"); $("#add_Room_No").focus(); return false; }
-            if (Room_Name == "") { alert("@LocalRes.Resource.Required"); $("#add_Room_Name").focus(); return false; }
-            
+
             callAjax(
                 '@Url.Action("Create")',
                 {
-                    Room_No : $("#add_Room_No").val(),
-                    Room_Name : $("#add_Room_Name").val(),
+                    RoomNo : $("#add_Room_No").val(),
+                    RoomName : $("#add_Room_Name").val(),
                     RoomMax : $("#add_RoomMax").val(),
                     Remark : $("#add_Remark").val(),
-                    Guardian: $("#add_Guardian").val(),
-                    AllowDept: $("#add_AllowDept").val(),
-                    AllowDeptData: AllowDeptData
+                    Guardian_ID: $("#add_Guardian").val(),
+                    AllowDept: AllowDeptData
                 },
                 $('#CreateModal').modal('hide')
             )
         });
 
         $("#btnUpdate").click(function () {
+            if (!$("#updateValidation").valid()) {
+                return;
+            }
             var AllowDeptData = "";
-            if (AllowDept != null)
+            if ($("#upd_AllowDept").val() != null)
                 AllowDeptData = $("#upd_AllowDept").val().join(',');
-            if (Room_Name == "") { alert("@LocalRes.Resource.Required"); $("#upd_Room_Name").focus(); return false; }
-            
+
             callAjax(
                 '@Url.Action("Update")'
                 , {
-                    key: $("#upd_Room_key").val(),
-                    Room_Name: $("#upd_Room_Name").val(),
+                    ID: $("#upd_Room_key").val(),
+                    RoomName: $("#upd_Room_Name").val(),
                     RoomMax: $("#upd_RoomMax").val(),
                     Remark: $("#upd_Remark").val(),
-                    AllowDept: $("#upd_AllowDept").val(),
-                    AllowDeptData: AllowDeptData,
+                    AllowDept: AllowDeptData,
                     GuardianID : $("#upd_Guardian").val()
                 }
                 ,$('#updModal').modal('hide')
@@ -383,4 +388,5 @@
 
     });
     </script>
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -159,8 +159,8 @@ namespace MobileHis.Data
         public virtual DbSet<Vendor> Vendor { get; set; }
         public virtual DbSet<VitalSign> VitalSign { get; set; }
         public virtual DbSet<Setting> Setting { get; set; }
-        public virtual DbSet<Guardian> Guardian { get; set; }
-        public virtual DbSet<Guardian_File> Guardian_File { get; set; }
+        public virtual DbSet<HealthEdu> HealthEdu { get; set; }
+        public virtual DbSet<HealthEdu_File> HealthEdu_File { get; set; }
 
         public virtual DbSet<Billing> Billing { get; set; }
         public virtual DbSet<BillingItemLog> BillingItemLog { get; set; }

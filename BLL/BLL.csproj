@@ -103,6 +103,7 @@
     <Compile Include="Interface\IAPIBLL.cs" />
     <Compile Include="Interface\IBLL.cs" />
     <Compile Include="GenericService.cs" />
+    <Compile Include="Setting\EducationBLL.cs" />
     <Compile Include="Setting\ICD10BLL.cs" />
     <Compile Include="Interface\IIDBLL.cs" />
     <Compile Include="IService.cs" />

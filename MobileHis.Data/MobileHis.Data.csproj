@@ -114,8 +114,8 @@
     <Compile Include="Entities\MobileHIS\DrugSetting.cs" />
     <Compile Include="Entities\MobileHIS\DrugVendor.cs" />
     <Compile Include="Entities\MobileHIS\ExamReport.cs" />
-    <Compile Include="Entities\MobileHIS\Guardian.cs" />
-    <Compile Include="Entities\MobileHIS\Guardian_File.cs" />
+    <Compile Include="Entities\MobileHIS\HealthEdu.cs" />
+    <Compile Include="Entities\MobileHIS\HealthEdu_File.cs" />
     <Compile Include="Entities\MobileHIS\ICD10.cs" />
     <Compile Include="Entities\MobileHIS\Kit.cs" />
     <Compile Include="Entities\MobileHIS\PrintPool.cs" />
@@ -184,6 +184,14 @@
     <Compile Include="Migrations\201904180300435_AddRecordTypeInOpdRecord.Designer.cs">
       <DependentUpon>201904180300435_AddRecordTypeInOpdRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905290952551_ModifyGuardianClassName.cs" />
+    <Compile Include="Migrations\201905290952551_ModifyGuardianClassName.Designer.cs">
+      <DependentUpon>201905290952551_ModifyGuardianClassName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905290957085_ModifyEducationColumn.cs" />
+    <Compile Include="Migrations\201905290957085_ModifyEducationColumn.Designer.cs">
+      <DependentUpon>201905290957085_ModifyEducationColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameter.cs" />
@@ -224,6 +232,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904180300435_AddRecordTypeInOpdRecord.resx">
       <DependentUpon>201904180300435_AddRecordTypeInOpdRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905290952551_ModifyGuardianClassName.resx">
+      <DependentUpon>201905290952551_ModifyGuardianClassName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905290957085_ModifyEducationColumn.resx">
+      <DependentUpon>201905290957085_ModifyEducationColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

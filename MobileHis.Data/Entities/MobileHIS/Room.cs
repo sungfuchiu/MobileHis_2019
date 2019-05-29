@@ -1,4 +1,5 @@
 ﻿using MobileHis.Data.Interface;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,13 +30,17 @@ namespace MobileHis.Data
         public string ModUser { get; set; }
 
         #region ForeignKey
+        [JsonIgnore]
         [ForeignKey("Guardian_ID")]
-        public virtual Guardian Guardian { get; set; }
+        public virtual HealthEdu HealthEdu { get; set; }
         #endregion
 
         #region ICollection
+        [JsonIgnore]
         public virtual ICollection<OpdRegister> OpdRegister { get; set; }
+        [JsonIgnore]
         public virtual ICollection<DorSchedule> DorSchedule { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Dept2Room> Dept2Room { get; set; }
         #endregion
 

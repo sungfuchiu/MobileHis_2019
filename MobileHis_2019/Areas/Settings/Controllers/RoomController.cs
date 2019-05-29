@@ -23,7 +23,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         [HttpPost]
         public string GetOneByJson(int id)
         {
-            return JsonConvert.SerializeObject(_roomBLL.Read(a => a.ID == id));
+            return JsonConvert.SerializeObject(_roomBLL.ReadItem(id));
         }
     }
 }
