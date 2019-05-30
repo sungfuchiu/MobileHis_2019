@@ -1,0 +1,308 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
+}
+@model  MobileHis.Models.Areas.Sys.ViewModels.EducationModel
+
+<!--以下是從科別設定複製過來修改-->
+<link href="~/assets/css/ace-custom.css" rel="stylesheet" />
+<link href="~/assets/css/bootstrap-editable.css" rel="stylesheet" />
+<style>
+    .modal-header {
+        padding: 9px 15px;
+        border-bottom: 1px solid #eee;
+        background-color: #0480be;
+        color: #ffffff;
+    }
+
+    .modal-dialog {
+        width: 550px;
+    }
+</style>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="@Url.Content("~/")">@LocalRes.Resource.Map_Home</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            @LocalRes.Resource.Map_Sys
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            <a href="@Url.Content("~/Sys/Guardian")">@LocalRes.Resource.Map_Sys_Guardian</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            Edit Guardian
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+    </ul>
+    @{Html.RenderPartial("_NavbarSearch");}
+</div>
+
+
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ID)
+    <div class="page-content">
+        <div class="page-header"> <h1>@LocalRes.Resource.Map_Sys_Guardian</h1></div><!--/.page-header-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="widget-box">
+                    <div class="widget-header widget-header-blue"><h4 class="lighter">Edit Guardian</h4></div><!--/.widget-header-->
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 center">
+
+                                    <div class="space space-4"></div>
+                                </div><!-- /.col -->
+                                <div class="col-xs-12 col-sm-9">
+
+
+
+
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@LocalRes.Resource.Guardian_CategoryName:</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                @*@ucDropDown.getCodeFileInDll("Category", Model != null ? Model.Category.ToString() : "", "GD", false, true)*@
+                                                @Html.DropDownList("Category", Model.AddCategory)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@LocalRes.Resource.Guardian_Name:</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.HealthEdu_Name, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                            @Html.ValidationMessageFor(x => x.HealthEdu_Name)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@LocalRes.Resource.Guardian_IsUsed:</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label class="blue" style="float:left; margin-right:10px">
+                                                <input type="checkbox" id="IsUsed" name="IsUsed" class="ace" value="Y" @(Model.IsUsed ? "checked" : "")>
+                                                <span class="lbl">@LocalRes.Resource.Comm_Yes</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@LocalRes.Resource.Guardian_UseInLobby:</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label class="blue" style="float:left; margin-right:10px">
+                                                <input type="checkbox" id="UseInLobby" name="UseInLobby" class="ace" value="Y" @(Model.IsForLobbyUsed ? "checked" : "")>
+                                                <span class="lbl">@LocalRes.Resource.Comm_Yes</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">Queue Message:</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.QueueMsg, new { @class = "form-control input-sm input-large", maxlength = "200", size = "100" })
+                                            @Html.ValidationMessageFor(x => x.QueueMsg)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-12 col-md-12">
+                                    <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
+                                        <thead>
+                                            <tr>
+                                                <th class="hidden-480">@LocalRes.Resource.FileName</th>
+                                                <th>@LocalRes.Resource.Guardian_Sort</th>
+                                                <th>@LocalRes.Resource.Guardian_IsUsed</th>
+                                                <th>@LocalRes.Resource.Guardian_Length_Seconds</th>
+                                                <th class="hidden-480">@LocalRes.Resource.CreateDate</th>
+                                                <th class="hidden-480">@LocalRes.Resource.ModDate</th>
+                                                <th>@LocalRes.Resource.ModUser</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @if (Model != null)
+                                            {
+                                                foreach (var item in Model.EducationFiles)
+                                                {
+                                                    <tr>
+                                                        <td class="hidden-480">@item.FileName</td>
+                                                        <td>@Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFileOrder_" + item.ID, id = "GuardianFileOrder_" + item.ID, @type = "number", @step = "1", @min = "1", @max = @Model.EducationFiles.Count, @class = "form-control input-sm input-large", maxlength = "50", size = "20", @Value = @item.Show_Order, @onchange = "$('#GuardianFileOrder_hidden_" + item.ID + "').val('" + item.ID + ";'+$('#GuardianFileOrder_" + item.ID + "').val())" })</td>
+                                                        <td>
+                                                            <input type="checkbox" id="GuardianFileIsUsed_@item.ID" name="GuardianFileIsUsed_@item.ID" data-itemid="@item.ID" value="Y" class="ace inUse" checked="@item.IsUsed">
+                                                            <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
+                                                        </td>
+                                                        <td>
+                                                            @if (item.FileName.LastIndexOf(".mp4") != (item.FileName.Length - 4))
+                                                            {
+                                                                @Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFilePlaySeconds_" + item.ID, id = "GuardianFilePlaySeconds_" + item.ID, @type = "number", @step = "1", @min = "0", @class = "form-control input-sm input-large", maxlength = "50", size = "20", @Value = @item.Show_Seconds, @onchange = "$('#GuardianFilePlaySeconds_hidden_" + item.ID + "').val('" + item.ID + ";'+$('#GuardianFilePlaySeconds_" + item.ID + "').val())" })
+                                                            }
+                                                        </td>
+                                                        <td class="hidden-480">@item.UploadDate?.CultureDateTime()</td>
+                                                        <td class="hidden-480">@item.ModDate?.CultureDateTime()</td>
+                                                        <td class="hidden-480">@item.ModUser</td>
+                                                        <td>
+                                                            <button type="button" data-itemid="@item.ID" class="btn btn-danger delFile">
+                                                                <i class="fa fa-trash-o fa-lg"></i>
+                                                                @LocalRes.Resource.Comm_Del
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    @Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFileOrder", id = "GuardianFileOrder_hidden_" + item.ID, @type = "hidden", @Value = "" })
+                                                    @Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFileIsUsed", id = "GuardianFileIsUsed_hidden_" + item.ID, @type = "hidden", @Value = "" })
+                                                    @Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFilePlaySeconds", id = "GuardianFilePlaySeconds_hidden_" + item.ID, @type = "hidden", @Value = "" })
+                                                }
+                                            }
+                                            @if (Model != null)
+                                            {
+                                                for(int i=0; i<Model.EducationFiles.Count(); ++i)
+                                                {
+                                                    <tr>
+                                                        <td class="hidden-480">@Model.EducationFiles[i].FileName</td>
+                                                        <td>@Html.TextBoxFor(a => a.EducationFiles[i].Show_Order, new { @type = "number", @step = "1", @min = "1", @max = @Model.EducationFiles.Count, @class = "form-control input-sm input-large", maxlength = "50", size = "20"})</td>
+                                                        <td>
+                                                            @Html.CheckBoxFor(a => a.EducationFiles[i].IsUsed)
+                                                            @Html.LabelFor(a => a.EducationFiles[i].IsUsed)
+                                                        </td>
+                                                        <td>
+                                                            @if (Model.EducationFiles[i].FileName.LastIndexOf(".mp4") != (Model.EducationFiles[i].FileName.Length - 4))
+                                                            {
+                                                                @Html.TextBoxFor(x => x.EducationFiles[i].Show_Seconds, new { @type = "number", @step = "1", @min = "0", @class = "form-control input-sm input-large", maxlength = "50", size = "20"})
+                                                            }
+                                                        </td>
+                                                        <td class="hidden-480">@Model.EducationFiles[i].UploadDate?.CultureDateTime()</td>
+                                                        <td class="hidden-480">@Model.EducationFiles[i].ModDate?.CultureDateTime()</td>
+                                                        <td class="hidden-480">@Model.EducationFiles[i].ModUser</td>
+                                                        <td>
+                                                            <button type="button" data-itemid="@Model.EducationFiles[i].ID" class="btn btn-danger delFile">
+                                                                <i class="fa fa-trash-o fa-lg"></i>
+                                                                @LocalRes.Resource.Comm_Del
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Course_Upload_material-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                @LocalRes.Resource.Course_Upload_material
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group row">
+                                    <div class="control col-sm-9 col-md-9">
+                                        <div class="control col-sm-9 col-md-9">
+                                            <button type="button" id="btn-file-upload" class="btn btn-primary">
+                                                @LocalRes.Resource.Course_Upload_material
+                                                <i class="fa fa-cloud-upload"></i>
+                                            </button>
+                                            <ul id="fileList">
+                                                <li>No Files Selected</li>
+                                            </ul>
+                                            <span style="color:#ff0000">@LocalRes.Resource.Guardian_VideoFormat_remind</span>
+                                        </div>
+
+                                        <div style="width:0px;height:0px;overflow:hidden">
+                                            <input type="file" name="files" id="file" multiple />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="clearfix align-right">
+                            <button class="btn btn-success" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>@LocalRes.Resource.Modify</button>
+                        </div>
+                    </div><!--/.widget-main-->
+                </div><!--/.widget-body-->
+            </div><!--/.widget-box-->
+        </div><!--/.col-->
+    </div><!--/.row-->
+</form>
+<script>
+
+    $(document).ready(function () {
+        $("#btn-file-upload").click(function () {
+            $("#file").click();
+        });
+        $('.inUse').change(function () {
+            debugger;
+            var itemid = $(this).data('itemid');
+            var hidden = $('#GuardianFileIsUsed_hidden_' + itemid);
+            hidden.val(itemid + ';' + ($(this).is(':checked') ? 'Y' : 'N'));
+        });
+        $("#file").change(function (e) {
+            if (!e.target.files) return;
+            var files = e.target.files;
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    //    debugger;
+                    var list = $("#fileList");
+                    //empty list for now...
+                    if ($(list).children().length > 0) {
+                        $(list).empty();
+                    }
+
+                    //for every file...
+                    for (var x = 0; x < files.length; x++) {
+                        //add to list
+                        var li = $("<li>").text('File ' + (x + 1) + ':  ' + files[x].name);//document.createElement('li');
+                        //  li.innerHTML = 'File ' + (x + 1) + ':  ' + files[x].name;
+                        $(list).append($(li));
+                    }
+
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+        $(".delete_attachment").click(function () {
+            var dels = $("#hidDelAtt").val();
+            if (dels != "")
+                dels = dels + ',';
+            var id = $(this).data('id');
+            dels = dels + id;
+            $("#hidDelAtt").val(dels);
+            $(this).closest('tr').remove();
+        });
+
+        $(".delFile").click(function () {
+            var id = $(this).data("itemid");
+            var url = "@Url.Action("DeleteImg")";
+            var data = {
+                id: id
+            };
+
+            doAjax(url, data, function (result) {
+                if (result)
+                    window.location.href = window.location.href;
+            });
+        });
+    });
+</script>
+

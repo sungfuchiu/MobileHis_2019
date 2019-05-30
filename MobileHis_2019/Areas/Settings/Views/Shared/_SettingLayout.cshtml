@@ -75,7 +75,7 @@
                     <h4 class="modal-title" id="myModalLabel">@LocalRes.Resource.Modify</h4>
                 </div>
                 <div class="modal-body form-group">
-                    @RenderSection("updateModal", required: true)
+                    @RenderSection("updateModal", required: false)
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnUpdate" class="btn btn-primary">@LocalRes.Resource.Modify</button>
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-    <form action="@RenderSection("SearchURL", required:true)" method="get" class="form-horizontal">
+    <form action="@Url.Action()" method="get" class="form-horizontal">
         <div class="profile-contact-links">
             <div class="row form-group">
                 <div class="col-sm-2">

@@ -14,21 +14,32 @@ namespace MobileHis_2019.Areas.Settings.Controllers
     {
         private EducationBLL _educationBLL;
         private ModelStateWrapper _modelState;
-        EducationController()
+        public EducationController()
         {
             _modelState = new ModelStateWrapper(ModelState);
             _educationBLL = new EducationBLL(_modelState);
             IBLL = _educationBLL;
         }
-        // GET: Settings/Education
-        public ActionResult Index()
-        {
-            return View();
-        }
         [AcceptVerbs(HttpVerbs.Get)]
         public string GetGuardianList(int typeID)
         {
             return JsonConvert.SerializeObject(_educationBLL.GetEducationList(typeID));
+        }
+        
+        public ActionResult Edit(int ID)
+        {
+            return View(_educationBLL.Edit(ID));
+        }
+        [HttpPost]
+        public ActionResult Edit(EducationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _educationBLL.Edit(model);
+                if (ModelState.IsValid)
+                    EditSuccessfully();
+            }
+            return View(model);
         }
     }
 }

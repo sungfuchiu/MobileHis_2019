@@ -43,8 +43,7 @@ namespace BLL
         }
         public void Index(DepartmentIndexModel model)
         {
-            model.DepartmentPageList = (from a in _departmentDAL.GetList(model.Keyword)
-                                       select a).ToPagedList(model.Page, Config.PageSize);
+            model.DepartmentPageList = _departmentDAL.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
             model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
         }
 

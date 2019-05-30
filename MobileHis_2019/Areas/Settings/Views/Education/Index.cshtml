@@ -1,0 +1,203 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@using Common;
+@model MobileHis.Models.Areas.Sys.ViewModels.EducationModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Settings/Views/Shared/_SettingLayout.cshtml";
+}
+
+@section header{
+    @LocalRes.Resource.Map_Sys_Guardian
+}
+@section CreateModal{
+    <form id="createValidation">
+        <div style="margin-bottom: 5px" class="input-group">
+            <table style="border-collapse:separate;border-spacing: 10px;width:100%;">
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Guardian_CategoryName
+                    </td>
+                    <td style="text-align:left">
+                        @Html.DropDownList("add_Category", Model.AddCategory)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Guardian_Name
+                    </td>
+                    <td>@Html.TextBox("add_GuardianName", "", new { @class = "input-sm", size = "25", maxlength = "50" })</td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Guardian_IsUsed
+                    <td>
+                        <label class="blue" style="float:left; margin-right:10px">
+                            <input type="checkbox" id="add_IsUsed" name="add_IsUsed" class="ace" checked>
+                            <span class="lbl" for="add_IsUsed">@LocalRes.Resource.Comm_Yes</span>
+                        </label>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        @LocalRes.Resource.Guardian_UseInLobby
+                    <td>
+                        <label class="blue" style="float:left; margin-right:10px">
+                            <input type="checkbox" id="add_UseInLobby" name="add_UseInLobby" class="ace">
+                            <span class="lbl" for="add_UseInLobby">@LocalRes.Resource.Comm_Yes</span>
+                        </label>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </form>
+}
+@section Table{
+    <table id="sample-table-1" class="table table-striped table-responsive table-bordered table-hover alert alert-info">
+        <thead>
+            <tr>
+                <th class="hidden-480">@LocalRes.Resource.Guardian_CategoryName</th>
+                <th>@LocalRes.Resource.Guardian_Name</th>
+                <th>@LocalRes.Resource.Guardian_IsUsed</th>
+                <th>@LocalRes.Resource.Guardian_UseInLobby</th>
+                <th class="hidden-480">@LocalRes.Resource.ModDate</th>
+                <th class="hidden-480">@LocalRes.Resource.ModUser</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model.EducationPageList)
+                {
+                    <tr>
+                        <td class="hidden-480">@item.CodeFile.ItemDescription</td>
+                        <td>@item.HealthEdu_Name</td>
+                        <td>@item.IsUsed</td>
+                        <td>@item.IsForLobbyUsed</td>
+                        <td class="hidden-480">@item.ModDate.CultureDateTime()</td>
+                        <td class="hidden-480">@item.ModUser</td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                @if (_Update)
+                                {
+                                    <a href="#" class='btn btn-sm btn-info' onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
+                                }
+                                @if (_Delete)
+                                {
+                                    <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')">
+                                        <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
+                                    </a>
+                                }
+                            </div>
+
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline position-relative">
+                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                        <li>
+                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit" onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'">
+                                                <span class="green">
+                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete" onclick="doDel('@(item.ID.ToString())')">
+                                                <span class="red">
+                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+@section Pager
+{
+    @if (Model != null)
+    {
+        <div class="pager">
+            @Html.PagedListPager(Model.EducationPageList, page => Url.Action("Index", new { keyword = Model.Keyword, page = page }))
+            Displaying @Model.EducationPageList.FirstItemOnPage - @Model.EducationPageList.LastItemOnPage of @Model.EducationPageList.TotalItemCount item(s)
+        </div>
+    }
+}
+@section Javascript{
+    <script type="text/javascript">
+    function doDel(key) {
+        bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
+            if (result) {
+                $.ajax({
+                    type: "POST", cache: false,
+                    datatype: "json",
+                    url: '@Url.Action("Del")',
+                    data: AddAntiForgeryToken({ key: key })
+                }).done(function (msg) {
+                    if (msg == "Y") {
+                        bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw(@Url.Action("Index", new { keyword = ViewBag.keyword }))'; });
+                    }
+                    else
+                        bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
+                }).fail(function (jqXHR, textStatus) {
+                    alert("@LocalRes.Resource.MSG_Error");
+                });
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        $("#btnCreateModal").click(function () {
+            $("#add_Category").val($("#add_Category option:first").val());
+            $("#add_GuardianName").val("");
+            $("#add_IsUsed").checked;
+        });
+
+        $("#btnCreate").click(function () {
+            var Category = $("#add_Category").val();
+            var GuardianName = $("#add_GuardianName").val();
+            var IsUsed = $("#add_IsUsed").is(":checked");
+            var UseInLobby = $("#add_UseInLobby").is(":checked");
+
+
+
+            if (GuardianName == "") { alert("@LocalRes.Resource.Required"); $("#add_GuardianName").focus(); return false; }
+
+            $.ajax({
+                type: "POST", cache: false,
+                datatype: "json",
+                url: '@Url.Action("Create")',
+                data: AddAntiForgeryToken({ Category: Category, GuardianName: GuardianName, IsUsed: IsUsed, UseInLobby: UseInLobby })
+            }).done(function (msg) {
+                if (msg == "Y") {
+                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw(@Url.Action("Index", new { keyword = ViewBag.keyword }))'; });
+                    $('#CreateModal').modal('hide')
+                }
+                else if (msg == "D") {
+                    bootbox.alert("@LocalRes.Resource.MSG_Duplidate");
+                    $('#CreateModal').modal('hide')
+                }
+                else {
+                    bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
+                    $('#CreateModal').modal('hide')
+                }
+            }).fail(function (jqXHR, textStatus) {
+                alert("@LocalRes.Resource.MSG_Error");
+            });
+        });
+    });
+    </script>
+}

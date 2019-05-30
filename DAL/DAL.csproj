@@ -65,6 +65,7 @@
     <Compile Include="Interface\IDAL.cs" />
     <Compile Include="Interface\IIDDAL.cs" />
     <Compile Include="Setting\EducationDAL.cs" />
+    <Compile Include="Setting\EducationFileDAL.cs" />
     <Compile Include="Setting\RoomDAL.cs" />
     <Compile Include="Setting\GeneralSettingRepo.cs" />
     <Compile Include="RepositoryBase\EFGenericRepository.cs" />

@@ -24,6 +24,7 @@ namespace MobileHis.Data
         public string HealthEdu_Name { get; set; }
         public bool IsUsed { get; set; }
         public bool IsForLobbyUsed { get; set; }
+        public string QueueMsg { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? ModDate { get; set; }
         [MaxLength(100)]

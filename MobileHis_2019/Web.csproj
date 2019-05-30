@@ -629,6 +629,8 @@
     <Content Include="Areas\Settings\Views\Shared\_SettingLayout.cshtml" />
     <Content Include="Areas\Settings\Views\Department\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Room\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Education\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Education\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -665,7 +667,6 @@
     <Folder Include="Areas\Backend\Views\Shared\" />
     <Folder Include="Areas\Settings\Models\" />
     <Folder Include="Areas\Settings\Views\Drug\" />
-    <Folder Include="Areas\Settings\Views\Education\" />
     <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\API\" />

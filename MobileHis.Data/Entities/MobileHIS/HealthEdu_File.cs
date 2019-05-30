@@ -7,10 +7,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using MobileHis.Data.Interface;
 
 namespace MobileHis.Data
 {
-    public class HealthEdu_File
+    public class HealthEdu_File : IIDEntity
     {
         public HealthEdu_File() { }
 
@@ -32,7 +33,7 @@ namespace MobileHis.Data
 
         #region ForeignKey
         [ForeignKey("HealthEdu_ID")]
-        public virtual HealthEdu HealthEdu { get; set; }
+        public virtual HealthEdu Guardian { get; set; }
         #endregion
     }
 }

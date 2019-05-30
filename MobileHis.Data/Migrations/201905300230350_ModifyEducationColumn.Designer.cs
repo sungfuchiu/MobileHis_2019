@@ -13,7 +13,7 @@ namespace MobileHis.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201905290957085_ModifyEducationColumn"; }
+            get { return "201905300230350_ModifyEducationColumn"; }
         }
         
         string IMigrationMetadata.Source

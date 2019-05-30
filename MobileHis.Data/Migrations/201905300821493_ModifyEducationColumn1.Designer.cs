@@ -7,13 +7,13 @@ namespace MobileHis.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ModifyGuardianClassName : IMigrationMetadata
+    public sealed partial class ModifyEducationColumn1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifyGuardianClassName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifyEducationColumn1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905290952551_ModifyGuardianClassName"; }
+            get { return "201905300821493_ModifyEducationColumn1"; }
         }
         
         string IMigrationMetadata.Source

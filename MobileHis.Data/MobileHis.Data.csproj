@@ -185,12 +185,17 @@
       <DependentUpon>201904180300435_AddRecordTypeInOpdRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201905290952551_ModifyGuardianClassName.cs" />
-    <Compile Include="Migrations\201905290952551_ModifyGuardianClassName.Designer.cs">
-      <DependentUpon>201905290952551_ModifyGuardianClassName.cs</DependentUpon>
+    <Compile Include="Migrations\201905300230350_ModifyEducationColumn.cs" />
+    <Compile Include="Migrations\201905300230350_ModifyEducationColumn.Designer.cs">
+      <DependentUpon>201905300230350_ModifyEducationColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905290957085_ModifyEducationColumn.cs" />
-    <Compile Include="Migrations\201905290957085_ModifyEducationColumn.Designer.cs">
-      <DependentUpon>201905290957085_ModifyEducationColumn.cs</DependentUpon>
+    <Compile Include="Migrations\201905300232489_ModifyForeignKeyForHealthEdu.cs" />
+    <Compile Include="Migrations\201905300232489_ModifyForeignKeyForHealthEdu.Designer.cs">
+      <DependentUpon>201905300232489_ModifyForeignKeyForHealthEdu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300821493_ModifyEducationColumn1.cs" />
+    <Compile Include="Migrations\201905300821493_ModifyEducationColumn1.Designer.cs">
+      <DependentUpon>201905300821493_ModifyEducationColumn1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,11 +238,14 @@
     <EmbeddedResource Include="Migrations\201904180300435_AddRecordTypeInOpdRecord.resx">
       <DependentUpon>201904180300435_AddRecordTypeInOpdRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905290952551_ModifyGuardianClassName.resx">
-      <DependentUpon>201905290952551_ModifyGuardianClassName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905300230350_ModifyEducationColumn.resx">
+      <DependentUpon>201905300230350_ModifyEducationColumn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905290957085_ModifyEducationColumn.resx">
-      <DependentUpon>201905290957085_ModifyEducationColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905300232489_ModifyForeignKeyForHealthEdu.resx">
+      <DependentUpon>201905300232489_ModifyForeignKeyForHealthEdu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300821493_ModifyEducationColumn1.resx">
+      <DependentUpon>201905300821493_ModifyEducationColumn1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -214,8 +214,8 @@
 }
 @section Javascript{
     <script type="text/javascript">
-        var Get_Guardian_List_url = "../Guardian/GetGuardianList";
-        var Get_Display_And_Queuing_System_Dashboard_Default_url = "@Config.AppSetting("HostPath")";
+        const Get_Guardian_List_url = "@Url.Action("GetGuardianList", "Education")";
+        const Get_Display_And_Queuing_System_Dashboard_Default_url = "@Config.AppSetting("HostPath")";
     function Go_Queuing_System_Url(key,itemID)
     {
         window.open(Get_Display_And_Queuing_System_Dashboard_Default_url + itemID+"?roomid=" + key, '_blank ');
@@ -241,7 +241,7 @@
 
         $("#add_Guardian_Category").change(function () {
             var GcID = $(this).val();
-            $.getJSON(Get_Guardian_List_url, { Guardian_Category_id: GcID },
+            $.getJSON(Get_Guardian_List_url, { typeID: GcID },
                    function (data) {
                        var select = $("#add_Guardian");
                        select.empty();
@@ -302,7 +302,7 @@
 
         $("#upd_Guardian_Category").change(function () {
             var GcID = $(this).val();
-            $.getJSON(Get_Guardian_List_url, { Guardian_Category_id: GcID },
+            $.getJSON(Get_Guardian_List_url, { typeID: GcID },
                    function (data) {
                        var select = $("#upd_Guardian");
                        select.empty();
@@ -335,9 +335,9 @@
                     $("#upd_AllowDept").trigger('chosen:updated');
                 }
                 if (_json.GuardianID != null && _json.GuardianID != "") {
-                    var Guardian_Category_id = _json.GuardianCategoryID;
-                    $("#upd_Guardian_Category").val(Guardian_Category_id);
-                    $.getJSON(Get_Guardian_List_url, { Guardian_Category_id: Guardian_Category_id },
+                    var typeID = _json.GuardianCategoryID;
+                    $("#upd_Guardian_Category").val(typeID);
+                    $.getJSON(Get_Guardian_List_url, { typeID: typeID },
                         function (data) {
                             var select = $("#upd_Guardian");
                             select.empty();
