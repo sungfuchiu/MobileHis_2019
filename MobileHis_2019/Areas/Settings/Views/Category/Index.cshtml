@@ -9,9 +9,6 @@
 @section header{
     @LocalRes.Resource.Map_Category
 }
-@section SearchURL{
-    @Url.Action()
-}
 @section CategoryDropDownList{
     <label class="control-label">@LocalRes.Resource.CodeFile_ItemType:</label>
     @Html.DropDownListFor(a => a.ItemType, Model.ItemTypes, new { @class = "form-control" })

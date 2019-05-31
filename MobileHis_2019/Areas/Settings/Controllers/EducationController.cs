@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Common;
+using MobileHis.Models.ApiModel;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using Newtonsoft.Json;
 using System;
@@ -33,13 +34,21 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         [HttpPost]
         public ActionResult Edit(EducationModel model)
         {
+            ModelState.Clear();
+            _educationBLL.Edit(model);
             if (ModelState.IsValid)
-            {
-                _educationBLL.Edit(model);
-                if (ModelState.IsValid)
-                    EditSuccessfully();
-            }
+                EditSuccessfully();
             return View(model);
+        }
+        public ActionResult DeleteImg(int ID)
+        {
+            ModelState.Clear();
+            _educationBLL.DeleteIMG(ID);
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
         }
     }
 }

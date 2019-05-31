@@ -4,10 +4,11 @@
     Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
 }
 @model  MobileHis.Models.Areas.Sys.ViewModels.EducationModel
+@using Common;
 
 <!--以下是從科別設定複製過來修改-->
-<link href="~/assets/css/ace-custom.css" rel="stylesheet" />
-<link href="~/assets/css/bootstrap-editable.css" rel="stylesheet" />
+<link href="~/Content/assets/css/ace-custom.css" rel="stylesheet" />
+<link href="~/Content/assets/css/bootstrap-editable.css" rel="stylesheet" />
 <style>
     .modal-header {
         padding: 9px 15px;
@@ -52,7 +53,6 @@
             </span>
         </li>
     </ul>
-    @{Html.RenderPartial("_NavbarSearch");}
 </div>
 
 
@@ -83,7 +83,7 @@
                                         <div class="controls col-sm-10 col-md-10">
                                             <label>
                                                 @*@ucDropDown.getCodeFileInDll("Category", Model != null ? Model.Category.ToString() : "", "GD", false, true)*@
-                                                @Html.DropDownList("Category", Model.AddCategory)
+                                                @Html.DropDownListFor(a => a.HealthEdu_Type_CodeFile, Model.AddCategory)
                                             </label>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                         </thead>
 
                                         <tbody>
-                                            @if (Model != null)
+                                            @*@if (Model != null)
                                             {
                                                 foreach (var item in Model.EducationFiles)
                                                 {
@@ -171,17 +171,25 @@
                                                     @Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFileIsUsed", id = "GuardianFileIsUsed_hidden_" + item.ID, @type = "hidden", @Value = "" })
                                                     @Html.TextBoxFor(x => x.EducationFiles, new { Name = "GuardianFilePlaySeconds", id = "GuardianFilePlaySeconds_hidden_" + item.ID, @type = "hidden", @Value = "" })
                                                 }
-                                            }
+                                            }*@
                                             @if (Model != null)
                                             {
                                                 for(int i=0; i<Model.EducationFiles.Count(); ++i)
                                                 {
                                                     <tr>
-                                                        <td class="hidden-480">@Model.EducationFiles[i].FileName</td>
-                                                        <td>@Html.TextBoxFor(a => a.EducationFiles[i].Show_Order, new { @type = "number", @step = "1", @min = "1", @max = @Model.EducationFiles.Count, @class = "form-control input-sm input-large", maxlength = "50", size = "20"})</td>
+                                                        <td class="hidden-480">
+                                                            @Model.EducationFiles[i].FileName
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].FileName)
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].ID)
+                                                        </td>
+                                                        <td>@Html.TextBoxFor(a => a.EducationFiles[i].Show_Order, new { @type = "number", @step = "1", @min = "1", @max = @Model.EducationFiles.Count, @class = "form-control input-sm input-large", maxlength = "50", size = "20"})
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].Show_Order)
+                                                        </td>
                                                         <td>
-                                                            @Html.CheckBoxFor(a => a.EducationFiles[i].IsUsed)
-                                                            @Html.LabelFor(a => a.EducationFiles[i].IsUsed)
+                                                            <label>
+                                                                @Html.CheckBoxFor(a => a.EducationFiles[i].IsUsed)
+                                                                <span class="lbl" for="add_IsRegistered">@LocalRes.Resource.Comm_Yes</span>
+                                                            </label>
                                                         </td>
                                                         <td>
                                                             @if (Model.EducationFiles[i].FileName.LastIndexOf(".mp4") != (Model.EducationFiles[i].FileName.Length - 4))
@@ -189,9 +197,18 @@
                                                                 @Html.TextBoxFor(x => x.EducationFiles[i].Show_Seconds, new { @type = "number", @step = "1", @min = "0", @class = "form-control input-sm input-large", maxlength = "50", size = "20"})
                                                             }
                                                         </td>
-                                                        <td class="hidden-480">@Model.EducationFiles[i].UploadDate?.CultureDateTime()</td>
-                                                        <td class="hidden-480">@Model.EducationFiles[i].ModDate?.CultureDateTime()</td>
-                                                        <td class="hidden-480">@Model.EducationFiles[i].ModUser</td>
+                                                        <td class="hidden-480">
+                                                            @Model.EducationFiles[i].UploadDate.CultureDateTime()
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].UploadDate)
+                                                        </td>
+                                                        <td class="hidden-480">
+                                                            @Model.EducationFiles[i].ModDate.CultureDateTime()
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].ModDate)
+                                                        </td>
+                                                        <td class="hidden-480">
+                                                            @Model.EducationFiles[i].ModUser
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].ModUser)
+                                                        </td>
                                                         <td>
                                                             <button type="button" data-itemid="@Model.EducationFiles[i].ID" class="btn btn-danger delFile">
                                                                 <i class="fa fa-trash-o fa-lg"></i>
@@ -228,7 +245,7 @@
                                         </div>
 
                                         <div style="width:0px;height:0px;overflow:hidden">
-                                            <input type="file" name="files" id="file" multiple />
+                                            <input type="file" name="UploadFiles" id="UploadFiles" multiple />
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +265,7 @@
 
     $(document).ready(function () {
         $("#btn-file-upload").click(function () {
-            $("#file").click();
+            $("#UploadFiles").click();
         });
         $('.inUse').change(function () {
             debugger;
@@ -256,7 +273,7 @@
             var hidden = $('#GuardianFileIsUsed_hidden_' + itemid);
             hidden.val(itemid + ';' + ($(this).is(':checked') ? 'Y' : 'N'));
         });
-        $("#file").change(function (e) {
+        $("#UploadFiles").change(function (e) {
             if (!e.target.files) return;
             var files = e.target.files;
             if (files.length > 0) {

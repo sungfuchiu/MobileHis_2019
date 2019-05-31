@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using X.PagedList;
+using MobileHis.Models;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
@@ -30,11 +31,12 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public int HealthEdu_Type_CodeFile { get; set; }
         [MaxLength(50)]
         public string HealthEdu_Name { get; set; }
+        [Display(Name = "Guardian_IsUsed", ResourceType = typeof(LocalRes.Resource))]
         public bool IsUsed { get; set; }
         public bool IsForLobbyUsed { get; set; }
         public string QueueMsg { get; set; }
         public string CategoryName { get; set; }
-        public IList<HttpPostedFileBase> UploadFiles { get; set; }
+        public IEnumerable<HttpPostedFileBase> UploadFiles { get; set; }
         public IList<HealthEdu_File> EducationFiles { get; set; }
         public DateTime CreateDate
         {

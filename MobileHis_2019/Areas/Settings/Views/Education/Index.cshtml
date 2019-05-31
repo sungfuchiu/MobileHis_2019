@@ -82,16 +82,20 @@
                         <td class="hidden-480">@item.ModUser</td>
                         <td>
                             <div class="hidden-sm hidden-xs btn-group">
-                                @if (_Update)
+                                @*@if (_Update)
                                 {
                                     <a href="#" class='btn btn-sm btn-info' onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
-                                }
-                                @if (_Delete)
+                                }*@
+                                <a href="#" class='btn btn-sm btn-info' onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
+                                @*@if (_Delete)
                                 {
                                     <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')">
                                         <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
                                     </a>
-                                }
+                                }*@
+                                <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@(item.ID.ToString())">
+                                    <i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del
+                                </a>
                             </div>
 
                             <div class="hidden-md hidden-lg">
@@ -109,7 +113,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete" onclick="doDel('@(item.ID.ToString())')">
+                                            <a href="#" class="tooltip-error btnDelete" data-rel="tooltip" title="" data-original-title="Delete" data-id="@(item.ID.ToString())">
                                                 <span class="red">
                                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                 </span>
@@ -137,27 +141,6 @@
 }
 @section Javascript{
     <script type="text/javascript">
-    function doDel(key) {
-        bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
-            if (result) {
-                $.ajax({
-                    type: "POST", cache: false,
-                    datatype: "json",
-                    url: '@Url.Action("Del")',
-                    data: AddAntiForgeryToken({ key: key })
-                }).done(function (msg) {
-                    if (msg == "Y") {
-                        bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw(@Url.Action("Index", new { keyword = ViewBag.keyword }))'; });
-                    }
-                    else
-                        bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
-                }).fail(function (jqXHR, textStatus) {
-                    alert("@LocalRes.Resource.MSG_Error");
-                });
-            }
-        });
-    }
-
 
     $(document).ready(function () {
         $("#btnCreateModal").click(function () {
@@ -167,35 +150,53 @@
         });
 
         $("#btnCreate").click(function () {
-            var Category = $("#add_Category").val();
-            var GuardianName = $("#add_GuardianName").val();
-            var IsUsed = $("#add_IsUsed").is(":checked");
-            var UseInLobby = $("#add_UseInLobby").is(":checked");
 
-
-
-            if (GuardianName == "") { alert("@LocalRes.Resource.Required"); $("#add_GuardianName").focus(); return false; }
-
+            if ($("#add_GuardianName").val() == "") { alert("@LocalRes.Resource.Required"); $("#add_GuardianName").focus(); return false; }
+            
+            callAjax(
+                '@Url.Action("Create")'
+                , {
+                    HealthEdu_Type_CodeFile: $("#add_Category").val(),
+                    HealthEdu_Name: $("#add_GuardianName").val(),
+                    IsUsed: $("#add_IsUsed").is(":checked"),
+                    IsForLobbyUsed: $("#add_UseInLobby").is(":checked")
+                }
+                ,$('#addModal').modal('hide')
+            )
+        });
+        
+        function callAjax(url, data, modalAction) {
             $.ajax({
                 type: "POST", cache: false,
                 datatype: "json",
-                url: '@Url.Action("Create")',
-                data: AddAntiForgeryToken({ Category: Category, GuardianName: GuardianName, IsUsed: IsUsed, UseInLobby: UseInLobby })
-            }).done(function (msg) {
-                if (msg == "Y") {
-                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Html.Raw(@Url.Action("Index", new { keyword = ViewBag.keyword }))'; });
-                    $('#CreateModal').modal('hide')
+                url: url,
+                data: AddAntiForgeryToken(data)
+            }).done(function (result) {
+                if (result.success) {
+                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () {
+                        location.href = '@Html.Raw(@Url.Action("Index"
+                                      , new {
+                                          keyword = Model.Keyword }))';
+                    });
+                } else {
+                    bootbox.alert(result.message);
                 }
-                else if (msg == "D") {
-                    bootbox.alert("@LocalRes.Resource.MSG_Duplidate");
-                    $('#CreateModal').modal('hide')
-                }
-                else {
-                    bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
-                    $('#CreateModal').modal('hide')
-                }
+                if(modalAction)
+                    modalAction;
             }).fail(function (jqXHR, textStatus) {
                 alert("@LocalRes.Resource.MSG_Error");
+            });
+        }
+        
+        $(".btnDelete").click(function () {
+            const data = { ID: $(this).data('id') };
+        bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
+            if (result) {
+                callAjax(
+                    '@Url.Action("Delete")',
+                    data
+                )
+            }
             });
         });
     });

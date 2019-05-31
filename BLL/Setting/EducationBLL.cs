@@ -33,8 +33,7 @@ namespace BLL
             _educationFileDAL = new EducationFileDAL();
             IDAL = _educationDAL;
             var mapperConfiguration = new MapperConfiguration(
-                cfg => cfg.CreateMap<HealthEdu, EducationModel>()
-                .ForMember(a => a.CategoryName, opt => opt.MapFrom(o => o.CodeFile.ItemDescription)));
+                cfg => cfg.CreateMap<EducationModel, HealthEdu>());
             _mapper = mapperConfiguration.CreateMapper();
         }
 
@@ -114,9 +113,11 @@ namespace BLL
         public EducationModel Edit(int ID)
         {
             var data = _educationDAL.Read(a => a.ID == ID);
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<HealthEdu, EducationModel>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<HealthEdu, EducationModel>()
+                .ForMember(a => a.CategoryName, opt => opt.MapFrom(o => o.CodeFile.ItemDescription)));
             var mapper = config.CreateMapper();
             var education = mapper.Map<EducationModel>(data);
+            education.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
 
             var GF_List = new List<HealthEdu_File>();
 
@@ -134,6 +135,7 @@ namespace BLL
             {
                 try
                 {
+                    model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
                     var education = _educationDAL.Read(model.ID);
 
                     if (education != null)
@@ -148,7 +150,7 @@ namespace BLL
                             : 1;
                         int defaultShowSeconds = 5;
 
-                        foreach (var file in model.UploadFiles)
+                        foreach (var file in model.UploadFiles.OrEmptyIfNull())
                         {
                             if (file != null && !file.FileName.IsNullOrEmpty())
                             {
@@ -173,6 +175,7 @@ namespace BLL
                                 }
                             }
                         }
+                        _educationFileDAL.Save();
 
                         education.HealthEdu_Type_CodeFile = model.HealthEdu_Type_CodeFile;
                         education.HealthEdu_Name = model.HealthEdu_Name;
@@ -185,6 +188,35 @@ namespace BLL
                         Save();
                         trans.Complete();
                     }
+                }
+                catch (Exception ex)
+                {
+                    ValidationDictionary.AddGeneralError(ex.Message);
+                }
+            }
+        }
+        public void DeleteIMG(int ID)
+        {
+            using (var trans = new TransactionScope())
+            {
+                try
+                {
+                    var file = _educationFileDAL.Read(ID);
+
+                    var files = file.Guardian.HealthEdu_File
+                        .Where(a => a.ID != file.ID)
+                        .OrderByDescending(a => a.IsUsed)
+                        .ThenBy(a => a.Show_Order).ToList();
+                    _educationFileDAL.Delete(file);
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        var g = files[i];
+                        g.Show_Order = i + 1;
+                    }
+                    var s = Storage.GetStorage(StorageScope.GuardianUpload);
+                    s.Delete(file.FileName, file.HealthEdu_ID);
+                    Save();
+                    trans.Complete();
                 }
                 catch (Exception ex)
                 {
