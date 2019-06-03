@@ -174,13 +174,14 @@
                                             }*@
                                             @if (Model != null)
                                             {
-                                                for(int i=0; i<Model.EducationFiles.Count(); ++i)
+                                                for(int i=0; i<Model.EducationFiles?.Count(); ++i)
                                                 {
                                                     <tr>
                                                         <td class="hidden-480">
                                                             @Model.EducationFiles[i].FileName
                                                             @Html.HiddenFor(a => a.EducationFiles[i].FileName)
                                                             @Html.HiddenFor(a => a.EducationFiles[i].ID)
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].HealthEdu_ID)
                                                         </td>
                                                         <td>@Html.TextBoxFor(a => a.EducationFiles[i].Show_Order, new { @type = "number", @step = "1", @min = "1", @max = @Model.EducationFiles.Count, @class = "form-control input-sm input-large", maxlength = "50", size = "20"})
                                                             @Html.HiddenFor(a => a.EducationFiles[i].Show_Order)
@@ -192,7 +193,7 @@
                                                             </label>
                                                         </td>
                                                         <td>
-                                                            @if (Model.EducationFiles[i].FileName.LastIndexOf(".mp4") != (Model.EducationFiles[i].FileName.Length - 4))
+                                                            @if (Model.EducationFiles[i].FileName?.LastIndexOf(".mp4") != (Model.EducationFiles[i].FileName?.Length - 4))
                                                             {
                                                                 @Html.TextBoxFor(x => x.EducationFiles[i].Show_Seconds, new { @type = "number", @step = "1", @min = "0", @class = "form-control input-sm input-large", maxlength = "50", size = "20"})
                                                             }

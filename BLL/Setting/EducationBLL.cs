@@ -175,6 +175,15 @@ namespace BLL
                                 }
                             }
                         }
+                        foreach(var file in model.EducationFiles.OrEmptyIfNull())
+                        {
+                            var updatedFile = _educationFileDAL.Read(a => a.ID == file.ID && a.HealthEdu_ID == file.HealthEdu_ID);
+                            updatedFile.Show_Seconds = file.Show_Seconds;
+                            updatedFile.IsUsed = file.IsUsed;
+                            updatedFile.Show_Order = file.Show_Order;
+                            updatedFile.ModDate = DateTime.Now;
+                            updatedFile.ModUser = model.ModUser;
+                        }
                         _educationFileDAL.Save();
 
                         education.HealthEdu_Type_CodeFile = model.HealthEdu_Type_CodeFile;
@@ -215,7 +224,7 @@ namespace BLL
                     }
                     var s = Storage.GetStorage(StorageScope.GuardianUpload);
                     s.Delete(file.FileName, file.HealthEdu_ID);
-                    Save();
+                    _educationFileDAL.Save();
                     trans.Complete();
                 }
                 catch (Exception ex)
