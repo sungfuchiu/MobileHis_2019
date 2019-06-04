@@ -55,5 +55,6 @@ namespace MobileHis_2019.Controllers
             ViewBag.Redirect = Url.Action("Index");
         }
 
+
     }
 }

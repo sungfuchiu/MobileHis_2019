@@ -96,5 +96,9 @@ namespace BLL
         {
             ValidationDictionary.AddGeneralError(@LocalRes.Resource.MSG_Duplidate);
         }
+        protected void NotFoundError()
+        {
+            ValidationDictionary.AddGeneralError(LocalRes.Resource.Comm_NotFound);
+        }
     }
 }

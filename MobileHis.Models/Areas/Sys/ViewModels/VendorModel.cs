@@ -1,19 +1,15 @@
-﻿using MobileHis.Data.Interface;
+﻿using MobileHis.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MobileHis.Data
+namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class Vendor : IIDEntity
+    public class VendorModel : BaseAPIModel<Vendor>
     {
-        public Vendor() { }
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [Required]
         [MaxLength(20)]
@@ -43,11 +39,5 @@ namespace MobileHis.Data
         public int Creator { get; set; }
         [Required]
         public bool Deleted { get; set; }
-
-
-        public virtual ICollection<DrugVendor> DrugVendor { get; set; }
-        public virtual ICollection<PosTransactionM> PosTransactionM { get; set; }
-        public virtual ICollection<PurchaseD> PurchaseD { get; set; }
-
     }
 }

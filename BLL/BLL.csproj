@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Base\BLLBase.cs" />
     <Compile Include="Base\IDBLLBase.cs" />
+    <Compile Include="Interface\IWebBLL.cs" />
     <Compile Include="Setting\CodeFileBLL.cs" />
     <Compile Include="Setting\DepartmentBLL.cs" />
     <Compile Include="Drug\DrugAppearanceBLL.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Setting\SettingBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingService.cs" />
+    <Compile Include="Setting\VendorBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

@@ -71,6 +71,7 @@
     <Compile Include="RepositoryBase\EFGenericRepository.cs" />
     <Compile Include="RepositoryBase\IRepository.cs" />
     <Compile Include="SettingRepository.cs" />
+    <Compile Include="Setting\VendorDAL.cs" />
     <Compile Include="UnitOfWork\EFUnitOfWork.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Validation\IValidationDictionary.cs" />

@@ -165,10 +165,12 @@
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
     <Compile Include="Areas\Settings\Controllers\RoomController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Settings\Controllers\VendorController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Views\SettingHtmlHelper.cs" />
-    <Compile Include="Controllers\APIBaseController.cs" />
+    <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BaseWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -631,6 +633,8 @@
     <Content Include="Areas\Settings\Views\Room\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Education\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Education\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\Vendor\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Vendor\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -670,6 +674,7 @@
     <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\API\" />
+    <Folder Include="Views\BaseCRUD\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

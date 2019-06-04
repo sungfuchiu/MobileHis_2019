@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class EducationController : MobileHis_2019.Controllers.APIBaseController<EducationModel>
+    public class EducationController : MobileHis_2019.Controllers.BaseAPIController<EducationModel>
     {
         private EducationBLL _educationBLL;
         private ModelStateWrapper _modelState;

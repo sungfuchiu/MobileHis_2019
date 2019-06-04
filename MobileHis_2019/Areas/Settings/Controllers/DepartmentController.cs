@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class DepartmentController : MobileHis_2019.Controllers.APIBaseController<DepartmentIndexModel>
+    public class DepartmentController : MobileHis_2019.Controllers.BaseAPIController<DepartmentIndexModel>
     {
         private DepartmentBLL _deparmentBLL;
         private ModelStateWrapper _modelState;

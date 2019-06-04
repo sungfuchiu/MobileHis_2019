@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MobileHis_2019.Controllers
 {
-    public class APIBaseController<TModel> : BaseController
+    public class BaseAPIController<TModel> : BaseController
     {
         protected IAPIBLL<TModel> IBLL;
         // GET: Settings/Category

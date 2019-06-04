@@ -1,0 +1,138 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@model MobileHis.Models.Areas.Sys.ViewModels.VendorModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
+}
+@{Html.RenderPartial("_breadcrumb");}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(Model => Model.ID)
+
+    <div class="row">
+
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="widget-box">
+
+                <div class="widget-body">
+                    <div class="widget-main">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @LocalRes.Resource.Comm_No :
+                            </label>
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @LocalRes.Resource.Comm_Name :
+                            </label>
+
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @LocalRes.Resource.Comm_ShortName :
+                            </label>
+
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.ShortName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ShortName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @(LocalRes.Resource.Comm_Contact_Name) 1 :
+                            </label>
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Contact1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Contact1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @(LocalRes.Resource.Comm_Contact_Tel) 1 :
+                            </label>
+
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Phone1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @(LocalRes.Resource.Comm_Contact_Name) 2 :
+                            </label>
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Contact2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @(LocalRes.Resource.Comm_Contact_Tel) 2 :
+                            </label>
+
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Phone2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @LocalRes.Resource.Comm_Address :
+                            </label>
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @LocalRes.Resource.Comm_Fax :
+                            </label>
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label  align-right col-sm-3 col-md-3">
+                                @LocalRes.Resource.Comm_PayType :
+                            </label>
+
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                @Html.DropDownListFor(model => model.PayType, Model.PayTypeList)
+                                @*@ucDropDown.getCodeFileInDll("PayType", Model != null ? Model.PayType.ToString() : "", "PY", true, false)*@
+                            </div>
+                        </div>
+                        @if (_Update)
+                        {
+                            <div class="form-group row">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="submit" class="btn btn-primary">
+                                        @LocalRes.Resource.Comm_Btn_Confirm
+                                    </button>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
