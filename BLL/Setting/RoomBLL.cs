@@ -39,7 +39,7 @@ namespace BLL
         }
         public void Index(RoomModel model)
         {
-            model.RoomPageList = (from a in _roomDAL.GetList(model.Keyword)
+            model.EntityPageList = (from a in _roomDAL.GetList(model.Keyword)
                                         select a).ToPagedList(model.Page, Config.PageSize);
             model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
             model.DepartmentSelectListEvent += _departmentBLL.GetDropDownList;

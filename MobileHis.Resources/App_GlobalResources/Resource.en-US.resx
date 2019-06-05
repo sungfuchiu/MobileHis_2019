@@ -2431,4 +2431,7 @@
   <data name="No_Direction" xml:space="preserve">
     <value>No directions</value>
   </data>
+  <data name="Drug_CostPrice" xml:space="preserve">
+    <value>Cost Price</value>
+  </data>
 </root>

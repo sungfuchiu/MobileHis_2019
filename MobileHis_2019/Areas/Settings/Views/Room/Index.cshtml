@@ -120,7 +120,7 @@
         <tbody>
             @if (Model != null)
             {
-                foreach (var item in Model.RoomPageList)
+                foreach (var item in Model.EntityPageList)
                 {
                     <tr>
                         <td>@Html.Encode(item.RoomNo)</td>
@@ -201,7 +201,7 @@
     {
         <div class="pager">
             @Html.PagedListPager(
-           Model.RoomPageList,
+           Model.EntityPageList,
            page =>
            Url.Action("Index",
            new { keyword = Model.Keyword,

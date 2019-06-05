@@ -16,18 +16,23 @@ namespace BLL
     public class VendorBLL : IDBLLBase<Vendor>, IWebBLL<VendorModel>
     {
         VendorDAL _vendorDAL;
+        CodeFileBLL _codeFileBLL;
         IMapper _modelMapper;
-        public VendorBLL()
+        IValidationDictionary _validationDictionary;
+        public VendorBLL(IValidationDictionary validationDictionary)
         {
-            IDAL = new VendorDAL();
+            _vendorDAL = new VendorDAL();
+            IDAL = _vendorDAL;
+            _validationDictionary = validationDictionary;
+            _codeFileBLL = new CodeFileBLL(validationDictionary);
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<VendorModel, Vendor>());
             _modelMapper = mapperConfiguration.CreateMapper();
         }
         public void Index(VendorModel model)
         {
-            model.RoomPageList = _vendorDAL.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
-            //model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
+            model.EntityPageList = _vendorDAL.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
+            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
         }
         VendorModel IWebBLL<VendorModel>.Read(int ID)
         {

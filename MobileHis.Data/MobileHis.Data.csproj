@@ -152,6 +152,7 @@
     <Compile Include="Entities\MobileHIS\Ward.cs" />
     <Compile Include="Entities\MobileHIS\Ward2Room.cs" />
     <Compile Include="Interface\IIDEntity.cs" />
+    <Compile Include="Interface\IIsDeleted.cs" />
     <Compile Include="Migrations\201902260229559_init.cs" />
     <Compile Include="Migrations\201902260229559_init.Designer.cs">
       <DependentUpon>201902260229559_init.cs</DependentUpon>
@@ -196,6 +197,10 @@
     <Compile Include="Migrations\201905300821493_ModifyEducationColumn1.cs" />
     <Compile Include="Migrations\201905300821493_ModifyEducationColumn1.Designer.cs">
       <DependentUpon>201905300821493_ModifyEducationColumn1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906050543138_AddIsDeletedInDrugVendor.cs" />
+    <Compile Include="Migrations\201906050543138_AddIsDeletedInDrugVendor.Designer.cs">
+      <DependentUpon>201906050543138_AddIsDeletedInDrugVendor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905300821493_ModifyEducationColumn1.resx">
       <DependentUpon>201905300821493_ModifyEducationColumn1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906050543138_AddIsDeletedInDrugVendor.resx">
+      <DependentUpon>201906050543138_AddIsDeletedInDrugVendor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

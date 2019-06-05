@@ -20,7 +20,7 @@ namespace MobileHis.Models
             get => page ?? 1;
             set => page = value;
         }
-        public IPagedList<TEntity> RoomPageList { get; set; }
+        public IPagedList<TEntity> EntityPageList { get; set; }
         public string Keyword { get; set; }
         public DateTime CreateDate
         {

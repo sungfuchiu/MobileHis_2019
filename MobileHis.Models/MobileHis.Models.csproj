@@ -163,6 +163,7 @@
     <Compile Include="Areas\Sys\ViewModels\ICD10ViewModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\RoomModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\SettingViewModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\DrugVendorModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\VendorModel.cs" />
     <Compile Include="BaesModel\BaseAPIModel.cs" />
     <Compile Include="BaesModel\BaseSearchModel.cs" />

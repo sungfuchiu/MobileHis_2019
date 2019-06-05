@@ -1,5 +1,6 @@
 ﻿using BLL;
 using MobileHis.Models.Areas.Sys.ViewModels;
+using MobileHis_2019.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,15 @@ using System.Web.Mvc;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class VendorController : MobileHis_2019.Controllers.BaseWebController<VendorModel>
+    public class DrugVendorController : BaseAPIController<DrugVendorModel>
     {
-        private VendorBLL _vendorBLL;
+        private DrugVendorBLL _drugVendorBLL;
         private ModelStateWrapper _modelState;
-        public VendorController()
+        public DrugVendorController()
         {
             _modelState = new ModelStateWrapper(ModelState);
-            _vendorBLL = new VendorBLL(_modelState);
-            IBLL = _vendorBLL;
+            _drugVendorBLL = new DrugVendorBLL(_modelState);
+            IBLL = _drugVendorBLL;
         }
     }
 }

@@ -13,21 +13,14 @@ namespace MobileHis_2019.Controllers
         protected IAPIBLL<TModel> IBLL;
         // GET: Settings/Category
         [HttpGet]
-        public ActionResult Index(/*string itemType, string keyword, int? page*//*CodeFileViewModel model*/TModel model)
+        public virtual ActionResult Index(TModel model)
         {
-            //CategoryModel model = new CategoryModel(_codeFileBLL.GetDropDownList);
-            //model.ItemTypeSelected = itemType;
-            //model.Keyword = keyword;
-            //model.SelectListEvent += _settingBLL.GetDropDownList;
-            //model.CategoryPageList = _codeFileBLL
-            //                        .GetList(model.ItemType, model.Keyword)
-            //                        .ToPagedList(model.Page, Config.PageSize);
             IBLL.Index(model);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(TModel model/*int? parentId, string itemType, string itemCode, string itemDesc, string itemRemark*/)
+        public ActionResult Create(TModel model)
         {
             if (ModelState.IsValid)
             {
@@ -40,7 +33,7 @@ namespace MobileHis_2019.Controllers
             });
         }
         [HttpPost]
-        public ActionResult Update(TModel model/*string ID, int? parentId, string itemDesc, string itemRemark*/)
+        public ActionResult Update(TModel model)
         {
             ModelState.Clear();
             IBLL.Update(model);

@@ -64,6 +64,7 @@
     <Compile Include="Base\IDDALBase.cs" />
     <Compile Include="Interface\IDAL.cs" />
     <Compile Include="Interface\IIDDAL.cs" />
+    <Compile Include="Setting\DrugVendorDAL.cs" />
     <Compile Include="Setting\EducationDAL.cs" />
     <Compile Include="Setting\EducationFileDAL.cs" />
     <Compile Include="Setting\RoomDAL.cs" />

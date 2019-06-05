@@ -1,0 +1,211 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@using Common;
+@model MobileHis.Models.Areas.Sys.ViewModels.DrugVendorModel
+@{
+    ViewBag.Title = @LocalRes.Resource.Map_Vendor;
+    Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@{Html.RenderPartial("_BreadCrumbs");}
+<link href="~/assets/css/select2.css" rel="stylesheet" />
+<script src="~/assets/js/select2.min.js"></script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(a => a.ID)
+    //if (_Add)
+    //{
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="widget-box">
+                    <div class="widget-body" style="padding:5px;">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input type="hidden" id="drugs">
+                                <button type="button" id="AddDrug" class="btn btn-primary btn-sm">
+                                    @LocalRes.Resource.Comm_Create
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    //}
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <table class="table table-bordered table-striped table-condensed table-hover alert-info">
+                <thead>
+                    <tr>
+                        <th>
+                            @LocalRes.Resource.Drug_Code
+                        </th>
+                        <th>
+                            @LocalRes.Resource.Drug_Name
+                        </th>
+                        <th>
+                            @LocalRes.Resource.Drug_CostPrice
+                        </th>
+                        <th>
+                            @LocalRes.Resource.Drug_Unit
+                        </th>
+                        <th>
+                            @LocalRes.Resource.Purchase2StockRate
+                        </th>
+                        <th>
+                            @LocalRes.Resource.Stock2UsingRate
+                        </th>
+                        <th>
+                            @LocalRes.Resource.ModDate
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.EntityPageList)
+                    {
+                        <tr>
+                            <td>@item.Drug.DrugCode</td>
+                            <td>@item.Drug.Title</td>
+                            <td><input type="text" id="price_@item.ID" value="@item.Price" maxlength="8" /></td>
+                            <td>@Html.DropDownListFor(a => a.Unit, Model.UnitList)</td>
+                            <td><input type="text" id="purchasestockrate_@item.ID" value="@item.PurchaseStockRate" maxlength="8" /></td>
+                            <td><input type="text" id="stockusingrate_@item.ID" value="@item.StockUsingRate" maxlength="8" /></td>
+                            <td>@item.UpdatedAt.CultureDateTime()</td>
+                            <td>
+                                @if (_Update)
+                                {
+                                    <button class="btn btn-primary btn-sm" type="button" onclick='doUpdate("@item.ID")'>@LocalRes.Resource.Comm_Update</button>
+                                }
+                                @if (_Delete)
+                                {
+                                    <button class="btn btn-danger btn-sm" type="button" onclick='doDel("@item.ID")'>@LocalRes.Resource.Comm_Del</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    @if (Model != null)
+                    {
+                        <div class="pager">
+                            @*@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+                                Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)*@
+                            @Html.PagedListPager(Model.EntityPageList, page => Url.Action("Drug", new { page }))
+                            Displaying @Model.EntityPageList.FirstItemOnPage - @Model.EntityPageList.LastItemOnPage of @Model.EntityPageList.TotalItemCount item(s)
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#drugs").select2({
+            width: "90%",
+            allowClear: true,
+            placeholder: "Search for Drug",
+            minimumInputLength: 1,
+            multiple: true,
+            ajax: {
+                url: "@Url.Action("SearchFilterDrug", "Drugs", new { area = "Drug" })",
+                dataType: "json",
+                data: function (term, page) {
+                    return {
+                        kw: term,
+                        id: "",
+                        ty: "D",
+                        __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val()
+                    };
+                },
+                results: function (data, page) {
+                    return {
+                        more: false,
+                        results: data
+                    };
+                }
+            },
+            initSelection: function (element, callback) {
+                callback({ id: element.value, text: $(element).attr("data-text") });
+            }
+        });
+        $("#AddDrug").click(function () {
+            var drugs = $("#drugs").val();
+
+            $.ajax({
+                type: "POST",
+                cache: false,
+                datatype: "json",
+                url: '@Url.Action("AddDrug")',
+                data: AddAntiForgeryToken({ drugs: drugs, id: $("#id").val() })
+            }).done(function (msg) {
+                if (msg == "Y") {
+                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.reload() });
+                }
+                else {
+                    bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
+                }
+            }).fail(function (jqXHR, textStatus) {
+                alert("@LocalRes.Resource.MSG_Error");
+            });
+        })
+    });
+
+
+    function doUpdate(id) {
+        var price = $("#price_" + id).val();
+        var unit = $("#unit_" + id).val();
+        var purchasestockrate = $("#purchasestockrate_" + id).val();
+        var stockusingrate = $("#stockusingrate_" + id).val();
+        $.ajax({
+            type: "POST",
+            cache: false,
+            datatype: "json",
+            url: '@Url.Action("Update")',
+            data: AddAntiForgeryToken({ price: price, unit: unit, purchasestockrate: purchasestockrate, stockusingrate: stockusingrate, id: id })
+        }).done(function (msg) {
+            if (msg == "Y") {
+                bootbox.alert("@LocalRes.Resource.MSG_Success", function () {  });
+            }
+            else {
+                bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
+            }
+        }).fail(function (jqXHR, textStatus) {
+            alert("@LocalRes.Resource.MSG_Error");
+        });
+    }
+
+    function doDel(id) {
+        if (confirm("@LocalRes.Resource.MSG_Confirm_Delete")) {
+            $.ajax({
+                type: "POST",
+                cache: false,
+                datatype: "json",
+                url: '@Url.Action("DelDrug")',
+                data: AddAntiForgeryToken({ id: id })
+            }).done(function (msg) {
+                if (msg == "Y") {
+                    bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.reload() });
+                }
+                else {
+                    bootbox.alert("@LocalRes.Resource.MSG_Error", function () { });
+                }
+            }).fail(function (jqXHR, textStatus) {
+                alert("@LocalRes.Resource.MSG_Error");
+            });
+        }
+    }
+</script>

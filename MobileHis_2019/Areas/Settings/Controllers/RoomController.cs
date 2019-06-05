@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class RoomController : APIBaseController<RoomModel>
+    public class RoomController : BaseAPIController<RoomModel>
     {
         private RoomBLL _roomBLL;
         private ModelStateWrapper _modelState;

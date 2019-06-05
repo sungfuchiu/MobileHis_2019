@@ -166,6 +166,7 @@
     <Compile Include="Areas\Settings\Controllers\RoomController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Settings\Controllers\DrugVendorController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Views\SettingHtmlHelper.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="Infrastructure\BaseViewPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routing\NotEqual.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\css\ace-custom.css" />
@@ -635,6 +637,8 @@
     <Content Include="Areas\Settings\Views\Education\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\Vendor\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Vendor\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\Shared\_BreadCrumbs.cshtml" />
+    <Content Include="Areas\Settings\Views\DrugVendor\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

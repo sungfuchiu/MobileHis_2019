@@ -15,7 +15,7 @@ namespace MobileHis_2019.Controllers
         public ActionResult Index(TModel model)
         {
             IBLL.Index(model);
-            return View(model);
+            return View();
         }
 
         public ActionResult Create()

@@ -2418,4 +2418,7 @@
   <data name="No_Direction" xml:space="preserve">
     <value>無使用說明</value>
   </data>
+  <data name="Drug_CostPrice" xml:space="preserve">
+    <value>藥品成本價</value>
+  </data>
 </root>

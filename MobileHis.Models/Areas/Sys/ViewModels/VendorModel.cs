@@ -1,15 +1,19 @@
 ﻿using MobileHis.Data;
+using MobileHis.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class VendorModel : BaseAPIModel<Vendor>
+    public class VendorModel : BaseAPIModel<Vendor>, IGetCodeFileSelectList
     {
+        public event GetCodeFileSelectList CodeFileSelectListEvent;
+        public List<SelectListItem> PayTypeList { get; set; }
         public int ID { get; set; }
         [Required]
         [MaxLength(20)]
@@ -39,5 +43,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public int Creator { get; set; }
         [Required]
         public bool Deleted { get; set; }
+
     }
 }

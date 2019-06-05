@@ -12,7 +12,7 @@ using X.PagedList;
 
 namespace MobileHis_2019.Areas.Settings.Controllers
 {
-    public class CategoryController : MobileHis_2019.Controllers.APIBaseController<CodeFileViewModel>
+    public class CategoryController : MobileHis_2019.Controllers.BaseAPIController<CodeFileViewModel>
     {
         private CodeFileBLL _codeFileBLL;
         private ModelStateWrapper _modelState;

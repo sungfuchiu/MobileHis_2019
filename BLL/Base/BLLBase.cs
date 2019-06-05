@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DAL;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using MobileHis.Data.Interface;
 
 namespace BLL
 {
@@ -40,7 +41,14 @@ namespace BLL
         }
         public void Delete(TEntity entity)
         {
-            IDAL.Delete(entity);
+            if (entity is IIsDeleted)
+            {
+                ((IIsDeleted)entity).IsDeleted = true;
+            }
+            else
+            {
+                IDAL.Delete(entity);
+            }
         }
         public IEnumerable<TEntity> ReadAll()
         {
