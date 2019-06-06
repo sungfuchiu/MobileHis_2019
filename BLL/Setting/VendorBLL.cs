@@ -41,6 +41,7 @@ namespace BLL
                 cfg => cfg.CreateMap<Vendor, VendorModel>());
             var _entityMapper = mapperConfiguration.CreateMapper();
             VendorModel model = _entityMapper.Map<VendorModel>(vendor);
+            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
             return model;
         }
 
@@ -48,6 +49,7 @@ namespace BLL
         {
             try
             {
+                model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
                 var vendor = _modelMapper.Map<Vendor>(model);
                 Add(vendor);
                 Save();

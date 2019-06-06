@@ -37,8 +37,8 @@ namespace MobileHis.Data
         [MaxLength(20)]
         public string Fax { get; set; }
         [Required]
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModDate { get; set; }
         [Required]
         public int Creator { get; set; }
         [Required]

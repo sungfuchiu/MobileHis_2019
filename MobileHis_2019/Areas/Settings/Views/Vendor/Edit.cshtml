@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
 }
-@{Html.RenderPartial("_breadcrumb");}
+@{Html.RenderPartial("_BreadCrumbs");}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -115,7 +115,7 @@
                             </label>
 
                             <div class="col-sm-9 col-md-9 col-lg-9">
-                                @Html.DropDownListFor(model => model.PayType, Model.PayTypeList)
+                                @Html.DropDownListFor(a => a.PayType, Model.PayTypeList)
                                 @*@ucDropDown.getCodeFileInDll("PayType", Model != null ? Model.PayType.ToString() : "", "PY", true, false)*@
                             </div>
                         </div>

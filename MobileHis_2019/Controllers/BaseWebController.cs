@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace MobileHis_2019.Controllers
 {
-    public class BaseWebController<TModel> : BaseController where TModel : new()
+    public class BaseWebController<TModel> : BaseController 
     {
         protected IWebBLL<TModel> IBLL;
+        protected TModel Model;
         // GET: Settings/Category
         [HttpGet]
         public ActionResult Index(TModel model)
@@ -20,7 +21,7 @@ namespace MobileHis_2019.Controllers
 
         public ActionResult Create()
         {
-            return View("Edit",new TModel());
+            return View("Edit", Model);
         }
         [HttpPost]
         public ActionResult Create(TModel model)
@@ -33,8 +34,8 @@ namespace MobileHis_2019.Controllers
         }
         public ActionResult Update(int ID)
         {
-            TModel model = IBLL.Read(ID);
-            return View("Edit", model);
+            Model = IBLL.Read(ID);
+            return View("Edit", Model);
         }
         [HttpPost]
         public ActionResult Update(TModel model/*string ID, int? parentId, string itemDesc, string itemRemark*/)

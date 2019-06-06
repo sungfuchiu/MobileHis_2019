@@ -12,8 +12,13 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
 {
     public class VendorModel : BaseAPIModel<Vendor>, IGetCodeFileSelectList
     {
+        public VendorModel(GetCodeFileSelectList getList)
+        {
+            CodeFileSelectListEvent = getList;
+        }
+        public VendorModel() { }
         public event GetCodeFileSelectList CodeFileSelectListEvent;
-        public List<SelectListItem> PayTypeList { get; set; }
+        public List<SelectListItem> PayTypeList { get => CodeFileSelectListEvent(itemType:"PY",hasEmpty:true); }
         public int ID { get; set; }
         [Required]
         [MaxLength(20)]
@@ -37,8 +42,8 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         [MaxLength(20)]
         public string Fax { get; set; }
         [Required]
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModDate { get; set; }
         [Required]
         public int Creator { get; set; }
         [Required]
