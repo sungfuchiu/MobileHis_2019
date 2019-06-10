@@ -61,6 +61,7 @@ namespace BLL
 
         public void Update(VendorModel model)
         {
+            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
             var vendor = Read(model.ID);
             try
             {

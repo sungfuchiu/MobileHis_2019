@@ -37,7 +37,18 @@ namespace BLL
         {
             try
             {
-                List<DrugVendor> drugVendors = model.DrugGuidList.Select(a => new DrugVendor()
+                _drugVendorDAL.Reads();
+                var existDrugVendor = _drugVendorDAL.Entity
+                    .Where(a => model.DrugGuidList.Any(d => d == a.DrugGID))
+                    .ToList();
+                existDrugVendor.ForEach(m => {
+                    m.IsDeleted = false;
+                    m.UpdatedAt = DateTime.Now;
+                    m.Creator = 0;
+                });
+                List<DrugVendor> drugVendors = model.DrugGuidList
+                    .Where(b => existDrugVendor.Select(a=>a.DrugGID).Any(guid => guid==b))
+                    .Select(a => new DrugVendor()
                 {
                     DrugGID = a,
                     CreatedAt = DateTime.Now,

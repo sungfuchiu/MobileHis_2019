@@ -42,9 +42,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         [MaxLength(20)]
         public string Fax { get; set; }
         [Required]
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModDate { get; set; }
-        [Required]
         public int Creator { get; set; }
         [Required]
         public bool Deleted { get; set; }

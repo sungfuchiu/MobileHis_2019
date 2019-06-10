@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDAL.cs" />
+    <Compile Include="Drug\DrugRestrictionDAL.cs" />
     <Compile Include="Setting\CodeFileDAL.cs" />
     <Compile Include="Base\DALBase.cs" />
     <Compile Include="Setting\DepartmentDAL.cs" />

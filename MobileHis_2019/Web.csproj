@@ -169,6 +169,7 @@
     <Compile Include="Areas\Settings\Controllers\DrugVendorController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Views\SettingHtmlHelper.cs" />
+    <Compile Include="AuthorizeFilters\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BaseWebController.cs" />

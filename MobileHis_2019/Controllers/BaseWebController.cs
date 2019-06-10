@@ -16,7 +16,7 @@ namespace MobileHis_2019.Controllers
         public ActionResult Index(TModel model)
         {
             IBLL.Index(model);
-            return View();
+            return View(model);
         }
 
         public ActionResult Create()
@@ -29,6 +29,8 @@ namespace MobileHis_2019.Controllers
             if (ModelState.IsValid)
             {
                 IBLL.Create(model);
+                if (ModelState.IsValid)
+                    EditSuccessfully();
             }
             return View("Edit", model);
         }
@@ -43,6 +45,8 @@ namespace MobileHis_2019.Controllers
             if (ModelState.IsValid)
             {
                 IBLL.Update(model);
+                if (ModelState.IsValid)
+                    EditSuccessfully();
             }
             return View("Edit", model);
         }

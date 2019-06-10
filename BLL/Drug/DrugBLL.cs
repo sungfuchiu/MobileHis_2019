@@ -22,6 +22,7 @@ namespace BLL
         DrugCostDAL _drugCostDAL;
         DrugDAL _drugDAL;
         DrugAppearanceBLL _drugAppearanceBLL;
+        DrugRestrictionDAL _drugRestrictionDAL;
         CodeFileDAL _codeFileDAL;
         CodeFileBLL _codeFileBLL;
         public DrugBLL(IValidationDictionary validationDictionary)
@@ -55,6 +56,30 @@ namespace BLL
                     .OrderBy(a => a.Title)
                     .ToPagedList(currentPage, Config.PageSize)
                     .Select(a => new DrugViewModel(a));
+        }
+
+        public IEnumerable<Drug> Filter(string OrderCode, string Title, Guid? FilterDrugID, string FilterType)
+        {
+            //IQueryable<Drug> Querydata = GetAllWithNoTracking();
+            if (OrderCode.IsNullOrEmpty())
+            {
+                yield break;
+            }
+            _drugDAL.Reads();
+            _drugDAL.Entity = _drugDAL.Entity
+                .Where(a => a.OrderCode.Contains(OrderCode) 
+                || a.Title.Contains(Title) 
+                && string.IsNullOrEmpty(a.DrugType));
+            if(FilterDrugID != null)
+            {
+                _drugDAL.Entity = _drugDAL.Entity.Where(a => a.GID != FilterDrugID);
+                _drugDAL.Entity = _drugDAL.Entity.Where(
+                    a => !_drugRestrictionDAL.GetIDList(FilterDrugID.Value).Any(x => x == a.GID));
+            }
+            foreach(var item in _drugDAL.Entity)
+            {
+                yield return item;
+            }
         }
         private bool IsDrugHasAppearance(DrugsFilter filter)
         {
