@@ -8,48 +8,67 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class GuidBLLBase<TEntity> : BLLBase<TEntity>, IGuidBLL<TEntity> where TEntity : class, MobileHis.Data.Interface.IGuidEntity
+    public class GuidBLLBase<TEntity> : BLLBase<TEntity>, IGuidBLL<TEntity> where TEntity : class, MobileHis.Data.IGuidEntity
     {
-        private IGuidDAL<TEntity> _IDAL;
-        protected new IGuidDAL<TEntity> IDAL
+        public GuidBLLBase(IUnitOfWork inDB) : base(inDB) { }
+        public virtual void Delete(Guid ID)
         {
-            get => _IDAL;
-            set
-            {
-                base.IDAL = value;
-                _IDAL = value;
-            }
+            db.GuidDAL<TEntity>().Delete(ID);
         }
-        public void Delete(Guid guid)
+        public virtual TEntity Read(Guid ID)
         {
-            IDAL.Delete(guid);
-            IDAL.Save();
+            return db.GuidDAL<TEntity>().Read(ID);
         }
-        public TEntity Read(Guid guid)
-        {
-            return IDAL.Read(guid);
-        }
+        //private IGuidDAL<TEntity> _IDAL;
+        //protected new IGuidDAL<TEntity> IDAL
+        //{
+        //    get => _IDAL;
+        //    set
+        //    {
+        //        base.IDAL = value;
+        //        _IDAL = value;
+        //    }
+        //}
+        //public void Delete(Guid guid)
+        //{
+        //    IDAL.Delete(guid);
+        //    IDAL.Save();
+        //}
+        //public TEntity Read(Guid guid)
+        //{
+        //    return IDAL.Read(guid);
+        //}
     }
-    public class IDBLLBase<TEntity> : BLLBase<TEntity>, IIDBLL<TEntity> where TEntity : class, MobileHis.Data.Interface.IIDEntity
+    public class IDBLLBase<TEntity> : BLLBase<TEntity>, IIDBLL<TEntity> where TEntity : class, MobileHis.Data.IIDEntity
     {
-        private IIDDAL<TEntity> _IDAL;
-        protected new IIDDAL<TEntity> IDAL
-        {
-            get => _IDAL;
-            set
-            {
-                base.IDAL = value;
-                _IDAL = value;
-            }
-        }
+        public IDBLLBase(IUnitOfWork inDB) : base(inDB) { }
         public virtual void Delete(int ID)
         {
-            IDAL.Delete(ID);
-            IDAL.Save();
+            db.IDDAL<TEntity>().Delete(ID);
         }
         public virtual TEntity Read(int ID)
         {
-            return IDAL.Read(ID);
+            return db.IDDAL<TEntity>().Read(ID);
         }
+        //private IIDDAL<TEntity> _IDAL;
+        //protected IIDDAL<TEntity> IDAL
+        //{
+        //    get => _IDAL;
+        //    set
+        //    {
+        //        IDAL<TEntity> iDAL = base.db.DAL<TEntity>();
+        //        iDAL = value;
+        //        _IDAL = value;
+        //    }
+        //}
+        //public virtual void Delete(int ID)
+        //{
+        //    IDAL.Delete(ID);
+        //    IDAL.Save();
+        //}
+        //public virtual TEntity Read(int ID)
+        //{
+        //    return IDAL.Read(ID);
+        //}
     }
 }

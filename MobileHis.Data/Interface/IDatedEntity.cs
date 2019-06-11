@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MobileHis.Data
 {
-    public interface IIsDeleted
+    public interface IDatedEntity
     {
-        bool IsDeleted { get; set; }
+        DateTime CreateDate { get; set; }
+        DateTime UpdateDate { get; set; }
     }
 }

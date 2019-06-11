@@ -80,14 +80,14 @@
                             <td><input type="text" id="stockusingrate_@item.ID" value="@item.StockUsingRate" maxlength="8" /></td>
                             <td>@item.UpdatedAt.CultureDateTime()</td>
                             <td>
-                                @if (_Update)
-                                {
-                                    <button class="btn btn-primary btn-sm" id="btnUpdate" type="button" data-id="@item.ID">@LocalRes.Resource.Comm_Update</button>
-                                }
+                                @*@if (_Update)
+                                {*@
+                                    <button class="btn btn-primary btn-sm btnUpdate" type="button" data-id="@item.ID">@LocalRes.Resource.Comm_Update</button>
+                                @*}
                                 @if (_Delete)
-                                {
-                                    <button class="btn btn-danger btn-sm" id="btnDelete" type="button" data-id="@item.ID">@LocalRes.Resource.Comm_Del</button>
-                                }
+                                {*@
+                                    <button class="btn btn-danger btn-sm btnDelete" type="button" data-id="@item.ID">@LocalRes.Resource.Comm_Del</button>
+                                @*}*@
                             </td>
                         </tr>
                     }
@@ -152,7 +152,7 @@
                 }
             )
         });
-        $("#btnUpdate").click(function () {
+        $(".btnUpdate").click(function () {
             const id = $(this).data('id');
             callAjax(
                 '@Url.Action("Update")'
@@ -165,7 +165,7 @@
                 }
             )
         });
-        $("#btnDelete").click(function () {
+        $(".btnDelete").click(function () {
             const data = { ID: $(this).data('id') };
             bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
             if (result) {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MobileHis.Data.Interface
+namespace MobileHis.Data
 {
     public interface IGuidEntity
     {

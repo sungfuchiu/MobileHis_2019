@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -12,6 +13,26 @@ namespace MobileHis.Data
             : base("MobileHISEntities")
         {
             this.Configuration.LazyLoadingEnabled = true;
+            var objectContext = ((IObjectContextAdapter)this).ObjectContext;
+            objectContext.SavingChanges += (sender, args) =>
+            {
+                var now = DateTime.Now;
+                foreach (var entry in this.ChangeTracker.Entries<IDatedEntity>())
+                {
+                    var entity = entry.Entity;
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            entity.CreateDate= now;
+                            entity.UpdateDate= now;
+                            break;
+                        case EntityState.Modified:
+                            entity.UpdateDate = now;
+                            break;
+                    }
+                }
+                this.ChangeTracker.DetectChanges();
+            };
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

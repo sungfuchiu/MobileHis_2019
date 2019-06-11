@@ -151,6 +151,7 @@
     <Compile Include="Entities\MobileHIS\VitalSign.cs" />
     <Compile Include="Entities\MobileHIS\Ward.cs" />
     <Compile Include="Entities\MobileHIS\Ward2Room.cs" />
+    <Compile Include="Interface\IDatedEntity.cs" />
     <Compile Include="Interface\IIDEntity.cs" />
     <Compile Include="Interface\IIsDeleted.cs" />
     <Compile Include="Migrations\201902260229559_init.cs" />

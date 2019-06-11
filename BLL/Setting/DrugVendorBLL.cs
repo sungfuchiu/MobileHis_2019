@@ -13,16 +13,22 @@ using X.PagedList;
 
 namespace BLL
 {
+    public interface IDrugVendorBLL
+    {
+        void Index(DrugVendorModel model);
+        void Create(DrugVendorModel model);
+        void Update(DrugVendorModel model);
+    }
     public class DrugVendorBLL : IDBLLBase<DrugVendor>, IAPIBLL<DrugVendorModel>
     {
         private CodeFileBLL _codeFileBLL;
         private DrugVendorDAL _drugVendorDAL;
         private IMapper _mapper;
-        public DrugVendorBLL(IValidationDictionary validationDictionary)
+        public DrugVendorBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _drugVendorDAL = new DrugVendorDAL();
-            IDAL = _drugVendorDAL;
+            //IDAL = _drugVendorDAL;
             _codeFileBLL = new CodeFileBLL(validationDictionary);
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<DrugVendorModel, DrugVendor>());
@@ -80,7 +86,13 @@ namespace BLL
                 }
                 else
                 {
-                    drugVendor = _mapper.Map<DrugVendor>(model);
+                    //drugVendor = _mapper.Map<DrugVendor>(model);
+                    drugVendor.Price = model.Price;
+                    drugVendor.Unit = model.Unit;
+                    drugVendor.PurchaseStockRate = model.PurchaseStockRate;
+                    drugVendor.StockUsingRate = model.StockUsingRate;
+                    drugVendor.UpdatedAt = System.DateTime.Now;
+                    drugVendor.Creator = 1;
                     Save();
                 }
             }catch(Exception ex)

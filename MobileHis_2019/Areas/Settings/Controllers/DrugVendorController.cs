@@ -15,10 +15,11 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         private DrugVendorBLL _drugVendorBLL;
         private DrugBLL _drugBLL;
         private ModelStateWrapper _modelState;
+        private UnitOfWork db
         public DrugVendorController()
         {
             _modelState = new ModelStateWrapper(ModelState);
-            _drugVendorBLL = new DrugVendorBLL(_modelState);
+            _drugVendorBLL = new DrugVendorBLL(_modelState, new EFUnitOfWork());
             _drugBLL = new DrugBLL(_modelState);
             IBLL = _drugVendorBLL;
         }

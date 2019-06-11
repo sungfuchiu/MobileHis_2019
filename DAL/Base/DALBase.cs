@@ -15,7 +15,7 @@ namespace DAL
     //}
     public class DALBase<TEntity> : IDAL<TEntity>, IDisposable where TEntity : class
     {
-        protected MobileHISEntities Entities;
+        protected MobileHISEntities Entities { get; set; }
         DbContextTransaction Trans;
         bool Disposed = false;
         Validation.ValidationImplement validation = new Validation.ValidationImplement(new Dictionary<string, string>());
