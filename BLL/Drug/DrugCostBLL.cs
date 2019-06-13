@@ -10,9 +10,8 @@ namespace BLL
 {
     public class DrugCostBLL : BLLBase<DrugCost>
     {
-        public DrugCostBLL()
+        public DrugCostBLL(IUnitOfWork inDB) : base(inDB)
         {
-            IDAL = new DrugCostDAL();
         }
         public DrugCost GetByDrugID(Guid drugID)
         {

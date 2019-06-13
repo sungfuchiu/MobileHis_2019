@@ -19,12 +19,11 @@ namespace BLL
         CodeFileBLL _codeFileBLL;
         IMapper _modelMapper;
         IValidationDictionary _validationDictionary;
-        public VendorBLL(IValidationDictionary validationDictionary)
+        public VendorBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             _vendorDAL = new VendorDAL();
-            IDAL = _vendorDAL;
             _validationDictionary = validationDictionary;
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<VendorModel, Vendor>());
             _modelMapper = mapperConfiguration.CreateMapper();

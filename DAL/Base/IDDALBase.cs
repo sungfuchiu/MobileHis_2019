@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class GuidDALBase<TEntity> : DALBase<TEntity>, IGuidDAL<TEntity> where TEntity : class, MobileHis.Data.Interface.IGuidEntity
+    public class GuidDALBase<TEntity> : DALBase<TEntity>, IGuidDAL<TEntity> where TEntity : class, MobileHis.Data.IGuidEntity
     {
 
         public void Delete(Guid guid)
@@ -21,7 +21,7 @@ namespace DAL
             return Entities.Set<TEntity>().Where(a => a.GID == guid).FirstOrDefault();
         }
     }
-    public class IDDALBase<TEntity> : DALBase<TEntity>, IIDDAL<TEntity> where TEntity : class, MobileHis.Data.Interface.IIDEntity
+    public class IDDALBase<TEntity> : DALBase<TEntity>, IIDDAL<TEntity> where TEntity : class, MobileHis.Data.IIDEntity
     {
         public void Delete(int ID)
         {

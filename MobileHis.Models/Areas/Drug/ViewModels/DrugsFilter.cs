@@ -5,7 +5,12 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
 {
     public class DrugsFilter //: MobileHis.Models.PageFilter, MobileHis.Models.IFilterableFilter<MobileHis.Data.Drug>, MobileHis.Models.ISortableFilter<MobileHis.Data.Drug>
     {
-        public int? page { get; set; }
+        int? page;
+        public int Page
+        {
+            get => page ?? 1;
+            set => page = value;
+        }
         List<SelectDrugColor> _drugColor;
         List<SelectDrugShape> _drugShape;
         List<SelectDrugType> _drugType;
@@ -108,18 +113,39 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
     }
     public class SelectDrugColor
     {
+        public SelectDrugColor() { }
+        public SelectDrugColor(string itemDescription, int id)
+        {
+            Description = itemDescription;
+            ID = id.ToString();
+            IsSelected = false;
+        }
         public bool IsSelected { get; set; }
         public string ID { get; set; }
         public string Description { get; set; }
     }
     public class SelectDrugType
     {
+        public SelectDrugType() { }
+        public SelectDrugType(string itemDescription, int id)
+        {
+            Description = itemDescription;
+            ID = id.ToString();
+            IsSelected = false;
+        }
         public bool IsSelected { get; set; }
         public string ID { get; set; }
         public string Description { get; set; }
     }
     public class SelectDrugShape
     {
+        public SelectDrugShape() { }
+        public SelectDrugShape(string itemDescription, int id)
+        {
+            Description = itemDescription;
+            ID = id.ToString();
+            IsSelected = false;
+        }
         public bool IsSelected { get; set; }
         public string ID { get; set; }
         public string Description { get; set; }

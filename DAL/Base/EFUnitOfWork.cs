@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Base
+namespace DAL
 {
     public class EFUnitOfWork : IUnitOfWork
     {

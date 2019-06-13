@@ -1,4 +1,4 @@
-﻿using MobileHis.Data.Interface;
+﻿using MobileHis.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

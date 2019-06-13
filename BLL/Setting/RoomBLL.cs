@@ -23,14 +23,13 @@ namespace BLL
         private Dept2RoomDAL _dept2RoomDAL;
         private DepartmentBLL _departmentBLL;
         private IMapper _mapper;
-        public RoomBLL(IValidationDictionary validationDictionary)
+        public RoomBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _roomDAL = new RoomDAL();
             _dept2RoomDAL = new Dept2RoomDAL();
-            IDAL = _roomDAL;
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
-            _departmentBLL = new DepartmentBLL(validationDictionary);
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
+            _departmentBLL = new DepartmentBLL(validationDictionary, inDB);
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<RoomModel, Room>()
                 .ForMember(a => a.CreateDate, o=>o.Ignore())

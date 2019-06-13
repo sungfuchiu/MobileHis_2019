@@ -25,7 +25,7 @@ namespace BLL
         DrugRestrictionDAL _drugRestrictionDAL;
         CodeFileDAL _codeFileDAL;
         CodeFileBLL _codeFileBLL;
-        public DrugBLL(IValidationDictionary validationDictionary)
+        public DrugBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _drugAppearanceDAL = new DrugAppearanceDAL();
@@ -33,13 +33,11 @@ namespace BLL
             _drugDAL = new DrugDAL();
             _codeFileDAL = new CodeFileDAL();
             _drugAppearanceBLL = new DrugAppearanceBLL();
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
-            IDAL = _drugDAL;
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
         }
         public IPagedList<DrugViewModel> Filter(DrugsFilter filter)
         {
             filter = filter ?? _drugAppearanceBLL.NewFilter();
-            int currentPage = filter.page ?? 1;
 
             _drugDAL.Reads(x => x.DrugStock);
              _drugDAL.TitleContains(filter.DrugTitle);
@@ -54,7 +52,7 @@ namespace BLL
 
             return _drugDAL.ReadsResult()
                     .OrderBy(a => a.Title)
-                    .ToPagedList(currentPage, Config.PageSize)
+                    .ToPagedList(filter.Page, Config.PageSize)
                     .Select(a => new DrugViewModel(a));
         }
 
@@ -96,7 +94,7 @@ namespace BLL
             bool isNewDrug = viewModel.GID == null;
             Drug drug = isNewDrug
                 ? new Drug { GID = Guid.NewGuid() }
-                : IDAL.Read(a => a.GID == viewModel.GID);
+                : db.DAL<Drug>().Read(a => a.GID == viewModel.GID);
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<DrugViewModel, Drug>());
             var mapper = config.CreateMapper();
@@ -111,7 +109,7 @@ namespace BLL
                 try
                 {
                     if (isNewDrug)
-                        IDAL.Add(drug);
+                        db.DAL<Drug>().Add(drug);
                     _drugDAL.Save();
 
                     if(viewModel.HasAppearance)

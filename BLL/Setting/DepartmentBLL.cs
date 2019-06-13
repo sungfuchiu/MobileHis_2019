@@ -19,12 +19,11 @@ namespace BLL
         private DepartmentDAL _departmentDAL;
         private CodeFileBLL _codeFileBLL;
         private IMapper _mapper;
-        public DepartmentBLL(IValidationDictionary validationDictionary)
+        public DepartmentBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB):base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _departmentDAL = new DepartmentDAL();
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
-            IDAL = _departmentDAL;
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
             var mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<DepartmentIndexModel, Dept>());
             _mapper = mapperConfiguration.CreateMapper();
         }

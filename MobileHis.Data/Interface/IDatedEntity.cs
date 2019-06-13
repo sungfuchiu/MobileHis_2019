@@ -9,6 +9,6 @@ namespace MobileHis.Data
     public interface IDatedEntity
     {
         DateTime CreateDate { get; set; }
-        DateTime UpdateDate { get; set; }
+        DateTime ModDate { get; set; }
     }
 }

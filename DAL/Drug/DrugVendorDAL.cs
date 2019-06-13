@@ -9,6 +9,7 @@ namespace DAL
 {
     public class DrugVendorDAL : IDDALBase<DrugVendor>
     {
+
         public  IEnumerable<DrugVendor> GetList(int DrugID)
         {
             Reads();

@@ -29,7 +29,7 @@ namespace BLL
             InitialiseIValidationDictionary(validationDictionary);
             _drugVendorDAL = new DrugVendorDAL();
             //IDAL = _drugVendorDAL;
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<DrugVendorModel, DrugVendor>());
             _mapper = mapperConfiguration.CreateMapper();
@@ -49,7 +49,6 @@ namespace BLL
                     .ToList();
                 existDrugVendor.ForEach(m => {
                     m.IsDeleted = false;
-                    m.UpdatedAt = DateTime.Now;
                     m.Creator = 0;
                 });
                 List<DrugVendor> drugVendors = model.DrugGuidList
@@ -57,8 +56,6 @@ namespace BLL
                     .Select(a => new DrugVendor()
                 {
                     DrugGID = a,
-                    CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
                     Creator = 0,
                     IsDeleted = false,
                     VendorID = model.ID,
@@ -91,7 +88,6 @@ namespace BLL
                     drugVendor.Unit = model.Unit;
                     drugVendor.PurchaseStockRate = model.PurchaseStockRate;
                     drugVendor.StockUsingRate = model.StockUsingRate;
-                    drugVendor.UpdatedAt = System.DateTime.Now;
                     drugVendor.Creator = 1;
                     Save();
                 }

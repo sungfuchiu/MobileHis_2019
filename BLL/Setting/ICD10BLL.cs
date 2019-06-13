@@ -14,7 +14,7 @@ namespace BLL
 {
     public class ICD10BLL : BLLBase<ICD10>
     {
-        public ICD10BLL(IValidationDictionary validationDictionary)
+        public ICD10BLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
         }

@@ -24,10 +24,10 @@ namespace MobileHis.Data
                     {
                         case EntityState.Added:
                             entity.CreateDate= now;
-                            entity.UpdateDate= now;
+                            entity.ModDate= now;
                             break;
                         case EntityState.Modified:
-                            entity.UpdateDate = now;
+                            entity.ModDate = now;
                             break;
                     }
                 }

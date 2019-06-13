@@ -18,14 +18,13 @@ namespace BLL
         DrugSettingDAL _drugSettingDAL;
         CodeFileDAL _codeFileDAL;
         CodeFileBLL _codeFileBLL;
-        public DrugSettingBLL(IValidationDictionary validationDictionary)
+        public DrugSettingBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _drugDAL = new DrugDAL();
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
             _codeFileDAL = new CodeFileDAL();
             _drugSettingDAL = new DrugSettingDAL();
-            IDAL = _drugSettingDAL;
         }
         public DrugSettingModelView GetSettingByDrugID(Guid drugID)
         {

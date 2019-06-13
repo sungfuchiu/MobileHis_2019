@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DAL;
 using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Controllers;
@@ -15,12 +16,11 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         private DrugVendorBLL _drugVendorBLL;
         private DrugBLL _drugBLL;
         private ModelStateWrapper _modelState;
-        private UnitOfWork db
-        public DrugVendorController()
+        public DrugVendorController(IUnitOfWork inDB)
         {
             _modelState = new ModelStateWrapper(ModelState);
-            _drugVendorBLL = new DrugVendorBLL(_modelState, new EFUnitOfWork());
-            _drugBLL = new DrugBLL(_modelState);
+            _drugVendorBLL = new DrugVendorBLL(_modelState, inDB);
+            _drugBLL = new DrugBLL(_modelState, inDB);
             IBLL = _drugVendorBLL;
         }
 

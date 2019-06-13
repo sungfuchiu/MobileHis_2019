@@ -24,14 +24,13 @@ namespace BLL
         private RoomDAL _roomDAL;
         private EducationFileDAL _educationFileDAL;
         private IMapper _mapper;
-        public EducationBLL(IValidationDictionary validationDictionary)
+        public EducationBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _educationDAL = new EducationDAL();
-            _codeFileBLL = new CodeFileBLL(validationDictionary);
+            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
             _roomDAL = new RoomDAL();
             _educationFileDAL = new EducationFileDAL();
-            IDAL = _educationDAL;
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<EducationModel, HealthEdu>());
             _mapper = mapperConfiguration.CreateMapper();

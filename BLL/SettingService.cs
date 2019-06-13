@@ -18,7 +18,7 @@ namespace BLL
     public interface ISettingService : IService<Setting> { }
     public class SettingService : GenericService<Setting>, ISettingService
     {
-        public SettingService(IUnitOfWork unitOfWork) : base(unitOfWork){ }
+        public SettingService(DAL.UnitOfWork.IUnitOfWork unitOfWork) : base(unitOfWork){ }
         public bool SetGeneralSetting(SystemSettingView settingView)
         {
             //var entity = db.Repository<Setting>().Read(x => x.ParentSetting.SettingName == SettingType.Default);

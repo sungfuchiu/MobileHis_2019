@@ -18,7 +18,7 @@ namespace BLL
     public class SettingBLL : BLLBase<Setting>
     {
         private SettingDAL _settingDAL;
-        public SettingBLL(IValidationDictionary validationDictionary)
+        public SettingBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
         {
             InitialiseIValidationDictionary(validationDictionary);
             _settingDAL = new SettingDAL();
