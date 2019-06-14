@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MobileHis_2019.Service.Service
 {
-    public interface IDrugAppearanceService
+    public interface IDrugAppearanceService : IService<DrugAppearance>
     {
         DrugsFilter NewFilter();
     }
@@ -21,9 +21,8 @@ namespace MobileHis_2019.Service.Service
         private IQueryable<CodeFile> _codeFile;
         private IQueryable<DrugAppearance> _drugAppearance;
         private IQueryable<string> _IDList;
-        public DrugAppearanceService(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
+        public DrugAppearanceService(IUnitOfWork inDB) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
         }
         public enum Appearance
         {

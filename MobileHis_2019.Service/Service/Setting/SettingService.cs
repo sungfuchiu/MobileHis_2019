@@ -2,29 +2,43 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using DAL;
 using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.ViewModel;
 using AutoMapper;
 using Common;
 using System.Web.Mvc;
+using MobileHis_2019.Repository.Interface;
+using System.Data.Entity;
+using MobileHis_2019.Service.Interface;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class SettingBLL : BLLBase<Setting>
+    public interface ISettingService : IService<Setting>
     {
-        private SettingDAL _settingDAL;
-        public SettingBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
+        bool DeleteImage(string category, string settingName, string fileName);
+        SettingView GetAllSetting();
+        ScheduleShift GetCurrentShift();
+        DefaultSettings GetDefaultSettings();
+        List<SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false, bool hasAll = false, bool onlyRegistered = false, int userID = 0);
+        object GetGroupSetting(SettingTypes settingTypes, object settings);
+        InfoSettings GetInfoSettings();
+        MailSettings GetMailSettings();
+        OtherSettings GetOthersSettings();
+        List<string> GetValidShift();
+        bool SetGeneralSetting(SettingView viewModel);
+        void SetGroupSetting(SettingTypes settingTypes, object settings);
+        bool SetInfoSetting(SettingView viewModel);
+        bool SetMailSetting(SettingView viewModel);
+        bool SetOthersSetting(SettingView viewModel);
+        bool TestTimeValid(string testTime);
+        void Update(string settingName, SettingTypes parentName, string newValue);
+    }
+    public class SettingService : GenericService<Setting>
+    {
+        public SettingService(IUnitOfWork inDB) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
-            _settingDAL = new SettingDAL();
         }
-        //private SettingDAL settingDAL = new SettingDAL();
-
         public bool SetGeneralSetting(SettingView viewModel)
         {
             DefaultSettings generalSettings = new DefaultSettings();
@@ -85,33 +99,47 @@ namespace MobileHis_2019.Service.Service
             }
             if (viewModel.SystemSettingView.PartnerFile != null)
             {
-                using (SettingDAL settingDAL = new SettingDAL())
-                {
-                    var partnerImage = settingDAL.GetEmptyPartnerImgSetting();
-                    var cnt = 0;
-                    foreach (var file in viewModel.SystemSettingView.PartnerFile)
-                    {
-                        if (file != null)
-                        {
-                            var fileName = new System.IO.FileInfo(file.FileName).Name;
-                            var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
-                            fileName = s.Write(fileName, file);
-                            partnerImage[cnt].Value = fileName;
-                            settingDAL.Edit(partnerImage[cnt]);
-                            cnt++;
 
-                        }
+                var settings = db.Repository<Setting>().ReadAll().Include(a => a.ParentSetting);
+                var partnerImage = settings.Where(a => a.SettingName.Contains("Partner")
+                    && a.ParentSetting.SettingName == SettingTypes.Default.ToString()
+                    && string.IsNullOrEmpty(a.Value))
+                    .OrderBy(a => a.SettingName).ToList();
+                var cnt = 0;
+                foreach (var file in viewModel.SystemSettingView.PartnerFile)
+                {
+                    if (file != null)
+                    {
+                        var fileName = new System.IO.FileInfo(file.FileName).Name;
+                        var s = MobileHis.Misc.Storage.GetStorage(StorageScope.Official);
+                        fileName = s.Write(fileName, file);
+                        partnerImage[cnt].Value = fileName;
+                        //settingDAL.Edit(partnerImage[cnt]);
+                        cnt++;
+
                     }
-                    settingDAL.Save();
                 }
             }
             if (!ValidationDictionary.IsValid())
                 return false;
-            using (SettingDAL dal = new SettingDAL())
-            {
-                dal.SetGroupSetting(SettingTypes.Default, generalSettings);
-            }
+            SetGroupSetting(SettingTypes.Default, generalSettings);
+            Save();
             return true;
+        }
+        public void SetGroupSetting(SettingTypes settingTypes, object settings)
+        {
+            foreach (var prop in settings.GetType().GetProperties())
+            {
+                Update(prop.Name, settingTypes, Convert.ToString(prop.GetValue(settings, null)));
+            }
+        }
+        public void Update(string settingName, SettingTypes parentName, string newValue)
+        {
+            Setting updatedItem = Read(a =>
+                    a.ParentSetting.SettingName == parentName.ToString()
+                    && a.SettingName == settingName,
+                    a => a.ParentSetting);
+            updatedItem.Value = newValue;
         }
         public bool TestTimeValid(string testTime)
         {
@@ -150,10 +178,7 @@ namespace MobileHis_2019.Service.Service
             }
             if (!ValidationDictionary.IsValid())
                 return false;
-            using (SettingDAL dal = new SettingDAL())
-            {
-                dal.SetGroupSetting(SettingTypes.Info, infoSettings);
-            }
+            SetGroupSetting(SettingTypes.Info, infoSettings);
             return true;
         }
         public bool SetOthersSetting(SettingView viewModel)
@@ -164,10 +189,7 @@ namespace MobileHis_2019.Service.Service
             otherSettings = mapper.Map<OtherSettings>(viewModel.OthersSettingView);
             if (!ValidationDictionary.IsValid())
                 return false;
-            using (SettingDAL dal = new SettingDAL())
-            {
-                dal.SetGroupSetting(SettingTypes.Other, otherSettings);
-            }
+            SetGroupSetting(SettingTypes.Other, otherSettings);
             return true;
         }
         public bool SetMailSetting(SettingView viewModel)
@@ -178,39 +200,13 @@ namespace MobileHis_2019.Service.Service
             mailSettings = mapper.Map<MailSettings>(viewModel.MailSettingView);
             if (!ValidationDictionary.IsValid())
                 return false;
-            using (SettingDAL dal = new SettingDAL())
-            {
-                dal.SetGroupSetting(SettingTypes.Mail, mailSettings);
-            }
+            SetGroupSetting(SettingTypes.Mail, mailSettings);
             return true;
         }
-
-        //void Update(SettingTypes type, object data)
-        //{
-        //    using (SettingDAL settingDAL = new SettingDAL())
-        //    {
-        //        foreach (var prop in data.GetType().GetProperties())
-        //        {
-        //            //挑出六個尚未合成的時段設定不要進入資料庫比較(尾巴下底線_是重要依據不可刪除)
-        //            if (!prop.Name.Contains("Opd_Shift_Morning_") && !prop.Name.Contains("Opd_Shift_Afternoon_") && !prop.Name.Contains("Opd_Shift_Night_")
-        //                //not post files
-        //                && prop.PropertyType.Name != "HttpPostedFileBase")
-        //            {
-        //                if (!prop.Name.Contains("Partner"))
-        //                {
-        //                    settingDAL.Update(prop.Name, type, Convert.ToString(prop.GetValue(data, null)));
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
         public ScheduleShift GetCurrentShift()
         {
             var shifts = new List<Setting>();
-            using (SettingDAL settingDAL = new SettingDAL())
-            {
-                shifts = settingDAL.GetShiftList();
-            }
+            shifts = db.Repository<Setting>().ReadAll().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
             Setting.ShiftTime morningShiftTime = new Setting.ShiftTime();
             Setting.ShiftTime afternoonShiftTime = new Setting.ShiftTime();
             Setting.ShiftTime dinnerShiftTime = new Setting.ShiftTime();
@@ -238,10 +234,7 @@ namespace MobileHis_2019.Service.Service
         {
             var validShift = new List<string>();
             var shifts = new List<Setting>();
-            using (SettingDAL settingDAL = new SettingDAL())
-            {
-                shifts = settingDAL.GetShiftList();
-            }
+            shifts = db.Repository<Setting>().ReadAll().Where(a => a.SettingName.Contains("Opd_Shift_")).ToList();
 
             Setting.ShiftTime morningShiftTime = new Setting.ShiftTime();
             Setting.ShiftTime afternoonShiftTime = new Setting.ShiftTime();
@@ -257,13 +250,13 @@ namespace MobileHis_2019.Service.Service
             switch (DateTime.Now)
             {
                 case DateTime now when morningShiftTime.InThePeriod(now):
-                    validShift.Add(DoctorScheduleDAL.ScheduleShiftMap[ScheduleShift.Morning]);
+                    validShift.Add(((int)ScheduleShift.Morning).ToString());
                     break;
                 case DateTime now when afternoonShiftTime.InThePeriod(now):
-                    validShift.Add(DoctorScheduleDAL.ScheduleShiftMap[ScheduleShift.Afternoon]);
+                    validShift.Add(((int)ScheduleShift.Afternoon).ToString());
                     break;
                 case DateTime now when dinnerShiftTime.InThePeriod(now):
-                    validShift.Add(DoctorScheduleDAL.ScheduleShiftMap[ScheduleShift.Night]);
+                    validShift.Add(((int)ScheduleShift.Night).ToString());
                     break;
             }
             return validShift;
@@ -275,13 +268,10 @@ namespace MobileHis_2019.Service.Service
             DefaultSettings generalSettings = new DefaultSettings();
             MailSettings mailSettings = new MailSettings();
             OtherSettings otherSettings = new OtherSettings();
-            using (SettingDAL dal = new SettingDAL())
-            {
-                infoSettings = dal.GetInfoSettings();
-                generalSettings = dal.GetDefaultSettings();
-                mailSettings = dal.GetMailSettings();
-                otherSettings = dal.GetOthersSettings();
-            }
+            infoSettings = GetInfoSettings();
+            generalSettings = GetDefaultSettings();
+            mailSettings = GetMailSettings();
+            otherSettings = GetOthersSettings();
             var settingView = new SettingView();
 
             settingView.InfoSettingView = new InfoSettingView();
@@ -305,6 +295,34 @@ namespace MobileHis_2019.Service.Service
             settingView.OthersSettingView = mapper.Map<OthersSettingView>(otherSettings);
             return settingView;
         }
+        public DefaultSettings GetDefaultSettings()
+        {
+            return (DefaultSettings)GetGroupSetting(SettingTypes.Default, new DefaultSettings());
+        }
+        public InfoSettings GetInfoSettings()
+        {
+            return (InfoSettings)GetGroupSetting(SettingTypes.Info, new InfoSettings());
+        }
+        public MailSettings GetMailSettings()
+        {
+            return (MailSettings)GetGroupSetting(SettingTypes.Mail, new MailSettings());
+        }
+        public OtherSettings GetOthersSettings()
+        {
+            return (OtherSettings)GetGroupSetting(SettingTypes.Other, new OtherSettings());
+        }
+        public object GetGroupSetting(SettingTypes settingTypes, object settings)
+        {
+            var generalSettings = db.Repository<Setting>().ReadAll()
+                .Include(a => a.ParentSetting)
+                .Where(a => a.ParentSetting.SettingName == settingTypes.ToString())
+                    .ToDictionary(o => o.SettingName, o => o.Value);
+            foreach (var prop in settings.GetType().GetProperties())
+            {
+                prop.SetValue(settings, generalSettings[prop.Name]);
+            }
+            return settings;
+        }
 
 
         public bool DeleteImage(string category, string settingName, string fileName)
@@ -315,32 +333,30 @@ namespace MobileHis_2019.Service.Service
                 SettingTypes settingType = SettingTypes.Default;
                 if (category == StorageScope.HospitalEnvironment)
                     settingType = SettingTypes.Info;
-
-                using (SettingDAL dal = new SettingDAL())
+                
+                var setting = Read(a => a.SettingName == settingName
+                && a.ParentSetting.SettingName == settingType.ToString(),
+                a => a.ParentSetting);
+                if (setting != null)
                 {
-                    var setting = dal.GetSetting(settingName, settingType);
-                    if (setting != null)
+                    if (category == StorageScope.Official)
                     {
-                        if (category == StorageScope.Official)
-                        {
-                            fileName = setting.Value;
-                            storage.Delete(fileName);
-                            setting.Value = "";
-                        }
-                        else if (category == StorageScope.HospitalEnvironment)
-                        {
-                            var fileArr = setting.Value.Split(';');
-                            var fileList = new List<string>(fileArr);
-                            storage.Delete(fileName);
-                            var newStrArr = fileList.Where(a => a != fileName).ToArray();
-                            if (newStrArr.Length == 0)
-                                setting.Value = "";
-                            else
-                                setting.Value = string.Join(";", newStrArr);
-                        }
-                        dal.Edit(setting);
-                        dal.Save();
+                        fileName = setting.Value;
+                        storage.Delete(fileName);
+                        setting.Value = "";
                     }
+                    else if (category == StorageScope.HospitalEnvironment)
+                    {
+                        var fileArr = setting.Value.Split(';');
+                        var fileList = new List<string>(fileArr);
+                        storage.Delete(fileName);
+                        var newStrArr = fileList.Where(a => a != fileName).ToArray();
+                        if (newStrArr.Length == 0)
+                            setting.Value = "";
+                        else
+                            setting.Value = string.Join(";", newStrArr);
+                    }
+                    Save();
                 }
                 return true;
             }
@@ -349,39 +365,58 @@ namespace MobileHis_2019.Service.Service
                 return false;
             }
         }
-        protected override IEnumerable<SelectListItem> GetSelectList(
+        public List<SelectListItem> GetDropDownList(
+            string itemType,
+            string selectedValue = "",
+            bool hasEmpty = false,
+            bool hasAll = false,
+            bool onlyRegistered = false,
+            int userID = 0)
+        {
+            var list = new List<System.Web.Mvc.SelectListItem>();
+            if (hasEmpty)
+            {
+                list.Add(
+                    new SelectListItem
+                    {
+                        Text = LocalRes.Resource.Comm_Select,
+                        Value = ""
+                    });
+            }
+            if (hasAll)
+            {
+                list.Add(
+                    new SelectListItem
+                    {
+                        Text = "ALL",
+                        Value = "0"
+                    });
+            }
+            var datalist = GetSelectList(itemType, selectedValue, onlyRegistered, userID);
+            list.AddRange(datalist);
+            return list;
+        }
+        protected IEnumerable<SelectListItem> GetSelectList(
             string itemType = "",
             string selectedValue = "",
             bool onlyRegistered = false,
             int userID = 0)
         {
-            return _settingDAL.GetCategoryList().Select(item => new SelectListItem
+            var itemTypes = Read(a => a.SettingName == "ItemType"
+                && a.ParentSetting.SettingName == SettingTypes.Category.ToString(),
+                a => a.ParentSetting);
+            var setting = (itemTypes != null)
+                    ? db.Repository<Setting>().ReadAll().Where(a => a.ParentId == itemTypes.ID)
+                        .Select(a => a.Value)
+                        .ToList()
+                    : new List<string>();
+            return setting.Select(item => new SelectListItem
             {
                 Value = item,
                 Text = LocalRes.Resource.ResourceManager.GetString($"Category_{item}"),
                 Selected = string.IsNullOrEmpty(selectedValue) ? false : item == selectedValue
             });
         }
-        ///// <summary>
-        ///// 拿取下拉式選單
-        ///// </summary>
-        ///// <returns></returns>
-        //public List<System.Web.Mvc.SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false)
-        //{
-        //    var list = new List<System.Web.Mvc.SelectListItem>();
-        //    if (hasEmpty)
-        //    {
-        //        list.Add(new SelectListItem { Text = LocalRes.Resource.Comm_Select, Value = "" });
-        //    }
-        //    var datalist = _settingDAL.GetCategoryList().Select(item => new SelectListItem
-        //    {
-        //        Value = item,
-        //        Text = LocalRes.Resource.ResourceManager.GetString($"Category_{item}"),
-        //        Selected = string.IsNullOrEmpty(selectedValue) ? false : item == selectedValue
-        //    });
-        //    list.AddRange(datalist);
-        //    return list;
-        //}
 
     }
 }

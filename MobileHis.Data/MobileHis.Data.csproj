@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201906100536399_ModifyVendorColumnNameForTime.Designer.cs">
       <DependentUpon>201906100536399_ModifyVendorColumnNameForTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906140807120_ModifyColumnNameInDrugVendor.cs" />
+    <Compile Include="Migrations\201906140807120_ModifyColumnNameInDrugVendor.Designer.cs">
+      <DependentUpon>201906140807120_ModifyColumnNameInDrugVendor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameter.cs" />
@@ -262,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906100536399_ModifyVendorColumnNameForTime.resx">
       <DependentUpon>201906100536399_ModifyVendorColumnNameForTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906140807120_ModifyColumnNameInDrugVendor.resx">
+      <DependentUpon>201906140807120_ModifyColumnNameInDrugVendor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

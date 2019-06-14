@@ -1,5 +1,6 @@
 ﻿using BLL.Interface;
 using MobileHis.Models.ApiModel;
+using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,14 @@ namespace MobileHis_2019.Controllers
 {
     public class BaseAPIController<TModel> : BaseController
     {
-        protected IAPIBLL<TModel> IBLL;
+        //protected IAPIBLL<TModel> IBLL;
+        protected IAPIService<TModel> IService;
         // GET: Settings/Category
         [HttpGet]
         public virtual ActionResult Index(TModel model)
         {
-            IBLL.Index(model);
+            //IBLL.Index(model);
+            IService.Index(model);
             return View(model);
         }
 
@@ -24,7 +27,8 @@ namespace MobileHis_2019.Controllers
         {
             if (ModelState.IsValid)
             {
-                IBLL.Create(model);
+                //IBLL.Create(model);
+                IService.Create(model);
             }
             return Json(new BaseApiModel()
             {
@@ -36,7 +40,8 @@ namespace MobileHis_2019.Controllers
         public ActionResult Update(TModel model)
         {
             ModelState.Clear();
-            IBLL.Update(model);
+            //IBLL.Update(model);
+            IService.Update(model);
             return Json(new BaseApiModel()
             {
                 success = ModelState.IsValid,
@@ -47,7 +52,8 @@ namespace MobileHis_2019.Controllers
         public ActionResult Delete(int ID)
         {
             ModelState.Clear();
-            IBLL.Delete(ID);
+            //IBLL.Delete(ID);
+            IService.Delete(ID);
             return Json(new BaseApiModel()
             {
                 success = ModelState.IsValid,

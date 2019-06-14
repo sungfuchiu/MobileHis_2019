@@ -3,6 +3,7 @@ using Common;
 using MobileHis.Data;
 using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis_2019.Repository.Interface;
+using MobileHis_2019.Service.Interface;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,17 @@ using System.Threading.Tasks;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class DrugSettingService : GenericService<DrugSetting>
+    public interface IDrugSettingService : IService<DrugSetting>
+    {
+        DrugSettingModelView GetSettingByDrugID(Guid drugID);
+        void CreateOrUpdate(DrugSettingModelView model);
+        JObject FrequencyPairs();
+    }
+    public class DrugSettingService : GenericService<DrugSetting>, IDrugSettingService
     {
         ICodeFileService _codeFileService;
-        public DrugSettingService(IValidationDictionary validationDictionary, IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
+        public DrugSettingService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
             _codeFileService = codeFileService;
         }
         public DrugSettingModelView GetSettingByDrugID(Guid drugID)

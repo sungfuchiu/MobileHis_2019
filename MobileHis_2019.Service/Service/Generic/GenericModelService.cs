@@ -1,9 +1,5 @@
-﻿using MobileHis_2019.Repository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using MobileHis_2019.Repository.Interface;
 
 namespace MobileHis_2019.Service.Service
 {
@@ -13,16 +9,25 @@ namespace MobileHis_2019.Service.Service
         protected GenericModelService(IUnitOfWork inDB) : base(inDB) { }
         protected virtual TEntity ToCreateEntity(TViewModel model)
         {
-            return AutoMapper.Mapper.Map<TEntity>(model);
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<TViewModel, TEntity>());
+            var settingMapper = settingConfig.CreateMapper();
+            return settingMapper.Map<TEntity>(model);
         }
         protected virtual void ToUpdateEntity(TViewModel model, TEntity entity)
         {
-            AutoMapper.Mapper.Map(model, entity);
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<TViewModel, TEntity>());
+            var settingMapper = settingConfig.CreateMapper();
+            settingMapper.Map(model, entity);
         }
 
         protected virtual TViewModel EntityToViewModel(TEntity entity)
         {
-            return AutoMapper.Mapper.Map<TViewModel>(entity);
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<TEntity, TViewModel>());
+            var settingMapper = settingConfig.CreateMapper();
+            return settingMapper.Map<TViewModel>(entity);
         }
     }
 }

@@ -16,17 +16,20 @@ using X.PagedList;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class RoomService : GenericModelService<Room, RoomModel>, IAPIService<RoomModel>
+
+    public interface IRoomService : IService<Room>, IAPIService<RoomModel>
+    {
+        JObject ReadItem(int ID);
+    }
+    public class RoomService : GenericModelService<Room, RoomModel>, IAPIService<RoomModel>, IRoomService
     {
         ICodeFileService _codeFileService;
         IDepartmentService _departmentService;
         public RoomService(
-            IValidationDictionary validationDictionary, 
             IUnitOfWork inDB, 
             ICodeFileService codeFileService,
             IDepartmentService departmentService) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
             _codeFileService = codeFileService;
             _departmentService = departmentService;
         }

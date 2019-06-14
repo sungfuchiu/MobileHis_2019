@@ -1,46 +1,52 @@
-﻿using BLL.Interface;
-using MobileHis.Data;
+﻿using MobileHis.Data;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
 using AutoMapper;
 using X.PagedList;
 using Common;
+using MobileHis_2019.Service.Interface;
+using MobileHis_2019.Repository.Interface;
+using System.Linq;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class VendorBLL : IDBLLBase<Vendor>, IWebBLL<VendorModel>
+    public interface IVendorService : IService<Vendor>, IWebService<VendorModel>
     {
-        VendorDAL _vendorDAL;
-        CodeFileBLL _codeFileBLL;
+    }
+    public class VendorService : GenericService<Vendor>, IWebService<VendorModel>, IVendorService
+    {
+        ICodeFileService _codeFileService;
         IMapper _modelMapper;
-        IValidationDictionary _validationDictionary;
-        public VendorBLL(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
+        public VendorService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
         {
-            _vendorDAL = new VendorDAL();
-            _validationDictionary = validationDictionary;
-            _codeFileBLL = new CodeFileBLL(validationDictionary, inDB);
+            _codeFileService = codeFileService;
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<VendorModel, Vendor>());
             _modelMapper = mapperConfiguration.CreateMapper();
         }
         public void Index(VendorModel model)
         {
-            model.EntityPageList = _vendorDAL.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
+            var vendor = db.Repository<Vendor>().ReadAll()
+                .Where(a => !a.Deleted);
+            if (!model.Keyword.IsNullOrEmpty())
+            {
+                vendor = vendor.Where(x =>
+                        x.Code.Contains(model.Keyword)
+                        || x.Name.Contains(model.Keyword)
+                        || x.ShortName.Contains(model.Keyword)
+                    );
+            }
+            model.EntityPageList = vendor.ToPagedList(model.Page, Config.PageSize);
+            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
         }
-        VendorModel IWebBLL<VendorModel>.Read(int ID)
+        public VendorModel Read(int ID)
         {
             var vendor = Read(ID);
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<Vendor, VendorModel>());
             var _entityMapper = mapperConfiguration.CreateMapper();
             VendorModel model = _entityMapper.Map<VendorModel>(vendor);
-            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
+            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             return model;
         }
 
@@ -48,9 +54,9 @@ namespace MobileHis_2019.Service.Service
         {
             try
             {
-                model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
+                model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
                 var vendor = _modelMapper.Map<Vendor>(model);
-                Add(vendor);
+                Create(vendor);
                 Save();
             }catch(Exception ex)
             {
@@ -60,7 +66,7 @@ namespace MobileHis_2019.Service.Service
 
         public void Update(VendorModel model)
         {
-            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
+            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             var vendor = Read(model.ID);
             try
             {
@@ -79,5 +85,11 @@ namespace MobileHis_2019.Service.Service
             }
         }
         
+
+        public void Delete(int ID)
+        {
+            var vendor = db.Repository<Vendor>().Read(a => a.ID == ID);
+            Delete(vendor);
+        }
     }
 }

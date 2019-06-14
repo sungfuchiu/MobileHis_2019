@@ -16,6 +16,8 @@ namespace MobileHis_2019.Service.Interface
         void Delete(TEntity entity);
 
         void Update(TEntity entity);
+        void InitialiseIValidationDictionary(Common.IValidationDictionary iValidationDictionary);
+
         //bool IsExists(int ID);
 
         //TEntity GetByID(int ID);

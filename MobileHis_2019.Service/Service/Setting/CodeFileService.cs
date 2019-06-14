@@ -26,11 +26,10 @@ namespace MobileHis_2019.Service.Service
             bool onlyRegistered = false,
             int userID = 0);
     }
-    public class CodeFileService : GenericModelService<CodeFile, CodeFileViewModel>, IAPIService<CodeFileViewModel>
+    public class CodeFileService : GenericModelService<CodeFile, CodeFileViewModel>, IAPIService<CodeFileViewModel>, ICodeFileService
     {
-        public CodeFileService(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
+        public CodeFileService(IUnitOfWork inDB) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
         }
         public List<SelectListItem> GetDropDownList(
             string itemType,

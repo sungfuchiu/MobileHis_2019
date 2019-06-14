@@ -3,6 +3,7 @@ using DAL;
 using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Controllers;
+using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,21 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class DrugVendorController : BaseAPIController<DrugVendorModel>
     {
-        private DrugVendorBLL _drugVendorBLL;
-        private DrugBLL _drugBLL;
-        private ModelStateWrapper _modelState;
-        public DrugVendorController(IUnitOfWork inDB)
+        //private DrugVendorBLL _drugVendorBLL;
+        //private DrugBLL _drugBLL;
+        //private ModelStateWrapper _modelState;
+        IDrugVendorService _drugVendorService;
+        IDrugService _drugService;
+        public DrugVendorController(IDrugVendorService drugVendorService, IDrugService drugService)
         {
-            _modelState = new ModelStateWrapper(ModelState);
-            _drugVendorBLL = new DrugVendorBLL(_modelState, inDB);
-            _drugBLL = new DrugBLL(_modelState, inDB);
-            IBLL = _drugVendorBLL;
+            //_modelState = new ModelStateWrapper(ModelState);
+            //_drugVendorBLL = new DrugVendorBLL(_modelState, inDB);
+            //_drugBLL = new DrugBLL(_modelState, inDB);
+            //IBLL = _drugVendorBLL;
+            drugVendorService.InitialiseIValidationDictionary
+               (new ModelStateWrapper(this.ModelState));
+            IService = drugVendorService;
+            _drugService = drugService;
         }
 
         [HttpGet]
@@ -32,7 +39,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             string type = Request.QueryString.Get("Ty");
             string ID = Request.QueryString.Get("id");
             Guid? guid = string.IsNullOrEmpty(ID) ? (Guid?)null : new Guid(ID); 
-            var drugs = _drugBLL.Filter(keyword, keyword, guid, type).Select(x => new
+            var drugs = _drugService.Filter(keyword, keyword, guid, type).Select(x => new
             {
                 id = x.GID,
                 text = "[" + x.OrderCode + "] " + x.Title,

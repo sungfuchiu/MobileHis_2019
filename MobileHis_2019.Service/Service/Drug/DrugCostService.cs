@@ -1,12 +1,17 @@
 ﻿using MobileHis.Data;
 using System;
 using MobileHis_2019.Repository.Interface;
+using MobileHis_2019.Service.Interface;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class DrugCostBLL : GenericService<DrugCost>
+    public interface IDrugCostService : IService<DrugCost>
     {
-        public DrugCostBLL(IUnitOfWork inDB) : base(inDB)
+        DrugCost GetByDrugID(Guid drugID);
+    }
+    public class DrugCostService : GenericService<DrugCost>, IDrugCostService
+    {
+        public DrugCostService(IUnitOfWork inDB) : base(inDB)
         {
         }
         public DrugCost GetByDrugID(Guid drugID)

@@ -4,6 +4,7 @@ using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis_2019.Repository.Interface;
+using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,16 +13,21 @@ using X.PagedList;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class DrugService : GenericService<Drug>
+    public interface IDrugService : IService<Drug>
+    {
+        IPagedList<DrugViewModel> Filter(DrugsFilter filter);
+        IEnumerable<Drug> Filter(string OrderCode, string Title, Guid? FilterDrugID, string FilterType);
+        void CreateOrUpdate(DrugViewModel viewModel);
+        void Delete(Guid guid);
+    }
+    public class DrugService : GenericService<Drug>, IDrugService
     {
         IDrugAppearanceService _drugAppearanceService;
         IQueryable<Drug> _drugs;
         public DrugService(
-            IValidationDictionary validationDictionary, 
             IUnitOfWork inDB, 
             IDrugAppearanceService drugAppearanceService) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
             _drugAppearanceService = drugAppearanceService;
         }
         public IPagedList<DrugViewModel> Filter(DrugsFilter filter)
@@ -181,6 +187,11 @@ namespace MobileHis_2019.Service.Service
             {
                 ValidationDictionary.AddGeneralError(ex.Message);
             }
+        }
+        public void Delete(Guid guid)
+        {
+            var drug = Read(a => a.GID == guid);
+            Delete(drug);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace MobileHis_2019
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+            AutofacConfig.Register();
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {

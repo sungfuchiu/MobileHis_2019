@@ -15,21 +15,16 @@ using X.PagedList;
 
 namespace MobileHis_2019.Service.Service
 {
-    public interface IDepartmentService
+    public interface IDepartmentService : IService<Dept>, IAPIService<DepartmentIndexModel>
     {
-        void Create(DepartmentIndexModel model);
-        void Delete(int ID);
         List<SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false, bool hasAll = false, bool onlyRegistered = false, int userID = 0);
-        void Index(DepartmentIndexModel model);
-        void Update(DepartmentIndexModel model);
+        
     }
     public class DepartmentService : GenericModelService<Dept, DepartmentIndexModel>, IAPIService<DepartmentIndexModel>, IDepartmentService
     {
         ICodeFileService _codeFileService;
-        IQueryable<Dept> _depts;
-        public DepartmentService(IValidationDictionary validationDictionary, IUnitOfWork inDB, ICodeFileService codeFileService):base(inDB)
+        public DepartmentService(IUnitOfWork inDB, ICodeFileService codeFileService):base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
             _codeFileService = codeFileService;
         }
         private enum _role
@@ -93,23 +88,38 @@ namespace MobileHis_2019.Service.Service
         }
         public void Index(DepartmentIndexModel model)
         {
-            _depts = _depts.Include(a => a.Category_CodeFile);
-            var data = from a in _depts
-                       join code in db.Repository<CodeFile>().ReadAll() on a.UnitId equals code.ID
-                       orderby a.DepNo
-                       select new DepartmentModel
+            //_depts = db.Repository<Dept>().Include(a => a.Category_CodeFile);
+            //var data = from a in _depts
+            //           join code in db.Repository<CodeFile>() on a.UnitId equals code.ID
+            //           orderby a.DepNo
+            //           select new DepartmentModel
+            //           {
+            //               ID = a.ID,
+            //               Category = a.Category,
+            //               CategoryName = a.Category_CodeFile.ItemDescription, //db.CodeFile.AsNoTracking().Where(y => y.ItemType == "DP" && y.ID == x.Category).Select(y => y.ItemDescription).FirstOrDefault(),
+            //               UnitId = a.UnitId,
+            //               UnitName = code.ItemDescription,
+            //               DepName = a.DepName,
+            //               DepNo = a.DepNo,
+            //               IsRegistered = a.IsRegistered,
+            //               ModDate = a.ModDate,
+            //               ModUser = a.ModUser
+            //           };
+            var data = db.Repository<Dept>().ReadAll().Include(a => a.Category_CodeFile)
+                .OrderBy(a => a.DepNo)
+                .Select(a => new DepartmentModel
                        {
                            ID = a.ID,
                            Category = a.Category,
                            CategoryName = a.Category_CodeFile.ItemDescription, //db.CodeFile.AsNoTracking().Where(y => y.ItemType == "DP" && y.ID == x.Category).Select(y => y.ItemDescription).FirstOrDefault(),
                            UnitId = a.UnitId,
-                           UnitName = code.ItemDescription,
+                           UnitName = a.Category_CodeFile.ItemDescription,
                            DepName = a.DepName,
                            DepNo = a.DepNo,
                            IsRegistered = a.IsRegistered,
                            ModDate = a.ModDate,
                            ModUser = a.ModUser
-                       };
+                       });
             if (!string.IsNullOrEmpty(model.Keyword))
                 data = data.Where(x => x.DepName.Contains(model.Keyword)
                         || x.CategoryName.Contains(model.Keyword)
@@ -176,6 +186,7 @@ namespace MobileHis_2019.Service.Service
                 {
                     ValidationDictionary.AddGeneralError(LocalRes.Resource.MSG_Duplidate);
                 }
+                Save();
             }
             catch (Exception ex)
             {

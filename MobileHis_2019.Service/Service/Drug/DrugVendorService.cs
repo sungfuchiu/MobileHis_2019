@@ -26,9 +26,8 @@ namespace MobileHis_2019.Service.Service
 
         public CompositionIDService<DrugVendor> IDService { get; set; }
 
-        public DrugVendorService(IValidationDictionary validationDictionary, IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
+        public DrugVendorService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
             _codeFileService = codeFileService;
             IDService = new CompositionIDService<DrugVendor>(inDB);
         }

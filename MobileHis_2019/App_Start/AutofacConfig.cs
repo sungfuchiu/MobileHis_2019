@@ -1,17 +1,21 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using BLL;
-using DAL;
+using MobileHis_2019.Repository;
+using MobileHis_2019.Repository.Interface;
+using MobileHis_2019.Service;
+using MobileHis_2019.Service.Interface;
+using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MobileHis_2019.App_Start
+namespace MobileHis_2019
 {
-    public class AufofacConfig
+    public class AutofacConfig
     {
         /// <summary>
         /// 註冊DI注入物件資料
@@ -22,7 +26,6 @@ namespace MobileHis_2019.App_Start
             ContainerBuilder builder = new ContainerBuilder();
 
             // 註冊Controllers
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
             //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             //// 註冊DbContextFactory
@@ -34,13 +37,18 @@ namespace MobileHis_2019.App_Start
             //    .InstancePerHttpRequest();
 
             // 註冊 Repository UnitOfWork
-            builder.RegisterGeneric(typeof(DALBase<>)).As(typeof(IDAL<>));
-            builder.RegisterType(typeof(EFUnitOfWork)).As(typeof(IUnitOfWork));
-
+            builder.RegisterGeneric(typeof(GenericService<>)).As(typeof(IService<>));
+            builder.RegisterType<MobileHis.Data.MobileHISEntities>().As<DbContext>().InstancePerRequest();
+            //builder.RegisterType(typeof(EFUnitOfWork)).As(typeof(IUnitOfWork)).WithParameter(new TypedParameter(typeof(DbContext), new MobileHis.Data.MobileHISEntities())).InstancePerRequest();
+            //builder.Register(c => new EFUnitOfWork(c.Resolve<IUnitOfWork>())).As(typeof(IUnitOfWork));
+            builder.RegisterType(typeof(EFUnitOfWork)).As<IUnitOfWork>();
+            builder.Register(c => new CodeFileService(c.Resolve<IUnitOfWork>())).As<ICodeFileService>();
+            builder.Register(c => new DepartmentService(c.Resolve<IUnitOfWork>(), c.Resolve<ICodeFileService>())).As<IDepartmentService>();
             // 註冊Services
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                   .Where(t => t.Name.EndsWith("BLL"))
+                   .Where(t => t.Name.EndsWith("Service"))
                    .AsImplementedInterfaces();
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             // 建立容器
             IContainer container = builder.Build();

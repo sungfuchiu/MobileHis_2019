@@ -13,12 +13,18 @@ using X.PagedList;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class EducationService : GenericModelService<HealthEdu, EducationModel>, IAPIService<EducationModel>
+    public interface IEducationService : IService<HealthEdu>, IAPIService<EducationModel>
+    {
+        List<SelectListItem> GetEducationList(int TypeID);
+        EducationModel Edit(int ID);
+        void Edit(EducationModel model);
+        void DeleteIMG(int ID);
+    }
+    public class EducationService : GenericModelService<HealthEdu, EducationModel>, IAPIService<EducationModel>, IEducationService
     {
         ICodeFileService _codeFileService;
-        public EducationService(IValidationDictionary validationDictionary, IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
+        public EducationService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
             _codeFileService = codeFileService;
         }
 

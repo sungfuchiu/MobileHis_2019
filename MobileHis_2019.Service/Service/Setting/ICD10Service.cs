@@ -9,14 +9,22 @@ using MobileHis.Models.Areas.Sys.ViewModels;
 using AutoMapper;
 using Common;
 using MobileHis_2019.Repository.Interface;
+using MobileHis_2019.Service.Interface;
 
 namespace MobileHis_2019.Service.Service
 {
-    public class ICD10Service : GenericService<ICD10>
+    public interface IICD10Service : IService<ICD10>
     {
-        public ICD10Service(IValidationDictionary validationDictionary, IUnitOfWork inDB) : base(inDB)
+        List<JsonSearchModel> Search(string search, string exclude, int recordCnt);
+        List<ICD10ViewModel> GetList(string keyword, string type);
+        ICD10 GetByCode(string code);
+        bool Add(string code, string name, string type);
+        bool Edit(string code, string name, string type);
+    }
+    public class ICD10Service : GenericService<ICD10>, IICD10Service
+    {
+        public ICD10Service(IUnitOfWork inDB) : base(inDB)
         {
-            InitialiseIValidationDictionary(validationDictionary);
         }
 
         public List<JsonSearchModel> Search(string search, string exclude, int recordCnt)

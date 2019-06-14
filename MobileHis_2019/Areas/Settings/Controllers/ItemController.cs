@@ -5,6 +5,7 @@ using MobileHis.Misc;
 using MobileHis.Models.ApiModel;
 using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis.Models.ViewModels;
+using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,17 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class ItemController : MobileHis_2019.Controllers.BaseController
     {
-        private DrugBLL _drugBLL;
-        private DrugCostBLL _drugCostBLL;
-        private DrugAppearanceBLL _drugAppearanceBLL;
-        private DrugSettingBLL _drugSettingBLL;
-        private CodeFileBLL _codeFileBLL;
+        //private DrugBLL _drugBLL;
+        //private DrugCostBLL _drugCostBLL;
+        //private DrugAppearanceBLL _drugAppearanceBLL;
+        //private DrugSettingBLL _drugSettingBLL;
+        //private CodeFileBLL _codeFileBLL;
         private ModelStateWrapper _modelState;
+        IDrugService _drugService;
+        IDrugSettingService _drugSettingService;
+        IDrugCostService _drugCostService;
+        IDrugAppearanceService _drugAppearanceService;
+        ICodeFileService _codeFileService;
         DrugsFilter _drugsFilter;
         public DrugsFilter DrugsFilter
         {
@@ -29,7 +35,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             {
                 if(_drugsFilter == null)
                 {
-                    return _drugAppearanceBLL.NewFilter();
+                    return _drugAppearanceService.NewFilter();
                 }
                 else
                 {
@@ -41,14 +47,29 @@ namespace MobileHis_2019.Areas.Settings.Controllers
                 _drugsFilter = value;
             }
         }
-        public ItemController()
+        public ItemController(
+            IDrugService drugService, 
+            IDrugSettingService drugSettingService, 
+            IDrugCostService drugCostService, 
+            IDrugAppearanceService drugAppearanceService, 
+            ICodeFileService codeFileService)
         {
+            //_drugBLL = new DrugBLL(_modelState);
+            //_drugSettingBLL = new DrugSettingBLL(_modelState);
+            //_drugCostBLL = new DrugCostBLL();
+            //_drugAppearanceBLL = new DrugAppearanceBLL();
+            //_codeFileBLL = new CodeFileBLL(_modelState);
             _modelState = new ModelStateWrapper(ModelState);
-            _drugBLL = new DrugBLL(_modelState);
-            _drugSettingBLL = new DrugSettingBLL(_modelState);
-            _drugCostBLL = new DrugCostBLL();
-            _drugAppearanceBLL = new DrugAppearanceBLL();
-            _codeFileBLL = new CodeFileBLL(_modelState);
+            drugService.InitialiseIValidationDictionary(_modelState);
+            drugSettingService.InitialiseIValidationDictionary(_modelState);
+            drugCostService.InitialiseIValidationDictionary(_modelState);
+            drugAppearanceService.InitialiseIValidationDictionary(_modelState);
+            codeFileService.InitialiseIValidationDictionary(_modelState);
+            _drugService = drugService;
+            _drugSettingService = drugSettingService;
+            _drugCostService = drugCostService;
+            _drugAppearanceService = drugAppearanceService;
+            _codeFileService = codeFileService;
         }
         // GET: Settings/Item
         public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter)
@@ -58,7 +79,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             //filter = filter ?? drugAppearanceBLL.NewFilter();
             //current_page = (page ?? filter.page ?? 1) - 1;
 
-            var entity = _drugBLL.Filter(DrugsFilter);
+            var entity = _drugService.Filter(DrugsFilter);
             return View(new 
                 Tuple<IPagedList<DrugViewModel>, DrugsFilter>(
                 entity,
@@ -78,12 +99,12 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             if (id.HasValue)
             {
-                var drug = _drugBLL.Read(id.Value);
+                var drug = _drugService.Read(a => a.GID == id.Value);
                 if (drug == null)
                 {
                     return RedirectToAction("Index");
                 }
-                var cost = _drugCostBLL.GetByDrugID(id.Value);
+                var cost = _drugCostService.GetByDrugID(id.Value);
                 return View(DrugViewModel.Load(drug, cost));
             }
             else
@@ -96,7 +117,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             if (ModelState.IsValid)
             {
-                _drugBLL.CreateOrUpdate(model);
+                _drugService.CreateOrUpdate(model);
                 if(ModelState.IsValid)
                     EditSuccessfully();
             }
@@ -111,7 +132,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             if (id.HasValue)
             {
-                DrugSettingModelView model = _drugSettingBLL.GetSettingByDrugID(id.Value);
+                DrugSettingModelView model = _drugSettingService.GetSettingByDrugID(id.Value);
                 //model.SelectListEvent += _codeFileBLL.GetDropDownList;
                 if (Request.IsAjaxRequest())
                 {
@@ -124,49 +145,16 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             }
             else
             {
-                return View(new DrugSettingModelView(_codeFileBLL.GetDropDownList)); 
+                return View(new DrugSettingModelView(_codeFileService.GetDropDownList)); 
             }
-
-            //Guid _Id = Guid.Empty;
-            //if (Guid.TryParse(Id, out _Id))
-            //{
-            //    using (DrugSettingDal dal = new DrugSettingDal())
-            //    {
-            //        if (_Id != Guid.Empty)
-            //        {
-            //            DrugSettingModelView model = dal.GetOneSettingByDrugID(_Id);
-            //            if (model != null)
-            //            {
-            //                if (Request.IsAjaxRequest())
-            //                {
-            //                    return Json(model, JsonRequestBehavior.AllowGet);
-            //                }
-            //                else
-            //                {
-            //                    ViewData.Model = model;
-
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            return RedirectToAction("Index");
-            //        }
-            //    }
-            //    return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index");
-            //}
         }
         [HttpPost]
         public ActionResult Setting(DrugSettingModelView model) //todo: Inject contructor
         {
-            model.CodeFileSelectListEvent += _codeFileBLL.GetDropDownList;
+            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             if (ModelState.IsValid)
             {
-                _drugSettingBLL.CreateOrUpdate(model);
+                _drugSettingService.CreateOrUpdate(model);
                 EditSuccessfully();
             }
             return View(model);
@@ -174,7 +162,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         [HttpPost]
         public ActionResult Delete(Guid drugID)
         {
-            _drugBLL.Delete(drugID);
+            _drugService.Delete(drugID);
             return Json(new BaseApiModel()
             {
                 success = _modelState.IsValid(),

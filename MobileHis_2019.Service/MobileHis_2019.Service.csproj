@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MobileHis_2019.Service</RootNamespace>
     <AssemblyName>MobileHis_2019.Service</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,19 +81,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composition\CompositionGuidService.cs" />
+    <Compile Include="Composition\CompositionIDService.cs" />
+    <Compile Include="Extension\ExtensionGuidService.cs" />
+    <Compile Include="Extension\ExtensionIDService.cs" />
     <Compile Include="Interface\IAPIService.cs" />
     <Compile Include="Interface\IGuidService.cs" />
     <Compile Include="Interface\IIDService.cs" />
     <Compile Include="Interface\IWebService.cs" />
-    <Compile Include="Service\CodeFileService.cs" />
+    <Compile Include="Service\Setting\CodeFileService.cs" />
     <Compile Include="Service\Drug\DrugAppearanceService.cs" />
+    <Compile Include="Service\Drug\DrugCostService.cs" />
     <Compile Include="Service\Drug\DrugService.cs" />
+    <Compile Include="Service\Drug\DrugSettingService.cs" />
     <Compile Include="Service\Drug\DrugVendorService.cs" />
     <Compile Include="Service\Generic\GenericGuidService.cs" />
+    <Compile Include="Service\Generic\GenericModelService.cs" />
     <Compile Include="Service\Generic\GenericService.cs" />
     <Compile Include="Interface\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Generic\GenericIDService.cs" />
+    <Compile Include="Service\Setting\DepartmentService.cs" />
+    <Compile Include="Service\Setting\EducationService.cs" />
+    <Compile Include="Service\Setting\ICD10Service.cs" />
+    <Compile Include="Service\Setting\RoomService.cs" />
+    <Compile Include="Service\Setting\SettingService.cs" />
+    <Compile Include="Service\Setting\VendorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
@@ -124,5 +138,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

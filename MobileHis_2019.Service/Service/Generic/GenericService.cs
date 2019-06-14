@@ -1,13 +1,8 @@
-﻿using MobileHis.Data;
-using MobileHis_2019.Repository.Interface;
+﻿using MobileHis_2019.Repository.Interface;
 using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace MobileHis_2019.Service
 {
