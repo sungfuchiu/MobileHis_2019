@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MobileHis.Data
 {
-    public class CodeFile : IIDEntity
+    public class CodeFile : IIDEntity, IDatedEntity
     {
         public CodeFile() { }
 
@@ -24,7 +24,7 @@ namespace MobileHis.Data
         public string Remark { get; set; }
         [MaxLength(1)]
         public string CheckFlag { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         public DateTime? ModDate { get; set; }
         [MaxLength(100)]
         public string ModUser { get; set; }

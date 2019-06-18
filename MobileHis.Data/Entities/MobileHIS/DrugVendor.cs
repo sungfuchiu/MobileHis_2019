@@ -37,8 +37,8 @@ namespace MobileHis.Data
         public string PurchaseStockRate { get; set; }
         public string StockUsingRate { get; set; }
         [Required]
-        public DateTime CreateDate { get; set; }
-        public DateTime ModDate { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? ModDate { get; set; }
         [Required]
         public int Creator { get; set; }
         [Required]

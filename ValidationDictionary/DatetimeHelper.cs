@@ -18,6 +18,10 @@ namespace Common
             }
             return rtnString;
         }
+        public static string CultureDateTime(this DateTime dt)
+        {
+            return dt.ToString(CultureDateTimeFormat());
+        }
         public static string CultureDateTimeFormat(bool ByJs = false, bool datetimePicker = false)
         {
             var DateTimePattern = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern + " HH:mm:ss";

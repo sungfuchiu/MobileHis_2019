@@ -1,6 +1,6 @@
 ﻿@using X.PagedList;
 @using X.PagedList.Mvc;
-@model IPagedList<MobileHis.Models.Areas.Sys.ViewModels.ICD10ViewModel>
+@model MobileHis.Models.Areas.Sys.ViewModels.ICD10ViewModel
 @{
     ViewBag.Title = @LocalRes.Resource.Map_Sys_Department;
 }
@@ -31,7 +31,10 @@
                         </tr>
                         <tr>
                             <td style="text-align:right">@LocalRes.Resource.ICD10Type</td>
-                            <td style="text-align:left">@DropDownHelper.CodeFileDropDownByText("type", "", "CD", false, false)</td>
+                            <td style="text-align:left">
+                                @*@DropDownHelper.CodeFileDropDownByText("type", "", "CD", false, false)*@
+                                @Html.DropDownList("Type", Model.AddType)
+                            </td>
                         </tr>
 
                     </table>
@@ -49,7 +52,8 @@
     @using (Html.BeginForm("Index", "icd10", FormMethod.Get, new { area = "settings" }))
     {
         @Html.TextBox("Keyword")
-        @DropDownHelper.CodeFileDropDownByText("type", "", "CD", true, false)
+        @*@DropDownHelper.CodeFileDropDownByText("type", "", "CD", true, false)*@
+        @Html.DropDownList("Type", Model.SearchType)
         @*@Html.Hidden("type", (string)ViewBag.type)*@
         <button>search</button>
     }
@@ -64,7 +68,7 @@
             )
         @if (Model != null)
         {
-            foreach (var item in Model)
+            foreach (var item in Model.ICD10PageList)
             {
                 <tr>
                     <td>@item.ICD10Code</td>
@@ -72,18 +76,18 @@
                     <td>@item.Type</td>
                     <td>
                         <div class="hidden-sm hidden-xs btn-group">
-                            @if (_Update)
-                            {
-                                <a href="#" class='btn btn-sm btn-info btnUpdate' data-toggle="modal" data-target="#Modal" data-key="@item.ICD10Code" , data-name="@item.StdName" , data-type="@item.Type">
+                            @*@if (_Update)
+                            {*@
+                                <a href="#" class='btn btn-sm btn-info btnUpdate' data-toggle="modal" data-target="#Modal" data-key="@item.ICD10Code" data-name="@item.StdName" data-type="@item.Type">
                                     <i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit
                                 </a>
-                            }
+                            @*  }*@
                         </div>
                     </td>
                 </tr>
             }
         }
-        
+
     </table>
 </div>
 <div class="row">
@@ -91,8 +95,8 @@
         @if (Model != null)
         {
             <div class="pager">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { keyword = ViewBag.keyword, page = page, type = ViewBag.type }))
-                Displaying @Model.FirstItemOnPage - @Model.LastItemOnPage of @Model.TotalItemCount item(s)
+                @Html.PagedListPager(Model.ICD10PageList, page => Url.Action("Index", new { keyword = ViewBag.keyword, page = page, type = ViewBag.type }))
+                Displaying @Model.ICD10PageList.FirstItemOnPage - @Model.ICD10PageList.LastItemOnPage of @Model.ICD10PageList.TotalItemCount item(s)
             </div>
         }
     </div>
@@ -108,7 +112,7 @@
         $("#code").val(key);
         $('#code').attr('disabled', true);
         $("#name").val(name);
-        $("#type option").filter(function () {
+        $("#Type option").filter(function () {
             return $(this).text() == type;
         }).prop('selected', true);
         actionUrl = '@Url.Action("Edit")';
@@ -117,7 +121,7 @@
         $("#code").val('');
         $('#code').attr('disabled', false);
         $("#name").val(name);
-        $("#type").val('');
+        $("#Type").val('');
         actionUrl = '@Url.Action("Create")';
     });
     $('#btnSubmit').click(function () {
@@ -126,7 +130,7 @@
     function callAjax() {
         let code = $('#code').val();
         let name = $('#name').val();
-        let type = $('#type').val();
+        let type = $('#Type').val();
         let icd10 = {
             code: code,
             name: name,

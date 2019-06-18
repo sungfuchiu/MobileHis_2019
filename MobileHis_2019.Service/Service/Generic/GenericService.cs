@@ -42,6 +42,10 @@ namespace MobileHis_2019.Service
         {
             db.Repository<TEntity>().Delete(entity);
         }
+        public void Delete(IList<TEntity> entities)
+        {
+            db.Repository<TEntity>().Delete(entities);
+        }
         public IEnumerable<TEntity> ReadAll()
         {
             return db.Repository<TEntity>().ReadAll();

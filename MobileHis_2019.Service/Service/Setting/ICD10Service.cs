@@ -16,7 +16,7 @@ namespace MobileHis_2019.Service.Service
     public interface IICD10Service : IService<ICD10>
     {
         List<JsonSearchModel> Search(string search, string exclude, int recordCnt);
-        List<ICD10ViewModel> GetList(string keyword, string type);
+        IQueryable<ICD10> GetList(string keyword, string type);
         ICD10 GetByCode(string code);
         bool Add(string code, string name, string type);
         bool Edit(string code, string name, string type);
@@ -42,19 +42,29 @@ namespace MobileHis_2019.Service.Service
                     text = "[" + i.ICD10Code + "] " + i.StdName
                 }).ToList();
         }
-        public List<ICD10ViewModel> GetList(string keyword, string type)
+        //public List<ICD10ViewModel> GetList(string keyword, string type)
+        //{
+        //    ICD10ViewModel iCD10View = new ICD10ViewModel();
+        //    var config = new MapperConfiguration(cfg => cfg.CreateMap<ICD10, ICD10ViewModel>());
+        //    var mapper = config.CreateMapper();
+        //    var result = db.Repository<ICD10>().ReadAll();
+        //    if (!string.IsNullOrEmpty(keyword))
+        //        result = result.Where(a => a.ICD10Code == keyword || a.StdName.Contains(keyword));
+        //    if (!string.IsNullOrEmpty(type))
+        //        result = result.Where(a => a.Type == type);
+
+        //    var icd10 = mapper.Map<List<ICD10>, List<ICD10ViewModel>>(result.ToList());
+        //    return icd10;
+        //}
+        public IQueryable<ICD10> GetList(string keyword, string type)
         {
-            ICD10ViewModel iCD10View = new ICD10ViewModel();
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ICD10, ICD10ViewModel>());
-            var mapper = config.CreateMapper();
             var result = db.Repository<ICD10>().ReadAll();
             if (!string.IsNullOrEmpty(keyword))
                 result = result.Where(a => a.ICD10Code == keyword || a.StdName.Contains(keyword));
             if (!string.IsNullOrEmpty(type))
                 result = result.Where(a => a.Type == type);
-
-            var icd10 = mapper.Map<List<ICD10>, List<ICD10ViewModel>>(result.ToList());
-            return icd10;
+            
+            return result;
         }
         public ICD10 GetByCode(string code)
         {

@@ -24,6 +24,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             roomService.InitialiseIValidationDictionary(
                 new ModelStateWrapper(ModelState));
             _roomService = roomService;
+            IService = roomService;
         }
         [HttpPost]
         public string GetOneByJson(int id)

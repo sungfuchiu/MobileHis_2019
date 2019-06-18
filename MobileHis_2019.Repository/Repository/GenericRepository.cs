@@ -68,6 +68,10 @@ namespace MobileHis_2019.Repository
                     this._context.Set<TEntity>().Add(entity);
                 }
             }
+            public void Create(IQueryable<TEntity> entities)
+            {
+                this._context.Set<TEntity>().AddRange(entities);
+            }
 
             /// <summary>
             /// Updates the specified entity.
@@ -109,13 +113,25 @@ namespace MobileHis_2019.Repository
                     }
                 }
             }
+        /// <summary>
+        /// Deletes entities.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void Delete(IList<TEntity> entities)
+        {
+            foreach(var entity in entities)
+            {
+                Delete(entity);
+            }
+        }
 
-            /// <summary>
-            /// Gets the specified predicate.
-            /// </summary>
-            /// <param name="predicate">The predicate.</param>
-            /// <returns></returns>
-            public TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
+        /// <summary>
+        /// Gets the specified predicate.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns></returns>
+        public TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
             {
                 var entity = _context.Set<TEntity>().AsQueryable();
                 foreach(var item in includes)

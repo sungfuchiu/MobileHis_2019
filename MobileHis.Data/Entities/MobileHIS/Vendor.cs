@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class Vendor : IIDEntity
+    public class Vendor : IIDEntity, IDatedEntity
     {
         public Vendor() { }
 
@@ -36,8 +36,8 @@ namespace MobileHis.Data
         [MaxLength(20)]
         public string Fax { get; set; }
         [Required]
-        public DateTime CreateDate { get; set; }
-        public DateTime ModDate { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? ModDate { get; set; }
         [Required]
         public int Creator { get; set; }
         [Required]

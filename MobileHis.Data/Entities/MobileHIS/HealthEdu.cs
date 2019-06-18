@@ -10,7 +10,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-     public class HealthEdu : IIDEntity
+     public class HealthEdu : IIDEntity, IDatedEntity
     {
         public HealthEdu() { }
 

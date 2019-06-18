@@ -52,7 +52,7 @@ namespace MobileHis_2019.Service.Service
                     m.Creator = 0;
                 });
                 List<DrugVendor> drugVendors = model.DrugGuidList
-                    .Where(b => existDrugVendor.Select(a => a.DrugGID).Any(guid => guid == b))
+                    .Where(b => !existDrugVendor.Select(a => a.DrugGID).Any(guid => guid == b))
                     .Select(a => new DrugVendor(drugGuid: a, vendorID: model.ID)).ToList();
                 Create(drugVendors);
                 Save();

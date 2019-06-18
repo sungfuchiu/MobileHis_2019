@@ -25,6 +25,9 @@ namespace MobileHis_2019.Service.Service
             bool hasAll = false,
             bool onlyRegistered = false,
             int userID = 0);
+        List<SelectListItem> GetCategoryList(
+            string selectedValue = "",
+            bool hasEmpty = false);
     }
     public class CodeFileService : GenericModelService<CodeFile, CodeFileViewModel>, IAPIService<CodeFileViewModel>, ICodeFileService
     {
@@ -79,13 +82,59 @@ namespace MobileHis_2019.Service.Service
                     Selected = string.IsNullOrEmpty(selectedValue) ? false : a.ID.ToString() == selectedValue
                 });
         }
+        public List<SelectListItem> GetCategoryList(
+            string selectedValue = "",
+            bool hasEmpty = false)
+        {
+            var list = new List<System.Web.Mvc.SelectListItem>();
+            if (hasEmpty)
+            {
+                list.Add(
+                    new SelectListItem
+                    {
+                        Text = LocalRes.Resource.Comm_Select,
+                        Value = ""
+                    });
+            }
+            //var datalist = GetCategory(selectedValue);
+            foreach(var item in GetCategory())
+            {
+                list.Add(new SelectListItem()
+                {
+                    Value = item.Value,
+                    Text = @LocalRes.Resource.ResourceManager.GetString("Category_" + item.Value.ToString()),
+                    Selected = string.IsNullOrEmpty(selectedValue) ? false : item.Value.ToString() == selectedValue
+                });
+            }
+            //list.AddRange(datalist);
+            return list;
+        }
         private bool IsDeleted(CodeFile item)
         {
             return item.CheckFlag == "D";
         }
+        private IEnumerable<Setting> GetCategory()
+        {
+            var setting = db.Repository<Setting>().ReadAll()
+                .Include(a => a.ParentSetting)
+                .FirstOrDefault(a => a.SettingName == "ItemType" 
+                        && a.ParentSetting.SettingName == SettingTypes.Category.ToString());
+            var selectList = db.Repository<Setting>().ReadAll()
+                .Where(a => a.ParentId == setting.ID);
+                //.Select(a => new SelectListItem
+                //{
+                //    Value = a.Value,
+                //    Text = a.Value.ToString(),
+                //    Selected = string.IsNullOrEmpty(selectedValue) ? false : a.Value.ToString() == selectedValue
+                //});
+            foreach(var selectItem in selectList)
+            {
+                yield return selectItem;
+            }
+        }
         public void Index(CodeFileViewModel model)
         {
-            model.CodeFileSelectListEvent += GetDropDownList;
+            model.CategoryListEvent += GetCategoryList;
             var data = db.Repository<CodeFile>().ReadAll()
                 .Include(a => a.Parent)
                 .Where(x => x.CheckFlag != "D")
@@ -120,7 +169,7 @@ namespace MobileHis_2019.Service.Service
                 }
                 else
                 {
-                    ToUpdateEntity(model, codeFile);
+                    codeFile = ToCreateEntity(model);
                     Create(codeFile);
                 }
                 Save();

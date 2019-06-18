@@ -78,7 +78,7 @@
                             <td>@Html.DropDownListFor(a => a.Unit, Model.UnitList)</td>
                             <td><input type="text" id="purchasestockrate_@item.ID" value="@item.PurchaseStockRate" maxlength="8" /></td>
                             <td><input type="text" id="stockusingrate_@item.ID" value="@item.StockUsingRate" maxlength="8" /></td>
-                            <td>@item.UpdatedAt.CultureDateTime()</td>
+                            <td>@item.ModDate.CultureDateTime()</td>
                             <td>
                                 @*@if (_Update)
                                 {*@

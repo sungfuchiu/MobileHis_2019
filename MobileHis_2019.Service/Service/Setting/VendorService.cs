@@ -13,7 +13,7 @@ namespace MobileHis_2019.Service.Service
     public interface IVendorService : IService<Vendor>, IWebService<VendorModel>
     {
     }
-    public class VendorService : GenericService<Vendor>, IWebService<VendorModel>, IVendorService
+    public class VendorService : GenericModelService<Vendor, VendorModel>, IWebService<VendorModel>, IVendorService
     {
         ICodeFileService _codeFileService;
         IMapper _modelMapper;
@@ -41,11 +41,12 @@ namespace MobileHis_2019.Service.Service
         }
         public VendorModel Read(int ID)
         {
-            var vendor = Read(ID);
-            var mapperConfiguration = new MapperConfiguration(
-                cfg => cfg.CreateMap<Vendor, VendorModel>());
-            var _entityMapper = mapperConfiguration.CreateMapper();
-            VendorModel model = _entityMapper.Map<VendorModel>(vendor);
+            var vendor = db.Repository<Vendor>().Read(a => a.ID == ID);
+            //var mapperConfiguration = new MapperConfiguration(
+            //    cfg => cfg.CreateMap<Vendor, VendorModel>());
+            //var _entityMapper = mapperConfiguration.CreateMapper();
+            //VendorModel model = _entityMapper.Map<VendorModel>(vendor);
+            VendorModel model = EntityToViewModel(vendor);
             model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             return model;
         }
@@ -55,7 +56,8 @@ namespace MobileHis_2019.Service.Service
             try
             {
                 model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
-                var vendor = _modelMapper.Map<Vendor>(model);
+                //var vendor = _modelMapper.Map<Vendor>(model);
+                var vendor = ToCreateEntity(model);
                 Create(vendor);
                 Save();
             }catch(Exception ex)
@@ -67,12 +69,13 @@ namespace MobileHis_2019.Service.Service
         public void Update(VendorModel model)
         {
             model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
-            var vendor = Read(model.ID);
+            var vendor = Read(a => a.ID == model.ID);
             try
             {
                 if (vendor != null)
                 {
-                    vendor = _modelMapper.Map(model, vendor);
+                    //vendor = _modelMapper.Map(model, vendor);
+                    ToUpdateEntity(model, vendor);
                     Save();
                 }
                 else

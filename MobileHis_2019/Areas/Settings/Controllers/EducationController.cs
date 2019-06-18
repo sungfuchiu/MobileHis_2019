@@ -25,6 +25,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             educationService.InitialiseIValidationDictionary(
                 new ModelStateWrapper(ModelState));
             _educationService = educationService;
+            IService = educationService;
         }
         [AcceptVerbs(HttpVerbs.Get)]
         public string GetGuardianList(int typeID)

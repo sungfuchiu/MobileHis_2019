@@ -1,4 +1,5 @@
 ﻿using BLL.Interface;
+using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,14 @@ namespace MobileHis_2019.Controllers
 {
     public class BaseWebController<TModel> : BaseController 
     {
-        protected IWebBLL<TModel> IBLL;
+        //protected IWebBLL<TModel> IBLL;
+        protected IWebService<TModel> IService;
         protected TModel Model;
         // GET: Settings/Category
         [HttpGet]
         public ActionResult Index(TModel model)
         {
-            IBLL.Index(model);
+            IService.Index(model);
             return View(model);
         }
 
@@ -28,7 +30,7 @@ namespace MobileHis_2019.Controllers
         {
             if (ModelState.IsValid)
             {
-                IBLL.Create(model);
+                IService.Create(model);
                 if (ModelState.IsValid)
                     EditSuccessfully();
             }
@@ -36,7 +38,7 @@ namespace MobileHis_2019.Controllers
         }
         public ActionResult Update(int ID)
         {
-            Model = IBLL.Read(ID);
+            Model = IService.Read(ID);
             return View("Edit", Model);
         }
         [HttpPost]
@@ -44,7 +46,7 @@ namespace MobileHis_2019.Controllers
         {
             if (ModelState.IsValid)
             {
-                IBLL.Update(model);
+                IService.Update(model);
                 if (ModelState.IsValid)
                     EditSuccessfully();
             }
@@ -53,7 +55,7 @@ namespace MobileHis_2019.Controllers
         [HttpPost]
         public ActionResult Delete(int ID)
         {
-            IBLL.Delete(ID);
+            IService.Delete(ID);
             return View();
         }
     }

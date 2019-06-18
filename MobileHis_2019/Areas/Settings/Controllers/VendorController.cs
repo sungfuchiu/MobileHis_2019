@@ -15,17 +15,18 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private CodeFileBLL _codeFileBLL;
         //private ModelStateWrapper _modelState;
         ICodeFileService _codeFileService;
-        IDrugVendorService _drugVendorService;
-        public VendorController(ICodeFileService codeFileService, IDrugVendorService drugVendorService)
+        IVendorService _vendorService;
+        public VendorController(ICodeFileService codeFileService, IVendorService vendorService)
         {
             //_modelState = new ModelStateWrapper(ModelState);
             //_vendorBLL = new VendorBLL(_modelState);
             //_codeFileBLL = new CodeFileBLL(_modelState);
             //IBLL = _vendorBLL;
             codeFileService.InitialiseIValidationDictionary(new ModelStateWrapper(ModelState));
-            drugVendorService.InitialiseIValidationDictionary(new ModelStateWrapper(ModelState));
+            vendorService.InitialiseIValidationDictionary(new ModelStateWrapper(ModelState));
             _codeFileService = codeFileService;
-            _drugVendorService = drugVendorService;
+            _vendorService = vendorService;
+            IService = vendorService;
             Model = new VendorModel(codeFileService.GetDropDownList);
         }
     }

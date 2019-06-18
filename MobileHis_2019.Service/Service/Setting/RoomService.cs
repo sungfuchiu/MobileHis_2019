@@ -99,8 +99,11 @@ namespace MobileHis_2019.Service.Service
                 {
                     //item = _mapper.Map(model, item);
                     ToUpdateEntity(model, item);
-                    var dept2Room = db.Repository<Dept2Room>().Read(a => a.ID == model.ID);
-                    db.Repository<Dept2Room>().Delete(dept2Room);
+                    var dept2Room = db.Repository<Dept2Room>().ReadAll().Where(a => a.Room_id == model.ID).ToList();
+                    if (dept2Room != null)
+                    {
+                        db.Repository<Dept2Room>().Delete(dept2Room);
+                    }
                     if (!model.AllowDept.IsNullOrEmpty())
                     {
                         CreateByText(model.AllowDept, model.ID);
@@ -128,8 +131,29 @@ namespace MobileHis_2019.Service.Service
 
         public void Delete(int ID)
         {
-            var room = db.Repository<Room>().Read(a => a.ID == ID);
-            db.Repository<Room>().Delete(room);
+            try
+            {
+                var dept2Room = db.Repository<Dept2Room>().ReadAll().Where(a => a.Room_id == ID).ToList();
+                if (dept2Room != null)
+                {
+                    db.Repository<Dept2Room>().Delete(dept2Room);
+                }
+                var room = db.Repository<Room>().Read(a => a.ID == ID);
+                db.Repository<Room>().Delete(room);
+                Save();
+            }catch(Exception ex)
+            {
+                ValidationDictionary.AddGeneralError(ex.Message);
+            }
+        }
+
+        protected override void ToUpdateEntity(RoomModel model, Room entity)
+        {
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<RoomModel, Room>()
+                    .ForMember(m => m.RoomNo, m => m.Ignore()));
+            var settingMapper = settingConfig.CreateMapper();
+            settingMapper.Map(model, entity);
         }
     }
 }

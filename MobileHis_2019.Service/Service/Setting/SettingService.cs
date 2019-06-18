@@ -34,7 +34,7 @@ namespace MobileHis_2019.Service.Service
         bool TestTimeValid(string testTime);
         void Update(string settingName, SettingTypes parentName, string newValue);
     }
-    public class SettingService : GenericService<Setting>
+    public class SettingService : GenericService<Setting>, ISettingService
     {
         public SettingService(IUnitOfWork inDB) : base(inDB)
         {
@@ -179,6 +179,7 @@ namespace MobileHis_2019.Service.Service
             if (!ValidationDictionary.IsValid())
                 return false;
             SetGroupSetting(SettingTypes.Info, infoSettings);
+            Save();
             return true;
         }
         public bool SetOthersSetting(SettingView viewModel)
@@ -190,6 +191,7 @@ namespace MobileHis_2019.Service.Service
             if (!ValidationDictionary.IsValid())
                 return false;
             SetGroupSetting(SettingTypes.Other, otherSettings);
+            Save();
             return true;
         }
         public bool SetMailSetting(SettingView viewModel)
@@ -201,6 +203,7 @@ namespace MobileHis_2019.Service.Service
             if (!ValidationDictionary.IsValid())
                 return false;
             SetGroupSetting(SettingTypes.Mail, mailSettings);
+            Save();
             return true;
         }
         public ScheduleShift GetCurrentShift()
