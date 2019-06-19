@@ -20,8 +20,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
             CategoryListEvent = selectListEvent;
         }
         public CodeFileViewModel() { }
-        DateTime? modifiedDate;
-        DateTime? createDate;
         public IPagedList<CodeFile> CategoryPageList { get; set; }
         public List<SelectListItem> AddItemType { get => CategoryListEvent(); }
         public List<SelectListItem> AddParentType { get => CategoryListEvent(hasEmpty: true); }
@@ -39,14 +37,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string Remark { get; set; }
         [MaxLength(1)]
         public string CheckFlag { get; set; }
-        public DateTime CreateDate {
-            get => createDate ?? DateTime.Now;
-            set => createDate = value;
-        }
-        public DateTime ModDate {
-            get => modifiedDate ?? DateTime.Now;
-            set => modifiedDate = value;
-        }
         [MaxLength(100)]
         public string ModUser { get; set; }
         public int? ParentCodeFile { get; set; }

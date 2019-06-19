@@ -181,6 +181,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BaseWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogOnController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -688,6 +689,7 @@
     <Folder Include="Views\API\" />
     <Folder Include="Views\BaseCRUD\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Logon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

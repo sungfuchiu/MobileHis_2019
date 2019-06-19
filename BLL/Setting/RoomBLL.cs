@@ -59,7 +59,6 @@ namespace BLL
                 {
                         item =_mapper.Map<Room>(model);
                         item.RoomNo = model.RoomNo;
-                        item.CreateDate = model.CreateDate;
                         Add(item);
                         Save();
                         if (!model.AllowDept.IsNullOrEmpty())

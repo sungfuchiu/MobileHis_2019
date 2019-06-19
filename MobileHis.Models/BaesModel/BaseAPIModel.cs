@@ -13,8 +13,6 @@ namespace MobileHis.Models
     {
         public BaseAPIModel() { }
         int? page;
-        DateTime? modifiedDate;
-        DateTime? createDate;
         public int Page
         {
             get => page ?? 1;
@@ -22,16 +20,6 @@ namespace MobileHis.Models
         }
         public IPagedList<TEntity> EntityPageList { get; set; }
         public string Keyword { get; set; }
-        public DateTime CreateDate
-        {
-            get => createDate ?? DateTime.Now;
-            set => createDate = value;
-        }
-        public DateTime ModDate
-        {
-            get => modifiedDate ?? DateTime.Now;
-            set => modifiedDate = value;
-        }
         [MaxLength(100)]
         public string ModUser { get; set; }
     }

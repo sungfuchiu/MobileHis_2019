@@ -41,16 +41,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string Clinic { get; set; }
         [MaxLength(1)]
         public string IsRegistered { get; set; }
-        public DateTime CreateDate
-        {
-            get => createDate ?? DateTime.Now;
-            set => createDate = value;
-        }
-        public DateTime ModDate
-        {
-            get => modifiedDate ?? DateTime.Now;
-            set => modifiedDate = value;
-        }
         [MaxLength(100)]
         public string ModUser { get; set; }
     }

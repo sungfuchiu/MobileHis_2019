@@ -62,7 +62,6 @@ namespace MobileHis_2019.Service.Service
                     //item =_mapper.Map<Room>(model);
                     item = ToCreateEntity(model);
                         item.RoomNo = model.RoomNo;
-                        item.CreateDate = model.CreateDate;
                         Create(item);
                         if (!model.AllowDept.IsNullOrEmpty())
                         {

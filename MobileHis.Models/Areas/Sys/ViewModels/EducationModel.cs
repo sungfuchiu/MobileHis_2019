@@ -21,8 +21,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
             CodeFileSelectListEvent = selectListEvent;
         }
         public EducationModel() { }
-        DateTime? modifiedDate;
-        DateTime? createDate;
         public IPagedList<HealthEdu> EducationPageList { get; set; }
         public List<SelectListItem> AddCategory { get => CodeFileSelectListEvent(itemType: "GD", selectedValue: HealthEdu_Type_CodeFile.ToString() ); }
 
@@ -38,16 +36,6 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string CategoryName { get; set; }
         public IEnumerable<HttpPostedFileBase> UploadFiles { get; set; }
         public IList<HealthEdu_File> EducationFiles { get; set; }
-        public DateTime CreateDate
-        {
-            get => createDate ?? DateTime.Now;
-            set => createDate = value;
-        }
-        public DateTime ModDate
-        {
-            get => modifiedDate ?? DateTime.Now;
-            set => modifiedDate = value;
-        }
         public string ModUser
         {
             get => "Admin";
