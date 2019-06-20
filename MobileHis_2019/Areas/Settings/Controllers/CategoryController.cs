@@ -18,7 +18,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private CodeFileBLL _codeFileBLL;
         ICodeFileService _codeFileService;
         private ModelStateWrapper _modelState;
-        public CategoryController(ICodeFileService codeFileService)
+        public CategoryController(ICodeFileService codeFileService, ISystemLogService systemLogService) : base(systemLogService)
         {
             codeFileService.InitialiseIValidationDictionary
                (new ModelStateWrapper(this.ModelState));

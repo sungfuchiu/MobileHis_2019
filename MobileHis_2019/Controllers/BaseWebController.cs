@@ -1,5 +1,6 @@
 ﻿using BLL.Interface;
 using MobileHis_2019.Service.Interface;
+using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace MobileHis_2019.Controllers
         //protected IWebBLL<TModel> IBLL;
         protected IWebService<TModel> IService;
         protected TModel Model;
+        public BaseWebController(ISystemLogService systemLogService) : base(systemLogService) { }
         // GET: Settings/Category
         [HttpGet]
         public ActionResult Index(TModel model)

@@ -52,7 +52,8 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             IDrugSettingService drugSettingService, 
             IDrugCostService drugCostService, 
             IDrugAppearanceService drugAppearanceService, 
-            ICodeFileService codeFileService)
+            ICodeFileService codeFileService,
+            ISystemLogService systemLogService) : base(systemLogService)
         {
             //_drugBLL = new DrugBLL(_modelState);
             //_drugSettingBLL = new DrugSettingBLL(_modelState);

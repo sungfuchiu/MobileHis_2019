@@ -13,7 +13,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private SettingBLL settingBLL;
         //private ModelStateWrapper modelState;
         ISettingService _settingService;
-        public SettingController(ISettingService settingService)
+        public SettingController(ISettingService settingService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //modelState = new ModelStateWrapper(ModelState);
             //settingBLL = new SettingBLL(modelState);

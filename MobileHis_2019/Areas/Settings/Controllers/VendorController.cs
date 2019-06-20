@@ -16,7 +16,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private ModelStateWrapper _modelState;
         ICodeFileService _codeFileService;
         IVendorService _vendorService;
-        public VendorController(ICodeFileService codeFileService, IVendorService vendorService)
+        public VendorController(ICodeFileService codeFileService, IVendorService vendorService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //_modelState = new ModelStateWrapper(ModelState);
             //_vendorBLL = new VendorBLL(_modelState);

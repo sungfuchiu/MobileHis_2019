@@ -17,7 +17,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private EducationBLL _educationBLL;
         //private ModelStateWrapper _modelState;
         IEducationService _educationService;
-        public EducationController(IEducationService educationService)
+        public EducationController(IEducationService educationService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //_modelState = new ModelStateWrapper(ModelState);
             //_educationBLL = new EducationBLL(_modelState);

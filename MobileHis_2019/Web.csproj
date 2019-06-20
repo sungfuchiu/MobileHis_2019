@@ -676,6 +676,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Logon\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -689,7 +690,6 @@
     <Folder Include="Views\API\" />
     <Folder Include="Views\BaseCRUD\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Logon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

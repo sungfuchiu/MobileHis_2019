@@ -14,7 +14,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private DrugSettingBLL _drugSettingBLL;
         //private ModelStateWrapper _modelStata;
         IDrugSettingService _drugSettingService;
-        public DrugController(IDrugSettingService drugSettingService)
+        public DrugController(IDrugSettingService drugSettingService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //_modelStata = new ModelStateWrapper(ModelState);
             //_drugSettingBLL = new DrugSettingBLL(_modelStata);

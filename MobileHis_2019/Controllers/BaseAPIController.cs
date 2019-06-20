@@ -1,6 +1,7 @@
 ﻿using BLL.Interface;
 using MobileHis.Models.ApiModel;
 using MobileHis_2019.Service.Interface;
+using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace MobileHis_2019.Controllers
         //protected IAPIBLL<TModel> IBLL;
         protected IAPIService<TModel> IService;
         // GET: Settings/Category
+        public BaseAPIController(ISystemLogService systemLogService) : base(systemLogService) { }
         [HttpGet]
         public virtual ActionResult Index(TModel model)
         {

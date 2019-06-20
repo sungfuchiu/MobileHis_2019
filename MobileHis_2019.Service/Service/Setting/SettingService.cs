@@ -33,6 +33,8 @@ namespace MobileHis_2019.Service.Service
         bool SetOthersSetting(SettingView viewModel);
         bool TestTimeValid(string testTime);
         void Update(string settingName, SettingTypes parentName, string newValue);
+        Setting GetSetting(string name, SettingTypes parentName);
+        List<string> GetPartnerImagePath();
     }
     public class SettingService : GenericService<Setting>, ISettingService
     {
@@ -419,6 +421,23 @@ namespace MobileHis_2019.Service.Service
                 Text = LocalRes.Resource.ResourceManager.GetString($"Category_{item}"),
                 Selected = string.IsNullOrEmpty(selectedValue) ? false : item == selectedValue
             });
+        }
+        public Setting GetSetting(string name, SettingTypes parentName)
+        {
+            return db.Repository<Setting>().ReadAll()
+                .Include(a => a.ParentSetting)
+                .FirstOrDefault(a => a.SettingName == name 
+                    && a.ParentSetting.SettingName == parentName.ToString());
+        }
+        public List<string> GetPartnerImagePath()
+        {
+            return db.Repository<Setting>().ReadAll()
+                .Include(a => a.ParentSetting)
+                .Where(a => a.SettingName.Contains("Partner") 
+                    && a.ParentSetting.SettingName == SettingTypes.Default.ToString() 
+                    && !string.IsNullOrEmpty(a.Value))
+               .OrderBy(a => a.SettingName)
+               .Select(a => a.Value).ToList();
         }
 
     }

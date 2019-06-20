@@ -93,6 +93,7 @@
     <Compile Include="Interface\IIDService.cs" />
     <Compile Include="Interface\IWebService.cs" />
     <Compile Include="ServiceModule.cs" />
+    <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\Setting\CodeFileService.cs" />
     <Compile Include="Service\Drug\DrugAppearanceService.cs" />
     <Compile Include="Service\Drug\DrugCostService.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Service\Setting\RoomService.cs" />
     <Compile Include="Service\Setting\SettingService.cs" />
     <Compile Include="Service\Setting\VendorService.cs" />
+    <Compile Include="Service\SystemLogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">

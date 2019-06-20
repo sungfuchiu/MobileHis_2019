@@ -16,7 +16,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private RoomBLL _roomBLL;
         //private ModelStateWrapper _modelState;
         IRoomService _roomService;
-        public RoomController(IRoomService roomService)
+        public RoomController(IRoomService roomService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //_modelState = new ModelStateWrapper(ModelState);
             //_roomBLL = new RoomBLL(_modelState);

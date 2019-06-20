@@ -19,7 +19,10 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private ModelStateWrapper _modelState;
         IDrugVendorService _drugVendorService;
         IDrugService _drugService;
-        public DrugVendorController(IDrugVendorService drugVendorService, IDrugService drugService)
+        public DrugVendorController(
+            IDrugVendorService drugVendorService, 
+            IDrugService drugService,
+            ISystemLogService systemLogService) : base(systemLogService)
         {
             //_modelState = new ModelStateWrapper(ModelState);
             //_drugVendorBLL = new DrugVendorBLL(_modelState, inDB);

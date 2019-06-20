@@ -19,7 +19,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private ModelStateWrapper modelState;
         IICD10Service _ICD10Service;
         ICodeFileService _codeFileService;
-        public ICD10Controller(IICD10Service ICD10Service, ICodeFileService codeFileService)
+        public ICD10Controller(IICD10Service ICD10Service, ICodeFileService codeFileService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //modelState = new ModelStateWrapper(ModelState);
             //icd10BLL = new ICD10BLL(modelState);

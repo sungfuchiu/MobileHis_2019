@@ -15,7 +15,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         //private DepartmentBLL _deparmentBLL;
         //private ModelStateWrapper _modelState;
         IDepartmentService _departmentService;
-        public DepartmentController(IDepartmentService departmentService)
+        public DepartmentController(IDepartmentService departmentService, ISystemLogService systemLogService) : base(systemLogService)
         {
             //_modelState = new ModelStateWrapper(ModelState);
             //_deparmentBLL = new DepartmentBLL(_modelState);
