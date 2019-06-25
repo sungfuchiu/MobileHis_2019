@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace MobileHis_2019.Repository
     public class EFUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _context;
+        private IPrincipal _principal;
 
         private bool _disposed;
         private Hashtable _repositories;
@@ -21,9 +23,10 @@ namespace MobileHis_2019.Repository
         /// 設定此Unit of work(UOF)的Context。
         /// </summary>
         /// <param name="context">設定UOF的context</param>
-        public EFUnitOfWork(DbContext context)
+        public EFUnitOfWork(DbContext context, IPrincipal principal)
         {
             _context = context;
+            _principal = principal;
         }
 
         /// <summary>
@@ -31,6 +34,17 @@ namespace MobileHis_2019.Repository
         /// </summary>
         public void Save()
         {
+            foreach (var entry in _context.ChangeTracker.Entries<IUserEntity>())
+            {
+                var entity = entry.Entity;
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                    case EntityState.Modified:
+                        entity.ModUser = _principal.Identity.Name;
+                        break;
+                }
+            }
             _context.SaveChanges();
         }
 

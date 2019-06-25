@@ -154,6 +154,7 @@
     <Compile Include="Interface\IDatedEntity.cs" />
     <Compile Include="Interface\IIDEntity.cs" />
     <Compile Include="Interface\IIsDeleted.cs" />
+    <Compile Include="Interface\IUserEntity.cs" />
     <Compile Include="Migrations\201902260229559_init.cs" />
     <Compile Include="Migrations\201902260229559_init.Designer.cs">
       <DependentUpon>201902260229559_init.cs</DependentUpon>
@@ -214,6 +215,10 @@
     <Compile Include="Migrations\201906181004310_ModifyDatetimeColumnForHook.cs" />
     <Compile Include="Migrations\201906181004310_ModifyDatetimeColumnForHook.Designer.cs">
       <DependentUpon>201906181004310_ModifyDatetimeColumnForHook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906250928325_AddUserColumnForHook.cs" />
+    <Compile Include="Migrations\201906250928325_AddUserColumnForHook.Designer.cs">
+      <DependentUpon>201906250928325_AddUserColumnForHook.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906181004310_ModifyDatetimeColumnForHook.resx">
       <DependentUpon>201906181004310_ModifyDatetimeColumnForHook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906250928325_AddUserColumnForHook.resx">
+      <DependentUpon>201906250928325_AddUserColumnForHook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

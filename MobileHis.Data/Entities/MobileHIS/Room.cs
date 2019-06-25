@@ -8,7 +8,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class Room : IIDEntity, IDatedEntity
+    public class Room : IIDEntity, IDatedEntity, IUserEntity
     {
         public Room() { }
 

@@ -3,6 +3,7 @@ using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Security.Principal;
 
 namespace MobileHis_2019.Service
 {

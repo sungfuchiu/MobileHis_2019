@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,14 +40,16 @@ namespace MobileHis_2019
             //    .InstancePerHttpRequest();
 
             // 註冊 Repository UnitOfWork
-            builder.RegisterGeneric(typeof(GenericService<>)).As(typeof(IService<>));
+            //builder.RegisterGeneric(typeof(GenericService<>)).As(typeof(IService<>));
             builder.RegisterType<MobileHis.Data.MobileHISEntities>().As<DbContext>().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.User).As<IPrincipal>().InstancePerRequest();
             //builder.RegisterType(typeof(EFUnitOfWork)).As(typeof(IUnitOfWork)).WithParameter(new TypedParameter(typeof(DbContext), new MobileHis.Data.MobileHISEntities())).InstancePerRequest();
             //builder.Register(c => new EFUnitOfWork(c.Resolve<IUnitOfWork>())).As(typeof(IUnitOfWork));
             builder.RegisterType(typeof(EFUnitOfWork)).As<IUnitOfWork>();
             //builder.Register(c => new CodeFileService(c.Resolve<IUnitOfWork>())).As<ICodeFileService>();
             // 註冊Services
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            //builder.RegisterType(typeof(SystemLogService)).As<ISystemLogService>();
             builder.RegisterAssemblyTypes(typeof(MobileHis_2019.Service.ServiceModule).Assembly)
                    .Where(t => t.Name.EndsWith("Service"))
                    .AsImplementedInterfaces();
@@ -59,9 +62,8 @@ namespace MobileHis_2019
                 //};
                 return c.GetDropDownList;
             }).As<GetCodeFileSelectList>();
-            //builder.Register(c => c.Resolve<ICodeFileService.GetDropDownList>).As<GetCodeFileSelectList>();
-           builder.RegisterAssemblyTypes(typeof(MobileHis.Models.ModelModule).Assembly)
-                .Where(t => t.Name.EndsWith("Model")).InstancePerRequest();
+            //builder.RegisterAssemblyTypes(typeof(MobileHis.Models.ModelModule).Assembly)
+            //     .Where(t => t.Name.EndsWith("Model")).InstancePerRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             //builder.Register(c => c.Resolve<ICodeFileService.GetDropDownList>).As<GetCodeFileSelectList>();
             //builder.Register(c => new DepartmentService(c.Resolve<IUnitOfWork>(), c.Resolve<ICodeFileService>())).As<IDepartmentService>();

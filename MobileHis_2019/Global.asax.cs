@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MobileHis_2019.Filters;
+using System;
 using System.Globalization;
+using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -17,6 +19,7 @@ namespace MobileHis_2019
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.Register();
+            ModelBinders.Binders[typeof(IPrincipal)] = new IPrincipalModelBinder();
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {

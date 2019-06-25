@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class Vendor : IIDEntity, IDatedEntity
+    public class Vendor : IIDEntity, IDatedEntity, IUserEntity
     {
         public Vendor() { }
 
@@ -40,6 +40,7 @@ namespace MobileHis.Data
         public DateTime? ModDate { get; set; }
         [Required]
         public int Creator { get; set; }
+        public string ModUser { get; set; }
         [Required]
         public bool Deleted { get; set; }
 

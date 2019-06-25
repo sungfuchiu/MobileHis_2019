@@ -10,7 +10,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class Setting
+    public class Setting : IUserEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,6 +28,7 @@ namespace MobileHis.Data
 
         [Required]
         public int CreatedBy { get; set; }
+        public string ModUser { get; set; }
 
         #region ForeignKey
         [ForeignKey("ParentId")]

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class DrugVendor : IIDEntity, IIsDeleted, IDatedEntity
+    public class DrugVendor : IIDEntity, IIsDeleted, IDatedEntity, IUserEntity
     {
         public DrugVendor() { }
         public DrugVendor(Guid drugGuid, int vendorID)
@@ -43,6 +43,7 @@ namespace MobileHis.Data
         public int Creator { get; set; }
         [Required]
         public bool IsDeleted { get; set; }
+        public string ModUser { get; set; }
 
         [ForeignKey("DrugGID")]
         public virtual Drug Drug { get; set; }

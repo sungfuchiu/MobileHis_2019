@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MobileHis.Data
 {
-    public class Account
+    public class Account : IUserEntity, IDatedEntity
     {
         public Account() { }
 
@@ -58,9 +58,9 @@ namespace MobileHis.Data
 
         public DateTime? LastLoginDate { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
 
-        public DateTime ModDate { get; set; }
+        public DateTime? ModDate { get; set; }
 
         [MaxLength(100)]
         public string ModUser { get; set; }

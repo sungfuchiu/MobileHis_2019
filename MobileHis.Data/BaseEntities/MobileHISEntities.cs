@@ -4,6 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Principal;
 
 namespace MobileHis.Data
 {
@@ -47,11 +48,11 @@ namespace MobileHis.Data
         /// </summary>
         /// <param name="user">user.name</param>
         /// <returns></returns>
-        public int SaveChanges(string user)
-        {
-            RenewMacroColumn(user);
-            return SaveChanges();
-        }
+        //public int SaveChanges(/*string user*/)
+        //{
+        //    //RenewMacroColumn(user);
+        //    return SaveChanges();
+        //}
         /// <summary>
         /// base save changes
         /// </summary>
@@ -82,29 +83,29 @@ namespace MobileHis.Data
         }
 
 
-        protected void RenewMacroColumn(string user)
-        {
-            foreach (var dbEntry in this.ChangeTracker.Entries())
-            {
-                switch (dbEntry.State)
-                {
+        //protected void RenewMacroColumn(string user)
+        //{
+        //    foreach (var dbEntry in this.ChangeTracker.Entries())
+        //    {
+        //        switch (dbEntry.State)
+        //        {
 
-                    case EntityState.Added:
-                        CreateWithValues(dbEntry, "GID", System.Guid.NewGuid());
-                        CreateWithValues(dbEntry, "CreatedAt", System.DateTime.Now);
+        //            case EntityState.Added:
+        //                CreateWithValues(dbEntry, "GID", System.Guid.NewGuid());
+        //                CreateWithValues(dbEntry, "CreatedAt", System.DateTime.Now);
 
-                        CreateWithValues(dbEntry, "ModBy", user);
-                        CreateWithValues(dbEntry, "UpdatedAt", System.DateTime.Now);
-                        break;
+        //                CreateWithValues(dbEntry, "ModBy", user);
+        //                CreateWithValues(dbEntry, "UpdatedAt", System.DateTime.Now);
+        //                break;
 
-                    case EntityState.Modified:
+        //            case EntityState.Modified:
 
-                        CreateWithValues(dbEntry, "ModBy", user);
-                        CreateWithValues(dbEntry, "UpdatedAt", System.DateTime.Now);
-                        break;
-                }
-            }
-        }
+        //                CreateWithValues(dbEntry, "ModBy", user);
+        //                CreateWithValues(dbEntry, "UpdatedAt", System.DateTime.Now);
+        //                break;
+        //        }
+        //    }
+        //}
 
         private void CreateWithValues(System.Data.Entity.Infrastructure.DbEntityEntry dbEntry, string propertyName, object value)
         {

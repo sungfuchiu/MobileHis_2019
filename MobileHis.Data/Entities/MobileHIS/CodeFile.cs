@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MobileHis.Data
 {
-    public class CodeFile : IIDEntity, IDatedEntity
+    public class CodeFile : IIDEntity, IDatedEntity, IUserEntity
     {
         public CodeFile() { }
 

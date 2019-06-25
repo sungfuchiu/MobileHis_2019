@@ -183,6 +183,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogOnController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
+    <Compile Include="Filters\IPrincipalModelBinder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
