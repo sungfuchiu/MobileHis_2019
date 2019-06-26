@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "_Layout.cshtml";
-    var header = @RenderSection("header", required: true).ToHtmlString();
+    //var header = @RenderSection("header", required: true).ToHtmlString();
 }
 <style>
     .modal-header {
@@ -34,7 +34,7 @@
             </span>
         </li>
         <li>
-            @header
+            @*@header*@
             <span class="divider">
                 <i class="icon-angle-right arrow-icon"></i>
             </span>
@@ -43,7 +43,7 @@
 </div>
 @Html.AntiForgeryToken()
 <div class="page-content">
-    <div class="page-header"><h1>@header</h1></div>
+    <div class="page-header"><h1>@*@header*@</h1></div>
     <div id="alertBox" class="alert alert-block alert-info" style="display: none;">
         <button type="button" class="close" data-dismiss="alert">
             <i class="ace-icon fa fa-times"></i>

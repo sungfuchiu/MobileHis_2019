@@ -1,7 +1,10 @@
-﻿using MobileHis_2019.Repository.Interface;
+﻿using Common;
+using MobileHis_2019.Repository.Interface;
 using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Principal;
 
@@ -66,6 +69,49 @@ namespace MobileHis_2019.Service
         protected void NotFoundError()
         {
             ValidationDictionary.AddGeneralError(LocalRes.Resource.Comm_NotFound);
+        }
+
+        /// <summary>
+        /// 取得某一個條件下面的某一筆Entity並且轉成對應的ViewModel
+        /// </summary>
+        /// <typeparam name="TViewModel">ViewModel的形態</typeparam>
+        /// <param name="wherePredicate">過濾邏輯</param>
+        /// <param name="includes">需要Include的Entity</param>
+        /// <returns>取得轉換過的ViewModel或者是null</returns>
+        public virtual TViewModel GetSpecificDetailToViewModel<TViewModel>(System.Linq.Expressions.Expression<Func<TEntity, bool>> wherePredicate,
+            params System.Linq.Expressions.Expression<Func<TEntity, object>>[] includes)
+        {
+            return GetSpecificDetail(wherePredicate, includes).MapFrom<TEntity, TViewModel>();
+        }
+        /// <summary>
+        /// 取得某一個條件下面的某一筆Entity
+        /// </summary>
+        /// <param name="wherePredicate">過濾邏輯</param>
+        /// <param name="includes">需要Include的Entity</param>
+        /// <returns>取得Entity或者是null</returns>
+        public virtual TEntity GetSpecificDetail(System.Linq.Expressions.Expression<Func<TEntity, bool>> wherePredicate,
+            params System.Linq.Expressions.Expression<Func<TEntity, object>>[] includes)
+        {
+            var data = ApplyIncludeAndGetIQueryable(includes);
+
+            return data.Where(wherePredicate).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 取得IQueryable同時加上Include的Entity
+        /// </summary>
+        /// <param name="includes">要Include進來的Entity</param>
+        /// <returns>加過Include的IQueryable</returns>
+        private IQueryable<TEntity> ApplyIncludeAndGetIQueryable(System.Linq.Expressions.Expression<Func<TEntity, object>>[] includes)
+        {
+            var data = db.Repository<TEntity>().ReadAll();
+
+            foreach (var item in includes)
+            {
+                data.Include(item);
+            }
+
+            return data;
         }
     }
 }

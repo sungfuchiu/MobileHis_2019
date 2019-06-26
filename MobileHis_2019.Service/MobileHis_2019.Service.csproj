@@ -92,6 +92,7 @@
     <Compile Include="Interface\IGuidService.cs" />
     <Compile Include="Interface\IIDService.cs" />
     <Compile Include="Interface\IWebService.cs" />
+    <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="ServiceModule.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\Setting\CodeFileService.cs" />

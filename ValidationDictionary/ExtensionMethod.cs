@@ -23,10 +23,31 @@ namespace Common
                          select new { Id = e.ToString(), Name = e.ToString() };
             return new SelectList(values, "Id", "Name", enumObj);
         }
-        public static TDestination Map<TSource, TDestination>(
-            this TDestination destination, TSource source)
+
+        public static TDestination MapFrom<TSoruce, TDestination>(this TSoruce model)
         {
-            return Mapper.Map(source, destination);
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<TSoruce, TDestination>());
+            var settingMapper = settingConfig.CreateMapper();
+            return settingMapper.Map<TDestination>(model);
+        }
+        public static void Map<TSoruce, TDestination>(this TSoruce model, TDestination entity)
+        {
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<TSoruce, TDestination>());
+            var settingMapper = settingConfig.CreateMapper();
+            settingMapper.Map(model, entity);
+        }
+        /// <summary>
+        /// 把目前的Model透過AutoMapper轉成某一個Type的Model。
+        /// AutoMapper需要先註冊過這個轉換的設定。
+        /// </summary>
+        /// <typeparam name="TDestination">要轉換成的Type</typeparam>
+        /// <param name="source">要被轉換的object</param>
+        /// <returns>轉換成為Type的Object</returns>
+        public static TDestination ToModel<TDestination>(this object source)
+        {
+            return AutoMapper.Mapper.Map<TDestination>(source);
         }
         public static float TryFloat(this string source)
         {

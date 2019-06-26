@@ -1,14 +1,20 @@
 ﻿
 using LocalRes;
+using MobileHis.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using X.PagedList;
 
 namespace MobileHis.Models.ViewModel
 {
+    public class AccountIndexView : BaseSearchModel
+    {
+        public IPagedList<Account> Accounts { get; set; }
+    }
     public class AccountCreateView
     {
 

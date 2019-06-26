@@ -16,12 +16,27 @@ namespace MobileHis_2019.Service.Service
     {
         Account LogOn(string mail, string password);
         JObject AuthRole(List<string> r_key, string url);
+        List<Account> GetList(string keyword);
     }
-    public class AccountService : GenericService<Account>
+    public class AccountService : GenericService<Account>, IAccountService
     {
         public AccountService(IUnitOfWork indb) : base(indb)
         {
 
+        }
+        public List<Account> GetList(string keyword = "")
+        {
+            var data = db.Repository<Account>().ReadAll()
+                        .Where(a => a.Name!=null)
+                        .OrderByDescending(x => x.Name)
+                        .ThenByDescending(a => a.CreateDate)
+                        .Select(x => x);
+            if (!string.IsNullOrEmpty(keyword))
+                data = data.Where(x => x.Name.Contains(keyword)
+                        || x.Email.Contains(keyword)
+                        || x.Tel.Contains(keyword)
+                    );
+            return data.ToList();
         }
         public Account LogOn(string mail, string password)
         {

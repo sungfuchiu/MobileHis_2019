@@ -33,7 +33,7 @@ namespace MobileHis_2019.Controllers
             Session.Abandon();
             Session.Clear();
             FormsAuthentication.SignOut();
-            var path = _settingService.GetSetting("BK_img", MobileHis.Data.SettingTypes.Info).Value;
+            var path = _settingService.GetSetting("BK_img", MobileHis.Data.SettingTypes.Info)?.Value;
             if (!path.IsNullOrEmpty())
             {
                 if (Storage.GetStorage(StorageScope.backgroundImg).FileExist(path))

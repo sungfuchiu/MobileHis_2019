@@ -172,6 +172,7 @@
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
     <Compile Include="Areas\Settings\Controllers\RoomController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Settings\Controllers\AccountController.cs" />
     <Compile Include="Areas\Settings\Controllers\VendorController.cs" />
     <Compile Include="Areas\Settings\Controllers\DrugVendorController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
@@ -650,6 +651,7 @@
     <Content Include="Areas\Settings\Views\Vendor\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\Shared\_BreadCrumbs.cshtml" />
     <Content Include="Areas\Settings\Views\DrugVendor\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Account\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -678,7 +680,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Logon\View.cshtml" />
+    <Content Include="Views\Logon\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

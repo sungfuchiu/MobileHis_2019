@@ -19,24 +19,24 @@
     <meta name="description" content="User login page" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico">
-    <script src="~/Scripts/modernizr-2.7.2.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <link href="~/Content/base.css" rel="stylesheet" />
     <!-- page specific plugin styles -->
-    <link rel="stylesheet" href="~/assets/css/chosen.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/chosen.css" />
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css" />
     <!-- text fonts -->
-    <link rel="stylesheet" href="~/assets/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/ace-fonts.css" />
     <!-- ace styles -->
-    <link rel="stylesheet" href="~/assets/css/ace.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/ace.css" />
     <!--[if lte IE 9]>
-      <link rel="stylesheet" href="@Url.Content("~/assets/css/ace-ie.min.css")" />
+      <link rel="stylesheet" href="@Url.Content("~/Content/assets/css/ace-ie.min.css")" />
     <![endif]-->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="@Url.Content("~/assets/js/html5shiv.js")"></script>
-    <script src="@Url.Content("~/assets/js/respond.min.js")"></script>
+    <script src="@Url.Content("~/Content/assets/js/html5shiv.js")"></script>
+    <script src="@Url.Content("~/Content/assets/js/respond.min.js")"></script>
     <![endif]-->
 </head>
 <body class="login-layout">
@@ -82,6 +82,14 @@
                                                 <form id="loginform" class="form-horizontal" role="form" method="post" action="@(Url.Action("Index"))?ReturnUrl=@(Request.QueryString["ReturnUrl"]??"")">
                                                     @Html.AntiForgeryToken()
                                                     <fieldset>
+                                                        <label class="block clearfix ">
+                                                            <span class="block">
+                                                                <select id="lng" class="form-control" style="width:100%">
+                                                                    <option value="zh-TW">繁體中文</option>
+                                                                    <option value="en-US">English</option>
+                                                                </select>
+                                                            </span>
+                                                        </label>
                                                         <label class="block clearfix">
                                                             <span class="control ">
                                                                 <div class="input-group">
@@ -98,14 +106,6 @@
                                                             </span>
                                                         </label>
                                                         @Html.ValidationMessageFor(x => x.login_password)
-                                                        <label class="block clearfix ">
-                                                            <span class="block">
-                                                                <select id="lng" class="form-control" style="width:100%">
-                                                                    <option value="zh-TW">繁體中文</option>
-                                                                    <option value="en-US">English</option>
-                                                                </select>
-                                                            </span>
-                                                        </label>
                                                         <div class="space"></div>
                                                         <div class="clearfix">
                                                             <label class="inline">
@@ -139,10 +139,12 @@
 
                         </div>
                         <div class="partner-bar">
-                            @foreach (var img in ViewBag.partnerPathList)
-                            {
-                                <img src="@Url.Action("GetFile", new { area = "", cat = MobileHis.Misc.StorageScope.Official, fileName = img, displayDefaultImage=false })" class="partner-img" style="max-width:200px; " />
+                            @if(ViewBag.partnerPathList!=null){
+                                foreach (var img in ViewBag.partnerPathList)
+                                {
+                                    <img src="@Url.Action("GetFile", new { area = "", cat = MobileHis.Misc.StorageScope.Official, fileName = img, displayDefaultImage=false })" class="partner-img" style="max-width:200px; " />
 
+                                }
                             }
                         </div>
                     </div>
@@ -157,26 +159,26 @@
     <!--basic scripts-->
     <!--[if !IE]>-->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='@Url.Content("~/assets/js/jquery-2.0.3.min.js")'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='@Url.Content("~/Content/assets/js/jquery-2.0.3.min.js")'>" + "<" + "/script>");
     </script>
     <!--<![endif]-->
     <!--[if IE]>
     <script type="text/javascript">
-     window.jQuery || document.write("<script src='@Url.Content("~/assets/js/jquery-1.10.2.min.js")'>"+"<"+"/script>");
+     window.jQuery || document.write("<script src='@Url.Content("~/Content/assets/js/jquery-1.10.2.min.js")'>"+"<"+"/script>");
     </script>
     <![endif]-->
     <script type="text/javascript">
-        if ("ontouchend" in document) document.write("<script src='@Url.Content("~/assets/js/jquery.mobile.custom.min.js")'>" + "<" + "/script>");
+        if ("ontouchend" in document) document.write("<script src='@Url.Content("~/Content/assets/js/jquery.mobile.custom.min.js")'>" + "<" + "/script>");
     </script>
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/chosen.jquery.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/chosen.jquery.min.js"></script>
     <!--ace scripts-->
-    <script src="~/assets/js/ace.min.js"></script>
-    <script src="~/assets/js/ace.min.js"></script>
-    <script src="~/assets/js/ace-elements.min.js"></script>
+    <script src="~/Content/assets/js/ace.min.js"></script>
+    <script src="~/Content/assets/js/ace.min.js"></script>
+    <script src="~/Content/assets/js/ace-elements.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/assets/js/bootbox.min.js"></script>
+    <script src="~/Content/assets/js/bootbox.min.js"></script>
     <script src="~/Scripts/jquery.cookie.js"></script>
     <script src="~/Scripts/Base.js"></script>
 
