@@ -4,7 +4,7 @@
 @model MobileHis.Models.ViewModel.AccountIndexView
 @{
     ViewBag.Title = LocalRes.Resource.Map_Sys_Users;
-    Layout = "~/Areas/Settings/Views/Shared/_SettingLayout.cshtml";
+    Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
     bool isOverLimit = false;
     int AllRecord = 0, usedRecord = 0;
     string per = "";
@@ -108,25 +108,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach (var item in Model.Accounts.OrEmptyIfNull())
-                                {
-                                    <tr>
-                                        <td class="center">@Html.Encode(item.Name)</td>
-                                        <td class="center">@Html.Encode(item.Email)</td>
-                                        <td class="center">@Html.Encode(item.Tel)</td>
-                                        <td class="left">
-                                            @if (_Update)
-                                            {
-                                                <a href="#" class='btn btn-sm btn-info' onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
-                                            }
-                                            @if (_Delete)
-                                            {
-                                                <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')"><i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del</a>
-                                            }
-                                            <a href="#" class="btn btn-sm btn-primary btnResetPw" data-accid="@item.ID">Reset Password</a>
-                                        </td>
-                                    </tr>
-                                }
+                            @foreach (var item in Model.Accounts.OrEmptyIfNull())
+                            {
+                                <tr>
+                                    <td class="center">@Html.Encode(item.Name)</td>
+                                    <td class="center">@Html.Encode(item.Email)</td>
+                                    <td class="center">@Html.Encode(item.Tel)</td>
+                                    <td class="left">
+                                        @if (_Update)
+                                        {
+                                            <a href="#" class='btn btn-sm btn-info' onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
+                                        }
+                                        @if (_Delete)
+                                        {
+                                            <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')"><i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del</a>
+                                        }
+                                        <a href="#" class="btn btn-sm btn-primary btnResetPw" data-accid="@item.ID">Reset Password</a>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                     @*@{
