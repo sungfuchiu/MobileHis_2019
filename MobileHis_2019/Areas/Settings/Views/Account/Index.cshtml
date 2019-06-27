@@ -86,12 +86,12 @@
                         <i class="fa fa-search"></i>
                         @LocalRes.Resource.Comm_Search
                     </button>
-                    @if (_Add && !isOverLimit)
-                    {
+                    @*@if (_Add && !isOverLimit)
+                    {*@
                         <a href="@Url.Action("Create")" class="btn btn-primary btn-sm ">
                             <i class="fa fa-plus"></i>@LocalRes.Resource.Comm_Create
                         </a>
-                    }
+                    @*}*@
                 </div>
             </div><!--col-->
         </div><!--row-->
@@ -115,14 +115,14 @@
                                     <td class="center">@Html.Encode(item.Email)</td>
                                     <td class="center">@Html.Encode(item.Tel)</td>
                                     <td class="left">
-                                        @if (_Update)
-                                        {
+                                        @*@if (_Update)
+                                        {*@
                                             <a href="#" class='btn btn-sm btn-info' onclick="location.href='@(Url.Action("Edit")+"/"+item.ID.ToString())'"><i class="fa fa-edit fa-lg"></i>@LocalRes.Resource.Comm_Edit</a>
-                                        }
-                                        @if (_Delete)
-                                        {
+                                        @*}*@
+                                        @*@if (_Delete)
+                                        {*@
                                             <a href="#" class="btn btn-sm btn-danger" onclick="doDel('@(item.ID.ToString())')"><i class="fa fa-trash-o fa-lg"></i>@LocalRes.Resource.Comm_Del</a>
-                                        }
+                                        @*}*@
                                         <a href="#" class="btn btn-sm btn-primary btnResetPw" data-accid="@item.ID">Reset Password</a>
                                     </td>
                                 </tr>
@@ -154,8 +154,7 @@
     </div>
 </form>
 
-@section jsLoad
-{
+
     <script type="text/javascript">
         function doDel(key) {
             bootbox.confirm("@LocalRes.Resource.MSG_Confirm_Delete", function (result) {
@@ -198,5 +197,4 @@
         })
 
     </script>
-}
 
