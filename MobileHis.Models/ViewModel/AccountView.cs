@@ -101,6 +101,10 @@ namespace MobileHis.Models.ViewModel
         public string ModUser { get; set; }
 
         public byte[] Pic { get; set; }
+        public class RegisterAccountToDepartment
+        {
+            IList<Dept> Departments { ge}
+        }
         public List<SelectListItem> StatusSelectedList { get => new List<SelectListItem>()
         {
             new SelectListItem(){ Text=LocalRes.Resource.Account_Status_01, Value="", Selected=Status==""},
