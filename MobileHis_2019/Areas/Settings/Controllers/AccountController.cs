@@ -1,4 +1,5 @@
 ﻿using Common;
+using MobileHis.Models.ApiModel;
 using MobileHis.Models.ViewModel;
 using MobileHis_2019.Service.Service;
 using System;
@@ -22,6 +23,23 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         {
             model.Accounts = _accountService.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
             return View(model);
+        }
+        public ActionResult Create()
+        {
+            return View(new AccountCreateView());
+        }
+        [HttpPost]
+        public ActionResult Create(AccountCreateView model)
+        {
+            if (ModelState.IsValid)
+            {
+                _accountService.Create(model);
+            }
+            return Json(new BaseApiModel()
+            {
+                success = ModelState.IsValid,
+                message = ModelState[""]?.Errors[0].ErrorMessage
+            });
         }
     }
 }

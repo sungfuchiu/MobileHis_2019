@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using X.PagedList;
 
 namespace MobileHis.Models.ViewModel
@@ -37,7 +38,7 @@ namespace MobileHis.Models.ViewModel
 
         [Display(ResourceType = typeof(Resource), Name = "Account_confirm_password")]
         [Required]
-        [CompareAttribute("Password")]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Password")]
         public string confirm_password { get; set; }
 
         [Display(ResourceType = typeof(Resource), Name = "Account_Dept")]
@@ -100,6 +101,15 @@ namespace MobileHis.Models.ViewModel
         public string ModUser { get; set; }
 
         public byte[] Pic { get; set; }
+        public List<SelectListItem> StatusSelectedList { get => new List<SelectListItem>()
+        {
+            new SelectListItem(){ Text=LocalRes.Resource.Account_Status_01, Value="", Selected=Status==""},
+            new SelectListItem(){ Text=LocalRes.Resource.Account_Status_02, Value="02", Selected=Status=="02"},
+            new SelectListItem(){ Text=LocalRes.Resource.Account_Status_03, Value="03", Selected=Status=="03"},
+            new SelectListItem(){ Text=LocalRes.Resource.Account_Status_04, Value="04", Selected=Status=="04"},
+            new SelectListItem(){ Text=LocalRes.Resource.Account_Status_99, Value="99", Selected=Status=="99"}
+        };
+        }
     }
 
     public class AccountEditView

@@ -1,0 +1,231 @@
+﻿@*@using MobileHis.DAL;*@
+@using Common;
+@model MobileHis.Models.ViewModel.AccountCreateView
+@{
+    ViewBag.Title = LocalRes.Resource.Map_Sys_Users;
+    Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
+    //RoleDal _RoleObj = new RoleDal();
+    //var _roles = _RoleObj.getList();
+}
+
+@{Html.RenderPartial("_BreadCrumbs");}
+
+<form action="@Url.Action("Create")" method="post">
+    @Html.AntiForgeryToken()
+    <div class="page-content">
+        <div class="page-header"> <h1>@LocalRes.Resource.Comm_Create</h1></div><!--/.page-header-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="widget-box">
+                    <div class="widget-header widget-header-blue"><h4 class="lighter">New User</h4></div><!--/.widget-header-->
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="form-group row">
+
+                                <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.UserNo):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.TextBoxFor(x => x.UserNo, new { @class = "form-control input-sm input-large", maxlength = "20", size = "20" })
+                                    @Html.ValidationMessageFor(x => x.UserNo)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Name):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                    @Html.ValidationMessageFor(x => x.Name)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Email):</label>
+                                <div class="control col-sm-3 col-md-3">
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-sm input-xxlarge", maxlength = "100", size = "20" })
+                                        @Html.ValidationMessageFor(x => x.Email)
+                                        <span class="input-group-addon">@Config.AppSetting("EmailDomain")</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Password):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.PasswordFor(x => x.Password, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                    @Html.ValidationMessageFor(x => x.Password)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.confirm_password):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.PasswordFor(x => x.confirm_password, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                    @Html.ValidationMessageFor(x => x.confirm_password)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Tel):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.TextBoxFor(x => x.Tel, new { @class = "form-control input-large", maxlength = "30", size = "20" })
+                                    @Html.ValidationMessageFor(x => x.Tel)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class=" control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Card):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.TextBoxFor(x => x.Card, new { @class = "form-control input-large", maxlength = "20", size = "20" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label  align-right col-sm-3 col-md-3">@Html.DisplayNameFor(m => m.Gender):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    <div class="clearfix">
+                                        <label class="blue" style="float:left">
+                                            <input type="radio" name="Gender" id="GenderB" value="M" checked class="ace"><span class="lbl">@LocalRes.Resource.Comm_Boy<i class=" ace-icon fa fa-male"></i></span>
+                                        </label>
+                                        <label class="blue" style="float:left; margin-left:10px;">
+                                            <input type="radio" name="Gender" id="GenderB" value="F" class="ace"><span class="lbl">@LocalRes.Resource.Comm_Girl<i class=" ace-icon fa fa-male"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right" for="date_of_birth">@Html.DisplayNameFor(m => m.Birthday):</label>
+                                <div class="controls col-sm-8 col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        @Html.TextBoxFor(x => x.Birthday, new { @class = "input-sm date-picker", maxlength = "10", size = "20" })
+                                        @Html.ValidationMessageFor(x => x.Birthday)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.IsDoctor):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        <input id="IsDoctor" name="IsDoctor" class="ace ace-switch ace-switch-5" type="checkbox"><span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row" id="divRegDept" style="display:none">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.RegAcc2Dept):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    @ucCheckbox.getDeptInCheckBox("RegAcc2Dept", null, "Y")
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Acc2Dept):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    @ucCheckbox.getDeptInCheckBox("Acc2Dept", null, "")
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Title):</label>
+                                <div class="control col-sm-9 col-md-9">
+                                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                    @Html.ValidationMessageFor(x => x.Title)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.IsLockedOut):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        <input id="IsLockedOut" name="IsLockedOut" class="ace ace-switch ace-switch-5" type="checkbox"><span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@LocalRes.Resource.Roles:</label>
+                                <div class="controls col-sm-9 col-md-9">
+                                    @foreach (var item in _roles)
+                                    {
+                                        <label class="blue" style="float:left; margin-right:10px">
+                                            <input type="checkbox" id="roles_@item.ID" name="Roles" value="@item.ID" class="ace">
+                                            <span class="lbl" for="roles_@item.ID">@item.name</span>
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Major):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        @Html.TextBoxFor(x => x.Major, new { @class = "form-control input-sm input-xxlarge" })
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Experience):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        @Html.TextAreaFor(x => x.Experience, 6, 20, new { @class = "form-control input-sm input-xxlarge" })
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Expertise):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        @Html.TextAreaFor(x => x.Expertise, 6, 20, new { @class = "form-control input-sm input-xxlarge" })
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Comment):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        @Html.TextAreaFor(x => x.Comment, 6, 20, new { @class = "form-control input-sm input-xxlarge" })
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Status):</label>
+                                <div class="controls col-sm-9  col-md-9">
+                                    <label>
+                                        @*@ucDropDown.getUserStatusInDll("Status", Model != null ? Model.Status : "", false, false)*@
+                                        @Html.DropDownListFor(m => m.Status, Model.StatusSelectedList)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="clearfix align-right">
+                            <button class="btn btn-success" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>@LocalRes.Resource.Create_Account_btn</button>
+                        </div>
+                    </div><!--/.widget-main-->
+                </div><!--/.widget-body-->
+            </div><!--/.widget-box-->
+        </div><!--/.col-->
+    </div><!--/.row-->
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Birthday').datetimepicker({
+            format: '@Common.DatetimeHelper.CultureDateTimeFormat(true).ToUpper()'
+        });
+        $('#DepNo, #JobNo').chosen({ allow_single_deselect: true });
+
+        $("#Status").change(function () {
+            if ($(this).val() != "")
+                $("#IsLockedOut").prop("checked", true);
+            else
+                $("#IsLockedOut").prop("checked", false);
+        });
+
+        $("#IsDoctor").change(function () {
+
+            if ($(this).prop("checked"))
+                $("#divRegDept").show();
+            else {
+                $("#divRegDept").hide();
+                $("#divRegDept").find("input:checked").each(function (key) {
+                    $(this).prop('checked', false);
+                });
+            }
+        });
+
+    });
+</script>

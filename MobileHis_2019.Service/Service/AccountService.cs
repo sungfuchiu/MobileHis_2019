@@ -17,6 +17,7 @@ namespace MobileHis_2019.Service.Service
         Account LogOn(string mail, string password);
         JObject AuthRole(List<string> r_key, string url);
         List<Account> GetList(string keyword);
+        void Create(AccountCreateView data);
     }
     public class AccountService : GenericService<Account>, IAccountService
     {
@@ -53,6 +54,54 @@ namespace MobileHis_2019.Service.Service
                 Save();
             }
             return acc;
+        }
+        public void Create(AccountCreateView data)
+        {
+            try{ 
+                data.Email = data.Email + Config.AppSetting("EmailDomain");
+                if (db.Repository<Account>().ReadAll()
+                    .Any(x => x.Email.Equals(data.Email, StringComparison.InvariantCultureIgnoreCase)
+                        || x.UserNo.Equals(data.UserNo, StringComparison.InvariantCultureIgnoreCase)))
+                    ValidationDictionary.AddGeneralError("Email Duplicated");
+                else
+                {
+                    var account = data.MapFrom<AccountCreateView, Account>();
+                    account.Password = Config.Md5Salt(data.Password);
+                    if (data.Acc2Dept != null || data.RegAcc2Dept != null)
+                    {
+                        List<Account2Dept> _acc2dept = new List<Account2Dept>();
+                        int Acc2DeptLength = data.Acc2Dept != null ? data.Acc2Dept.Length : 0;
+                        int RegAcc2DeptLength = data.RegAcc2Dept != null ? data.RegAcc2Dept.Length : 0;
+
+                        var dept = new int[Acc2DeptLength + RegAcc2DeptLength];
+                        if (Acc2DeptLength != 0)
+                            data.Acc2Dept.CopyTo(dept, 0);
+                        if (RegAcc2DeptLength != 0)
+                            data.RegAcc2Dept.CopyTo(dept, Acc2DeptLength);
+
+                        foreach (var r in dept)
+                        {
+                            _acc2dept.Add(new Account2Dept() { DeptId = r });
+                        }
+                        account.Account2Dept = _acc2dept;
+                    }
+                    Create(account);
+                    foreach (var item in data.Roles.OrEmptyIfNull())
+                    {
+                        var newAccount2RoleObj = new Account2Role()
+                        {
+                            Account_id = account.ID,
+                            Role_id = Convert.ToInt32(item)
+                        };
+                        db.Repository<Account2Role>().Create(newAccount2RoleObj);
+                    }
+                    Save();
+                }
+            }catch(Exception ex)
+            {
+                ValidationDictionary.AddGeneralError(ex.Message);
+            }
+
         }
         public JObject AuthRole(List<string> r_key, string url)
         {
