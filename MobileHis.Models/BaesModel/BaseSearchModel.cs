@@ -16,4 +16,11 @@ namespace MobileHis.Models
         }
         public string Keyword { get; set; }
     }
+    public class CheckBoxModel
+    {
+        public int Id { get; set; }           // Integer value of a checkbox
+        public string Name { get; set; }      // String name of a checkbox
+        public object Tags { get; set; }      // Object of html tags to be applied to checkbox, e.g.: 'new { tagName = "tagValue" }'
+        public bool IsSelected { get; set; }  // Boolean value to select a checkbox on the list
+    }
 }

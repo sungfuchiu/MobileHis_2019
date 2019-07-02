@@ -110,6 +110,7 @@
     <Compile Include="Service\Setting\DepartmentService.cs" />
     <Compile Include="Service\Setting\EducationService.cs" />
     <Compile Include="Service\Setting\ICD10Service.cs" />
+    <Compile Include="Service\Setting\RoleService.cs" />
     <Compile Include="Service\Setting\RoomService.cs" />
     <Compile Include="Service\Setting\SettingService.cs" />
     <Compile Include="Service\Setting\VendorService.cs" />

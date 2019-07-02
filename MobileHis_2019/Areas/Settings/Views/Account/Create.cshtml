@@ -105,15 +105,26 @@
                                 </div>
                             </div>
                             <div class="form-group row" id="divRegDept" style="display:none">
-                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.RegAcc2Dept):</label>
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.DepartmentIDs):</label>
                                 <div class="controls col-sm-9  col-md-9">
-                                    @ucCheckbox.getDeptInCheckBox("RegAcc2Dept", null, "Y")
+                                    @*@ucCheckbox.getDeptInCheckBox("RegAcc2Dept", null, "Y")*@
+                                    @Html.CheckBoxListFor(x => x.DepartmentIDs,
+                                                          x => x.AvailableDepartments,
+                                                          x => x.Id,
+                                                          x => x.Name,
+                                                          x => x.IsSelected,
+                                                          x => x.Tags)
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.Acc2Dept):</label>
+                                <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.BureauDepartmentIDs):</label>
                                 <div class="controls col-sm-9  col-md-9">
-                                    @ucCheckbox.getDeptInCheckBox("Acc2Dept", null, "")
+                                    @Html.CheckBoxListFor(x => x.BureauDepartmentIDs,
+                                                          x => x.AvailablebureauDepartments,
+                                                          x => x.Id,
+                                                          x => x.Name,
+                                                          x => x.IsSelected,
+                                                          x => x.Tags)
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -135,13 +146,19 @@
                             <div class="form-group row">
                                 <label class="control-label col-sm-3 col-md-3 align-right">@LocalRes.Resource.Roles:</label>
                                 <div class="controls col-sm-9 col-md-9">
-                                    @foreach (var item in _roles)
+                                    @Html.CheckBoxListFor(x => x.RoleIDs,
+                                                          x => x.Roles,
+                                                          x => x.Id,
+                                                          x => x.Name,
+                                                          x => x.IsSelected,
+                                                          x => x.Tags)
+                                    @*@foreach (var item in _roles)
                                     {
                                         <label class="blue" style="float:left; margin-right:10px">
                                             <input type="checkbox" id="roles_@item.ID" name="Roles" value="@item.ID" class="ace">
                                             <span class="lbl" for="roles_@item.ID">@item.name</span>
                                         </label>
-                                    }
+                                    }*@
                                 </div>
                             </div>
                             <div class="form-group row">

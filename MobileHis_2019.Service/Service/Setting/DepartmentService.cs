@@ -18,7 +18,7 @@ namespace MobileHis_2019.Service.Service
     public interface IDepartmentService : IService<Dept>, IAPIService<DepartmentIndexModel>
     {
         List<SelectListItem> GetDropDownList(string itemType, string selectedValue = "", bool hasEmpty = false, bool hasAll = false, bool onlyRegistered = false, int userID = 0);
-        
+        IList<MobileHis.Models.ViewModel.DepartmentCheckBox> GetCheckBoxList(bool isRgister);
     }
     public class DepartmentService : GenericModelService<Dept, DepartmentIndexModel>, IAPIService<DepartmentIndexModel>, IDepartmentService
     {
@@ -85,6 +85,22 @@ namespace MobileHis_2019.Service.Service
                 Text = a.DepName,
                 Selected = string.IsNullOrEmpty(selectedValue) ? false : a.ID.ToString() == selectedValue
             });
+        }
+
+        public IList<MobileHis.Models.ViewModel.DepartmentCheckBox> GetCheckBoxList(bool selectRegistered)
+        {
+            var entity = db.Repository<Dept>().ReadAll().Where(IsRegistered(selectRegistered));
+            var departmentList = entity.Select(a => new MobileHis.Models.ViewModel.DepartmentCheckBox
+            {
+                Id = a.ID,
+                Name = a.DepName,
+                Tags = new {@class = "ace lbl"}
+            }).ToList();
+            return departmentList;
+        }
+        private System.Linq.Expressions.Expression<Func<Dept, bool>> IsRegistered(bool selectRegistered)
+        {
+            return a => (selectRegistered ^ (a.IsRegistered == string.Empty)) == true;
         }
         public void Index(DepartmentIndexModel model)
         {

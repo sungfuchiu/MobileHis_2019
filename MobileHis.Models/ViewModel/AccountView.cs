@@ -16,9 +16,20 @@ namespace MobileHis.Models.ViewModel
     {
         public IPagedList<Account> Accounts { get; set; }
     }
+    public class DepartmentCheckBox : CheckBoxModel { }
+    public class RoleCheckBox : CheckBoxModel { }
     public class AccountCreateView
     {
-
+        public AccountCreateView(GetDepartmentList getDepartmentList, GetRoleList getRoleList)
+        {
+            DepartmentListEvent = getDepartmentList;
+            RoleListEvent = getRoleList;
+        }
+        public AccountCreateView() { }
+        public delegate IList<DepartmentCheckBox> GetDepartmentList(bool isRgister);
+        public event GetDepartmentList DepartmentListEvent;
+        public delegate IList<RoleCheckBox> GetRoleList();
+        public event GetRoleList RoleListEvent;
 
         [Display(ResourceType = typeof(Resource), Name = "Account_UserNo")]
         [Required]
@@ -41,10 +52,10 @@ namespace MobileHis.Models.ViewModel
         [System.ComponentModel.DataAnnotations.CompareAttribute("Password")]
         public string confirm_password { get; set; }
 
-        [Display(ResourceType = typeof(Resource), Name = "Account_Dept")]
-        public int[] Acc2Dept { get; set; }
-        [Display(ResourceType = typeof(Resource), Name = "Account_RegDept")]
-        public int[] RegAcc2Dept { get; set; }
+        //[Display(ResourceType = typeof(Resource), Name = "Account_Dept")]
+        //public int[] Acc2Dept { get; set; }
+        //[Display(ResourceType = typeof(Resource), Name = "Account_RegDept")]
+        //public int[] RegAcc2Dept { get; set; }
 
 
         [Display(ResourceType = typeof(Resource), Name = "Account_JobTitle")]
@@ -86,7 +97,7 @@ namespace MobileHis.Models.ViewModel
         [Display(ResourceType = typeof(Resource), Name = "IsDoctor")]
         public string IsDoctor { get; set; }
 
-        public string[] Roles { get; set; }
+        //public string[] Roles { get; set; }
 
         [Display(ResourceType = typeof(Resource), Name = "LastLoginDate")]
         public DateTime? LastLoginDate { get; set; }
@@ -101,10 +112,15 @@ namespace MobileHis.Models.ViewModel
         public string ModUser { get; set; }
 
         public byte[] Pic { get; set; }
-        public class RegisterAccountToDepartment
-        {
-            IList<Dept> Departments { ge}
-        }
+        public IList<DepartmentCheckBox> AvailableDepartments { get => DepartmentListEvent(false); }
+        public IList<DepartmentCheckBox> AvailablebureauDepartments { get => DepartmentListEvent(true); }
+        public IList<DepartmentCheckBox> SelectedDepartments { get; set; }
+        public IList<RoleCheckBox> Roles { get => RoleListEvent(); }
+        [Display(ResourceType = typeof(Resource), Name = "Account_RegDept")]
+        public int[] BureauDepartmentIDs { get; set; }
+        [Display(ResourceType = typeof(Resource), Name = "Account_Dept")]
+        public int[] DepartmentIDs { get; set; }
+        public int[] RoleIDs { get; set; }
         public List<SelectListItem> StatusSelectedList { get => new List<SelectListItem>()
         {
             new SelectListItem(){ Text=LocalRes.Resource.Account_Status_01, Value="", Selected=Status==""},
@@ -264,7 +280,7 @@ namespace MobileHis.Models.ViewModel
 
         [Display(ResourceType = typeof(Resource), Name = "Changepassword_confirm_newPassword")]
         [Required]
-        [CompareAttribute("newPassword")]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("newPassword")]
         public string confirm_newPassword { get; set; }
 
     }

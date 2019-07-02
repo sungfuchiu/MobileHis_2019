@@ -14,9 +14,17 @@ namespace MobileHis_2019.Areas.Settings.Controllers
     public class AccountController : MobileHis_2019.Controllers.BaseController
     {
         IAccountService _accountService;
-        public AccountController(ISystemLogService systemLogService, IAccountService accountService) : base(systemLogService)
+        IDepartmentService _departmentService;
+        IRoleService _roleService;
+        public AccountController(
+            ISystemLogService systemLogService, 
+            IAccountService accountService, 
+            IDepartmentService departmentService,
+            IRoleService roleService) : base(systemLogService)
         {
             _accountService = accountService;
+            _departmentService = departmentService;
+            _roleService = roleService;
         }
         // GET: Settings/User
         public ActionResult Index(AccountIndexView model)
@@ -26,11 +34,13 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         }
         public ActionResult Create()
         {
-            return View(new AccountCreateView());
+            return View(new AccountCreateView(_departmentService.GetCheckBoxList, _roleService.GetRoles));
         }
         [HttpPost]
         public ActionResult Create(AccountCreateView model)
         {
+            model.DepartmentListEvent += _departmentService.GetCheckBoxList;
+            model.RoleListEvent += _roleService.GetRoles;
             if (ModelState.IsValid)
             {
                 _accountService.Create(model);
