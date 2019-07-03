@@ -56,12 +56,10 @@ namespace MobileHis_2019
             builder.Register<GetCodeFileSelectList>(ctx =>
             {
                 var c = ctx.Resolve<ICodeFileService>();
-                //return t =>
-                //{
-                //    return c.GetDropDownList;
-                //};
                 return c.GetDropDownList;
             }).As<GetCodeFileSelectList>();
+            builder.Register<MobileHis.Models.ViewModel.AccountCreateView.GetDepartmentList>(ctx => ctx.Resolve<IDepartmentService>().GetCheckBoxList).As<MobileHis.Models.ViewModel.AccountCreateView.GetDepartmentList>();
+            builder.Register<MobileHis.Models.ViewModel.AccountCreateView.GetRoleList>(ctx => ctx.Resolve<IRoleService>().GetRoles).As<MobileHis.Models.ViewModel.AccountCreateView.GetRoleList>();
             //builder.RegisterAssemblyTypes(typeof(MobileHis.Models.ModelModule).Assembly)
             //     .Where(t => t.Name.EndsWith("Model")).InstancePerRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());

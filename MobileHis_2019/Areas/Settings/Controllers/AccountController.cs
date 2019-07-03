@@ -34,7 +34,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         }
         public ActionResult Create()
         {
-            return View(new AccountCreateView(_departmentService.GetCheckBoxList, _roleService.GetRoles));
+            return View(new AccountCreateView(/*_departmentService.GetCheckBoxList, _roleService.GetRoles*/));
         }
         [HttpPost]
         public ActionResult Create(AccountCreateView model)

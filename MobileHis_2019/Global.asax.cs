@@ -20,7 +20,7 @@ namespace MobileHis_2019
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.Register();
             ModelBinders.Binders[typeof(IPrincipal)] = new IPrincipalModelBinder();
-            ModelBinders.Binders.DefaultBinder = new CollectionNotEmptyModelBinder();
+            //ModelBinders.Binders.DefaultBinder = new CollectionNotEmptyModelBinder();
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {

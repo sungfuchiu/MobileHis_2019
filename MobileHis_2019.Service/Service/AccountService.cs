@@ -88,18 +88,24 @@ namespace MobileHis_2019.Service.Service
                     //    }
                     //    account.Account2Dept = _acc2dept;
                     //}
-                    Array.ForEach(data.DepartmentIDs.Concat(data.BureauDepartmentIDs).ToArray(), a => account.Account2Dept.Add(new Account2Dept() { DeptId = Convert.ToInt32(a) }));
-                    Array.ForEach(data.BureauDepartmentIDs, a => account.Account2Dept.Add(new Account2Dept() { DeptId = Convert.ToInt32(a) }));
+                    Array.ForEach(
+                        data.DepartmentIDs.Concat(data.BureauDepartmentIDs).ToArray()
+                        , a => account.Account2Dept.Add(
+                            new Account2Dept() { DeptId = Convert.ToInt32(a) }));
+                    //Array.ForEach(data.BureauDepartmentIDs, a => account.Account2Dept.Add(new Account2Dept() { DeptId = Convert.ToInt32(a) }));
                     Create(account);
-                    foreach (var item in data.Roles.OrEmptyIfNull())
-                    {
-                        var newAccount2RoleObj = new Account2Role()
-                        {
-                            Account_id = account.ID,
-                            Role_id = Convert.ToInt32(item)
-                        };
-                        db.Repository<Account2Role>().Create(newAccount2RoleObj);
-                    }
+                    db.Repository<Account2Role>().Create(
+                        data.Roles.Select(a => 
+                            new Account2Role(account.ID, Convert.ToInt32(a))).ToList());
+                    //foreach (var item in data.Roles.OrEmptyIfNull())
+                    //{
+                    //    var newAccount2RoleObj = new Account2Role()
+                    //    {
+                    //        Account_id = account.ID,
+                    //        Role_id = Convert.ToInt32(item)
+                    //    };
+                    //    db.Repository<Account2Role>().Create(newAccount2RoleObj);
+                    //}
                     Save();
                 }
             }catch(Exception ex)

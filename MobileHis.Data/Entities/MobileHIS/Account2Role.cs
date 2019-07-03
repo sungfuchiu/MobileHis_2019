@@ -6,6 +6,11 @@ namespace MobileHis.Data
     public class Account2Role
     {
         public Account2Role() { }
+        public Account2Role(int accountID, int roleID)
+        {
+            Account_id = accountID;
+            Role_id = roleID;
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
