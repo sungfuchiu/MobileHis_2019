@@ -12,20 +12,20 @@ using X.PagedList;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class DepartmentIndexModel : BaseSearchModel, IGetCodeFileSelectList
+    public class DepartmentIndexModel : BaseSearchModel//, IGetCodeFileSelectList
     {
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
-        public DepartmentIndexModel(GetCodeFileSelectList selectListEvent)
-        {
-            CodeFileSelectListEvent = selectListEvent;
-        }
-        public DepartmentIndexModel() { }
+        //public event GetCodeFileSelectList CodeFileSelectListEvent;
+        //public DepartmentIndexModel(GetCodeFileSelectList selectListEvent)
+        //{
+        //    CodeFileSelectListEvent = selectListEvent;
+        //}
+        //public DepartmentIndexModel() { }
         public IPagedList<DepartmentModel> DepartmentPageList { get; set; }
-        public List<SelectListItem> AddUnit{ get => CodeFileSelectListEvent(itemType:"DU"); }
-        public List<SelectListItem> AddCategory { get => CodeFileSelectListEvent(itemType: "DP"); }
-        public List<SelectListItem> UDPUnit { get => CodeFileSelectListEvent(itemType: "DU"); }
-        DateTime? modifiedDate;
-        DateTime? createDate;
+        public List<SelectListItem> AddUnit{ get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType:"DU"); }
+        public List<SelectListItem> AddCategory { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType: "DP"); }
+        public List<SelectListItem> UDPUnit { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType: "DU"); }
+        //DateTime? modifiedDate;
+        //DateTime? createDate;
         public int ID { get; set; }
         public int Category { get; set; }
         public string CategoryName { get; set; }
@@ -41,8 +41,8 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string Clinic { get; set; }
         [MaxLength(1)]
         public string IsRegistered { get; set; }
-        [MaxLength(100)]
-        public string ModUser { get; set; }
+        //[MaxLength(100)]
+        //public string ModUser { get; set; }
     }
     public class DepartmentModel
     {
@@ -61,9 +61,9 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string Clinic { get; set; }
         [MaxLength(1)]
         public string IsRegistered { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public DateTime? ModDate { get; set; }
-        [MaxLength(100)]
-        public string ModUser { get; set; }
+        //public DateTime? CreateDate { get; set; }
+        //public DateTime? ModDate { get; set; }
+        //[MaxLength(100)]
+        //public string ModUser { get; set; }
     }
 }

@@ -10,15 +10,15 @@ using System.Web.Mvc;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class VendorModel : BaseAPIModel<Vendor>, IGetCodeFileSelectList
+    public class VendorModel : BaseAPIModel<Vendor>//, IGetCodeFileSelectList
     {
-        public VendorModel(GetCodeFileSelectList getList)
-        {
-            CodeFileSelectListEvent = getList;
-        }
-        public VendorModel() { }
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
-        public List<SelectListItem> PayTypeList { get => CodeFileSelectListEvent(itemType:"PY",hasEmpty:true); }
+        //public VendorModel(GetCodeFileSelectList getList)
+        //{
+        //    CodeFileSelectListEvent = getList;
+        //}
+        //public VendorModel() { }
+        //public event GetCodeFileSelectList CodeFileSelectListEvent;
+        public List<SelectListItem> PayTypeList { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType:"PY",hasEmpty:true); }
         public int ID { get; set; }
         [Required]
         [MaxLength(20)]

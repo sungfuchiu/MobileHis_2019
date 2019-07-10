@@ -2,9 +2,6 @@
     Layout = "_Layout.cshtml";
     var header = @RenderSection("header", required: true).ToHtmlString();
 }
-@section header{
-    @LocalRes.Resource.Comm_Account
-}
 <style>
     .modal-header {
         padding: 9px 15px;

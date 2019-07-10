@@ -10,13 +10,9 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class SettingController : MobileHis_2019.Controllers.BaseController
     {
-        //private SettingBLL settingBLL;
-        //private ModelStateWrapper modelState;
         ISettingService _settingService;
         public SettingController(ISettingService settingService, ISystemLogService systemLogService) : base(systemLogService)
         {
-            //modelState = new ModelStateWrapper(ModelState);
-            //settingBLL = new SettingBLL(modelState);
             settingService.InitialiseIValidationDictionary(
                 new ModelStateWrapper(ModelState));
             _settingService = settingService;

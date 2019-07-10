@@ -11,22 +11,22 @@ using X.PagedList;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class RoomModel : BaseAPIModel<Room>, IGetCodeFileSelectList, IGetDepartmentSelectList
+    public class RoomModel : BaseAPIModel<Room>//, IGetCodeFileSelectList, IGetDepartmentSelectList
     {
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
-        public event GetDepartmentSelectList DepartmentSelectListEvent;
-        public RoomModel(GetCodeFileSelectList codeFileSelectListEvent, GetDepartmentSelectList departmentSelectListEvent)
-        {
-            CodeFileSelectListEvent = codeFileSelectListEvent;
-            DepartmentSelectListEvent = departmentSelectListEvent;
-        }
+        //public event GetCodeFileSelectList CodeFileSelectListEvent;
+        //public event GetDepartmentSelectList DepartmentSelectListEvent;
+        //public RoomModel(GetCodeFileSelectList codeFileSelectListEvent, GetDepartmentSelectList departmentSelectListEvent)
+        //{
+        //    CodeFileSelectListEvent = codeFileSelectListEvent;
+        //    DepartmentSelectListEvent = departmentSelectListEvent;
+        //}
         public RoomModel() { }
-        public List<SelectListItem> AddAllowDept { get => DepartmentSelectListEvent(onlyRegistered:true); }
-        public List<SelectListItem> UpdAllowDept { get => DepartmentSelectListEvent(onlyRegistered: true); }
-        public List<SelectListItem> AddGuardianCategory { get => CodeFileSelectListEvent(itemType: "GD", hasEmpty:true); }
-        public List<SelectListItem> AddGuardian { get => CodeFileSelectListEvent(hasEmpty: true); }
-        public List<SelectListItem> UpdGuardianCategory { get => CodeFileSelectListEvent(itemType: "GD", hasEmpty: true); }
-        public List<SelectListItem> UpdGuardian { get => CodeFileSelectListEvent(hasEmpty: true); }
+        public List<SelectListItem> AddAllowDept { get => DependencyResolver.Current.GetService<GetDepartmentSelectList>()(onlyRegistered:true); }
+        public List<SelectListItem> UpdAllowDept { get => DependencyResolver.Current.GetService<GetDepartmentSelectList>()(onlyRegistered: true); }
+        public List<SelectListItem> AddGuardianCategory { get => DependencyResolver.Current.GetService<GetDepartmentSelectList>()(itemType: "GD", hasEmpty:true); }
+        public List<SelectListItem> AddGuardian { get => DependencyResolver.Current.GetService<GetDepartmentSelectList>()(hasEmpty: true); }
+        public List<SelectListItem> UpdGuardianCategory { get => DependencyResolver.Current.GetService<GetDepartmentSelectList>()(itemType: "GD", hasEmpty: true); }
+        public List<SelectListItem> UpdGuardian { get => DependencyResolver.Current.GetService<GetDepartmentSelectList>()(hasEmpty: true); }
         public int ID { get; set; }
         [MaxLength(5)]
         public string RoomNo { get; set; }

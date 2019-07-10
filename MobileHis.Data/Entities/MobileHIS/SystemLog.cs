@@ -6,9 +6,12 @@ using System.Linq;
 
 namespace MobileHis.Data
 {
-    public class SystemLog
+    public class SystemLog : IUserEntity
     {
-        public SystemLog() { }
+        public SystemLog()
+        {
+            CreateAt = DateTime.Now;
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,7 +25,7 @@ namespace MobileHis.Data
         [MaxLength(20)]
         public string FunctionType { get; set; }
         [MaxLength(20)]
-        public string User { get; set; }
+        public string ModUser { get; set; }
         public string UserIPAddress { get; set; }
         public DateTime CreateAt { get; set; }
 

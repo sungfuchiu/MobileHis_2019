@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using Common;
 using MobileHis.Models.ApiModel;
-using BLL;
 using MobileHis.Data;
 using System.Diagnostics;
 using MobileHis.Models.Object;
@@ -79,9 +78,9 @@ namespace MobileHis_2019.Controllers
             record.Action = method.Name;
             record.FunctionType = Enum.GetName(typeof(FunctionType), Type);
 
-            record.User = string.IsNullOrEmpty(user) ? User.Name : user;
+            //record.User = string.IsNullOrEmpty(user) ? User.Name : user;
             record.UserIPAddress = Request.ServerVariables["REMOTE_ADDR"]; ;
-            record.CreateAt = DateTime.Now;
+            //record.CreateAt = DateTime.Now;
             _systemLogService.Log(record);
         }
 

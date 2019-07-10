@@ -21,14 +21,14 @@ namespace MobileHis_2019.Service.Service
     }
     public class DrugVendorService : GenericModelService<DrugVendor, DrugVendorModel>, IAPIService<DrugVendorModel>, IDrugVendorService, IIDServiceComposition<DrugVendor>
     {
-        private ICodeFileService _codeFileService;
+        //private ICodeFileService _codeFileService;
         private IMapper _mapper;
 
         public CompositionIDService<DrugVendor> IDService { get; set; }
 
-        public DrugVendorService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
+        public DrugVendorService(IUnitOfWork inDB/*, ICodeFileService codeFileService*/) : base(inDB)
         {
-            _codeFileService = codeFileService;
+            //_codeFileService = codeFileService;
             IDService = new CompositionIDService<DrugVendor>(inDB);
         }
         public void Index(DrugVendorModel model)
@@ -37,7 +37,7 @@ namespace MobileHis_2019.Service.Service
                 .Where(a => a.VendorID == model.VendorID && !a.IsDeleted)
                 .OrderByDescending(a => a.ID)
                 .ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+            //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
         }
 
         public void Create(DrugVendorModel model)

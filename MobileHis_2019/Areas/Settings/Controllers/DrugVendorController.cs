@@ -1,6 +1,4 @@
-﻿using BLL;
-using DAL;
-using MobileHis.Models.Areas.Drug.ViewModels;
+﻿using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Controllers;
 using MobileHis_2019.Service.Service;
@@ -14,20 +12,12 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class DrugVendorController : BaseAPIController<DrugVendorModel>
     {
-        //private DrugVendorBLL _drugVendorBLL;
-        //private DrugBLL _drugBLL;
-        //private ModelStateWrapper _modelState;
-        IDrugVendorService _drugVendorService;
         IDrugService _drugService;
         public DrugVendorController(
             IDrugVendorService drugVendorService, 
             IDrugService drugService,
             ISystemLogService systemLogService) : base(systemLogService)
         {
-            //_modelState = new ModelStateWrapper(ModelState);
-            //_drugVendorBLL = new DrugVendorBLL(_modelState, inDB);
-            //_drugBLL = new DrugBLL(_modelState, inDB);
-            //IBLL = _drugVendorBLL;
             drugVendorService.InitialiseIValidationDictionary
                (new ModelStateWrapper(this.ModelState));
             IService = drugVendorService;

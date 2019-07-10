@@ -5,27 +5,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MobileHis.Models.Areas.Drug.ViewModels
 {
-    public class DrugSettingModelView : IGetCodeFileSelectList
+    public class DrugSettingModelView //: IGetCodeFileSelectList
     {
         private string _DrugName;
         private int _Days = 0;
         private double _Quantity = 0.0;
         private double _Dose = 0.0;
-        //public delegate List<System.Web.Mvc.SelectListItem> _GetSelectList(string itemType, string selectedValue = "", bool hasEmpty = false);
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
-
-        public DrugSettingModelView(GetCodeFileSelectList selectListEvent)
-        {
-            CodeFileSelectListEvent = selectListEvent;
-        }
-        public DrugSettingModelView()
-        {
-        }
-        public List<System.Web.Mvc.SelectListItem> FrequencyList { get => CodeFileSelectListEvent("FQ"); }
-        public List<System.Web.Mvc.SelectListItem> RouteList { get => CodeFileSelectListEvent("RU"); }
+        public List<System.Web.Mvc.SelectListItem> FrequencyList { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()("FQ"); }
+        public List<System.Web.Mvc.SelectListItem> RouteList { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()("RU"); }
 
         [Required]
         public Guid DrugID { get; set; }
@@ -43,8 +34,6 @@ namespace MobileHis.Models.Areas.Drug.ViewModels
                 _DrugName = string.Format("[{0}]{1}", OrderCode, Title);
             }
         }
-
-        //public string DrugCode { get; set; }
 
         [RegularExpression(@"[0-9]+", ErrorMessage = "Dose must be number format.")]
         [Display(ResourceType = typeof(Resource), Name = "Drug_Dose")]

@@ -713,14 +713,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{0f57ccca-131b-4817-a22b-2b23b7bc600c}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{93DD37EA-7A5C-48DC-8E39-01AEA9D4F273}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
       <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
       <Name>MobileHis.Data</Name>

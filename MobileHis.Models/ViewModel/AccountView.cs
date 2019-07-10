@@ -20,16 +20,8 @@ namespace MobileHis.Models.ViewModel
     public class RoleCheckBox : CheckBoxModel { }
     public class AccountCreateView
     {
-        public AccountCreateView(GetDepartmentList getDepartmentList, GetRoleList getRoleList)
-        {
-            DepartmentListEvent = getDepartmentList;
-            RoleListEvent = getRoleList;
-        }
-        public AccountCreateView() { }
         public delegate IList<DepartmentCheckBox> GetDepartmentList(bool isRgister);
-        public event GetDepartmentList DepartmentListEvent;
         public delegate IList<RoleCheckBox> GetRoleList();
-        public event GetRoleList RoleListEvent;
 
         [Display(ResourceType = typeof(Resource), Name = "Account_UserNo")]
         [Required]
@@ -112,10 +104,10 @@ namespace MobileHis.Models.ViewModel
         public string ModUser { get; set; }
 
         public byte[] Pic { get; set; }
-        public IList<DepartmentCheckBox> AvailableDepartments { get => DepartmentListEvent(false); }
-        public IList<DepartmentCheckBox> AvailablebureauDepartments { get => DepartmentListEvent(true); }
+        public IList<DepartmentCheckBox> AvailableDepartments { get => DependencyResolver.Current.GetService<GetDepartmentList>()(false); }
+        public IList<DepartmentCheckBox> AvailablebureauDepartments { get => DependencyResolver.Current.GetService<GetDepartmentList>()(true); }
         public IList<DepartmentCheckBox> SelectedDepartments { get; set; }
-        public IList<RoleCheckBox> Roles { get => RoleListEvent(); }
+        public IList<RoleCheckBox> Roles { get => DependencyResolver.Current.GetService<GetRoleList>()(); }
         [Display(ResourceType = typeof(Resource), Name = "Account_RegDept")]
         public int[] BureauDepartmentIDs { get; set; }
         [Display(ResourceType = typeof(Resource), Name = "Account_Dept")]

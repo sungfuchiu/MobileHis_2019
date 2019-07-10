@@ -24,13 +24,13 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
     //    public string Type { get; set; }
     //}
 
-    public class ICD10ViewModel : BaseSearchModel, IGetCodeFileSelectList
+    public class ICD10ViewModel : BaseSearchModel//, IGetCodeFileSelectList
     {
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
+        //public event GetCodeFileSelectList CodeFileSelectListEvent;
         public string Type { get; set; }
         public IPagedList<ICD10> ICD10PageList { get; set; }
-        public List<SelectListItem> AddType { get => CodeFileSelectListEvent(itemType: "CD"); }
-        public List<SelectListItem> SearchType { get => CodeFileSelectListEvent(itemType: "CD", hasEmpty: true); }
+        public List<SelectListItem> AddType { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType: "CD"); }
+        public List<SelectListItem> SearchType { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType: "CD", hasEmpty: true); }
         public string ICD10Code { get; set; }
     }
 }

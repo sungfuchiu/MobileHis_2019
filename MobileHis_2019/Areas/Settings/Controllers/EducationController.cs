@@ -1,5 +1,4 @@
-﻿using BLL;
-using Common;
+﻿using Common;
 using MobileHis.Models.ApiModel;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Service.Service;
@@ -14,14 +13,9 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class EducationController : MobileHis_2019.Controllers.BaseAPIController<EducationModel>
     {
-        //private EducationBLL _educationBLL;
-        //private ModelStateWrapper _modelState;
         IEducationService _educationService;
         public EducationController(IEducationService educationService, ISystemLogService systemLogService) : base(systemLogService)
         {
-            //_modelState = new ModelStateWrapper(ModelState);
-            //_educationBLL = new EducationBLL(_modelState);
-            //IBLL = _educationBLL;
             educationService.InitialiseIValidationDictionary(
                 new ModelStateWrapper(ModelState));
             _educationService = educationService;
@@ -31,12 +25,10 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         public string GetGuardianList(int typeID)
         {
             return JsonConvert.SerializeObject(_educationService.GetEducationList(typeID));
-            //return JsonConvert.SerializeObject(_educationBLL.GetEducationList(typeID));
         }
 
         public ActionResult Edit(int ID)
         {
-            //return View(_educationBLL.Edit(ID));
             return View(_educationService.Edit(ID));
         }
         [HttpPost]

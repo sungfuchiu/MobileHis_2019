@@ -159,7 +159,7 @@
     <Compile Include="Areas\Report\DoctorViewModel.cs" />
     <Compile Include="Areas\Report\GeneralReportModels.cs" />
     <Compile Include="Areas\Report\ReceiptModel.cs" />
-    <Compile Include="Areas\Sys\ViewModels\CategoryModel.cs" />
+    <Compile Include="Areas\Sys\ViewModels\CodeFileModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\DepartmentModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\DoctorSchModel.cs" />
     <Compile Include="Areas\Sys\ViewModels\EducationModel.cs" />

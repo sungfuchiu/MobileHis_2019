@@ -14,17 +14,12 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
     public class CodeFileViewModel : BaseSearchModel
     {
         public delegate List<SelectListItem> GetCategoryList(string selectedValue = "", bool hasEmpty = false);
-        public event GetCategoryList CategoryListEvent;
-        public CodeFileViewModel(GetCategoryList selectListEvent)
-        {
-            CategoryListEvent = selectListEvent;
-        }
-        public CodeFileViewModel() { }
+        //public event GetCategoryList CategoryListEvent;
         public IPagedList<CodeFile> CategoryPageList { get; set; }
-        public List<SelectListItem> AddItemType { get => CategoryListEvent(); }
-        public List<SelectListItem> AddParentType { get => CategoryListEvent(hasEmpty: true); }
-        public List<SelectListItem> UDPParentType { get => CategoryListEvent(hasEmpty:true); }
-        public List<SelectListItem> ItemTypes { get => CategoryListEvent(selectedValue:ItemType, hasEmpty: true); }
+        public List<SelectListItem> AddItemType { get => DependencyResolver.Current.GetService<GetCategoryList>()(); }
+        public List<SelectListItem> AddParentType { get => DependencyResolver.Current.GetService<GetCategoryList>()(hasEmpty: true); }
+        public List<SelectListItem> UDPParentType { get => DependencyResolver.Current.GetService<GetCategoryList>()(hasEmpty:true); }
+        public List<SelectListItem> ItemTypes { get => DependencyResolver.Current.GetService<GetCategoryList>()(selectedValue:ItemType, hasEmpty: true); }
 
         public int ID { get; set; }
         [MaxLength(2)]
@@ -37,8 +32,8 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string Remark { get; set; }
         [MaxLength(1)]
         public string CheckFlag { get; set; }
-        [MaxLength(100)]
-        public string ModUser { get; set; }
+        //[MaxLength(100)]
+        //public string ModUser { get; set; }
         public int? ParentCodeFile { get; set; }
     }
 }

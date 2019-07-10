@@ -10,11 +10,11 @@ using System.Web.Mvc;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class DrugVendorModel : BaseAPIModel<DrugVendor>, IGetCodeFileSelectList
+    public class DrugVendorModel : BaseAPIModel<DrugVendor>//, IGetCodeFileSelectList
     {
 
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
-        public List<SelectListItem> UnitList { get => CodeFileSelectListEvent(itemType:"UT", selectedValue:Unit?.ToString()); }
+        //public event GetCodeFileSelectList CodeFileSelectListEvent;
+        public List<SelectListItem> UnitList { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType:"UT", selectedValue:Unit?.ToString()); }
         public List<Guid> DrugGuidList { get; set; }
         public int ID { get; set; }
         public int VendorID { get; set; }

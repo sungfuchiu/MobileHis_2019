@@ -22,10 +22,8 @@ namespace MobileHis_2019.Service.Service
     }
     public class DepartmentService : GenericModelService<Dept, DepartmentIndexModel>, IAPIService<DepartmentIndexModel>, IDepartmentService
     {
-        ICodeFileService _codeFileService;
-        public DepartmentService(IUnitOfWork inDB, ICodeFileService codeFileService):base(inDB)
+        public DepartmentService(IUnitOfWork inDB):base(inDB)
         {
-            _codeFileService = codeFileService;
         }
         private enum _role
         {
@@ -104,23 +102,6 @@ namespace MobileHis_2019.Service.Service
         }
         public void Index(DepartmentIndexModel model)
         {
-            //_depts = db.Repository<Dept>().Include(a => a.Category_CodeFile);
-            //var data = from a in _depts
-            //           join code in db.Repository<CodeFile>() on a.UnitId equals code.ID
-            //           orderby a.DepNo
-            //           select new DepartmentModel
-            //           {
-            //               ID = a.ID,
-            //               Category = a.Category,
-            //               CategoryName = a.Category_CodeFile.ItemDescription, //db.CodeFile.AsNoTracking().Where(y => y.ItemType == "DP" && y.ID == x.Category).Select(y => y.ItemDescription).FirstOrDefault(),
-            //               UnitId = a.UnitId,
-            //               UnitName = code.ItemDescription,
-            //               DepName = a.DepName,
-            //               DepNo = a.DepNo,
-            //               IsRegistered = a.IsRegistered,
-            //               ModDate = a.ModDate,
-            //               ModUser = a.ModUser
-            //           };
             var data = db.Repository<Dept>().ReadAll().Include(a => a.Category_CodeFile)
                 .OrderBy(a => a.DepNo)
                 .Select(a => new DepartmentModel
@@ -132,9 +113,7 @@ namespace MobileHis_2019.Service.Service
                            UnitName = a.Category_CodeFile.ItemDescription,
                            DepName = a.DepName,
                            DepNo = a.DepNo,
-                           IsRegistered = a.IsRegistered,
-                           ModDate = a.ModDate,
-                           ModUser = a.ModUser
+                           IsRegistered = a.IsRegistered
                        });
             if (!string.IsNullOrEmpty(model.Keyword))
                 data = data.Where(x => x.DepName.Contains(model.Keyword)
@@ -142,7 +121,6 @@ namespace MobileHis_2019.Service.Service
                         || x.DepNo.Contains(model.Keyword)
                     );
             model.DepartmentPageList = data.ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
         }
 
         public void Create(DepartmentIndexModel model)
@@ -176,7 +154,6 @@ namespace MobileHis_2019.Service.Service
                     department.DepName = model.DepName;
                     department.IsRegistered = model.IsRegistered;
                     department.UnitId = model.UnitId;
-                    department.ModUser = "advmeds";
                     Save();
                 }
                 else

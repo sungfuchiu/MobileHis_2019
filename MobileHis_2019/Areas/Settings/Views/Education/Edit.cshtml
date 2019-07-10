@@ -199,8 +199,8 @@
                                                             }
                                                         </td>
                                                         <td class="hidden-480">
-                                                            @Model.EducationFiles[i].UploadDate.CultureDateTime()
-                                                            @Html.HiddenFor(a => a.EducationFiles[i].UploadDate)
+                                                            @Model.EducationFiles[i].CreateDate.CultureDateTime()
+                                                            @Html.HiddenFor(a => a.EducationFiles[i].CreateDate)
                                                         </td>
                                                         <td class="hidden-480">
                                                             @Model.EducationFiles[i].ModDate.CultureDateTime()

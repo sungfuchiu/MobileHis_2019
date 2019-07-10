@@ -1,14 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using MobileHis.Models.Areas.Sys.ViewModels;
-using MobileHis.Models.Interface;
 using MobileHis_2019.Repository;
 using MobileHis_2019.Repository.Interface;
-using MobileHis_2019.Service;
-using MobileHis_2019.Service.Interface;
 using MobileHis_2019.Service.Service;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
@@ -27,48 +21,18 @@ namespace MobileHis_2019
         {
             // 容器建立者
             ContainerBuilder builder = new ContainerBuilder();
-
-            // 註冊Controllers
-            //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-
-            //// 註冊DbContextFactory
-            //string connectionString =
-            //    ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            //builder.RegisterType<DbContextFactory>()
-            //    .WithParameter("connectionString", connectionString)
-            //    .As<IDbContextFactory>()
-            //    .InstancePerHttpRequest();
-
-            // 註冊 Repository UnitOfWork
-            //builder.RegisterGeneric(typeof(GenericService<>)).As(typeof(IService<>));
+            
             builder.RegisterType<MobileHis.Data.MobileHISEntities>().As<DbContext>().InstancePerRequest();
             builder.Register(c => HttpContext.Current.User).As<IPrincipal>().InstancePerRequest();
-            //builder.RegisterType(typeof(EFUnitOfWork)).As(typeof(IUnitOfWork)).WithParameter(new TypedParameter(typeof(DbContext), new MobileHis.Data.MobileHISEntities())).InstancePerRequest();
-            //builder.Register(c => new EFUnitOfWork(c.Resolve<IUnitOfWork>())).As(typeof(IUnitOfWork));
             builder.RegisterType(typeof(EFUnitOfWork)).As<IUnitOfWork>();
-            //builder.Register(c => new CodeFileService(c.Resolve<IUnitOfWork>())).As<ICodeFileService>();
-            // 註冊Services
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //builder.RegisterType(typeof(SystemLogService)).As<ISystemLogService>();
-            builder.RegisterAssemblyTypes(typeof(MobileHis_2019.Service.ServiceModule).Assembly)
+            builder.RegisterAssemblyTypes(typeof(Service.ServiceModule).Assembly)
                    .Where(t => t.Name.EndsWith("Service"))
                    .AsImplementedInterfaces();
-            builder.Register<GetCodeFileSelectList>(ctx =>
-            {
-                var c = ctx.Resolve<ICodeFileService>();
-                return c.GetDropDownList;
-            }).As<GetCodeFileSelectList>();
+            builder.Register<MobileHis.Models.Interface.GetCodeFileSelectList>(ctx => ctx.Resolve<ICodeFileService>().GetDropDownList ).As<MobileHis.Models.Interface.GetCodeFileSelectList>();
             builder.Register<MobileHis.Models.ViewModel.AccountCreateView.GetDepartmentList>(ctx => ctx.Resolve<IDepartmentService>().GetCheckBoxList).As<MobileHis.Models.ViewModel.AccountCreateView.GetDepartmentList>();
             builder.Register<MobileHis.Models.ViewModel.AccountCreateView.GetRoleList>(ctx => ctx.Resolve<IRoleService>().GetRoles).As<MobileHis.Models.ViewModel.AccountCreateView.GetRoleList>();
-            //builder.RegisterAssemblyTypes(typeof(MobileHis.Models.ModelModule).Assembly)
-            //     .Where(t => t.Name.EndsWith("Model")).InstancePerRequest();
+            builder.Register<MobileHis.Models.Areas.Sys.ViewModels.CodeFileViewModel.GetCategoryList>(ctx => ctx.Resolve<ICodeFileService>().GetCategoryList).As<MobileHis.Models.Areas.Sys.ViewModels.CodeFileViewModel.GetCategoryList>();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            //builder.Register(c => c.Resolve<ICodeFileService.GetDropDownList>).As<GetCodeFileSelectList>();
-            //builder.Register(c => new DepartmentService(c.Resolve<IUnitOfWork>(), c.Resolve<ICodeFileService>())).As<IDepartmentService>();
-            //builder.Register(c => new VendorService(c.Resolve<IUnitOfWork>(), c.Resolve<ICodeFileService>())).As<IVendorService>();
-            //builder.Register(c => new DrugVendorService(c.Resolve<IUnitOfWork>(), c.Resolve<ICodeFileService>())).As<IDrugVendorService>();
-            //builder.Register(c => new DrugService(c.Resolve<IUnitOfWork>(), c.Resolve<IDrugAppearanceService>())).As<IDrugService>();
-
             // 建立容器
             IContainer container = builder.Build();
 

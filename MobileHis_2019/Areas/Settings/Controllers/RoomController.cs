@@ -1,5 +1,4 @@
-﻿using BLL;
-using MobileHis.Models.Areas.Sys.ViewModels;
+﻿using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Controllers;
 using MobileHis_2019.Service.Service;
 using Newtonsoft.Json;
@@ -13,14 +12,9 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class RoomController : BaseAPIController<RoomModel>
     {
-        //private RoomBLL _roomBLL;
-        //private ModelStateWrapper _modelState;
         IRoomService _roomService;
         public RoomController(IRoomService roomService, ISystemLogService systemLogService) : base(systemLogService)
         {
-            //_modelState = new ModelStateWrapper(ModelState);
-            //_roomBLL = new RoomBLL(_modelState);
-            //IBLL = _roomBLL;
             roomService.InitialiseIValidationDictionary(
                 new ModelStateWrapper(ModelState));
             _roomService = roomService;

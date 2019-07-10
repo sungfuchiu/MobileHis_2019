@@ -13,16 +13,10 @@ using MobileHis.Models;
 
 namespace MobileHis.Models.Areas.Sys.ViewModels
 {
-    public class EducationModel : BaseSearchModel, IGetCodeFileSelectList
+    public class EducationModel : BaseSearchModel//, IGetCodeFileSelectList
     {
-        public event GetCodeFileSelectList CodeFileSelectListEvent;
-        public EducationModel(GetCodeFileSelectList selectListEvent)
-        {
-            CodeFileSelectListEvent = selectListEvent;
-        }
-        public EducationModel() { }
         public IPagedList<HealthEdu> EducationPageList { get; set; }
-        public List<SelectListItem> AddCategory { get => CodeFileSelectListEvent(itemType: "GD", selectedValue: HealthEdu_Type_CodeFile.ToString() ); }
+        public List<SelectListItem> AddCategory { get => DependencyResolver.Current.GetService<GetCodeFileSelectList>()(itemType: "GD", selectedValue: HealthEdu_Type_CodeFile.ToString() ); }
 
         public int ID { get; set; }
         [Required]
@@ -36,10 +30,7 @@ namespace MobileHis.Models.Areas.Sys.ViewModels
         public string CategoryName { get; set; }
         public IEnumerable<HttpPostedFileBase> UploadFiles { get; set; }
         public IList<HealthEdu_File> EducationFiles { get; set; }
-        public string ModUser
-        {
-            get => "Admin";
-        }
+        public string ModUser { get; set; }
     }
     //public class EducationPageMdoel
     //{

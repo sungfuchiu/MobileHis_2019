@@ -21,12 +21,8 @@ namespace MobileHis_2019.Service.Service
     }
     public class AccountService : GenericService<Account>, IAccountService
     {
-        IRoleService _roleService;
-        IDepartmentService _departmentService;
-        public AccountService(IUnitOfWork indb, IDepartmentService departmentService, IRoleService roleService) : base(indb)
+        public AccountService( IUnitOfWork indb ) : base(indb)
         {
-            _roleService = roleService;
-            _departmentService = departmentService;
         }
         public List<Account> GetList(string keyword = "")
         {
@@ -70,42 +66,14 @@ namespace MobileHis_2019.Service.Service
                 {
                     var account = data.MapFrom<AccountCreateView, Account>();
                     account.Password = Config.Md5Salt(data.Password);
-                    //if (data.DepartmentIDs != null || data.BureauDepartmentIDs != null)
-                    //{
-                    //    List<Account2Dept> _acc2dept = new List<Account2Dept>();
-                    //    int Acc2DeptLength = data.DepartmentIDs != null ? data.DepartmentIDs.Length : 0;
-                    //    int RegAcc2DeptLength = data.BureauDepartmentIDs != null ? data.BureauDepartmentIDs.Length : 0;
-
-                    //    var dept = new int[Acc2DeptLength + RegAcc2DeptLength];
-                    //    if (Acc2DeptLength != 0)
-                    //        data.DepartmentIDs.CopyTo(dept, 0);
-                    //    if (RegAcc2DeptLength != 0)
-                    //        data.BureauDepartmentIDs.CopyTo(dept, Acc2DeptLength);
-
-                    //    foreach (var r in dept)
-                    //    {
-                    //        _acc2dept.Add(new Account2Dept() { DeptId = r });
-                    //    }
-                    //    account.Account2Dept = _acc2dept;
-                    //}
                     Array.ForEach(
                         data.DepartmentIDs.Concat(data.BureauDepartmentIDs).ToArray()
-                        , a => account.Account2Dept.Add(
+                        ,a => account.Account2Dept.Add(
                             new Account2Dept() { DeptId = Convert.ToInt32(a) }));
-                    //Array.ForEach(data.BureauDepartmentIDs, a => account.Account2Dept.Add(new Account2Dept() { DeptId = Convert.ToInt32(a) }));
                     Create(account);
                     db.Repository<Account2Role>().Create(
                         data.Roles.Select(a => 
                             new Account2Role(account.ID, Convert.ToInt32(a))).ToList());
-                    //foreach (var item in data.Roles.OrEmptyIfNull())
-                    //{
-                    //    var newAccount2RoleObj = new Account2Role()
-                    //    {
-                    //        Account_id = account.ID,
-                    //        Role_id = Convert.ToInt32(item)
-                    //    };
-                    //    db.Repository<Account2Role>().Create(newAccount2RoleObj);
-                    //}
                     Save();
                 }
             }catch(Exception ex)

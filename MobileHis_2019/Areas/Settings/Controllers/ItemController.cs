@@ -1,5 +1,4 @@
-﻿using BLL;
-using Common;
+﻿using Common;
 using MobileHis.Data;
 using MobileHis.Misc;
 using MobileHis.Models.ApiModel;
@@ -55,11 +54,6 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             ICodeFileService codeFileService,
             ISystemLogService systemLogService) : base(systemLogService)
         {
-            //_drugBLL = new DrugBLL(_modelState);
-            //_drugSettingBLL = new DrugSettingBLL(_modelState);
-            //_drugCostBLL = new DrugCostBLL();
-            //_drugAppearanceBLL = new DrugAppearanceBLL();
-            //_codeFileBLL = new CodeFileBLL(_modelState);
             _modelState = new ModelStateWrapper(ModelState);
             drugService.InitialiseIValidationDictionary(_modelState);
             drugSettingService.InitialiseIValidationDictionary(_modelState);
@@ -76,9 +70,6 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         public ActionResult Index([Bind(Prefix = "Item2")] DrugsFilter filter)
         {
             DrugsFilter = filter;
-            //int current_page = 0;
-            //filter = filter ?? drugAppearanceBLL.NewFilter();
-            //current_page = (page ?? filter.page ?? 1) - 1;
 
             var entity = _drugService.Filter(DrugsFilter);
             return View(new 
@@ -87,15 +78,6 @@ namespace MobileHis_2019.Areas.Settings.Controllers
                 DrugsFilter));
             
         }
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult Create(DrugSettingModelView model)
-        //{
-        //    return View();
-        //}
         public ActionResult Edit(Guid? id)
         {
             if (id.HasValue)
@@ -124,17 +106,11 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             }
             return View(model);
         }
-        //[HttpPost]
-        //public ActionResult Edit(DrugSettingModelView model)
-        //{
-        //    return View();
-        //}
         public ActionResult Setting(Guid? id)
         {
             if (id.HasValue)
             {
                 DrugSettingModelView model = _drugSettingService.GetSettingByDrugID(id.Value);
-                //model.SelectListEvent += _codeFileBLL.GetDropDownList;
                 if (Request.IsAjaxRequest())
                 {
                     return Json(model);
@@ -146,13 +122,12 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             }
             else
             {
-                return View(new DrugSettingModelView(_codeFileService.GetDropDownList)); 
+                return View(new DrugSettingModelView()); 
             }
         }
         [HttpPost]
-        public ActionResult Setting(DrugSettingModelView model) //todo: Inject contructor
+        public ActionResult Setting(DrugSettingModelView model)
         {
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             if (ModelState.IsValid)
             {
                 _drugSettingService.CreateOrUpdate(model);
@@ -173,7 +148,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         [HttpGet]
         public ActionResult Photo(Guid? id, int? download)
         {
-            var storage = MobileHis.Misc.Storage.GetStorage(StorageScope.Drug);//Storage.GetDrugAppearanceStorage;// DrugViewModel.AppearanceStorage;
+            var storage = MobileHis.Misc.Storage.GetStorage(StorageScope.Drug);
             if (id.HasValue && storage.FileExist(id.Value))
             {
                 var file = storage.Open(id.Value);

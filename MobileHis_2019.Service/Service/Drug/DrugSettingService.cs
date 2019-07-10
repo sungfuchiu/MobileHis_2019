@@ -21,17 +21,17 @@ namespace MobileHis_2019.Service.Service
     }
     public class DrugSettingService : GenericService<DrugSetting>, IDrugSettingService
     {
-        ICodeFileService _codeFileService;
-        public DrugSettingService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
+        //ICodeFileService _codeFileService;
+        public DrugSettingService(IUnitOfWork inDB/*, ICodeFileService codeFileService*/) : base(inDB)
         {
-            _codeFileService = codeFileService;
+            //_codeFileService = codeFileService;
         }
         public DrugSettingModelView GetSettingByDrugID(Guid drugID)
         {
             Drug drug = db.Repository<Drug>().Read(a => a.GID == drugID);
             var config = new MapperConfiguration(cfg =>
                     cfg.CreateMap<Drug, DrugSettingModelView>().ConstructUsing(a =>
-                        new DrugSettingModelView(_codeFileService.GetDropDownList))
+                        new DrugSettingModelView())
                         .ForMember(a => a.DrugID, opt => opt.MapFrom(s => s.GID)));
             var mapper = config.CreateMapper();
             var model = mapper.Map<DrugSettingModelView>(drug);

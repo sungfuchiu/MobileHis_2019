@@ -15,11 +15,13 @@ namespace MobileHis_2019.Service.Service
     }
     public class VendorService : GenericModelService<Vendor, VendorModel>, IWebService<VendorModel>, IVendorService
     {
-        ICodeFileService _codeFileService;
+        //ICodeFileService _codeFileService;
         IMapper _modelMapper;
-        public VendorService(IUnitOfWork inDB, ICodeFileService codeFileService) : base(inDB)
+        public VendorService(IUnitOfWork inDB
+            //, ICodeFileService codeFileService
+            ) : base(inDB)
         {
-            _codeFileService = codeFileService;
+            //_codeFileService = codeFileService;
             var mapperConfiguration = new MapperConfiguration(
                 cfg => cfg.CreateMap<VendorModel, Vendor>());
             _modelMapper = mapperConfiguration.CreateMapper();
@@ -37,7 +39,7 @@ namespace MobileHis_2019.Service.Service
                     );
             }
             model.EntityPageList = vendor.ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+            //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
         }
         public VendorModel Read(int ID)
         {
@@ -47,7 +49,7 @@ namespace MobileHis_2019.Service.Service
             //var _entityMapper = mapperConfiguration.CreateMapper();
             //VendorModel model = _entityMapper.Map<VendorModel>(vendor);
             VendorModel model = EntityToViewModel(vendor);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+            //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             return model;
         }
 
@@ -55,7 +57,7 @@ namespace MobileHis_2019.Service.Service
         {
             try
             {
-                model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+                //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
                 //var vendor = _modelMapper.Map<Vendor>(model);
                 var vendor = ToCreateEntity(model);
                 Create(vendor);
@@ -68,7 +70,7 @@ namespace MobileHis_2019.Service.Service
 
         public void Update(VendorModel model)
         {
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+            //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             var vendor = Read(a => a.ID == model.ID);
             try
             {

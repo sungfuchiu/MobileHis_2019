@@ -23,14 +23,14 @@ namespace MobileHis_2019.Service.Service
     }
     public class RoomService : GenericModelService<Room, RoomModel>, IAPIService<RoomModel>, IRoomService
     {
-        ICodeFileService _codeFileService;
+        //ICodeFileService _codeFileService;
         IDepartmentService _departmentService;
         public RoomService(
             IUnitOfWork inDB, 
-            ICodeFileService codeFileService,
+            //ICodeFileService codeFileService,
             IDepartmentService departmentService) : base(inDB)
         {
-            _codeFileService = codeFileService;
+            //_codeFileService = codeFileService;
             _departmentService = departmentService;
         }
         public void Index(RoomModel model)
@@ -43,8 +43,8 @@ namespace MobileHis_2019.Service.Service
                                     a => a.RoomNo.Contains(model.Keyword)
                                     || a.RoomName.Contains(model.Keyword)) select a)
                                     .ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
-            model.DepartmentSelectListEvent += _departmentService.GetDropDownList;
+            //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+            //model.DepartmentSelectListEvent += _departmentService.GetDropDownList;
         }
 
         public void Create(RoomModel model)

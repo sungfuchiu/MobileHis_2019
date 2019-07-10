@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201906250928325_AddUserColumnForHook.Designer.cs">
       <DependentUpon>201906250928325_AddUserColumnForHook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907100644048_ModifyDatetimeAndUserColumn.cs" />
+    <Compile Include="Migrations\201907100644048_ModifyDatetimeAndUserColumn.Designer.cs">
+      <DependentUpon>201907100644048_ModifyDatetimeAndUserColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameter.cs" />
@@ -284,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906250928325_AddUserColumnForHook.resx">
       <DependentUpon>201906250928325_AddUserColumnForHook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907100644048_ModifyDatetimeAndUserColumn.resx">
+      <DependentUpon>201907100644048_ModifyDatetimeAndUserColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

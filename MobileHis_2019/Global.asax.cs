@@ -19,7 +19,7 @@ namespace MobileHis_2019
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.Register();
-            ModelBinders.Binders[typeof(IPrincipal)] = new IPrincipalModelBinder();
+            //ModelBinders.Binders[typeof(IPrincipal)] = new IPrincipalModelBinder();
             //ModelBinders.Binders.DefaultBinder = new CollectionNotEmptyModelBinder();
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)

@@ -1,5 +1,4 @@
-﻿using BLL.Interface;
-using MobileHis_2019.Service.Interface;
+﻿using MobileHis_2019.Service.Interface;
 using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;

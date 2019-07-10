@@ -1,5 +1,4 @@
-﻿using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,31 +14,18 @@ namespace MobileHis_2019.Areas.Settings.Controllers
 {
     public class ICD10Controller : MobileHis_2019.Controllers.BaseController
     {
-        //private ICD10BLL icd10BLL;
-        //private ModelStateWrapper modelState;
         IICD10Service _ICD10Service;
-        ICodeFileService _codeFileService;
-        public ICD10Controller(IICD10Service ICD10Service, ICodeFileService codeFileService, ISystemLogService systemLogService) : base(systemLogService)
+        public ICD10Controller(IICD10Service ICD10Service, ISystemLogService systemLogService) : base(systemLogService)
         {
-            //modelState = new ModelStateWrapper(ModelState);
-            //icd10BLL = new ICD10BLL(modelState);
             ICD10Service.InitialiseIValidationDictionary(
                 new ModelStateWrapper(ModelState));
             _ICD10Service = ICD10Service;
-            _codeFileService = codeFileService;
         }
         [HttpGet]
-        public ActionResult Index(ICD10ViewModel model/*int? page, string keyword = "", string type = ""*/)
+        public ActionResult Index(ICD10ViewModel model)
         {
-            //int currentPageIndex = (page ?? 1) - 1;
-            //ViewBag.keyword = keyword;
-            //ViewBag.type = type;
-            //IEnumerable<ICD10ViewModel> model = _ICD10Service.GetList(keyword, type)
-            //                .ToPagedList(currentPageIndex + 1, GlobalVariable.PageSize);
-            //ViewBag._Update = true;
             model.ICD10PageList = _ICD10Service.GetList(model.Keyword, model.Type)
                                 .ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
             return View(model);
         }
         [HttpPost]

@@ -61,7 +61,6 @@ namespace MobileHis_2019.Service.Service
                     );
             }
             model.EducationPageList = educations.ToPagedList(model.Page, Config.PageSize);
-            model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
         }
         public void Create(EducationModel model)
         {
@@ -102,7 +101,7 @@ namespace MobileHis_2019.Service.Service
                     }
                     var education = db.Repository<HealthEdu>().Read(a => a.ID == ID);
                     db.Repository<HealthEdu>().Delete(education);
-                    db.Save();
+                    Save();
                 }
                 catch(Exception ex)
                 {
@@ -117,7 +116,6 @@ namespace MobileHis_2019.Service.Service
                 .ForMember(a => a.CategoryName, opt => opt.MapFrom(o => o.CodeFile.ItemDescription)));
             var mapper = config.CreateMapper();
             var education = mapper.Map<EducationModel>(data);
-            education.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
 
             var GF_List = new List<HealthEdu_File>();
 
@@ -132,7 +130,7 @@ namespace MobileHis_2019.Service.Service
         {
                 try
                 {
-                    model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
+                    //model.CodeFileSelectListEvent += _codeFileService.GetDropDownList;
                     var education = db.Repository<HealthEdu>().Read(a => a.ID == model.ID);
 
                     if (education != null)
@@ -161,10 +159,7 @@ namespace MobileHis_2019.Service.Service
                                         FileName = fileName,
                                         Show_Order = showOrder,
                                         Show_Seconds = defaultShowSeconds,
-                                        IsUsed = true,
-                                        UploadDate = System.DateTime.Now,
-                                        ModDate = System.DateTime.Now,
-                                        ModUser = model.ModUser
+                                        IsUsed = true
                                     };
                                     db.Repository<HealthEdu_File>().Create(newFile);
                                     showOrder++;
@@ -177,8 +172,6 @@ namespace MobileHis_2019.Service.Service
                             updatedFile.Show_Seconds = file.Show_Seconds;
                             updatedFile.IsUsed = file.IsUsed;
                             updatedFile.Show_Order = file.Show_Order;
-                            updatedFile.ModDate = DateTime.Now;
-                            updatedFile.ModUser = model.ModUser;
                         }
 
                         education.HealthEdu_Type_CodeFile = model.HealthEdu_Type_CodeFile;
@@ -186,8 +179,6 @@ namespace MobileHis_2019.Service.Service
                         education.IsUsed = model.IsUsed;
                         education.IsForLobbyUsed = model.IsForLobbyUsed;
                         education.QueueMsg = model.QueueMsg;
-                        education.ModDate = System.DateTime.Now;
-                        education.ModUser = "Admin";
 
                         Save();
                     }

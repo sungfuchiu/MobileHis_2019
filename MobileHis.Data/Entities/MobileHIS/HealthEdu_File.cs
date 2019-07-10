@@ -10,7 +10,7 @@ using System.Web;
 
 namespace MobileHis.Data
 {
-    public class HealthEdu_File : IIDEntity
+    public class HealthEdu_File :IIDEntity, IDatedEntity, IUserEntity
     {
         public HealthEdu_File() { }
 
@@ -24,7 +24,7 @@ namespace MobileHis.Data
         public int Show_Order { get; set; }
         public int Show_Seconds { get; set; }
         public bool IsUsed { get; set; }
-        public DateTime? UploadDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         public DateTime? ModDate { get; set; }
         [MaxLength(100)]
         public string ModUser { get; set; }

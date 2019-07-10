@@ -134,7 +134,7 @@ namespace MobileHis_2019.Service.Service
         }
         public void Index(CodeFileViewModel model)
         {
-            model.CategoryListEvent += GetCategoryList;
+            //model.CategoryListEvent += GetCategoryList;
             var data = db.Repository<CodeFile>().ReadAll()
                 .Include(a => a.Parent)
                 .Where(x => x.CheckFlag != "D")
@@ -164,7 +164,7 @@ namespace MobileHis_2019.Service.Service
                     {
                         codeFile.ParentCodeFile = model.ParentCodeFile;
                         codeFile.CheckFlag = "";
-                        codeFile.ModUser = model.ModUser;
+                        //codeFile.ModUser = model.ModUser;
                     }
                 }
                 else
