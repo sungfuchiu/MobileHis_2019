@@ -44,5 +44,9 @@ namespace MobileHis_2019.Areas.Settings.Controllers
                 message = ModelState[""]?.Errors[0].ErrorMessage
             });
         }
+        public ActionResult Edit(Guid id)
+        {
+
+        }
     }
 }
