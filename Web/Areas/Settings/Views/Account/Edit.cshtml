@@ -1,0 +1,460 @@
+﻿@*@using MobileHis.DAL;*@
+@using Common;
+@model MobileHis.Models.ViewModel.AccountEditView
+@{
+    ViewBag.Title = LocalRes.Resource.Map_Sys_Users;
+    Layout = "~/Areas/Settings/Views/Shared/_Layout.cshtml";
+    //RoleDal _RoleObj = new RoleDal();
+    //var _roles = _RoleObj.getList();
+}
+
+<link href="~/assets/css/ace-custom.css" rel="stylesheet" />
+<link href="~/assets/css/bootstrap-editable.css" rel="stylesheet" />
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="@Url.Content("~/")">@LocalRes.Resource.Map_Home</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            @LocalRes.Resource.Map_Sys
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            <a href="@Url.Content("~/Sys/Users")">@LocalRes.Resource.Map_Sys_Users</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            Edit User
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+    </ul>
+</div>
+
+
+<form action="@Url.Action("Edit")" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ID)
+    <div class="page-content">
+        <div class="page-header"> <h1>@LocalRes.Resource.User_Edit</h1></div><!--/.page-header-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="widget-box">
+                    <div class="widget-header widget-header-blue"><h4 class="lighter">Edit User</h4></div><!--/.widget-header-->
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 center">
+                                    <span class="profile-picture">
+                                        @*@if (Model.Pic != null)
+                                            {
+                                                <img id="avatar" width="200" class="editable img-responsive" style="display:inline-block" src="@Url.Action("avator", "Users", new { area = "Sys", userid = Model.ID })" data-pk="@Model.ID">
+
+                                            }
+                                            else
+                                            {
+                                                <img id="avatar" class="editable img-responsive" style="display:inline-block" src="~/Image/no_image_found.jpg" data-pk="@Model.ID">
+                                            }*@
+                                        <img id="sbavatarnav" width="200" src="@Url.Action("GetFile", "Base", new { area = "", cat = MobileHis.Misc.StorageScope.ProfilePic, fileName = Model.ImagePath, })" />
+                                    </span>
+                                    <div class="space space-4"></div>
+                                </div><!-- /.col -->
+                                <div class="col-xs-12 col-sm-9">
+                                    <div class="form-group row">
+                                        <label class=" control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.UserNo):</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.UserNo, new { @class = "form-control input-sm input-large", maxlength = "20", size = "20" })
+                                            @Html.ValidationMessageFor(x => x.UserNo)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class=" control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.Name):</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                            @Html.ValidationMessageFor(x => x.Name)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.Email):</label>
+                                        <div class="control col-sm-4 col-md-4">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-sm input-xxlarge", maxlength = "100", size = "20" })
+                                                @Html.ValidationMessageFor(x => x.Email)
+                                                <span class="input-group-addon">@Config.AppSetting("EmailDomain")</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class=" control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.Tel):</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.Tel, new { @class = "form-control input-sm input-large", maxlength = "30", size = "20" })
+                                            @Html.ValidationMessageFor(x => x.Tel)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class=" control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.Card):</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.Card, new { @class = "form-control input-sm input-large", maxlength = "20", size = "20" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class=" control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.Gender):</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            <div class="clearfix">
+                                                <label class="blue" style="float:left">
+                                                    <input type="radio" name="Gender" id="GenderB" value="M" @(Model.Gender == "M" ? "checked" : "") class="ace"><span class="lbl">@LocalRes.Resource.Comm_Boy<i class=" ace-icon fa fa-male"></i></span>
+                                                </label>
+                                                <label class="blue" style="float:left; margin-left:10px;">
+                                                    <input type="radio" name="Gender" id="GenderB" value="F" @(Model.Gender == "F" ? "checked" : "") class="ace"><span class="lbl">@LocalRes.Resource.Comm_Girl<i class=" ace-icon fa fa-male"></i></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right" for="date_of_birth">@Html.DisplayNameFor(m => m.Birthday):</label>
+                                        <div class="controls col-sm-8 col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                @Html.TextBox("Birthday", Model != null ? Model.Birthday.HasValue ? Model.Birthday.CultureDateTime() : "" : "", new { @class = "input-sm date-picker", maxlength = "10", size = "20" })
+                                                @Html.ValidationMessageFor(x => x.Birthday)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.IsDoctor):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                <input id="IsDoctor" name="IsDoctor" class="ace ace-switch ace-switch-5" type="checkbox" @(Model.IsDoctor == "Y" ? "checked" : "")><span class="lbl"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row" id="divRegDept">
+                                        <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.DepartmentIDs):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            @*@ucCheckbox.getDeptInCheckBox("RegAcc2Dept", Model.RegAcc2Dept, "Y")*@
+                                            @Html.CheckBoxListFor(x => x.DepartmentIDs,
+                                                          x => x.AvailableDepartments,
+                                                          x => x.Id,
+                                                          x => x.Name,
+                                                          x => x.IsSelected,
+                                                          x => x.Tags)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.BureauDepartmentIDs):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            @*@ucCheckbox.getDeptInCheckBox("Acc2Dept", Model.Acc2Dept)*@
+                                            @Html.CheckBoxListFor(x => x.BureauDepartmentIDs,
+                                                         x => x.AvailablebureauDepartments,
+                                                         x => x.Id,
+                                                         x => x.Name,
+                                                         x => x.IsSelected,
+                                                         x => x.Tags)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class=" control-label  align-right col-sm-2 col-md-2">@Html.DisplayNameFor(m => m.Title):</label>
+                                        <div class="control col-sm-10 col-md-10">
+                                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control input-sm input-large", maxlength = "50", size = "20" })
+                                            @Html.ValidationMessageFor(x => x.Title)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.IsLockedOut):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                <input id="IsLockedOut" name="IsLockedOut" class="ace ace-switch ace-switch-5" type="checkbox" @(Model.IsLockedOut == "Y" ? "checked" : "")><span class="lbl"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@LocalRes.Resource.Roles:</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            @*@foreach (var item in _roles)
+        {
+            <label class="blue" style="float:left; margin-right:10px">
+                <input type="checkbox" id="roles_@item.ID" name="Roles" value="@item.ID" class="ace" @(Model.Roles != null ? (Model.Roles.Contains(item.ID.ToString()) ? "checked" : "") : "")>
+                <span class="lbl" for="roles_@item.ID">@item.name</span>
+            </label>
+        }*@
+                                            @Html.CheckBoxListFor(x => x.RoleIDs,
+                                                          x => x.Roles,
+                                                          x => x.Id,
+                                                          x => x.Name,
+                                                          x => x.IsSelected,
+                                                          x => x.Tags)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.Major):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                @Html.TextBoxFor(x => x.Major, new { @class = "form-control input-sm input-xxlarge" })
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.Experience):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                @Html.TextAreaFor(x => x.Experience, 6, 20, new { @class = "form-control input-sm input-xxlarge" })
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.Expertise):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                @Html.TextAreaFor(x => x.Expertise, 6, 20, new { @class = "form-control input-sm input-xxlarge" })
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.Comment):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                @Html.TextAreaFor(x => x.Comment, 6, 20, new { @class = "form-control input-sm input-xxlarge" })
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-2 col-md-2 align-right">@Html.DisplayNameFor(m => m.Status):</label>
+                                        <div class="controls col-sm-10 col-md-10">
+                                            <label>
+                                                @*@ucDropDown.getUserStatusInDll("Status", Model != null ? Model.Status : "", false, false)*@
+                                                @Html.DropDownListFor(m => m.Status, Model.StatusSelectedList)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="clearfix align-right">
+                            <button class="btn btn-success" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>@LocalRes.Resource.Modify</button>
+                        </div>
+                    </div><!--/.widget-main-->
+                </div><!--/.widget-body-->
+            </div><!--/.widget-box-->
+        </div><!--/.col-->
+    </div><!--/.row-->
+</form>
+<script src="~/assets/js/x-editable/bootstrap-editable.min.js"></script>
+<script src="~/assets/js/x-editable/ace-editable.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ("@Model.IsDoctor" == "Y") $("#divRegDept").show();
+        else $("#divRegDept").hide();
+        $('#Birthday').datetimepicker({
+            format: '@Common.DatetimeHelper.CultureDateTimeFormat(true).ToUpper()'
+        });
+        $('#DepNo, #JobNo').chosen({ allow_single_deselect: true });
+
+        $("#Status").change(function () {
+            if ($(this).val() != "")
+                $("#IsLockedOut").prop("checked", true);
+            else
+                $("#IsLockedOut").prop("checked", false);
+        });
+        $("#IsDoctor").change(function () {
+
+            if ($(this).prop("checked"))
+                $("#divRegDept").show();
+            else {
+                $("#divRegDept").hide();
+                $("#divRegDept").find("input:checked").each(function (key) {
+                    $(this).prop('checked', false);
+                });
+            }
+        });
+        $.fn.editable.defaults.mode = 'inline';
+        $.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
+        $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>' +
+                                    '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';
+
+        $("#intro-cookie").prop("checked", $.cookie("intro-cookie") === "true" ? true : false);
+        try {//ie8 throws some harmless exceptions, so let's catch'em
+
+            //first let's add a fake appendChild method for Image element for browsers that have a problem with this
+            //because editable plugin calls appendChild, and it causes errors on IE
+            try {
+                document.createElement('IMG').appendChild(document.createElement('B'));
+            } catch (e) {
+                Image.prototype.appendChild = function (el) { }
+            }
+
+            var last_gritter
+            $('#avatar').editable({
+                type: 'image',
+                name: 'avatar',
+                value: null,
+                image: {
+                    //specify ace file input plugin's options here
+                    btn_choose: 'Change Avatar',
+                    droppable: true,
+                    maxSize: 3145728,//~1M
+
+                    //and a few extra ones here
+                    name: 'avatar',//put the field name here as well, will be used inside the custom plugin
+                    on_error: function (error_type) {//on_error function will be called when the selected file has a problem
+                        if (last_gritter) $.gritter.remove(last_gritter);
+                        if (error_type == 1) {//file format error
+                            last_gritter = $.gritter.add({
+                                title: 'File is not an image!',
+                                text: 'Please choose a jpg|gif|png image!',
+                                class_name: 'gritter-error gritter-center'
+                            });
+                        } else if (error_type == 2) {//file size rror
+                            last_gritter = $.gritter.add({
+                                title: 'File too big!',
+                                text: 'Image size should not exceed 1M!',
+                                class_name: 'gritter-error gritter-center'
+                            });
+                        }
+                        else {//other error
+                        }
+                    },
+                    on_success: function () {
+                        $.gritter.removeAll();
+                    }
+                },
+                url: function (params) {
+                    // ***UPDATE AVATAR HERE*** //
+                    var submit_url = '@Url.Action("AvatorUpload")';//please modify submit_url accordingly
+                    var deferred = null;
+                    var avatar = '#avatar';
+
+                    //if value is empty (""), it means no valid files were selected
+                    //but it may still be submitted by x-editable plugin
+                    //because "" (empty string) is different from previous non-empty value whatever it was
+                    //so we return just here to prevent problems
+                    var value = $(avatar).next().find('input[type=hidden]:eq(0)').val();
+                    if (!value || value.length == 0) {
+                        deferred = new $.Deferred
+                        deferred.resolve();
+                        return deferred.promise();
+                    }
+
+                    var $form = $(avatar).next().find('.editableform:eq(0)')
+                    var file_input = $form.find('input[type=file]:eq(0)');
+                    var pk = $(avatar).attr('data-pk');//primary key to be sent to server
+
+                    var ie_timeout = null
+
+
+                    if ("FormData" in window) {
+                        var formData_object = new FormData();//create empty FormData object
+
+                        //serialize our form (which excludes file inputs)
+                        $.each($form.serializeArray(), function (i, item) {
+                            //add them one by one to our FormData
+                            formData_object.append(item.name, item.value);
+                        });
+                        //and then add files
+                        $form.find('input[type=file]').each(function () {
+                            var field_name = $(this).attr('name');
+                            var files = $(this).data('ace_input_files');
+                            if (files && files.length > 0) {
+                                formData_object.append(field_name, files[0]);
+                            }
+                        });
+
+                        //append primary key to our formData
+                        formData_object.append('pk', pk);
+                        formData_object.append('__RequestVerificationToken', $('input[name=__RequestVerificationToken]').val());
+                        deferred = $.ajax({
+                            url: submit_url,
+                            type: 'POST',
+                            processData: false,//important
+                            contentType: false,//important
+                            dataType: 'json',//server response type
+                            data: formData_object
+                        })
+                    }
+                    else {
+                        deferred = new $.Deferred
+
+                        var temporary_iframe_id = 'temporary-iframe-' + (new Date()).getTime() + '-' + (parseInt(Math.random() * 1000));
+                        var temp_iframe =
+                                $('<iframe id="' + temporary_iframe_id + '" name="' + temporary_iframe_id + '" \
+                                    frameborder="0" width="0" height="0" src="about:blank"\
+                                    style="position:absolute; z-index:-1; visibility: hidden;"></iframe>')
+                                .insertAfter($form);
+
+                        $form.append('<input type="hidden" name="temporary-iframe-id" value="' + temporary_iframe_id + '" />');
+                        $form.append('<input type="hidden" name="__RequestVerificationToken" value="' + $('input[name=__RequestVerificationToken]').val() + '" />');
+
+
+                        //append primary key (pk) to our form
+                        $('<input type="hidden" name="pk" />').val(pk).appendTo($form);
+
+                        temp_iframe.data('deferrer', deferred);
+                        //we save the deferred object to the iframe and in our server side response
+                        //we use "temporary-iframe-id" to access iframe and its deferred object
+
+                        $form.attr({
+                            action: submit_url,
+                            method: 'POST',
+                            enctype: 'multipart/form-data',
+                            target: temporary_iframe_id //important
+                        });
+
+                        $form.get(0).submit();
+
+                        //if we don't receive any response after 30 seconds, declare it as failed!
+                        ie_timeout = setTimeout(function () {
+                            ie_timeout = null;
+                            temp_iframe.attr('src', 'about:blank').remove();
+                            deferred.reject({ 'status': 'fail', 'message': 'Timeout!' });
+                        }, 30000);
+                    }
+
+
+                    //deferred callbacks, triggered by both ajax and iframe solution
+                    deferred
+                    .done(function (result) {//success
+                        if (result.status == "OK") {
+                            $(avatar).attr('src', '@Url.Action("avator", "Users", new { area = "Sys", userid = Model.ID })&r=' + Math.random());
+                        }
+                        else {
+                            bootbox.alert(result.message, function () { });
+                        }
+
+                    })
+                    .fail(function (result) {//failure
+                        alert("There was an error");
+                    })
+                    .always(function () {//called on both success and failure
+                        if (ie_timeout) clearTimeout(ie_timeout)
+                        ie_timeout = null;
+                    });
+
+                    return deferred.promise();
+                    // ***END OF UPDATE AVATAR HERE*** //
+                },
+
+                success: function (response, newValue) {
+                }
+            })
+        } catch (e) { }
+    });
+</script>
