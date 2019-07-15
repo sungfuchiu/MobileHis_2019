@@ -19,6 +19,7 @@ namespace MobileHis_2019.Service.Service
         JObject AuthRole(List<string> r_key, string url);
         List<Account> GetList(string keyword);
         void Create(AccountCreateView data);
+        AccountEditView Edit(int id);
     }
     public class AccountService : GenericService<Account>, IAccountService
     {
@@ -87,7 +88,7 @@ namespace MobileHis_2019.Service.Service
             //return db.Repository<Account>().ReadAll()
             //       .Where(a => a.ID == id)
             //       .Include(a => a.Account2Dept)
-            //       .SelectMany(a => a.Account2Dept, (a, b) => new AccountEditView()
+            //       .Select(a => new AccountEditView()
             //       {
             //           ID = a.ID.ToString(),
             //           UserNo = a.UserNo,
@@ -110,10 +111,14 @@ namespace MobileHis_2019.Service.Service
             //           ModUser = a.ModUser,
             //           Roles = a.Account2Role.Select(x => Convert.ToString(x.Role_id)).ToArray(),
             //           ImagePath = a.ImagePath,
-            //           Acc2Dept = a.Account2Dept.Where(x => string.IsNullOrEmpty(x.Dept.IsRegistered)).Select(x => x.DeptId).ToArray(),
-            //           RegAcc2Dept = a.Account2Dept.Where(x => x.Dept.IsRegistered == "Y").Select(x => x.DeptId).ToArray(),
+            //           Acc2Dept = (from dd in a.Account2Dept
+            //                       where dd.Dept.IsRegistered == "Y"
+            //                       select dd.DeptId).ToArray(),
+            //           RegAcc2Dept = (from dep in a.Account2Dept
+            //                          where string.IsNullOrEmpty(dep.Dept.IsRegistered)
+            //                          select dep.DeptId).ToArray(),
             //           Expertise = a.Expertise
-            //       }).Where(a => a.Acc2Dept .FirstOrDefault();
+            //       }).FirstOrDefault();
 
             //db.Repository<Account>().ReadAll()
             //       .Where(a => a.ID == id)
@@ -123,58 +128,84 @@ namespace MobileHis_2019.Service.Service
             //           account = a,
             //           isRegistered = b.Dept.IsRegistered
             //       }).Where(a => a.is.FirstOrDefault();
-            var result =    from a in db.Repository<Account>().ReadAll() 
-                        from dept in (from dep in a.Account2Dept
-                                    where string.IsNullOrEmpty(dep.Dept.IsRegistered)
-                                    select dep.DeptId).ToArray()
-                            
-                    from deptIsRegistered in (from dd in a.Account2Dept
-                                              where dd.Dept.IsRegistered == "Y"
-                                              select dd.DeptId).ToArray()
-                    select new AccountEditView()
-                    {
-                        ID = a.ID.ToString(),
-                        UserNo = a.UserNo,
-                        Name = a.Name,
-                        Email = a.Email.Replace(Config.AppSetting("EmailDomain"), ""),
-                        Tel = a.Tel,
-                        Card = a.Card,
-                        IsLockedOut = a.IsLockedOut,
-                        IsDoctor = a.IsDoctor,
-                        Title = a.Title,
-                        Comment = a.Comment,
-                        Experience = a.Experience,
-                        Status = a.Status,
-                        Major = a.Major,
-                        Birthday = a.Birthday,
-                        LastLoginDate = a.LastLoginDate,
-                        Gender = a.Gender,
-                        CreateDate = a.CreateDate.Value,
-                        ModDate = a.ModDate,
-                        ModUser = a.ModUser,
-                        Roles = a.Account2Role.Select(x => Convert.ToString(x.Role_id)).ToArray(),
-                        ImagePath = a.ImagePath,
-                        Acc2Dept = dept,
-                        RegAcc2Dept = deptIsRegistered.Select(x => x.DeptId).ToArray(),
-                        Expertise = a.Expertise
-                    }
+            var account = (from a in db.Repository<Account>().ReadAll()
+                           where a.ID == id
+                        select new
+                        {
+                            ID = a.ID.ToString(),
+                            UserNo = a.UserNo,
+                            Name = a.Name,
+                            Email = a.Email,
+                            Tel = a.Tel,
+                            Card = a.Card,
+                            IsLockedOut = a.IsLockedOut,
+                            IsDoctor = a.IsDoctor,
+                            Title = a.Title,
+                            Comment = a.Comment,
+                            Experience = a.Experience,
+                            Status = a.Status,
+                            Major = a.Major,
+                            Birthday = a.Birthday,
+                            LastLoginDate = a.LastLoginDate,
+                            Gender = a.Gender,
+                            CreateDate = a.CreateDate.Value,
+                            ModDate = a.ModDate,
+                            ModUser = a.ModUser,
+                            Roles = a.Account2Role.Select(x => x.Role_id),
+                            ImagePath = a.ImagePath,
+                            Acc2Dept = from dd in a.Account2Dept
+                                        where dd.Dept.IsRegistered == "Y"
+                                        select dd.DeptId,
+                            RegAcc2Dept = from dep in a.Account2Dept
+                                           where string.IsNullOrEmpty(dep.Dept.IsRegistered)
+                                           select dep.DeptId,
+                            Expertise = a.Expertise
+                        }).AsEnumerable().Select(a =>
+                          new AccountEditView()
+                         {
+                             ID = a.ID.ToString(),
+                             UserNo = a.UserNo,
+                             Name = a.Name,
+                             Email = a.Email.Replace(Config.AppSetting("EmailDomain"), ""),
+                             Tel = a.Tel,
+                             Card = a.Card,
+                             IsLockedOut = a.IsLockedOut,
+                             IsDoctor = a.IsDoctor,
+                             Title = a.Title,
+                             Comment = a.Comment,
+                             Experience = a.Experience,
+                             Status = a.Status,
+                             Major = a.Major,
+                             Birthday = a.Birthday,
+                             LastLoginDate = a.LastLoginDate,
+                             Gender = a.Gender,
+                             CreateDate = a.CreateDate,
+                             ModDate = a.ModDate,
+                             ModUser = a.ModUser,
+                             RoleIDs = a.Roles.ToArray(),
+                             ImagePath = a.ImagePath,
+                             DepartmentIDs = a.Acc2Dept.ToArray(),
+                              BureauDepartmentIDs = a.RegAcc2Dept.ToArray(),
+                             Expertise = a.Expertise
+                         }).Single();
+            return account;
                             //   (from a in db.Repository<Account>().ReadAll()
                             //  select a.Account2Dept join t1 in db.Repository<Dept>().ReadAll() on account.Account2Dept equals t1.Account
                             //where t1.
 
-                            //db.Repository<Account>().ReadAll()
-                            //       .Where(a => a.ID == id)
-                            //       .Select(a => new
-                            //       {
-                            //           account = a,
-                            //           accTodept = a.Account2Dept,
-                            //           accToRegisterDept = a.Account2Dept
-                            //       }).Where(a => a.accToRegisterDept.SelectMany(a => a.accToRegisterDept, (a,b)
-                            //       => new
-                            //       {
-                            //           deptdd = b.DeptId
-                            //       })
-                            //       .FirstOrDefault();
+            //db.Repository<Account>().ReadAll()
+            //       .Where(a => a.ID == id)
+            //       .Select(a => new
+            //       {
+            //           account = a,
+            //           accTodept = a.Account2Dept,
+            //           accToRegisterDept = a.Account2Dept
+            //       }).Where(a => a.accToRegisterDept.SelectMany(a => a.accToRegisterDept, (a,b)
+            //       => new
+            //       {
+            //           deptdd = b.DeptId
+            //       })
+            //       .FirstOrDefault();
         }
         public JObject AuthRole(List<string> r_key, string url)
         {

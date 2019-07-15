@@ -658,6 +658,7 @@
     <Content Include="Areas\Settings\Views\DrugVendor\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Account\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\Account\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
