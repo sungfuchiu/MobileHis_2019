@@ -119,12 +119,16 @@ namespace MobileHis_2019.Repository
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void Delete(IList<TEntity> entities)
+        public void Delete(IEnumerable<TEntity> entities)
         {
             foreach(var entity in entities)
             {
                 Delete(entity);
             }
+        }
+        public void Delete(Expression<Func<TEntity, bool>> predicate)
+        {
+            Delete(ReadAll().Where(predicate));
         }
 
         /// <summary>

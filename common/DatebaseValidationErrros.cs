@@ -8,12 +8,16 @@ namespace Common
 {
 
     [Serializable]
-    public class DatebaseValidationErrros : Exception
+    public class DatabaseValidationErrros : Exception
     {
-        public DatebaseValidationErrros() { }
-        public DatebaseValidationErrros(string message) : base(message) { }
-        public DatebaseValidationErrros(string message, Exception inner) : base(message, inner) { }
-        protected DatebaseValidationErrros(
+        //IEnumerable<System.Data.Entity.Validation.DbEntityValidationResult> _errors { get; set; }
+        //public DatabaseValidationErrros(IEnumerable<System.Data.Entity.Validation.DbEntityValidationResult> errors)
+        //{
+        //    _errors = errors;
+        //}
+        public DatabaseValidationErrros(string message) : base(message) { }
+        public DatabaseValidationErrros(string message, Exception inner) : base(message, inner) { }
+        protected DatabaseValidationErrros(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }

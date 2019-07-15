@@ -8,8 +8,11 @@ namespace MobileHis.Data
 {
     public class Account2Dept
     {
-      public Account2Dept() { }
-
+        public Account2Dept() { }
+        public Account2Dept(int deptID)
+        {
+            DeptId = deptID;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }

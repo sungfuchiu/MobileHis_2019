@@ -16,7 +16,8 @@ namespace MobileHis_2019.Repository.Interface
 
         void Delete(TEntity entity);
 
-        void Delete(IList<TEntity> entities);
+        void Delete(IEnumerable<TEntity> entities);
+        void Delete(Expression<Func<TEntity, bool>> predicate);
 
         TEntity Read(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
 

@@ -147,7 +147,7 @@
                                         <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.DepartmentIDs):</label>
                                         <div class="controls col-sm-10 col-md-10">
                                             @*@ucCheckbox.getDeptInCheckBox("RegAcc2Dept", Model.RegAcc2Dept, "Y")*@
-                                            @Html.CheckBoxListFor(x => x.DepartmentIDs,
+                                            @Html.CheckBoxListFor(x => x.AvailableDepartments,
                                                           x => x.AvailableDepartments,
                                                           x => x.Id,
                                                           x => x.Name,
@@ -159,7 +159,7 @@
                                         <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.BureauDepartmentIDs):</label>
                                         <div class="controls col-sm-10 col-md-10">
                                             @*@ucCheckbox.getDeptInCheckBox("Acc2Dept", Model.Acc2Dept)*@
-                                            @Html.CheckBoxListFor(x => x.BureauDepartmentIDs,
+                                            @Html.CheckBoxListFor(x => x.AvailablebureauDepartments,
                                                          x => x.AvailablebureauDepartments,
                                                          x => x.Id,
                                                          x => x.Name,
@@ -192,7 +192,7 @@
                 <span class="lbl" for="roles_@item.ID">@item.name</span>
             </label>
         }*@
-                                            @Html.CheckBoxListFor(x => x.RoleIDs,
+                                            @Html.CheckBoxListFor(x => x.Roles,
                                                           x => x.Roles,
                                                           x => x.Id,
                                                           x => x.Name,

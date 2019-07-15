@@ -31,7 +31,14 @@ namespace Common
             var settingMapper = settingConfig.CreateMapper();
             return settingMapper.Map<TDestination>(model);
         }
-        public static void Map<TSoruce, TDestination>(this TSoruce model, TDestination entity)
+        public static void MapTo<TSoruce, TDestination>(this TSoruce model, out TDestination destination)
+        {
+            var settingConfig = new MapperConfiguration(
+                cfg => cfg.CreateMap<TSoruce, TDestination>());
+            var settingMapper = settingConfig.CreateMapper();
+            destination = settingMapper.Map<TDestination>(model);
+        }
+        public static void MapTo<TSoruce, TDestination>(this TSoruce model, TDestination entity)
         {
             var settingConfig = new MapperConfiguration(
                 cfg => cfg.CreateMap<TSoruce, TDestination>());
@@ -62,6 +69,10 @@ namespace Common
                 return query.Where(whereClause);
             }
             return query;
+        }
+        public static bool HasValue<T>(this T item)
+        {
+            return item != null;
         }
         public static IEnumerable<T> OrEmptyIfNull<T>(this IEnumerable<T> source)
         {

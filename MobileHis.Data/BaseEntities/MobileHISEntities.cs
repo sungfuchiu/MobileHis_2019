@@ -57,30 +57,30 @@ namespace MobileHis.Data
         /// base save changes
         /// </summary>
         /// <returns></returns>
-        public override int SaveChanges()
-        {
-            try
-            {
-                return base.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                Exception raise = ex;
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        string message = string.Format("{0}:{1}",
-                            validationErrors.Entry.Entity.ToString(),
-                            validationError.ErrorMessage);
-                        // raise a new exception nesting
-                        // the current instance as InnerException
-                        raise = new InvalidOperationException(message, raise);
-                    }
-                }
-                return -1;
-            }
-        }
+        //public override int SaveChanges()
+        //{
+        //    try
+        //    {
+        //        return base.SaveChanges();
+        //    }
+        //    catch (DbEntityValidationException ex)
+        //    {
+        //        Exception raise = ex;
+        //        foreach (var validationErrors in ex.EntityValidationErrors)
+        //        {
+        //            foreach (var validationError in validationErrors.ValidationErrors)
+        //            {
+        //                string message = string.Format("{0}:{1}",
+        //                    validationErrors.Entry.Entity.ToString(),
+        //                    validationError.ErrorMessage);
+        //                // raise a new exception nesting
+        //                // the current instance as InnerException
+        //                raise = new InvalidOperationException(message, raise);
+        //            }
+        //        }
+        //        return -1;
+        //    }
+        //}
 
 
         //protected void RenewMacroColumn(string user)

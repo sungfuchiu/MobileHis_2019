@@ -1,4 +1,5 @@
-﻿using MobileHis.Models.Areas.Sys.ViewModels;
+﻿using Common;
+using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Service.Service;
 using Newtonsoft.Json;
 using System;

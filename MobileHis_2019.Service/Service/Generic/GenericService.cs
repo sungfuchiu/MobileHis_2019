@@ -61,7 +61,29 @@ namespace MobileHis_2019.Service
         public void Save()
         {
             db.Save();
+            //try
+            //{
+            //    db.Save();
+            //}catch (DatabaseValidationErrros propertyErrors){
+            //    ValidationDictionary.AddPropertyError(propertyErrors);
+            //}
         }
+        public DbContextTransaction BeginTransaction()
+        {
+            return db.BeginTransaction();
+        }
+        //public void BeginTransaction()
+        //{
+        //    db.BeginTransaction();
+        //}
+        //public void Commit()
+        //{
+        //    db.Commit();
+        //}
+        //public void RollBack()
+        //{
+        //    db.RollBack();
+        //}
         protected void DuplicatedError()
         {
             ValidationDictionary.AddGeneralError(@LocalRes.Resource.MSG_Duplidate);

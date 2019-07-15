@@ -6,6 +6,10 @@ namespace MobileHis.Data
     public class Account2Role
     {
         public Account2Role() { }
+        public Account2Role(int roleID)
+        {
+            Role_id = roleID;
+        }
         public Account2Role(int accountID, int roleID)
         {
             Account_id = accountID;

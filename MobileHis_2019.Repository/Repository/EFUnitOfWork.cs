@@ -1,4 +1,5 @@
-﻿using MobileHis.Data;
+﻿using Common;
+using MobileHis.Data;
 using MobileHis_2019.Repository.Interface;
 using System;
 using System.Collections;
@@ -18,6 +19,7 @@ namespace MobileHis_2019.Repository
 
         private bool _disposed;
         private Hashtable _repositories;
+        private DbContextTransaction _transaction;
 
         /// <summary>
         /// 設定此Unit of work(UOF)的Context。
@@ -28,7 +30,27 @@ namespace MobileHis_2019.Repository
             _context = context;
             _principal = principal;
         }
-
+        public DbContextTransaction BeginTransaction()
+        {
+            return _context.Database.BeginTransaction();
+        }
+        //public void BeginTransaction()
+        //{
+        //    _transaction = _context.Database.BeginTransaction();
+        //}
+        //public void Commit()
+        //{
+        //    _context.Database.CurrentTransaction.Commit();
+        //}
+        //public void RollBack()
+        //{
+        //    _context.Database.CurrentTransaction.Rollback();
+        //}
+        //public void DisposeTransaction()
+        //{
+        //    if(_transaction != null)
+        //        _transaction.Dispose();
+        //}
         /// <summary>
         /// 儲存所有異動。
         /// </summary>
@@ -45,7 +67,17 @@ namespace MobileHis_2019.Repository
                         break;
                 }
             }
-            _context.SaveChanges();
+            
+                //var errors = _context.GetValidationErrors();
+                //if (!errors.Any())
+                //{
+                //    _context.SaveChanges();
+                //}
+                //else
+                //{
+                //    throw new DatabaseValidationErrros(errors);
+                //}
+                _context.SaveChanges();
         }
 
         /// <summary>

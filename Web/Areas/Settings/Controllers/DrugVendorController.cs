@@ -1,4 +1,5 @@
-﻿using MobileHis.Models.Areas.Drug.ViewModels;
+﻿using Common;
+using MobileHis.Models.Areas.Drug.ViewModels;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Controllers;
 using MobileHis_2019.Service.Service;

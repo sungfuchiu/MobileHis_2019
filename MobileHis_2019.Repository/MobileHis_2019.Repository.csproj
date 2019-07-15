@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\common\Common.csproj">
+      <Project>{0AAFA14B-2AFB-48E6-A6BB-4697FA13F627}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MobileHis.Data\MobileHis.Data.csproj">
       <Project>{fb01a196-011a-454a-b16d-c5f7ad076e2f}</Project>
       <Name>MobileHis.Data</Name>

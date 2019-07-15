@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using X.PagedList;
+using Common;
 
 namespace MobileHis.Models.ViewModel
 {
@@ -71,11 +72,11 @@ namespace MobileHis.Models.ViewModel
 
         
 
-        [Display(ResourceType = typeof(Resource), Name = "ModDate")]
-        public DateTime? ModDate { get; set; }
+        //[Display(ResourceType = typeof(Resource), Name = "ModDate")]
+        //public DateTime? ModDate { get; set; }
 
-        [Display(ResourceType = typeof(Resource), Name = "ModUser")]
-        public string ModUser { get; set; }
+        //[Display(ResourceType = typeof(Resource), Name = "ModUser")]
+        //public string ModUser { get; set; }
 
         public byte[] Pic { get; set; }
         public IList<DepartmentCheckBox> AvailableDepartments { get => DependencyResolver.Current.GetService<GetDepartmentList>()(false); }
@@ -90,11 +91,12 @@ namespace MobileHis.Models.ViewModel
     }
     public class myProfileEditView : AccountView
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string ImgName { get; set; }
     }
     public class AccountCUView : AccountView    
     {
+        private string _isDoctor;
         [Display(ResourceType = typeof(Resource), Name = "Account_Card")]
         public string Card { get; set; }
         [Display(ResourceType = typeof(Resource), Name = "Account_Status")]
@@ -102,11 +104,9 @@ namespace MobileHis.Models.ViewModel
         [Display(ResourceType = typeof(Resource), Name = "IsLockedOut")]
         public string IsLockedOut { get; set; }
         [Display(ResourceType = typeof(Resource), Name = "IsDoctor")]
-        public string IsDoctor { get; set; }
-        [Display(ResourceType = typeof(Resource), Name = "LastLoginDate")]
-        public DateTime? LastLoginDate { get; set; }
-        [Display(ResourceType = typeof(Resource), Name = "CreateDate")]
-        public DateTime? CreateDate { get; set; }
+        public string IsDoctor { get => _isDoctor.IsNullOrEmpty()?"":"Y"; set => _isDoctor = value; }
+        //[Display(ResourceType = typeof(Resource), Name = "CreateDate")]
+        //public DateTime? CreateDate { get; set; }
         public List<SelectListItem> StatusSelectedList
         {
             get => new List<SelectListItem>()
@@ -130,11 +130,13 @@ namespace MobileHis.Models.ViewModel
         [Required]
         [System.ComponentModel.DataAnnotations.CompareAttribute("Password")]
         public string confirm_password { get; set; }
+        [Display(ResourceType = typeof(Resource), Name = "LastLoginDate")]
+        public DateTime? LastLoginDate { get; set; }
     }
 
     public class AccountEditView : AccountCUView
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string ImagePath { get; set; }
     }
 

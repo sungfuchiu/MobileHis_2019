@@ -20,6 +20,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             ) : base(systemLogService)
         {
             _accountService = accountService;
+            _accountService.InitialiseIValidationDictionary(new ModelStateWrapper(ModelState));
         }
         // GET: Settings/User
         public ActionResult Index(AccountIndexView model)
@@ -37,12 +38,10 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             if (ModelState.IsValid)
             {
                 _accountService.Create(model);
+                if(ModelState.IsValid)  
+                    EditSuccessfully();
             }
-            return Json(new BaseApiModel()
-            {
-                success = ModelState.IsValid,
-                message = ModelState[""]?.Errors[0].ErrorMessage
-            });
+            return View(model);
         }
         public ActionResult Edit(int id)
         {

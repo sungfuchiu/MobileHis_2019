@@ -8,7 +8,11 @@ namespace MobileHis.Data
 {
     public class Account : IUserEntity, IDatedEntity, IIDEntity
     {
-        public Account() { }
+        public Account()
+        {
+            Account2Dept = new List<Account2Dept>();
+            Account2Role = new List<Account2Role>();
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
