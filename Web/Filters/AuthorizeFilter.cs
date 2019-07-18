@@ -96,8 +96,7 @@ namespace MobileHis_2019.Filters
 
                     if(AuthInfo.Parents != null)
                     {
-                        var authPage = AuthInfo.Parents.SelectMany(x => x.Items.Where(y =>
-                                        HasRoute(y)).Select(y => y)).FirstOrDefault();
+                        var authPage = AuthInfo.Parents.SelectMany(x => x.Items.Where(HasRoute).Select(y => y)).FirstOrDefault();
                         if (authPage != null)
                         {
                             filterContext.Controller.ViewBag.HasAdd = authPage.HasAdd;
@@ -107,33 +106,27 @@ namespace MobileHis_2019.Filters
                         }
                         if (PageCan(_add))
                         {
-                            byPass = AuthInfo.Parents.Any(a => a.Items.Where(b =>
-                                        HasRoute(b) && b.HasAdd)
-                                        .Any()) || byPass;
+                            byPass = AuthInfo.Parents.Any(a => a.Items
+                                        .Any(b => HasRoute(b) && b.HasAdd)) || byPass;
                         }
                         if (PageCan(_delete))
                         {
-                            byPass = AuthInfo.Parents.Any(a => a.Items.Where(b =>
-                                        HasRoute(b) && b.HasDelete)
-                                        .Any()) || byPass;
+                            byPass = AuthInfo.Parents.Any(a => a.Items
+                                        .Any(b => HasRoute(b) && b.HasDelete)) || byPass;
                         }
                         if (PageCan(_update))
                         {
-                            byPass = AuthInfo.Parents.Any(a => a.Items.Where(b =>
-                                        HasRoute(b) && b.HasUpdate)
-                                        .Any()) || byPass;
+                            byPass = AuthInfo.Parents.Any(a => a.Items
+                                        .Any(b => HasRoute(b) && b.HasUpdate)) || byPass;
                         }
                         if (PageCan(_print))
                         {
-                            byPass = AuthInfo.Parents.Any(a => a.Items.Where(b =>
-                                        HasRoute(b) && b.HasPrint)
-                                        .Any()) || byPass;
+                            byPass = AuthInfo.Parents.Any(a => a.Items
+                                        .Any(b => HasRoute(b) && b.HasPrint)) || byPass;
                         }
                         if (PageCan(_read))
                         {
-                            byPass = AuthInfo.Parents.Any(a => a.Items.Where(b =>
-                                        HasRoute(b)
-                                        ).Any()) || byPass;
+                            byPass = AuthInfo.Parents.Any(a => a.Items.Any(HasRoute)) || byPass;
                         }
                         if (!byPass)
                         {

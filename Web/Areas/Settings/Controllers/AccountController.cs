@@ -5,6 +5,7 @@ using MobileHis_2019.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using X.PagedList;
@@ -16,7 +17,7 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         IAccountService _accountService;
         public AccountController(
             ISystemLogService systemLogService, 
-            IAccountService accountService 
+            IAccountService accountService
             ) : base(systemLogService)
         {
             _accountService = accountService;
@@ -25,7 +26,8 @@ namespace MobileHis_2019.Areas.Settings.Controllers
         // GET: Settings/User
         public ActionResult Index(AccountIndexView model)
         {
-            model.Accounts = _accountService.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
+            if (_accountService != null)
+                model.Accounts = _accountService.GetList(model.Keyword).ToPagedList(model.Page, Config.PageSize);
             return View(model);
         }
         public ActionResult Create()
@@ -38,14 +40,40 @@ namespace MobileHis_2019.Areas.Settings.Controllers
             if (ModelState.IsValid)
             {
                 _accountService.Create(model);
-                if(ModelState.IsValid)  
+                if (ModelState.IsValid)
                     EditSuccessfully();
             }
             return View(model);
+
         }
         public ActionResult Edit(int id)
         {
             return View(_accountService.Edit(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(AccountEditView model)
+        {
+            if (ModelState.IsValid)
+            {
+                _accountService.Edit(model);
+                if (ModelState.IsValid)
+                    EditSuccessfully();
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordView model)
+        {
+            if (ModelState.IsValid)
+            {
+                _accountService.ChangePassword(model);
+                if (ModelState.IsValid)
+                {
+                    ViewBag.Message = "Setting Successfully";
+                    ViewBag.Redirect = Url.Action("/LogOn");
+                }
+            }
+            return View(model);
         }
     }
 }

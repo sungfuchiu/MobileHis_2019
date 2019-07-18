@@ -79,15 +79,79 @@ namespace MobileHis.Models.ViewModel
         //public string ModUser { get; set; }
 
         public byte[] Pic { get; set; }
-        public IList<DepartmentCheckBox> AvailableDepartments { get => DependencyResolver.Current.GetService<GetDepartmentList>()(false); }
-        public IList<DepartmentCheckBox> AvailablebureauDepartments { get => DependencyResolver.Current.GetService<GetDepartmentList>()(true); }
-        public IList<DepartmentCheckBox> SelectedDepartments { get; set; }
-        public IList<RoleCheckBox> Roles { get => DependencyResolver.Current.GetService<GetRoleList>()(); }
-        [Display(ResourceType = typeof(Resource), Name = "Account_RegDept")]
-        public int[] BureauDepartmentIDs { get; set; }
+        #region CheckBox
+        IList<DepartmentCheckBox> _selectedDepartments;
+        IList<DepartmentCheckBox> _selectedBureauDepartments;
+        IList<RoleCheckBox> _selectedRoles;
+        public IList<DepartmentCheckBox> AvailableDepartments
+        {
+            get
+            {
+                if (_selectedDepartments == null)
+                    _selectedDepartments = DependencyResolver.Current.GetService<GetDepartmentList>()(false);
+                if (!DepartmentIDs.IsNullOrEmpty())
+                    _selectedDepartments.Where(a => DepartmentIDs.OrEmptyIfNull().Contains(a.Id)).ToList().ForEach(a => a.IsSelected = true);
+                return _selectedDepartments;
+            }
+        }
+        public IList<DepartmentCheckBox> AvailablebureauDepartments {
+            get
+            {
+                if(_selectedBureauDepartments == null)
+                    _selectedBureauDepartments = DependencyResolver.Current.GetService<GetDepartmentList>()(true);
+                if (!BureauDepartmentIDs.IsNullOrEmpty())
+                    _selectedBureauDepartments.Where(a => BureauDepartmentIDs.OrEmptyIfNull().Contains(a.Id)).ToList().ForEach(a => a.IsSelected = true);
+                return _selectedBureauDepartments;
+            }
+        }
+        public IList<RoleCheckBox> Roles {
+            get
+            {
+                if(_selectedRoles == null)
+                    _selectedRoles = DependencyResolver.Current.GetService<GetRoleList>()();
+                if (!RoleIDs.IsNullOrEmpty())
+                    _selectedRoles.Where(a => RoleIDs.OrEmptyIfNull().Contains(a.Id)).ToList().ForEach(a => a.IsSelected = true);
+                return _selectedRoles;
+            }
+        }
+        //public IList<DepartmentCheckBox> SelectedDepartments {
+        //    get
+        //    {
+        //        if (!DepartmentIDs.IsNullOrEmpty())
+        //        {
+        //            _selectedDepartments.Where(a => DepartmentIDs.OrEmptyIfNull().Contains(a.Id)).ToList().ForEach(a => a.IsSelected = true);
+        //        }
+        //        return _selectedDepartments;
+        //    }
+        //}
+        //public IList<DepartmentCheckBox> SelectedBureauDepartments
+        //{
+        //    get
+        //    {
+        //        if (!BureauDepartmentIDs.IsNullOrEmpty())
+        //        {
+        //            _selectedBureauDepartments.Where(a => BureauDepartmentIDs.OrEmptyIfNull().Contains(a.Id)).ToList().ForEach(a => a.IsSelected = true);
+        //        }
+        //        return _selectedBureauDepartments;
+        //    }
+        //}
+        //public IList<RoleCheckBox> SelectedRoles
+        //{
+        //    get
+        //    {
+        //        if (!RoleIDs.IsNullOrEmpty())
+        //        {
+        //            _selectedRoles.Where(a => RoleIDs.OrEmptyIfNull().Contains(a.Id)).ToList().ForEach(a => a.IsSelected = true);
+        //        }
+        //        return _selectedRoles;
+        //    }
+        //}
         [Display(ResourceType = typeof(Resource), Name = "Account_Dept")]
         public int[] DepartmentIDs { get; set; }
+        [Display(ResourceType = typeof(Resource), Name = "Account_RegDept")]
+        public int[] BureauDepartmentIDs { get; set; }
         public int[] RoleIDs { get; set; }
+        #endregion
     }
     public class myProfileEditView : AccountView
     {
@@ -141,7 +205,7 @@ namespace MobileHis.Models.ViewModel
     }
 
 
-    public class ChangepasswordView
+    public class ChangePasswordView
     {
         [Display(ResourceType = typeof(Resource), Name = "Changepassword_Password")]
         [Required]

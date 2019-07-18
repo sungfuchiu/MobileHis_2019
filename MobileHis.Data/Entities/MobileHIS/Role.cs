@@ -10,6 +10,11 @@ namespace MobileHis.Data
     {
         public Role() { }
 
+        public Role(string name)
+        {
+            this.name = name;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }

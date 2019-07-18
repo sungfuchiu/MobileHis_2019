@@ -46,7 +46,7 @@
             <h1 style="margin: 0px; padding: 16px; text-align: center; color: white; font-size: 40px; font-weight: 600; background-color: rgba(255, 102, 0, 1);">Testing</h1>
         </div>
     }
-    @Html.HiddenFor(m => m.BK_img)
+    @Html.HiddenFor(m => m.BackgroundIMG)
     @Html.HiddenFor(m => m.HospitalName)
     @Html.HiddenFor(m => m.PartnerPathList)
     <div class="main-container container">
@@ -93,19 +93,19 @@
                                                         <label class="block clearfix">
                                                             <span class="control ">
                                                                 <div class="input-group">
-                                                                    @Html.TextBoxFor(x => x.login_email, new { @class = "form-control", maxlength = "100", size = "20", placeholder = LocalRes.Resource.Comm_Account })
+                                                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", maxlength = "100", size = "20", placeholder = LocalRes.Resource.Comm_Account })
                                                                     <span class="input-group-addon">@Config.AppSetting("EmailDomain")</span>
                                                                 </div>
                                                             </span>
                                                         </label>
-                                                        @Html.ValidationMessageFor(x => x.login_email)
+                                                        @Html.ValidationMessageFor(x => x.Email)
                                                         <label class="block clearfix">
                                                             <span class="block input-icon input-icon-right">
-                                                                @Html.PasswordFor(x => x.login_password, new { @class = "form-control", maxlength = "50", size = "20", placeholder = LocalRes.Resource.Account_Password })
+                                                                @Html.PasswordFor(x => x.Password, new { @class = "form-control", maxlength = "50", size = "20", placeholder = LocalRes.Resource.Account_Password })
                                                                 <i class="ace-icon fa fa-lock"></i>
                                                             </span>
                                                         </label>
-                                                        @Html.ValidationMessageFor(x => x.login_password)
+                                                        @Html.ValidationMessageFor(x => x.Password)
                                                         <div class="space"></div>
                                                         <div class="clearfix">
                                                             <label class="inline">

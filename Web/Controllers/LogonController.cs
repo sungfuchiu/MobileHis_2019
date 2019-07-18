@@ -39,7 +39,7 @@ namespace MobileHis_2019.Controllers
                 if (Storage.GetStorage(StorageScope.backgroundImg).FileExist(path))
                 {
                     //ViewBag.BackgroundImage = path;
-                    model.BK_img = path;
+                    model.BackgroundIMG = path;
                 }
             }
             //ViewBag.HospitalName = _settingService.GetSetting("Hospital_Name", MobileHis.Data.SettingTypes.Info).Value;
@@ -49,7 +49,7 @@ namespace MobileHis_2019.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(LogOnView data, string ReturnUrl)
+        public ActionResult Index(LogOnView model, string ReturnUrl)
         {
             //using (SettingDal setting = new SettingDal())
             //{
@@ -67,46 +67,49 @@ namespace MobileHis_2019.Controllers
             //    var partnerPathList = setting.GetPartnerImagePath();
             //    ViewBag.partnerPathList = partnerPathList;
             //}
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Message = string.Join(",", ModelState.Values
-                                        .SelectMany(x => x.Errors)
-                                        .Select(x => x.ErrorMessage));
-            }
-            else
+            //if (!ModelState.IsValid)
+            //{
+            //    //ViewBag.Message = string.Join(",", ModelState.Values
+            //    //                        .SelectMany(x => x.Errors)
+            //    //                        .Select(x => x.ErrorMessage));
+
+            //}
+            if(ModelState.IsValid)
             {
                 
-                    var accObj = _accountService.LogOn(data.login_email + Config.AppSetting("EmailDomain"), data.login_password);
-                    if (accObj == null)
+                    var account = _accountService.LogOn(model.Email + Config.AppSetting("EmailDomain"), model.Password);
+                    if (account == null)
                         ViewBag.Message = "Login Failed";
                     else
                     {
-                        CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
+                        //CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
 
-                        serializeModel.ID = accObj.ID;
-                        serializeModel.Name = accObj.Name;
-                        serializeModel.Email = accObj.Email;
-                        serializeModel.roles = string.Join(",", accObj.Account2Role.Select(x => x.Role.name).ToArray());
+                        //serializeModel.ID = account.ID;
+                        //serializeModel.Name = account.Name;
+                        //serializeModel.Email = account.Email;
+                        //serializeModel.Roles = string.Join(",", account.Account2Role.Select(x => x.Role.name).ToArray());
+                        WrappedPrincipal serializePrincipal = new WrappedPrincipal(
+                            id:account.ID,
+                            email:account.Email,
+                            name:account.Name,
+                            roles: string.Join(",", account.Account2Role.Select(x => x.Role.name).ToArray())
+                            );
+                        string userData = JsonConvert.SerializeObject(serializePrincipal);
 
-                        string userData = JsonConvert.SerializeObject(serializeModel);
                         FormsAuthenticationTicket authTicket = null;
-
-                        if (data.login_remember == "1")
-                            authTicket = new FormsAuthenticationTicket(1, accObj.Email, DateTime.Now, DateTime.Now.AddDays(15), false, userData);
-                        else
-                            authTicket = new FormsAuthenticationTicket(1, accObj.Email, DateTime.Now, DateTime.Now.AddHours(3), false, userData);
-
-
+                        var expiration = model.IsRemember == "1" ? DateTime.Now.AddDays(15) : DateTime.Now.AddHours(3);
+                        authTicket = new FormsAuthenticationTicket(1, account.Email, DateTime.Now, expiration, false, userData);
                         string encTicket = FormsAuthentication.Encrypt(authTicket);
                         HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Expires = authTicket.Expiration, Path = "/" };
+
                         Session["userAuth"] = JsonConvert.SerializeObject(
                             _accountService.AuthRole(
-                                accObj.Account2Role.Select(x => x.Role.name).ToList(), 
+                                account.Account2Role.Select(x => x.Role.name).ToList(), 
                                 Server.MapPath("~/menu_all.xml")));  //為了生成SessionId
                         Response.Cookies.Add(faCookie);
                         #region 紀錄登入資訊
 
-                        Log(accObj.Name + "  Login", FunctionType.Login, accObj.Name);
+                        Log(account.Name + "  Login", FunctionType.Login, account.Name);
                         #endregion
 
                         if (string.IsNullOrWhiteSpace(ReturnUrl))
@@ -119,7 +122,7 @@ namespace MobileHis_2019.Controllers
                 
             }
 
-            return View(data);
+            return View(model);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Common;
 using MobileHis_2019.Repository;
 using MobileHis_2019.Repository.Interface;
 using MobileHis_2019.Service.Service;
@@ -23,7 +24,19 @@ namespace MobileHis_2019
             ContainerBuilder builder = new ContainerBuilder();
             
             builder.RegisterType<MobileHis.Data.MobileHISEntities>().As<DbContext>().InstancePerRequest();
-            builder.Register(c => HttpContext.Current.User).As<IPrincipal>().InstancePerRequest();
+            //builder.Register(c =>
+            //    {
+            //        if (HttpContext.Current.User != null)
+            //            return HttpContext.Current.User as CustomPrincipal;
+            //        return new CustomPrincipal();
+            //    }).As<CustomPrincipal>().InstancePerRequest();
+            //builder.Register(c => HttpContext.Current.User).As<IPrincipal>().InstancePerRequest();
+            builder.Register(c => new WrappedPrincipal(HttpContext.Current.User)).As<WrappedPrincipal>().InstancePerRequest();
+            //builder.RegisterInstance(HttpContext.Current.User).As<CustomPrincipal>();
+            //var user = HttpContext.Current.User as CustomPrincipal;
+            //builder.Register(c => user).As<CustomPrincipal>().InstancePerRequest();
+            //builder.Register(c => c.Resolve<IPrincipal>() as CustomPrincipal).As<CustomPrincipal>().InstancePerRequest();
+            //builder.RegisterType(typeof(HttpContext.Current.User)).As<CustomPrincipal>().InstancePerRequest();
             builder.RegisterType(typeof(EFUnitOfWork)).As<IUnitOfWork>();
             builder.RegisterAssemblyTypes(typeof(Service.ServiceModule).Assembly)
                    .Where(t => t.Name.EndsWith("Service"))

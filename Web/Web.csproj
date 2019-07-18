@@ -175,6 +175,7 @@
     <Compile Include="Areas\Settings\Controllers\EducationController.cs" />
     <Compile Include="Areas\Settings\Controllers\ICD10Controller.cs" />
     <Compile Include="Areas\Settings\Controllers\ItemController.cs" />
+    <Compile Include="Areas\Settings\Controllers\RoleController.cs" />
     <Compile Include="Areas\Settings\Controllers\RoomController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingController.cs" />
     <Compile Include="Areas\Settings\Controllers\AccountController.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BaseWebController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogOnController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
@@ -659,6 +661,7 @@
     <Content Include="Areas\Settings\Views\Account\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Account\Create.cshtml" />
     <Content Include="Areas\Settings\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\Role\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Drug.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -701,6 +704,7 @@
     <Folder Include="Views\API\" />
     <Folder Include="Views\BaseCRUD\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

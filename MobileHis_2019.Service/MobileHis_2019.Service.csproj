@@ -53,6 +53,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -86,8 +87,6 @@
   <ItemGroup>
     <Compile Include="Composition\CompositionGuidService.cs" />
     <Compile Include="Composition\CompositionIDService.cs" />
-    <Compile Include="Extension\ExtensionGuidService.cs" />
-    <Compile Include="Extension\ExtensionIDService.cs" />
     <Compile Include="Interface\IAPIService.cs" />
     <Compile Include="Interface\IGuidService.cs" />
     <Compile Include="Interface\IIDService.cs" />
@@ -95,6 +94,8 @@
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="ServiceModule.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\FileService.cs" />
+    <Compile Include="Service\Setting\AppToRoleService.cs" />
     <Compile Include="Service\Setting\CodeFileService.cs" />
     <Compile Include="Service\Drug\DrugAppearanceService.cs" />
     <Compile Include="Service\Drug\DrugCostService.cs" />

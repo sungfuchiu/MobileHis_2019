@@ -162,8 +162,8 @@
                     $.ajax({
                         type: "POST", cache: false,
                         datatype: "json",
-                        url: '@Url.Action("Del")',
-                        data: AddAntiForgeryToken({ key: key })
+                        url: '@Url.Action("Delete")',
+                        data: AddAntiForgeryToken({ ID: key })
                     }).done(function (msg) {
                         if (msg == "Y") {
                             bootbox.alert("@LocalRes.Resource.MSG_Success", function () { location.href = '@Url.Action("Index", new { keyword = ViewBag.keyword })'; });

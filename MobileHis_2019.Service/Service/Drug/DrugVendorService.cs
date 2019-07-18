@@ -4,7 +4,6 @@ using MobileHis.Data;
 using MobileHis.Models.Areas.Sys.ViewModels;
 using MobileHis_2019.Repository.Interface;
 using MobileHis_2019.Service.Composition;
-using MobileHis_2019.Service.Extension;
 using MobileHis_2019.Service.Interface;
 using System;
 using System.Collections.Generic;

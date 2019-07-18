@@ -100,7 +100,7 @@
                                 <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.IsDoctor):</label>
                                 <div class="controls col-sm-9  col-md-9">
                                     <label>
-                                        <input id="IsDoctor" name="IsDoctor" class="ace ace-switch ace-switch-5" type="checkbox"><span class="lbl"></span>
+                                        <input id="IsDoctor" name="IsDoctor" class="ace ace-switch ace-switch-5" type="checkbox"  @(Model.IsDoctor == "Y" ? "checked" : "")><span class="lbl"></span>
                                     </label>
                                 </div>
                             </div>
@@ -231,7 +231,9 @@
             else
                 $("#IsLockedOut").prop("checked", false);
         });
-
+        
+        if ("@Model.IsDoctor" == "Y") $("#divRegDept").show();
+        else $("#divRegDept").hide();
         $("#IsDoctor").change(function () {
 
             if ($(this).prop("checked"))

@@ -20,20 +20,16 @@ namespace MobileHis_2019.Controllers
         {
             _systemLogService = systemLogService;
         }
-        protected ActionResult ImageNotFound()
-        {
-            return File(Server.MapPath("~/Image/no_image_found.jpg"), "image/jpg");
-        }
 
         protected void EditSuccessfully()
         {
             ViewBag.Message = "Setting Successfully";
             ViewBag.Redirect = Url.Action("Index");
         }
-        protected virtual new CustomPrincipal User
-        {
-            get => HttpContext.User as CustomPrincipal;
-        }
+        //protected virtual new Common.CustomPrincipal User
+        //{
+        //    get => HttpContext.User as Common.CustomPrincipal;
+        //}
 
         public virtual void Log(string Message, FunctionType Type = FunctionType.NoRecord, string user = "")
         {
@@ -52,5 +48,9 @@ namespace MobileHis_2019.Controllers
             _systemLogService.Log(record);
         }
 
+        protected ActionResult ImageNotFound()
+        {
+            return File(Server.MapPath("~/Image/no_image_found.jpg"), "image/jpg");
+        }
     }
 }

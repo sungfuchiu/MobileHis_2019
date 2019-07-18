@@ -15,7 +15,7 @@ namespace MobileHis_2019.Repository
     public class EFUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _context;
-        private IPrincipal _principal;
+        private WrappedPrincipal _principal;
 
         private bool _disposed;
         private Hashtable _repositories;
@@ -25,7 +25,7 @@ namespace MobileHis_2019.Repository
         /// 設定此Unit of work(UOF)的Context。
         /// </summary>
         /// <param name="context">設定UOF的context</param>
-        public EFUnitOfWork(DbContext context, IPrincipal principal)
+        public EFUnitOfWork(DbContext context, WrappedPrincipal principal)
         {
             _context = context;
             _principal = principal;
@@ -63,7 +63,7 @@ namespace MobileHis_2019.Repository
                 {
                     case EntityState.Added:
                     case EntityState.Modified:
-                        entity.ModUser = _principal.Identity.Name;
+                        entity.ModUser = _principal.Principal.Identity.Name;
                         break;
                 }
             }

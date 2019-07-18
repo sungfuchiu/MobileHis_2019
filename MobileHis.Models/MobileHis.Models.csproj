@@ -224,7 +224,6 @@
     <Compile Include="MobileHisModel\DrugSampleModel.cs" />
     <Compile Include="MobileHisModel\ExcelSampleModel.cs" />
     <Compile Include="MobileHisModel\UserSampleModel.cs" />
-    <Compile Include="Object\CustomPrincipal.cs" />
     <Compile Include="Object\Schedule.cs" />
     <Compile Include="Object\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

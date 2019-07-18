@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CustomPrincipal.cs" />
     <Compile Include="DatebaseValidationErrros.cs" />
     <Compile Include="DatetimeHelper.cs" />
     <Compile Include="ExtensionMethod.cs" />

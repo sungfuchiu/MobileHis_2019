@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <module key="MobileHis" name="MobileHis">
+    <items id="menu1-0" name="病患管理" Area="PatientMgr" isStatic="true" iconClass="fa-user" ResourceKey="Map_Patient">
+      <item key="A001" name="病患建立" Control="Patient" Action="Create" ResourceKey="Map_Patient_Create" />
+      <item key="A010" name="病患管理" Control="Patient" Action="Manager" ResourceKey="Map_Patient_Manager" />
+    </items>
+    <items id="menu1-110" name="Medical Record Room" Area="MedicalRecord" isStatic="true" iconClass="fa-list" ResourceKey="Map_MedicalRecord">
+      <item key="I001" name="Medical Record List" Control="MedicalRecordList" Action="Manager" ResourceKey="Map_MedicalRecord_Manager" />
+     </items>
+
+    <items id="menu1-10" name="分診" Area="MedicalRecord" iconClass="fa-stethoscope" ResourceKey="Map_Triage">
+      <item key="I002" name="Triage List" Control="ReceptionList" Action="Index" ResourceKey="Map_ReceptionList_Manager" />
+      <!--<item key="B001" name="病患掛號" Control="Patient" Action="Registered" ResourceKey="Map_Registered_Create" />
+      <item key="B002" name="取消掛號" Control="Patient" Action="RegCancel" ResourceKey="Map_Registered_Cancel" />-->
+    </items>
+    <items id="menu1-20" name="門診" Area="OPD" iconClass="fa-building-o" ResourceKey="Map_OPD">
+      <item key="C001" name="病患清單" Control="Appointment" Action="AppointmentList" ResourceKey="Map_OPD_LIST" />
+      <item key="C002" name="未完成病患清單" Control="Appointment" Action="UndoneAppointmentList" ResourceKey="Map_OPD_UndoneList" />
+    </items>
+    <items id="menu1-210" name="急診" Area="OPD" iconClass="fa-building-o" ResourceKey="Map_ER">
+      <item key="C003" name="病患清單" Control="Appointment" Action="ERAppointmentList" ResourceKey="Map_OPD_LIST" />
+    </items>
+    <!--<items id="menu1-30" name="住院管理" Area="IPD" iconClass="fa-bed" ResourceKey="Map_IPD">
+      <item key="F001" name="病房查詢" Control="RoomMain" Action="Search" ResourceKey="Map_IPD_ROOM" />
+      <item key="F002" name="出入院醫囑" Control="RoomMain" Action="Index" ResourceKey="Map_IPD_LIST" />
+    </items>-->
+    <!--<items id="menu1-35" name="檢查報告" Area="RIS" iconClass="fa-file-text-o" ResourceKey="Map_RIS">
+      <item key="I001" name="檢查報到" Control="Checkin" Action="Index" ResourceKey="Map_RIS_Checkin" />
+      <item key="I002" name="檢查報告管理" Control="Report" Action="Index" ResourceKey="Map_RIS_Report" />
+    </items>-->
+    <items id="menu1-40" name="付款" Area="Bill" iconClass="fa-money" ResourceKey="Map_Bill">
+      <item key="D001" name="總價格" Control="Total" Action="Index" ResourceKey="Map_Bill_Total" />
+    </items>
+    <items id="menu1-50" name="給藥" Area="Drug" iconClass="fa-medkit" ResourceKey="Map_Pharmacy">
+      <item key="E001" name="病患給藥查詢" Control="Patient" Action="Index" ResourceKey="Map_Drug_2Patient" />
+      <item key="E010" name="驗證" Control="Verification" Action="Index" ResourceKey="Map_Drug_Verification" />
+      <!--<item key="E030" name="藥物管理" Control="Drugs" Action="Index" ResourceKey="Map_Drug_Manager" />-->
+      <item key="E040" name="藥物交互作用" Control="Restriction" Action="Index" ResourceKey="Map_Drug_Restraint" />
+    </items>
+    <!--<items id="menu1-60" name="環境控制" Area="Environ" iconClass="fa-h-square " ResourceKey="Map_Environ_Control">
+      <item key="G001" name="數據顯示1" Control="EnvironUsage" Action="Index" ResourceKey="Map_Environ_Chart" />
+      <item key="G002" name="數據顯示2" Control="EnvironUsage" Action="ECSIndex" ResourceKey="Map_Environ_ECS" />
+    </items>-->
+    <items id="menu1-70" name="數位學習" Area="Elearning" iconClass="fa-book" ResourceKey="Map_Elearning">
+      <item key="H002" name="課程管理" Control="Course" Action="Index" ResourceKey="Map_Elearning_Course_Management" />
+      <item key="H003" name="試卷管理" Control="TestPaper" Action="Index" ResourceKey="Elearning_Exam_Paper_Management" />
+      <!--<item key="H001" name="課程管理" Control="CourseMgr" Action="Index" ResourceKey="Map_Elearning_CourseMgr" />-->
+      <item key="H010" name="個人面版" Control="Portal" Action="Index" ResourceKey="Map_Elearning_Protal" />
+      <!--<item key="H020" name="錄播管理" Control="Zrs" Action="Index" ResourceKey="Map_Elearning_Zrs" />-->
+    </items>
+
+    <items id="menu1-80" name="進銷存管理" Area="Inventory" iconClass="fa-cart-plus" ResourceKey="Map_Inventory">
+      <item key="J001" name="採購單維護" Control="PurchaseOrder" Action="Index" ResourceKey="Map_PurchaseOrder" />
+      <item key="J010" name="驗收作業" Control="Delivery" Action="Index" ResourceKey="Map_Delivery" />
+      <item key="J020" name="歷史驗收清單" Control="DeliveryHistory" Action="Index" ResourceKey="Map_DeliveryHistory" />      
+    </items>
+    
+    <!--<item key="J030" name="退貨作業" Control="Return" Action="Index" ResourceKey="Map_Return" />
+      <item key="J040" name="歷史退貨清單" Control="ReturnHistory" Action="Index" ResourceKey="Map_ReturnHistory" />
+      -->
+    <!--<item key="J010" name="庫存交易" Control="StockTransaction" Action="Index" ResourceKey="Map_Drug_StockTransaction" />
+      <item key="J020" name="庫存主檔" Control="StockFile" Action="Index" ResourceKey="Map_Drug_StockFile" />
+      <item key="J030" name="盤點單主檔" Control="InventoryFile" Action="Index" ResourceKey="Map_Drug_InventoryFile" />
+      <item key="J040" name="品號主檔" Control="ItemFile" Action="Index" ResourceKey="Map_Drug_ItemFile" />-->
+    
+
+    <items id="menu1-90" name="報表" Area="Report" iconClass="fa-file-excel-o" ResourceKey="Map_Reports">
+      <item key="K001" name="醫生排班" Control="Doctor" Action="Schedule" ResourceKey="Map_Sys_DoctorSchedule" />
+      <item key="K002" name="系統Log" Control="SystemLog" Action="Index" ResourceKey="Map_Sys_Log" />
+      <item key="K003" name="收據" Control="ReceiptReport" Action="Index" ResourceKey="Map_ReceiptReport" />
+      <item key="K004" name="BI Report" Control="BiReport" Action="Index" ResourceKey="Map_BiReport" />
+      <item key="K005" name="General Reports" Control="GeneralReports" Action="Index" ResourceKey="Map_GeneralReports" />
+    </items>
+
+    <items id="menu1-100" name="資料維護" Area="Sys" iconClass="fa-th" ResourceKey="Map_Sys">
+      <item key="Z020" name="院內消息" Control="News" Action="Index" ResourceKey="Map_Sys_News" />
+      <item key="Z030" name="醫生排班" Control="Doctor" Action="Schedule" ResourceKey="Map_Sys_DoctorSchedule" />
+      <item key="Z040" name="角色維護" Control="Roles" Action="Index" ResourceKey="Map_Sys_Roles" />
+      <item key="Z050" name="使用者維護" Control="Users" Action="Index" ResourceKey="Map_Sys_Users" />
+      <item key="Z060" name="廠商管理" Control="Vendor" Action="Index" ResourceKey="Map_Vendor" />
+      <item key="Z063" name="診間維護" Control="Room" Action="Index" ResourceKey="Map_Sys_Room" />
+      <item key="Z064" name="科別維護" Control="Department" Action="Index" ResourceKey="Map_Sys_Department" />      
+      <item key="Z067" name="分類維護" Control="Category" Action="Index" ResourceKey="Map_Category" />
+      <item key="Z070" name="衛教宣導" Control="Guardian" Action="Index" ResourceKey="Map_Sys_Guardian" />
+      <item key="E030" name="項目管理" Control="Drugs" Action="Index" ResourceKey="Map_Drug_Manager" />
+      <item key="Z060" name="ICD10設定" Control="ICD10Management" Action="Index" ResourceKey="Map_ICD10" />
+      <item key="Z065" name="系統設定" Control="Setting" Action="Index" ResourceKey="Map_Setting" />
+    </items>
+  </module>
+</menu>

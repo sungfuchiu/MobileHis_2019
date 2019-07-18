@@ -8,8 +8,8 @@
     //var _roles = _RoleObj.getList();
 }
 
-<link href="~/assets/css/ace-custom.css" rel="stylesheet" />
-<link href="~/assets/css/bootstrap-editable.css" rel="stylesheet" />
+<link href="~/Content/assets/css/ace-custom.css" rel="stylesheet" />
+<link href="~/Content/assets/css/bootstrap-editable.css" rel="stylesheet" />
 
 <div class="breadcrumbs" id="breadcrumbs">
     <script type="text/javascript">
@@ -69,7 +69,7 @@
                                             {
                                                 <img id="avatar" class="editable img-responsive" style="display:inline-block" src="~/Image/no_image_found.jpg" data-pk="@Model.ID">
                                             }*@
-                                        <img id="sbavatarnav" width="200" src="@Url.Action("GetFile", "Base", new { area = "", cat = MobileHis.Misc.StorageScope.ProfilePic, fileName = Model.ImagePath, })" />
+                                        <img id="sbavatarnav" width="200" src="@Url.Action("GetFile", "File", new { area = "", cat = MobileHis.Misc.StorageScope.ProfilePic, fileName = Model.ImagePath, })" />
                                     </span>
                                     <div class="space space-4"></div>
                                 </div><!-- /.col -->
@@ -147,24 +147,24 @@
                                         <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.DepartmentIDs):</label>
                                         <div class="controls col-sm-10 col-md-10">
                                             @*@ucCheckbox.getDeptInCheckBox("RegAcc2Dept", Model.RegAcc2Dept, "Y")*@
-                                            @Html.CheckBoxListFor(x => x.AvailableDepartments,
-                                                          x => x.AvailableDepartments,
-                                                          x => x.Id,
-                                                          x => x.Name,
-                                                          x => x.IsSelected,
-                                                          x => x.Tags)
+                                            @Html.CheckBoxListFor(x => x.DepartmentIDs,
+                                                                  x => x.AvailableDepartments,
+                                                                  x => x.Id,
+                                                                  x => x.Name,
+                                                                  x => x.IsSelected,
+                                                                  x => x.Tags)
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="control-label col-sm-3 col-md-3 align-right">@Html.DisplayNameFor(m => m.BureauDepartmentIDs):</label>
                                         <div class="controls col-sm-10 col-md-10">
                                             @*@ucCheckbox.getDeptInCheckBox("Acc2Dept", Model.Acc2Dept)*@
-                                            @Html.CheckBoxListFor(x => x.AvailablebureauDepartments,
-                                                         x => x.AvailablebureauDepartments,
-                                                         x => x.Id,
-                                                         x => x.Name,
-                                                         x => x.IsSelected,
-                                                         x => x.Tags)
+                                            @Html.CheckBoxListFor(x => x.BureauDepartmentIDs,
+                                                                  x => x.AvailablebureauDepartments,
+                                                                  x => x.Id,
+                                                                  x => x.Name,
+                                                                  x => x.IsSelected,
+                                                                  x => x.Tags)
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -192,12 +192,12 @@
                 <span class="lbl" for="roles_@item.ID">@item.name</span>
             </label>
         }*@
-                                            @Html.CheckBoxListFor(x => x.Roles,
-                                                          x => x.Roles,
-                                                          x => x.Id,
-                                                          x => x.Name,
-                                                          x => x.IsSelected,
-                                                          x => x.Tags)
+                                            @Html.CheckBoxListFor(x => x.RoleIDs,
+                                                                  x => x.Roles,
+                                                                  x => x.Id,
+                                                                  x => x.Name,
+                                                                  x => x.IsSelected,
+                                                                  x => x.Tags)
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -258,8 +258,8 @@
         </div><!--/.col-->
     </div><!--/.row-->
 </form>
-<script src="~/assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="~/assets/js/x-editable/ace-editable.min.js"></script>
+<script src="~/Content/assets/js/x-editable/bootstrap-editable.min.js"></script>
+<script src="~/Content/assets/js/x-editable/ace-editable.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         if ("@Model.IsDoctor" == "Y") $("#divRegDept").show();
